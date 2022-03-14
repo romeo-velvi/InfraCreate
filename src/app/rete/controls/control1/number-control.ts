@@ -1,6 +1,7 @@
 import { Component, Input, Type } from '@angular/core';
 import { Control, NodeEditor } from 'rete';
 import { AngularControl } from 'rete-angular-render-plugin';
+import { NodeStringDecoder } from 'string_decoder';
 
 @Component({
   templateUrl: './number-control.html',
@@ -34,8 +35,8 @@ export class NumControl extends Control implements AngularControl {
       value: 0,
       mounted: () => {
         this.setValue(+(this.getData(key) as any) || 0)
-      }
-    };
+      },
+  };
     
   }
 
@@ -48,4 +49,5 @@ export class NumControl extends Control implements AngularControl {
     this.props.value = +val;
     this.putData(this.key, this.props.value)
   }
+
 }

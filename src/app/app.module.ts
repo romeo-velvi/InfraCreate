@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,20 +12,30 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { ReteComponent } from './rete/rete.component';
 import { ReteModule } from 'rete-angular-render-plugin';
-import { NumberComponent } from './rete/controls/number-control';
-import { MyNodeComponent } from './rete/components/node/node.component';
+
+import { NumberComponent } from './rete/controls/control1/number-control';
+
+import { MyNodeComponent1 } from './rete/components/node1/node1.component';
 import { MyNodeComponent2 } from './rete/components/node2/node2.component';
+import { MyNodeComponent3 } from './rete/components/node3/node3.component';
+
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
+
 import { NgxPopper } from 'angular-popper';
-import { CommonModule } from '@angular/common';
+
+import { CommonModule } from '@angular/common';import { AddComponent } from './rete/components/add-component';
 
 @NgModule({
   declarations: [
+
     AppComponent,
     ReteComponent,
-    NumberComponent,
-    MyNodeComponent,
+
+    MyNodeComponent1,
     MyNodeComponent2,
+    MyNodeComponent3,
+
+    NumberComponent,
 
     AppComponent,
     HomeComponent,
@@ -43,11 +54,10 @@ import { CommonModule } from '@angular/common';
     NgxPopper,
 
     CommonModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NumberComponent, MyNodeComponent, MyNodeComponent2]
+  entryComponents: [MyNodeComponent1, MyNodeComponent2, MyNodeComponent3]
 })
 export class AppModule {}
 
