@@ -10,7 +10,7 @@ import AreaPlugin from 'rete-area-plugin';
 
 @Component({
   selector: 'app-rete',
-  template: '<div class="wrapper"> <div #nodeEditor class="node-editor"> </div> </div>',
+  templateUrl: './rete.component.html',
   styleUrls: ['./rete.component.css'],
 })
 
@@ -30,7 +30,7 @@ export class ReteComponent implements AfterViewInit {
     editor.use(ContextMenuPlugin);
 
     editor.use(AreaPlugin, {
-      background: true,//righe
+      background: true, //righe
       snap: false,
       scaleExtent: { min: 0.1, max: 1 },
       translateExtent: { width: 5000, height: 4000 }
@@ -67,5 +67,13 @@ export class ReteComponent implements AfterViewInit {
     editor.view.resize();
     editor.trigger('process');
     AreaPlugin.zoomAt(editor, [add]);
+
+    this.editor = editor;
+
   }
+
+  public printjson(){
+    console.log(this.editor.toJSON());
+  }
+
 }
