@@ -10,7 +10,7 @@ import AreaPlugin from 'rete-area-plugin';
 
 @Component({
   selector: 'app-rete',
-  template: '<div class="wrapper"><div #nodeEditor class="node-editor"></div></div>',
+  template: '<div class="wrapper"> <div #nodeEditor class="node-editor"> </div> </div>',
   styleUrls: ['./rete.component.css'],
 })
 
