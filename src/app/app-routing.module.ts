@@ -27,6 +27,10 @@ const routes: Routes = [
     component: VisualEditorComponent,
   },
   {
+    path: "application",
+    component: VisualEditorComponent,
+  },
+  {
     path: "**",
     component: HomeComponent,
   },

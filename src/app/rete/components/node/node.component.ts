@@ -4,7 +4,7 @@ import { NodeComponent, NodeService } from 'rete-angular-render-plugin';
 @Component({
   templateUrl: './node.component.html',
   styleUrls: ['./node.component.sass'],
-  providers: [NodeService]
+  providers: [NodeService],
 })
 
 export class MyNodeComponent extends NodeComponent {

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VisualEditorComponent } from './visual-editor.component';
+
 
 describe('VisualEditorComponent', () => {
   let component: VisualEditorComponent;

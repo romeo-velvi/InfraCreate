@@ -16,6 +16,7 @@ import { MyNodeComponent } from './rete/components/node/node.component';
 import { MyNodeComponent2 } from './rete/components/node2/node2.component';
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 import { NgxPopper } from 'angular-popper';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,8 @@ import { NgxPopper } from 'angular-popper';
     ReteModule,
 
     NgxPopper,
+
+    CommonModule,
 
   ],
   providers: [],
