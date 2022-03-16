@@ -151,12 +151,11 @@ export class ReteComponent implements AfterViewInit {
     try {
 
       const n1 = await this.components[0].createNode({ num: 2 });
-      const n2 = await this.components[1].createNode({ num: 0 });
+      const n2 = await this.components[1].createNode({title:"nodotipo2", Output:3, Input:6});
       const n3 = await this.components[2].createNode();
 
       // insert name
       n1.data['title'] = "nodotipo1"
-      n2.data['title'] = "nodotipo2";
       n3.data['title'] = "nodotipo3";
 
       // n1.position = [80, 200];

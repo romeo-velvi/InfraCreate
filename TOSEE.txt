@@ -1,3 +1,13 @@
+Per i moduli:
+
+Per il teatro:
+
+
+
+
+
+
+
 https://github.com/retejs/rete/issues/302
 
 ------------------> CSS FOR NODES https://codesandbox.io/s/1d0yj?file=/src/components/HelloWorld.vue
