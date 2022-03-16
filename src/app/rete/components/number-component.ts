@@ -21,7 +21,7 @@ export class NumComponent extends Component implements AngularComponent {
   }
 
   worker(node, inputs, outputs) {
-    outputs['num'] = node.data.num;
+    // outputs['num'] = node.data.num;
   }
 
   created(node) {
@@ -32,9 +32,9 @@ export class NumComponent extends Component implements AngularComponent {
     console.log('destroyed', node);
   }
   
-  setData(where:string, data:Object){
-    this.data[where]=data;
-  }
+  // setData(where:string, data:Object){
+  //   this.data[where]=data;
+  // }
 
 }
 

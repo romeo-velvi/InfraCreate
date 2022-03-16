@@ -6,7 +6,7 @@ import { MyNodeComponent3 } from './node3/node3.component';
 
 
 export class OthComponent extends Component implements AngularComponent {
-  
+
   data: AngularComponentData;
 
   constructor() {
@@ -32,6 +32,7 @@ export class OthComponent extends Component implements AngularComponent {
   destroyed(node) {
     console.log('destroyed', node);
   }
+
 
 }
 

@@ -9,7 +9,12 @@ import { NodeComponent, NodeService } from 'rete-angular-render-plugin';
 
 export class MyNodeComponent3 extends NodeComponent {
   public isCollapsed = false;
+  public nothide = true;
   constructor(protected service: NodeService, protected cdr: ChangeDetectorRef) {
     super(service, cdr);
+  }
+
+  showhidesocket(){
+    this.nothide = !this.nothide;
   }
 }

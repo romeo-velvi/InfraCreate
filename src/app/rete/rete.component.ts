@@ -5,11 +5,13 @@ import ConnectionPlugin from 'rete-connection-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
 import { AngularRenderPlugin } from 'rete-angular-render-plugin';
 import AreaPlugin from 'rete-area-plugin';
+import MinimapPlugin from 'rete-minimap-plugin';
+import AutoArrangePlugin from 'rete-auto-arrange-plugin'
+
 
 import { NumComponent } from './components/number-component';
 import { AddComponent } from './components/add-component';
 import { OthComponent } from './components/other-component';
-import { zip } from 'rxjs';
 
 
 @Component({
@@ -21,66 +23,111 @@ import { zip } from 'rxjs';
 export class ReteComponent implements AfterViewInit {
 
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
+
+  container = null;
   editor: NodeEditor = null;
+  components = null;
+  engine = null;
 
   async ngAfterViewInit() {
-    const container = this.el.nativeElement;
+
+    this.container = this.el.nativeElement;
 
     // stored all node-types
-    const components = [
+    this.components = [
       new NumComponent(),
       new OthComponent(),
       new AddComponent(),
     ];
 
-    const editor = new NodeEditor('demo@0.2.0', container);
-    editor.use(ConnectionPlugin);
-    editor.use(AngularRenderPlugin)//, { component: MyNodeComponent });
-    editor.use(ContextMenuPlugin);
+    this.editor = new NodeEditor('demo@0.2.0', this.container);
 
-    editor.use(AreaPlugin, {
+    this.editor.use(ConnectionPlugin);
+    this.editor.use(AngularRenderPlugin)//, { component: MyNodeComponent });
+    this.editor.use(MinimapPlugin);
+    this.editor.use(ContextMenuPlugin, {
+      searchBar: false,
+      items: {
+        "Dump JSON": () => {
+          console.log(this.editor.toJSON());
+        }
+      },
+      allocate(component) {
+        return ["+ New"];
+      },
+      rename(component) {
+        return component.name;
+      }
+    });
+    this.editor.use(AreaPlugin, {
       background: true, //righe
       snap: false,
       scaleExtent: { min: 0.1, max: 1 },
       translateExtent: { width: 5000, height: 4000 }
     })
+    this.editor.use(AutoArrangePlugin, {
+      margin: { x: 80, y: 240 },
+      depth: 0,
+      vertical: false,
+    })
 
-    const engine = new Engine('demo@0.2.0');
 
-    components.map(c => {
-      editor.register(c);
-      engine.register(c);
+
+    this.engine = new Engine('demo@0.2.0');
+
+    this.components.map(c => {
+      this.editor.register(c);
+      this.engine.register(c);
     });
 
-    const n1 = await components[0].createNode({ num: 2 });
-    const n2 = await components[1].createNode({ num: 0 });
-    const add = await components[2].createNode();
 
-    // insert value
-    n1.data['valoreacazzo'] = "QUALCOSA";
-
-    n1.position = [80, 200];
-    n2.position = [80, 400];
-    add.position = [500, 240];
-
-    editor.addNode(n1);
-    editor.addNode(n2);
-    editor.addNode(add);
-
-    editor.connect(n1.outputs.get('num'), add.inputs.get('num1'));
-    editor.connect(n2.outputs.get('num'), add.inputs.get('num2'));
+    await this.addNodes();
 
 
-    editor.on(['process', 'nodecreated', 'noderemoved', 'connectioncreated', 'connectionremoved'], (async () => {
-      await engine.abort();
-      await engine.process(editor.toJSON());
-    }) as any);
+    this.editor.on(
+      [
+        'process',
+        'nodecreated',
+        'noderemoved',
+        'connectioncreated',
+        'connectionremoved'
+      ],
+      (
+        async () => {
+          await this.engine.abort();
+          await this.engine.process(this.editor.toJSON());
+        }
+      ) as any
+    );
 
-    editor.view.resize();
-    editor.trigger('process');
-    AreaPlugin.zoomAt(editor, [add]);
 
-    this.editor = editor;
+    this.editor.on("connectioncreated", connection => {
+      setInterval(() => {
+        let node = connection.output.node;
+        this.editor.view.updateConnections({ node });
+      }, 1);
+    });
+
+    this.editor.on(["connectioncreated"], connection => {
+      setInterval(() => {
+        let node = connection.output.node;
+        this.editor.view.updateConnections({ node });
+      }, 1);
+    });
+
+
+    this.editor.view.resize();
+    this.editor.trigger('process');
+
+    // to arrange all nodes
+    this.editor.nodes.forEach(node => {
+      //console.log(node);
+      this.editor.trigger("arrange", { node: node });
+    });
+
+
+    // AreaPlugin.zoomAt(editor, [n3]);
+
 
   }
 
@@ -100,5 +147,32 @@ export class ReteComponent implements AfterViewInit {
     return z;
   }
 
+  public async addNodes() {
+    try {
 
+      const n1 = await this.components[0].createNode({ num: 2 });
+      const n2 = await this.components[1].createNode({ num: 0 });
+      const n3 = await this.components[2].createNode();
+
+      // insert name
+      n1.data['title'] = "nodotipo1"
+      n2.data['title'] = "nodotipo2";
+      n3.data['title'] = "nodotipo3";
+
+      // n1.position = [80, 200];
+      // n2.position = [80, 400];
+      // n3.position = [500, 240];
+
+      this.editor.addNode(n1);
+      this.editor.addNode(n2);
+      this.editor.addNode(n3);
+
+      this.editor.connect(n1.outputs.get('num'), n3.inputs.get('num1'));
+      this.editor.connect(n2.outputs.get('num'), n3.inputs.get('num2'));
+
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

@@ -1,6 +1,8 @@
 <div class="node" [ngClass]="[selected(), node.name] | kebab">
     
-    <div class="title">{{node.name}} TIPO1 </div>
+    <div class="title">
+        {{ node.data.title === "" || node.data.title === undefined ? "Assign name" : node.data.title }}
+      </div>
     
     <div class="output" *ngFor="let output of outputs">
         <div class="output-title">{{output.name}}</div>
