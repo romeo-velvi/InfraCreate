@@ -4,8 +4,8 @@ Per il teatro:
 
 
 
-
-
+KEYCLOAK may serve
+https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/javascript-adapter.adoc
 
 
 https://github.com/retejs/rete/issues/302

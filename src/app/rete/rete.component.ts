@@ -185,4 +185,9 @@ export class ReteComponent implements AfterViewInit {
       console.log(error);
     }
   }
+
+  public delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 }

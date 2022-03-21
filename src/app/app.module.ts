@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ApplicationRef, APP_INITIALIZER, DoBootstrap, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
@@ -24,6 +24,12 @@ import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 import { NgxPopper } from 'angular-popper';
 
 import { CommonModule } from '@angular/common';import { AddComponent } from './rete/components/add-component';
+
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './utility/app.init';
+import { HttpClientModule } from '@angular/common/http';
+
+const keycloakService = new KeycloakService();
 
 @NgModule({
   declarations: [
@@ -54,10 +60,36 @@ import { CommonModule } from '@angular/common';import { AddComponent } from './r
     NgxPopper,
 
     CommonModule,
+
+    KeycloakAngularModule,
+
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+      // provide: KeycloakService,
+      // useValue: keycloakService,
+    },
+  ],
   bootstrap: [AppComponent],
   entryComponents: [MyNodeComponent1, MyNodeComponent2, MyNodeComponent3]
 })
-export class AppModule {}
+export class AppModule implements DoBootstrap {
+  ngDoBootstrap(appRef: ApplicationRef) {
+    keycloakService
+      .init()
+      .then(() => {
+        console.log('[ngDoBootstrap] bootstrap app');
+ 
+        appRef.bootstrap(AppComponent);
+      })
+      .catch((error) =>
+        console.error('[ngDoBootstrap] init Keycloak failed', error)
+      );
+  }
+}
 

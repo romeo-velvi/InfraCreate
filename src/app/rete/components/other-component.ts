@@ -22,7 +22,7 @@ export class OthComponent extends Component implements AngularComponent {
     var o = node['data']['Output'];
     i = parseInt(i);
     o = parseInt(o);
-    console.log(i,o);
+    // console.log(i,o);
 
     for (let index = 0; index < i; index++) {
       var key = "input"+index;
