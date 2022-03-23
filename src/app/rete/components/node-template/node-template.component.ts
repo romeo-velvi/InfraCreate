@@ -23,7 +23,7 @@ export class NodeTemplate extends NodeComponent {
     super(service, cdr);
   }
 
-  /* passing data from node (visible once '.html' is loaded to this class node) */ 
+  /* passing data from node (visible once '.html' is loaded to this class node) */
   // può essere migliorata (vedere anche la call fatta in '.html')
   initdatanode(data: any) {
     if (this.active) {
@@ -39,11 +39,32 @@ export class NodeTemplate extends NodeComponent {
     this.nothide = !this.nothide;
   }
 
-  selectimge(type: any){
-    console.log("dddd",type);
-    this.imageSrc += type.toLowerCase()+".png";
-    this.imageAlt = type.toLowerCase();
-    this.imgalt = '<img src="'+this.imageSrc+'"class="d-inline-block" alt="'+this.imageAlt+'" />'
+  selectimge(type: any) {
+    console.log("dddd", type);
+    type = type.toLowerCase();
+    let img = "none";
+    switch (type) {
+      case "server":
+        img = "server"
+        break;
+      case "port":
+        img = "port"
+        break;
+      case "network":
+        img = "network"
+        break;
+      case "subnet":
+        img = "subnet"
+        break;
+      default:
+        img = "Not-recognize type"
+        break;
+    }
+    this.imageSrc += img + ".png";
+    this.imageAlt = img;
+    this.imgalt = '<img src="' + this.imageSrc + '"class="d-inline-block" alt="' + this.imageAlt + '" />'
+  
   }
 
+  
 }

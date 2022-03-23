@@ -137,12 +137,14 @@ export class ReteComponent implements AfterViewInit {
       // DATA info-node
       var infon1 = { title: "node-type2", Output: 2, Input: 3 }
       var infon2 = { title: "node-type3", Output: 3, Input: 6, type: 'Server' }
+      var infon3 = { title: "node-type3-1", Output: 3, Input: 6, type: 'port' }
       // var infon3 = { title:"node-type1", Output:4, Input:9 }
 
       // Component creation (foreach module)
       const n1 = await this.components[0].createNode(infon1);
       const n2 = await this.components[1].createNode(infon2);
-      const n3 = await this.components[2].createNode({ title: "nodotipo3" });
+      const n3 = await this.components[1].createNode(infon3);
+      const n4 = await this.components[2].createNode({ title: "nodotipo3" });
 
       /* 
       //insert name
@@ -159,6 +161,7 @@ export class ReteComponent implements AfterViewInit {
       this.editor.addNode(n1);
       this.editor.addNode(n2);
       this.editor.addNode(n3);
+      this.editor.addNode(n4);
 
       // Sempre prima che avvengano i collegamenti
       //Necessario per il path delle connessioni (altrimenti si fottono)
@@ -170,8 +173,11 @@ export class ReteComponent implements AfterViewInit {
       });
 
       // Create connection
-      this.editor.connect(n1.outputs.get('output1'), n3.inputs.get('num1'));
-      this.editor.connect(n2.outputs.get('output0'), n3.inputs.get('num2'));
+      this.editor.connect(n2.outputs.get('output0'), n4.inputs.get('num2'));
+      this.editor.connect(n2.outputs.get('output1'), n3.inputs.get('input1'));
+      this.editor.connect(n1.outputs.get('output1'), n4.inputs.get('num1'));
+      this.editor.connect(n3.outputs.get('output1'), n4.inputs.get('num2'));
+      
       
     } catch (error) {
       console.log(error);

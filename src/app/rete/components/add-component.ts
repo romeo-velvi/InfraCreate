@@ -16,9 +16,9 @@ export class AddComponent extends Component implements AngularComponent {
 
   // modify the node
   async builder(node) {
-    const inp1 = new Input('num1', 'int1', numSocket);
-    const inp2 = new Input('num2', 'int2', numSocket);
-    const out = new Output('num', 'out', numSocket);
+    const inp1 = new Input('num1', 'int1', numSocket, true);
+    const inp2 = new Input('num2', 'int2', numSocket, true);
+    const out = new Output('num', 'out', numSocket, true);
 
     inp1.addControl(new NumControl(this.editor, 'num1'));
     inp2.addControl(new NumControl(this.editor, 'num2'));
