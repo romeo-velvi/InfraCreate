@@ -16,8 +16,31 @@ export class NumComponent extends Component implements AngularComponent {
   }
 
   async builder(node) {
-    const out1 = new Output('num', 'Number', numSocket);
-    node.addControl(new NumControl(this.editor, 'num')).addOutput(out1);
+    // const out1 = new Output('num', 'Number', numSocket);
+    // node.addControl(new NumControl(this.editor, 'num')).addOutput(out1);
+
+    console.log(node);
+    var i = node['data']['Input'];
+    var o = node['data']['Output'];
+    i = parseInt(i);
+    o = parseInt(o);
+    // console.log(i,o);
+
+    for (let index = 0; index < i; index++) {
+      var key = "input"+index;
+      var title = "i-sock"+index;
+      var socket = numSocket;
+      var inp = new Input(key, title, socket);
+      node.addInput(inp);
+    }
+
+    for (let index = 0; index < o; index++) {
+      var key = "output"+index;
+      var title = "o-sock"+index;
+      var socket = numSocket;
+      var out = new Output(key, title, socket);
+      node.addOutput(out);
+    }
   }
 
   worker(node, inputs, outputs) {

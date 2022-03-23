@@ -3,8 +3,7 @@ import { numSocket } from '../sockets';
 import { NumControl } from '../controls/control1/number-control';
 import { AngularComponent, AngularComponentData } from 'rete-angular-render-plugin';
 import { MyNodeComponent3 } from './node3/node3.component';
-import { toUnicode } from 'punycode';
-
+import { NodeTemplate } from './node-template/node-template.component';
 
 export class OthComponent extends Component implements AngularComponent {
 
@@ -13,9 +12,10 @@ export class OthComponent extends Component implements AngularComponent {
   constructor() {
     super('ELEM-3');
     this.data.render = 'angular';
-    this.data.component = MyNodeComponent3;
+    // this.data.component = MyNodeComponent3;
+    this.data.component = NodeTemplate;
   }
-
+ 
   async builder(node) {
     console.log(node);
     var i = node['data']['Input'];

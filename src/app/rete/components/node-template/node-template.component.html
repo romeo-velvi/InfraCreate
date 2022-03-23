@@ -1,15 +1,16 @@
 <div class="node" [ngClass]="[selected(), node.name] | kebab">
 
+  {{ this.active ? initdatanode(node.data) : null }}
+
   <div class="container">
-    <div class="row">
-      <div class="col">
+    <div class="row justify-content-center">
+      <div class="col col-md-auto">
         <div class="title">
           {{ node.data.title === "" || node.data.title === undefined ? "Assign name" : node.data.title }}
         </div>
       </div>
-      <div class="col">
-        <button class="btn btn-primary" type="button" (click)="showhidesocket()"> </button>
-
+      <div class="col col-md-auto m-auto">
+        <button class="btn btn-warning" type="button" (click)="showhidesocket()" style="vertical-align: baseline;"> v </button>
       </div>
     </div>
 
@@ -17,8 +18,12 @@
 
 
   <!-- CONTENT -->
-  <div class="">
-    <!-- <app-rete></app-rete> -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- <app-rete></app-rete> -->
+      <span [innerHTML]="imgalt" style="display: contents;"></span> <!-- <img src="{{imageSrc}}" class="d-inline-block" alt="{{imageAlt}}" /> -->
+    </div>
+
   </div>
 
 

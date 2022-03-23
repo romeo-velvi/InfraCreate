@@ -2,8 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 // import { ReteComponent } from '../rete/rete.component';
 import { KeycloakService } from 'keycloak-angular';
-import { from, Observable } from 'rxjs';
-
 
 @Component({
   selector: 'app-visual-editor',
@@ -25,14 +23,19 @@ export class VisualEditorComponent implements OnInit {
     this.http_get_theater(502); // take theater
   }
 
-
-  got_theater(theater: any){
-    console.log("returned value T: ", theater);
-    this.http_get_modules(theater['uuid']);
+  got_elements(theater: any, modules: any) {
+    console.log("theater: ", theater);
+    console.log("modules: ", modules);
   }
 
-  got_modules(modules: any){
-    console.log("returned value M: ", modules);
+  got_theater(theater: any) {
+    // console.log("returned value T: ", theater);
+    this.http_get_modules(theater);
+  }
+
+  got_modules(theater: any, modules: any) {
+    // console.log("returned value M: ", modules);
+    this.got_elements(theater,modules);
   }
 
   async http_get_theater(id: number): Promise<any> {
@@ -51,9 +54,9 @@ export class VisualEditorComponent implements OnInit {
       )
       .subscribe(
         res => {
-          // console.log('eeeee', res);
-         this.got_theater(res);
-         return;
+          let theater = res;
+          this.got_theater(theater);
+          return;
 
         }, error => {
           console.log(error);
@@ -61,7 +64,8 @@ export class VisualEditorComponent implements OnInit {
       )
   }
 
-  async http_get_modules(theatre_uuid: string): Promise<any> {
+  async http_get_modules(theater: any): Promise<any> {
+    let theatre_uuid = theater['uuid'];
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/json',
@@ -77,10 +81,9 @@ export class VisualEditorComponent implements OnInit {
       )
       .subscribe(
         res => {
-          // console.log('eeeee', res);
-         this.got_modules(res);
-         return;
-
+          let modules = res;
+          this.got_modules(theater, modules);
+          return;
         }, error => {
           console.log(error);
         }

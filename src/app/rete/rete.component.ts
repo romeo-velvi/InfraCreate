@@ -83,6 +83,8 @@ export class ReteComponent implements AfterViewInit {
 
     await this.addNodes();
 
+    // await this.stresstest(50);
+
 
     this.editor.on(
       [
@@ -100,22 +102,6 @@ export class ReteComponent implements AfterViewInit {
       ) as any
     );
 
-
-    this.editor.on("connectioncreated", connection => {
-      setInterval(() => {
-        let node = connection.output.node;
-        this.editor.view.updateConnections({ node });
-      }, 1);
-    });
-
-    this.editor.on(["connectioncreated"], connection => {
-      setInterval(() => {
-        let node = connection.output.node;
-        this.editor.view.updateConnections({ node });
-      }, 1);
-    });
-
-
     this.editor.view.resize();
     this.editor.trigger('process');
 
@@ -125,9 +111,7 @@ export class ReteComponent implements AfterViewInit {
       this.editor.trigger("arrange", { node: node });
     });
 
-
-    // AreaPlugin.zoomAt(editor, [n3]);
-
+    //AreaPlugin.zoomAt(editor, [n3]);
 
   }
 
@@ -151,14 +135,14 @@ export class ReteComponent implements AfterViewInit {
     try {
 
       // DATA info-node
-      var infon2 = { title:"nodotipo2", Output:3, Input:6 }
-      var infon2 = { title:"nodotipo2", Output:3, Input:6 }
-      var infon2 = { title:"nodotipo2", Output:3, Input:6 }
-      
+      var infon1 = { title: "node-type2", Output: 2, Input: 3 }
+      var infon2 = { title: "node-type3", Output: 3, Input: 6, type: 'Server' }
+      // var infon3 = { title:"node-type1", Output:4, Input:9 }
+
       // Component creation (foreach module)
-      const n1 = await this.components[0].createNode({title:"nodotipo1" });
+      const n1 = await this.components[0].createNode(infon1);
       const n2 = await this.components[1].createNode(infon2);
-      const n3 = await this.components[2].createNode({title:"nodotipo3"});
+      const n3 = await this.components[2].createNode({ title: "nodotipo3" });
 
       /* 
       //insert name
@@ -170,24 +154,60 @@ export class ReteComponent implements AfterViewInit {
       // n2.position = [80, 400];
       // n3.position = [500, 240];
       */
-      
+
       // Insert into editor
       this.editor.addNode(n1);
       this.editor.addNode(n2);
       this.editor.addNode(n3);
 
+      // Sempre prima che avvengano i collegamenti
+      //Necessario per il path delle connessioni (altrimenti si fottono)
+      this.editor.on("connectioncreated", connection => {
+        setInterval(() => {
+          let node = connection.output.node;
+          this.editor.view.updateConnections({ node });
+        }, 1);
+      });
+
       // Create connection
-      this.editor.connect(n1.outputs.get('num'), n3.inputs.get('num1'));
+      this.editor.connect(n1.outputs.get('output1'), n3.inputs.get('num1'));
       this.editor.connect(n2.outputs.get('output0'), n3.inputs.get('num2'));
-
-
+      
     } catch (error) {
       console.log(error);
     }
   }
+  
+
+  public async stresstest(num:number){
+    var a_node = [];
+    for (let index = 0; index < num; index++) {
+      var info = { title: "node-type3", Output: 3, Input: 6, type: 'Server' }
+      a_node[index] = await this.components[1].createNode(info);
+    }
+    
+    for (let index = 0; index < num; index++) {
+      this.editor.addNode(a_node[index]);
+    }
+
+    this.editor.on("connectioncreated", connection => {
+      setInterval(() => {
+        let node = connection.output.node;
+        this.editor.view.updateConnections({ node });
+      }, 1);
+    });
+
+    for (let index = 1; index < a_node.length; index++) {
+      var element1 = a_node[index];
+      var element0 = a_node[index-1];
+      this.editor.connect(element1.outputs.get('output1'), element0.inputs.get('input1'));
+    }
+
+
+  }
 
   public delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 }

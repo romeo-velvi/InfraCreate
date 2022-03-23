@@ -23,11 +23,12 @@ import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 
 import { NgxPopper } from 'angular-popper';
 
-import { CommonModule } from '@angular/common';import { AddComponent } from './rete/components/add-component';
+import { CommonModule, NgClass } from '@angular/common';import { AddComponent } from './rete/components/add-component';
 
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './utility/app.init';
 import { HttpClientModule } from '@angular/common/http';
+import { NodeTemplate } from './rete/components/node-template/node-template.component';
 
 const keycloakService = new KeycloakService();
 
@@ -40,6 +41,7 @@ const keycloakService = new KeycloakService();
     MyNodeComponent1,
     MyNodeComponent2,
     MyNodeComponent3,
+    NodeTemplate,
 
     NumberComponent,
 
@@ -76,15 +78,15 @@ const keycloakService = new KeycloakService();
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MyNodeComponent1, MyNodeComponent2, MyNodeComponent3]
+  entryComponents: [MyNodeComponent1, MyNodeComponent2, MyNodeComponent3, NodeTemplate]
 })
+
 export class AppModule implements DoBootstrap {
   ngDoBootstrap(appRef: ApplicationRef) {
     keycloakService
       .init()
       .then(() => {
         console.log('[ngDoBootstrap] bootstrap app');
- 
         appRef.bootstrap(AppComponent);
       })
       .catch((error) =>

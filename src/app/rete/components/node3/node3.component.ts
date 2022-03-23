@@ -6,7 +6,7 @@ import { NodeComponent, NodeService } from 'rete-angular-render-plugin';
   styleUrls: ['./node3.component.sass',],
   providers: [NodeService]
 })
-
+ 
 export class MyNodeComponent3 extends NodeComponent {
   public isCollapsed = false;
   public nothide = true;
