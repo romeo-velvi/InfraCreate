@@ -28,6 +28,7 @@
     "jquery": "^3.6.0",
     "keycloak-angular": "^8.0.1",
     "keycloak-js": "^11.0.2",
+    "ngx-spinner": "^9.0.1",
     "popper": "^1.0.1",
     "popper.js": "^1.14.0",
     "qs": "^6.10.3",

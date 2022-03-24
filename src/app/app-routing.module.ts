@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: "Application",
-    component: VisualEditorComponent, canActivate: [AuthGuard],
+    component: VisualEditorComponent, canActivate: [AuthGuard]
   },
   {
     path: "application",

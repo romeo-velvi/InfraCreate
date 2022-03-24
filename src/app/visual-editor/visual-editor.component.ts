@@ -17,9 +17,11 @@ export class VisualEditorComponent implements OnInit {
   constructor(private keycloakService: KeycloakService, private http: HttpClient) {
     this.token = this.keycloakService.getToken();
     this.token = this.token;
+    // console.log("start 1 ")
   }
 
   ngOnInit() {
+    // console.log("start 2 ")
     this.http_get_theater(502); // take theater
   }
 

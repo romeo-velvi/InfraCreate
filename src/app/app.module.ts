@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ApplicationRef, APP_INITIALIZER, DoBootstrap, NgModule } from '@angular/core';
+import { ApplicationRef, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, DoBootstrap, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
@@ -30,6 +30,10 @@ import { initializeKeycloak } from './utility/app.init';
 import { HttpClientModule } from '@angular/common/http';
 import { NodeTemplate } from './rete/components/node-template/node-template.component';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 const keycloakService = new KeycloakService();
 
 @NgModule({
@@ -51,6 +55,7 @@ const keycloakService = new KeycloakService();
     HowToUseComponent,
     NavbarComponent,
     VisualEditorComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -66,6 +71,10 @@ const keycloakService = new KeycloakService();
     KeycloakAngularModule,
 
     HttpClientModule,
+
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [
     {
@@ -77,6 +86,7 @@ const keycloakService = new KeycloakService();
       // useValue: keycloakService,
     },
   ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
   entryComponents: [MyNodeComponent1, MyNodeComponent2, MyNodeComponent3, NodeTemplate]
 })

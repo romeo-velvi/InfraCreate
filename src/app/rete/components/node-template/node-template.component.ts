@@ -13,7 +13,7 @@ export class NodeTemplate extends NodeComponent {
   public nothide = true;
   public imageSrc = 'assets/images/nodeimg/';
   public imageAlt = '';
-  public nodedata;
+  public nodedata: any;
   public active = true;
   public imgalt = '';
 

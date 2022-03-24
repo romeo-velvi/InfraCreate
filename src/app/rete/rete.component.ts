@@ -8,10 +8,11 @@ import AreaPlugin from 'rete-area-plugin';
 import MinimapPlugin from 'rete-minimap-plugin';
 import AutoArrangePlugin from 'rete-auto-arrange-plugin'
 
-
 import { NumComponent } from './components/number-component';
 import { AddComponent } from './components/add-component';
 import { OthComponent } from './components/other-component';
+
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -22,6 +23,9 @@ import { OthComponent } from './components/other-component';
 
 export class ReteComponent implements AfterViewInit {
 
+  constructor(private spinner: NgxSpinnerService){
+  }
+
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
 
   container = null;
@@ -29,8 +33,31 @@ export class ReteComponent implements AfterViewInit {
   components = null;
   engine = null;
 
+
   async ngAfterViewInit() {
 
+    await this.spinner.show()
+    .then(
+      async () =>{
+        await this.delay(1000);
+        // console.log("start 3")
+        await this.StartApp();
+      }
+    )
+    .then(
+      async ()=>{
+        // console.log("start 5")
+        await this.spinner.hide();
+      }
+    )
+
+
+  }
+
+
+  async StartApp(){
+    // console.log("start 4");
+    
     this.container = this.el.nativeElement;
 
     // stored all node-types
@@ -81,9 +108,9 @@ export class ReteComponent implements AfterViewInit {
     });
 
 
-    await this.addNodes();
+    // await this.addNodes();
 
-    // await this.stresstest(50);
+    await this.stresstest(50);
 
 
     this.editor.on(
@@ -112,13 +139,18 @@ export class ReteComponent implements AfterViewInit {
     });
 
     //AreaPlugin.zoomAt(editor, [n3]);
-
+    console.log("end");
   }
+
+
 
   public printjson() {
     console.log(this.editor.toJSON());
     console.log(JSON.stringify(this.editor.toJSON()));
   }
+
+
+
 
   public getNodes(): Object[] {
     var x = this.editor.toJSON();
@@ -130,6 +162,9 @@ export class ReteComponent implements AfterViewInit {
     }
     return z;
   }
+
+
+
 
   public async addNodes() {
     try {
@@ -213,6 +248,7 @@ export class ReteComponent implements AfterViewInit {
   }
 
   public delay(ms: number) {
+    // console.log("start -> delay");
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
