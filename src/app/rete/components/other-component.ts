@@ -17,7 +17,7 @@ export class OthComponent extends Component implements AngularComponent {
   }
  
   async builder(node) {
-    console.log(node);
+    // console.log(node);
     var i = node['data']['Input'];
     var o = node['data']['Output'];
     i = parseInt(i);

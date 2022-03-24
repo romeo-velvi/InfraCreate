@@ -1,10 +1,11 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { NodeComponent, NodeService } from 'rete-angular-render-plugin';
 
 @Component({
   templateUrl: './node-template.component.html',
   styleUrls: ['./node-template.component.sass',],
-  providers: [NodeService]
+  providers: [NodeService],
+  changeDetection: ChangeDetectionStrategy.OnPush, // render più veloce.
 })
 
 export class NodeTemplate extends NodeComponent {
@@ -28,19 +29,19 @@ export class NodeTemplate extends NodeComponent {
   initdatanode(data: any) {
     if (this.active) {
       this.active = false;
-      console.log("td: ", data);
+      // console.log("td: ", data);
       this.nodedata = data;
       this.selectimge(data.type)
     }
   }
 
   showhidesocket() {
-    console.log(this.nodedata);
+    // console.log(this.nodedata);
     this.nothide = !this.nothide;
   }
 
   selectimge(type: any) {
-    console.log("dddd", type);
+    // console.log("dddd", type);
     type = type.toLowerCase();
     let img = "none";
     switch (type) {

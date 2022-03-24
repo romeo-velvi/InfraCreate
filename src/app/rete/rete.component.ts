@@ -108,26 +108,27 @@ export class ReteComponent implements AfterViewInit {
     });
 
 
-    // await this.addNodes();
+    await this.addNodes();
 
-    await this.stresstest(50);
+    //await this.stresstest(200);
 
 
-    this.editor.on(
-      [
-        'process',
-        'nodecreated',
-        'noderemoved',
-        'connectioncreated',
-        'connectionremoved'
-      ],
-      (
-        async () => {
-          await this.engine.abort();
-          await this.engine.process(this.editor.toJSON());
-        }
-      ) as any
-    );
+    // this.editor.on(
+    //   [
+    //     'process',
+    //     'nodecreated',
+    //     'noderemoved',
+    //     'connectioncreated',
+    //     'connectionremoved'
+    //   ],
+    //   (
+    //     async () => {
+    //       await this.engine.abort();
+    //       await this.engine.process(this.editor.toJSON());
+    //     }
+    //   ) as any
+    // );
+
 
     this.editor.view.resize();
     this.editor.trigger('process');
@@ -139,7 +140,7 @@ export class ReteComponent implements AfterViewInit {
     });
 
     //AreaPlugin.zoomAt(editor, [n3]);
-    console.log("end");
+    // console.log("end");
   }
 
 
@@ -223,7 +224,7 @@ export class ReteComponent implements AfterViewInit {
   public async stresstest(num:number){
     var a_node = [];
     for (let index = 0; index < num; index++) {
-      var info = { title: "node-type3", Output: 3, Input: 6, type: 'Server' }
+      var info = { title: "node-name->"+index.toString(), Output: 3, Input: 6, type: 'Server' }
       a_node[index] = await this.components[1].createNode(info);
     }
     
