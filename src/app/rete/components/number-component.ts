@@ -19,7 +19,7 @@ export class NumComponent extends Component implements AngularComponent {
     // const out1 = new Output('num', 'Number', numSocket);
     // node.addControl(new NumControl(this.editor, 'num')).addOutput(out1);
 
-    console.log(node);
+    // console.log(node);
     var i = node['data']['Input'];
     var o = node['data']['Output'];
     i = parseInt(i);

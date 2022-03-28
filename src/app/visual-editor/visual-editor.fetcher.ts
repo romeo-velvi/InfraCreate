@@ -5,17 +5,11 @@ import { KeycloakService } from 'keycloak-angular';
 
 export class VisualEditorFetcher {
 
+    token: string | Promise<string>;
+    headers: HttpHeaders;
 
-    token;
-    headers;
-
-    theater;
-
-
-    flag = 1;
-
-    data_theater;
-    data_modules;
+    data_theater: any;
+    data_modules: any;
 
     constructor(private keycloakService: KeycloakService, private http: HttpClient) {
         this.token = this.keycloakService.getToken();
@@ -30,9 +24,11 @@ export class VisualEditorFetcher {
 
     async retrieve_data(){
         var theater = await this.http_get_theater(502);
-        console.log(theater);this.data_theater=theater;
+        // console.log(theater);
+        this.data_theater=theater;
         var modules = await this.http_get_modules(theater);
-        console.log(modules);this.data_modules=modules;
+        // console.log(modules);
+        this.data_modules=modules;
     }
 
     get_data_theater() {
@@ -44,7 +40,6 @@ export class VisualEditorFetcher {
     }
 
     async http_get_theater(id: number): Promise<any> {
-        console.log(1);
 
         const promise = await new Promise<any>((resolve, reject) => {
             this.http.get(`http://10.20.30.210:8000/library-asset/api/v1/rest/theatres/${id}`,
@@ -81,7 +76,6 @@ export class VisualEditorFetcher {
     }
 
     async http_get_modules(theater: any): Promise<any> {
-        console.log(3);
 
         const promise = await new Promise<any>((resolve, reject) => {
             this.http.get(`http://10.20.30.210:8000/library-asset/api/v1/rest/modules/theatre_uuid/${theater["uuid"]}`,
