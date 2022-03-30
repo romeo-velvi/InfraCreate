@@ -15,8 +15,6 @@ export class VisualEditorComponent implements OnInit {
 
   fetcher;
   parser;
-  data_theater;
-  data_modules;
 
   constructor(private keycloakService: KeycloakService, private http: HttpClient) {
 
@@ -34,14 +32,20 @@ export class VisualEditorComponent implements OnInit {
     // TAKE DATA
     await this.fetcher.retrieve_data();
 
-    this.data_theater = this.fetcher.get_data_theater();
-    this.data_modules = this.fetcher.get_data_modules();
+    var data_theater = this.fetcher.get_data_theater();
+    var data_modules = this.fetcher.get_data_modules();
 
-    console.log("thr:", this.data_theater);
-    console.log("mds:", this.data_modules);
+    console.log("thr:", data_theater);
+    console.log("mds:", data_modules);
 
     //PARSING DATA
-    
+    this.parser.parse_data(data_theater,data_modules);
+
+    var parsed_theater = this.parser.get_parsed_theater();
+    var parsed_modules = this.parser.get_parsed_modules();
+
+    console.log("parsed thr:", parsed_theater);
+    console.log("parsed mds:", parsed_modules);
 
   }
 

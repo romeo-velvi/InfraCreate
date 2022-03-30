@@ -1,5 +1,4 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Input } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
 
 
@@ -22,13 +21,31 @@ export class VisualEditorFetcher {
         )
     }
 
-    async retrieve_data(){
-        var theater = await this.http_get_theater(502);
-        // console.log(theater);
-        this.data_theater=theater;
-        var modules = await this.http_get_modules(theater);
-        // console.log(modules);
-        this.data_modules=modules;
+    async retrieve_data() {
+        var theater = await this.http_get_theater(502);// console.log(theater);
+        this.data_theater = theater;
+        var modules = await this.http_get_modules(theater);// console.log(modules);
+        this.data_modules = modules;
+        Object.entries(modules).map(async ([key, value]) => {
+            // console.log("->",key, value);
+            var temp1, temp2;
+            try{
+                temp1 = await this.http_get_modules_details(value['uuid']);
+            }catch(e){
+                temp1 = [];
+                console.log(e);
+            }
+            try{
+                temp2 = await this.http_get_modules_interface(value['id']);
+            }catch(e){
+                temp2 = [];
+                console.log(e);
+            }
+
+            this.data_modules[key]['hosts_info']=temp1;
+            this.data_modules[key]['interface_info']=temp2;
+        });
+
     }
 
     get_data_theater() {
@@ -111,6 +128,45 @@ export class VisualEditorFetcher {
         //     )
     }
 
+    async http_get_modules_details(module_uuid: any): Promise<any> {
+
+        const promise = await new Promise<any>((resolve, reject) => {
+            this.http.get(`http://10.20.30.210:8000/library-asset/api/v1/rest/moduleVms/module/${module_uuid}/host`,
+                {
+                    headers: this.headers,
+                    observe: "body",
+                }
+            ).toPromise()
+                .then((res: string[]) => {
+                    resolve(res);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+        return promise;
+    }
+
+    // -> http://10.20.30.210:8000/library-asset/api/v1/rest/moduleNetworkInterfaces/module/1459
+    async http_get_modules_interface(module_id: any): Promise<any> {
+
+        const promise = await new Promise<any>((resolve, reject) => {
+            this.http.get(`http://10.20.30.210:8000/library-asset/api/v1/rest/moduleNetworkInterfaces/module/${module_id}`,
+                {
+                    headers: this.headers,
+                    observe: "body",
+                }
+            ).toPromise()
+                .then((res: string[]) => {
+                    resolve(res);
+                })
+                .catch(error => {
+                    // reject(error);
+                    console.log("VR-Problem data-code", error);
+                });
+        });
+        return promise;
+    }
 
     // got_elements(theater: any, modules: any) {
     //     console.log(5);
