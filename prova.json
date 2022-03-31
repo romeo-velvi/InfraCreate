@@ -1,0 +1,51 @@
+{
+    "into_theater": {
+        "area": "acme_servers",
+        "module": "DatacenterSrv_NoShp_1",
+        "version": 1,
+        "sequence": 6,
+        "consumer_interfaces_link": [
+            {
+                "local_interface": "sdl_management",
+                "module_instance": "Session_1",
+                "remote_interface": "sdl_management"
+            },
+            {
+                "local_interface": "acmemgmt",
+                "module_instance": "EdgeNet_1_in_1",
+                "remote_interface": "acmemgmt"
+            },
+            {
+                "local_interface": "gwdmz",
+                "module_instance": "EdgeNet_1_in_1",
+                "remote_interface": "gwdmz"
+            },
+            {
+                "local_interface": "dcsrv",
+                "module_instance": "CoreNet_1_in_1",
+                "remote_interface": "dcsrv"
+            }
+        ]
+    },
+    "module_details": {
+        "id": 1464,
+        "createdDate": "2022-02-15T16:02:17.540+00:00",
+        "lastModifiedDate": "2022-02-15T16:02:46.963+00:00",
+        "createdBy": "designer",
+        "lastModifiedBy": "designer",
+        "isLocked": null,
+        "lockAcquiredTimestamp": null,
+        "lockLastUserAcquiring": null,
+        "lockReleasedTimestamp": null,
+        "uuid": "0ee2d67f-8e72-4379-8b8a-8d3349efc7df",
+        "type": null,
+        "name": "DatacenterSrv_NoShp_1",
+        "version": "1.0",
+        "description": "",
+        "status": null
+    },
+    "to_nodes": {
+        "Input": [],
+        "Output": []
+    }
+}

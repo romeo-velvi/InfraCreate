@@ -172,8 +172,8 @@ export class ReteComponent implements AfterViewInit {
 
       // DATA info-node
       var infon1 = { title: "node-type2", Output: 2, Input: 3 }
-      var infon2 = { title: "node-type3", Output: 3, Input: 6, type: 'Server' }
-      var infon3 = { title: "node-type3-1", Output: 3, Input: 6, type: 'port' }
+      var infon2 = { title: "node-type3", Output: ["output0","output1","output2"], Input: ["intput0","input1","input2"], type: 'Server' }
+      var infon3 = { title: "node-type3-1", Output: ["output0","output1","output2"], Input: ["intput0","input1","input2"],  type: 'port' }
       // var infon3 = { title:"node-type1", Output:4, Input:9 }
 
       // Component creation (foreach module)
@@ -224,7 +224,7 @@ export class ReteComponent implements AfterViewInit {
   public async stresstest(num:number){
     var a_node = [];
     for (let index = 0; index < num; index++) {
-      var info = { title: "node-name->"+index.toString(), Output: 3, Input: 6, type: 'Server' }
+      var info = { title: "node-name->"+index.toString(), Output: ["output0","output1","output2"], Input: ["intput0","input1","input2"], type: 'Server' }
       a_node[index] = await this.components[1].createNode(info);
     }
     

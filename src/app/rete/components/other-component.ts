@@ -20,21 +20,20 @@ export class OthComponent extends Component implements AngularComponent {
     // console.log(node);
     var i = node['data']['Input'];
     var o = node['data']['Output'];
-    i = parseInt(i);
-    o = parseInt(o);
     // console.log(i,o);
 
-    for (let index = 0; index < i; index++) {
-      var key = "input"+index;
-      var title = "input"+index;
+    
+    for (let index = 0; index < i.length ; index++) {
+      var key = i[index]
+      var title = i[index]
       var socket = numSocket;
       var inp = new Input(key, title, socket, true);
       node.addInput(inp);
     }
 
-    for (let index = 0; index < o; index++) {
-      var key = "output"+index;
-      var title = "output"+index;
+    for (let index = 0; index < o.length ; index++) {
+      var key = o[index]
+      var title = o[index]
       var socket = numSocket;
       var out = new Output(key, title, socket, true);
       node.addOutput(out);
