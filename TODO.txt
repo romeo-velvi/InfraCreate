@@ -1,3 +1,5 @@
 PARSER 
     -> ONCE PARSED 
         -> CREARE UN CAMPO "data-lib" CONTENENTE IL "dove" LA LIBRERIA PRENDE I DATI PER FORMARE I NODI
+
+ATTENZIONE VEDERE PERCHE NEL TEATRO for_retejs module_connection sono tutti gli stessi

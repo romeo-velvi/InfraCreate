@@ -40,10 +40,10 @@ export class NodeTemplate extends NodeComponent {
     this.nothide = !this.nothide;
   }
 
-  selectimge(type: any) {
+  selectimge(type: any = "not-recognized") {
     // console.log("dddd", type);
     type = type.toLowerCase();
-    let img = "none";
+    let img = type;
     switch (type) {
       case "server":
         img = "server"
@@ -58,7 +58,7 @@ export class NodeTemplate extends NodeComponent {
         img = "subnet"
         break;
       default:
-        img = "Not-recognize type"
+        img = type;
         break;
     }
     this.imageSrc += img + ".png";

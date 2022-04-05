@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 import { NodeEditor, Engine } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
@@ -23,16 +23,17 @@ import { NgxSpinnerService } from "ngx-spinner";
 
 export class ReteComponent implements AfterViewInit {
 
-  constructor(private spinner: NgxSpinnerService){
-  }
-
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
+
+  @Input() modules: any;
+  @Input() theater: any;
 
   container = null;
   editor: NodeEditor = null;
   components = null;
   engine = null;
 
+  constructor(private spinner: NgxSpinnerService){}
 
   async ngAfterViewInit() {
 
@@ -56,6 +57,9 @@ export class ReteComponent implements AfterViewInit {
 
 
   async StartApp(){
+
+    console.log("data passed: ",this.theater, this.modules);
+
     // console.log("start 4");
     
     this.container = this.el.nativeElement;
@@ -170,6 +174,8 @@ export class ReteComponent implements AfterViewInit {
   public async addNodes() {
     try {
 
+
+
       // DATA info-node
       var infon1 = { title: "node-type2", Output: 2, Input: 3 }
       var infon2 = { title: "node-type3", Output: ["output0","output1","output2"], Input: ["intput0","input1","input2"], type: 'Server' }
@@ -181,6 +187,9 @@ export class ReteComponent implements AfterViewInit {
       const n2 = await this.components[1].createNode(infon2);
       const n3 = await this.components[1].createNode(infon3);
       const n4 = await this.components[2].createNode({ title: "nodotipo3" });
+
+      const aa = await this.components[1].createNode(this.modules["Lab_1_in_1"]["for_retejs"]);
+      this.editor.addNode(aa);
 
       /* 
       //insert name

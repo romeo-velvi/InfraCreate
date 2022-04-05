@@ -13,8 +13,13 @@ import { VisualEditorParser } from './visual-editor.parser';
 
 export class VisualEditorComponent implements OnInit {
 
-  fetcher;
-  parser;
+  fetcher: any;
+  parser: any;
+
+  parsed_modules: any;
+  parsed_theater: any;
+
+  isDataAvailable: boolean = false;
 
   constructor(private keycloakService: KeycloakService, private http: HttpClient) {
 
@@ -22,7 +27,7 @@ export class VisualEditorComponent implements OnInit {
       this.keycloakService,
       this.http
     );
-    
+
     this.parser = new VisualEditorParser();
 
   }
@@ -31,25 +36,21 @@ export class VisualEditorComponent implements OnInit {
 
     // TAKE DATA
     await this.fetcher.retrieve_data();
-    console.log("avanti");
-
     var data_theater = this.fetcher.get_data_theater();
     var data_modules = this.fetcher.get_data_modules();
-
-    console.log("thr component", data_theater);
-    console.log("mds component", data_modules);
+    // console.log("thr component", data_theater);
+    // console.log("mds component", data_modules);
 
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     //PARSING DATA
-    this.parser.parse_data(data_theater,data_modules);
+    await this.parser.parse_data(data_theater, data_modules);
+    this.parsed_theater = this.parser.get_parsed_theater();
+    this.parsed_modules = this.parser.get_parsed_modules();
+    // console.log("thr parsed", this.parsed_theater);
+    // console.log("mds parsed", this.parsed_modules);
 
-    // var parsed_theater = this.parser.get_parsed_theater();
-    // var parsed_modules = this.parser.get_parsed_modules();
-
-    // console.log("parsed thr:", parsed_theater);
-    // console.log("parsed mds:", parsed_modules);
-
+    this.isDataAvailable=true;
   }
 
 }

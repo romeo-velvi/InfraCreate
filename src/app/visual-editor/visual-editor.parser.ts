@@ -7,72 +7,77 @@ export class VisualEditorParser {
     parsed_theater: any;
     parsed_modules: any;
 
-    constructor() { 
+    constructor() {
         this.parsed_modules = [];
         this.parsed_theater = [];
     }
 
-    parse_data(theater: any, modules: any) {
-        console.log("AAAA-> ",theater,modules);
+    async parse_data(theater: any, modules: any) {
+        console.log("Start parsing");
+        // console.log("AAAA-> ", theater, modules);
         this.parsed_modules = modules;
         this.parsed_theater = theater;
-        this.parse_module_to_nodes();
+        this.parse_module_for_rete();
+        this.parse_theater_for_rete();
+        console.log("End parsing");
     }
 
 
-    parse_module_to_nodes() {
+    parse_module_for_rete() {
 
         Object.entries(this.parsed_modules).map(([key, value]) => {
-            // console.log(key,value["module_details"]["interfaces_info"]); //suggerimento per maria -> vedere se possibile cambiare il ritorno in caso di non trovate da undefined ad -> [ ]
-            // console.log(key,value["module_details"]["hosts_info"]);
-            //console.log("var z:",this.data_modules[m[key]["module_details"]["name"]["interfaces_info"]]);
-            //console.log(value);
-            // mettere nodi
-            /**/
+
             var K = key;
             var V = value;
-            try{
-            Object.entries(V["module_details"]["interfaces_info"]).map(async ([key, value]) => {
-                var v = [];
-                if (value["type"].toString() === "CONSUMER") {
-                    console.log("add consumer ",value["nodeName"]," to ",K);
-                    v = this.parsed_modules[K.toString()]["to_nodes"]["Input"]
-                    v.push(value["nodeName"]);
-                    this.parsed_modules[K.toString()]["to_nodes"]["Input"] = v
-                }
-                else if (value["type"].toString()  === "PRODUCER") {
-                    console.log("add producer ",value["nodeName"]," to ",K);
-                    v = this.parsed_modules[K.toString()]["to_nodes"]["Output"]
-                    v.push(value["nodeName"]);
-                    this.parsed_modules[K.toString()]["to_nodes"]["Output"] = v
-                }
-                else{
-                    console.log("eeh? ",value["nodeName"]);
-                }
-            });
-        }
-        catch(e){console.log(e)}
-
-            console.log(" IO ",key,value["to_nodes"]["Input"], " - ", ["to_nodes"]["Output"]);
-
-
-            //dopo -> per vedere le connessioni
-            /*Object.entries(this.parsed_theater["blueprintFile"]["node_templates"]).map(async ([key, value]) => {
-                console.log(key,value);
-                if (value["type"] === "CONSUMER") {
-                    this.parsed_modules[key.toString()]["to_nodes"]["Input"].push(value["nodeName"]);
-                }
-                else if (value["type"] === "PRODUCER") {
-                    this.parsed_modules[key.toString()]["to_nodes"]["Output"].push(value["nodeName"]);
-                }
-                else{
-                    console.log("eeh? ",key,value);
-                }
-            });*/
+            try {
+                Object.entries(V["module_details"]["interfaces_info"]).map(async ([key, value]) => {
+                    var v = [];
+                    if (value["type"].toString() === "CONSUMER") {
+                        // console.log("add consumer ",value["nodeName"]," to ",K);
+                        v = this.parsed_modules[K.toString()]["for_retejs"]["Input"]
+                        v.push(value["nodeName"]);
+                        this.parsed_modules[K.toString()]["for_retejs"]["Input"] = v
+                    }
+                    else if (value["type"].toString() === "PRODUCER") {
+                        // console.log("add producer ",value["nodeName"]," to ",K);
+                        v = this.parsed_modules[K.toString()]["for_retejs"]["Output"]
+                        v.push(value["nodeName"]);
+                        this.parsed_modules[K.toString()]["for_retejs"]["Output"] = v
+                    }
+                    else {
+                        console.log("eeh? ", value["nodeName"]);
+                    }
+                });
+            }
+            catch (e) {
+                console.log(K, " -> ", e)
+                this.parsed_modules[K.toString()]["for_retejs"]["Input"] = [];
+                this.parsed_modules[K.toString()]["for_retejs"]["Output"] = [];
+            }
         });
 
-        console.log(this.parsed_modules);
+        // console.log(this.parsed_modules);
 
+    }
+
+    parse_theater_for_rete() {
+        var connection_list = [];
+        Object.entries(this.parsed_theater["blueprintFile"]["node_templates"]).map(([key, value]) => {
+            var conn_v = value["properties"]["consumer_interfaces_link"];
+            if (conn_v !== undefined) {
+                var conn_tmplt = { from: key, port_src: "", to: "", port_dst: "" }
+                Object.entries(conn_v).map(([key, value]) => {
+                    var conn_cpy = conn_tmplt;
+                    conn_cpy.port_src = value["local_interface"];
+                    conn_cpy.to = value["module_instance"];
+                    conn_cpy.port_dst = value["remote_interface"];
+                    connection_list.push(conn_cpy);
+                    console.log("conn->",conn_cpy);
+                    //TODO
+                });
+            }
+        });
+        this.parsed_theater["for_retejs"]["module_connection"] = connection_list;
     }
 
     get_parsed_theater() {

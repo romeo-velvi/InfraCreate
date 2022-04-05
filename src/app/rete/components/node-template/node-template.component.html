@@ -10,7 +10,8 @@
         </div>
       </div>
       <div class="col col-md-auto m-auto">
-        <button class="btn btn-warning" type="button" (click)="showhidesocket()" style="vertical-align: baseline;"> v </button>
+        <button class="btn btn-warning" type="button" (click)="showhidesocket()" style="vertical-align: baseline;"> v
+        </button>
       </div>
     </div>
 
@@ -21,13 +22,14 @@
   <div class="container">
     <div class="row justify-content-center">
       <!-- <app-rete></app-rete> -->
-      <span [innerHTML]="imgalt" style="display: contents;"></span> <!-- <img src="{{imageSrc}}" class="d-inline-block" alt="{{imageAlt}}" /> -->
+      <span [innerHTML]="imgalt" style="display: contents;"></span>
+      <!-- <img src="{{imageSrc}}" class="d-inline-block" alt="{{imageAlt}}" /> -->
     </div>
 
   </div>
 
 
-  <p>
+  <!-- <p>
     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
       aria-expanded="false" aria-controls="collapseExample">
       Button with data-bs-target
@@ -38,7 +40,7 @@
       Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user
       activates the relevant trigger.
     </div>
-  </div>
+  </div> -->
 
   <!-- OUTPUT SOCKET  MODIFICATO NGIF -->
   <div *ngIf="nothide">
@@ -46,16 +48,16 @@
       <div class="output-title">{{output.name}}</div>
       <rete-socket rete-socket [io]="output" [socket]="output.socket"></rete-socket>
     </div>
-  </div>
 
 
-  <!-- <div class="control" *ngFor="let control of controls" [rete-control]="control"></div> -->
+    <!-- <div class="control" *ngFor="let control of controls" [rete-control]="control"></div> -->
 
-  <!-- INPUT SOCKET -->
-  <div class="input" *ngFor="let input of inputs">
-    <rete-socket rete-socket [io]="input" [socket]="input.socket"></rete-socket>
-    <div class="input-title" *ngIf="!input.showControl()">{{input.name}}</div>
-    <div class="input-control" *ngIf="input.showControl()" [rete-control]="input.control"></div>
+    <!-- INPUT SOCKET -->
+    <div class="input" *ngFor="let input of inputs">
+      <rete-socket rete-socket [io]="input" [socket]="input.socket"></rete-socket>
+      <div class="input-title" *ngIf="!input.showControl()">{{input.name}}</div>
+      <div class="input-control" *ngIf="input.showControl()" [rete-control]="input.control"></div>
+    </div>
   </div>
 
 </div>

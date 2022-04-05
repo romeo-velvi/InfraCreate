@@ -44,7 +44,7 @@
         "description": "",
         "status": null
     },
-    "to_nodes": {
+    "for_retejs": {
         "Input": [],
         "Output": []
     }

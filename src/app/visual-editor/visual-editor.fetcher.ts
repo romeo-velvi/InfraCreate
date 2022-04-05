@@ -10,8 +10,8 @@ export class VisualEditorFetcher {
     token: string | Promise<string>;
     headers: HttpHeaders;
 
-    data_theater: [];
-    data_modules: [];
+    data_theater: any[];
+    data_modules: any[];
 
     constructor(private keycloakService: KeycloakService, private http: HttpClient) {
         this.token = this.keycloakService.getToken();
@@ -25,8 +25,14 @@ export class VisualEditorFetcher {
     }
 
     async retrieve_data() {
+        console.log("Start fetching");
+
         var theater: [] = await this.http_get_theater(502);// console.log(theater);
         this.data_theater = theater;
+        // option for theater
+        this.data_theater["for_retejs"] = this.data_theater["blueprintFile"]["node_templates"][theater["name"]]["properties"];
+        delete this.data_theater["blueprintFile"]["node_templates"][theater["name"]];
+
         var modules: [] = await this.http_get_modules(theater);// console.log(modules);
         this.data_modules = modules;
 
@@ -44,46 +50,46 @@ export class VisualEditorFetcher {
             }
         })
         );
-        
-        // var i = 0;
-        // var promisesIF: Promise<any>[] = [];
-        // Object.entries(modules).map(async ([key, value]) => {
-        //     console.log(i++, value["name"], value["id"])
-        //     var x = this.http_get_modules_interface(value['id']);
-        //     //var x = this.http_get_modules_details(value['uuid']);
-        //     promisesIF.push(x);
-        // });
 
 
-        // n1
-        // await Promise.all(
-        //     promisesIF
-        // )
-        //     .then((values) => {
-        //         console.log(values);
-        //     })
+        // option for modules
+        var p = this.get_basic_modules();
+        var m = [];
+        Object.entries(this.data_theater["blueprintFile"]["node_templates"]).map(([key, value]) => {
+            m[key.toString()] = {};
+            m[key.toString()]["into_theater"] = value["properties"];
+            m[key.toString()]["into_theater"]["type"] = value["type"];
+            m[key.toString()]["module_details"] = p[value["properties"]["module"]];
+            m[key.toString()]["for_retejs"] = { title: key.toString(), type: value["type"], sequence: value["properties"]["sequence"], area: value["properties"]["area"], Input: [], Output: [] };
+        });
+        this.data_modules = m;
 
-        //n2
-        // for await (const prom of promisesIF) {
-        //     console.log("aaaaa->",prom);
-        // }
 
-        //n3
-        // const reflect = p => p.then(
-        //     v => ({ v, status: "fulfilled" }),
-        //     e => ({ e, status: "rejected" })
-        // );
-
-        // await Promise.all(promisesIF.map(reflect))
-        //     .then(function (results) {
-        //         var success = results.filter(x => x.status === "fulfilled");
-        //     });
+        console.log("End fetching");
 
     }
+
 
     get_data_theater() {
         return this.data_theater;
     }
+
+    get_data_modules() {
+        return this.data_modules;
+        // var t = this.get_data_theater();
+        // var p = this.get_basic_modules();
+        // var m = {};
+        // Object.entries(t["blueprintFile"]["node_templates"]).map(([key, value]) => {
+        //     m[key.toString()] = {};
+        //     m[key.toString()]["into_theater"] = value["properties"];
+        //     m[key.toString()]["into_theater"]["type"] = value["type"];
+        //     m[key.toString()]["module_details"] = p[value["properties"]["module"]];
+        //     m[key.toString()]["for_retejs"] = { title: key.toString(), type: value["type"], sequence: value["properties"]["sequence"], area: value["properties"]["area"], Input: [], Output: [] };
+        //     // console.log(m[key])
+        // });
+        // return m;
+    }
+
 
     get_basic_theater() {
         var t = [];
@@ -100,20 +106,6 @@ export class VisualEditorFetcher {
         var m = [];
         Object.entries(this.data_modules).map(async ([key, value]) => {
             m[value["name"]] = value;
-        });
-        return m;
-    }
-
-    get_data_modules() {
-        var t = this.get_data_theater(); delete this.data_theater["blueprintFile"]["node_templates"][t["name"]];
-        var p = this.get_basic_modules();
-        var m = {};
-        Object.entries(t["blueprintFile"]["node_templates"]).map(([key, value]) => {
-            m[key.toString()] = {};
-            m[key.toString()]["into_theater"] = value["properties"];
-            m[key.toString()]["module_details"] = p[value["properties"]["module"]];
-            m[key.toString()]["to_nodes"] = { Input: [], Output: [] };
-            // console.log(m[key])
         });
         return m;
     }
@@ -228,48 +220,5 @@ export class VisualEditorFetcher {
         });
         return promise;
     }
-
-    // got_elements(theater: any, modules: any) {
-    //     console.log(5);
-    //     //////////  OTTENUTI TEATRI E MODULI  /////////////////////////
-    //     this.flag = 0;
-    //     console.log("fetched");
-    //     this.data_modules = modules;
-    //     this.data_theater = theater
-    //     // console.log("theater: ", this.data_theater);
-    //     // console.log("modules: ", this.data_modules);
-
-    // }
-
-    // async got_theater(theater: any) {
-    //     console.log(2);
-    //     // console.log("returned value T: ", theater);
-    //     await this.http_get_modules(theater);
-    // }
-
-    // async got_modules(theater: any, modules: any) {
-    //     console.log(4);
-    //     // console.log("returned value M: ", modules);
-    //     await this.got_elements(theater, modules);
-    // }
-
-
-
-    // PASSING PROMISE AND THEN RESOLVE TO ANOTHER FUNCTION "SUBSCRIBER"
-    // async takeTheater() {
-    //   let v = null;
-    //   // si può togliere "from" -> togliere anche "toPromise" nella func. invocata
-    //   from(this.http_get_theater(502))
-    //     .subscribe(
-    //       res => {
-    //         v = res;
-    //         console.log('eeeee', v);
-    //         return v;
-    //       }, error => {
-    //         console.log(error);
-    //       }
-    //     )
-    // }
-
 
 }
