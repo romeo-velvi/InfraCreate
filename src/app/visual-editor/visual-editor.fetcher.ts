@@ -24,45 +24,52 @@ export class VisualEditorFetcher {
         )
     }
 
-    async retrieve_data() {
+    async retrieve_data(id: number = 502) {
         console.log("Start fetching");
-
-        var theater: [] = await this.http_get_theater(502);// console.log(theater);
+        ////////////////// TEATRO ////////////////////////////////////////////////7
+        var theater: [] = await this.http_get_theater(id);// console.log(theater);
+        // option for theater -> passo proprietà espresse in node_template in for_retejs e le cancello, per evitare problemi con i normali moduli
+        theater["ref_name"] = theater["name"];
+        if (theater["blueprintFile"]["node_templates"][theater["ref_name"]] === undefined) {
+            Object.entries(theater["blueprintFile"]["node_templates"]).map(([key, value]) => {
+                if (value["type"] === "sysman.creo.nodes.Theater")
+                    theater["ref_name"] = key;
+                return;
+            });
+        }
+        console.log("ref_name", theater["ref_name"]);
+        theater["for_retejs"] = theater["blueprintFile"]["node_templates"][theater["ref_name"]]["properties"];
+        delete theater["blueprintFile"]["node_templates"][theater["ref_name"]];
         this.data_theater = theater;
-        // option for theater
-        this.data_theater["for_retejs"] = this.data_theater["blueprintFile"]["node_templates"][theater["name"]]["properties"];
-        delete this.data_theater["blueprintFile"]["node_templates"][theater["name"]];
-
-        var modules: [] = await this.http_get_modules(theater);// console.log(modules);
-        this.data_modules = modules;
-
-        var i = 0;
-        await Promise.all(Object.entries(modules).map(async ([key, value]) => {
-            try {
-                this.data_modules[key]['hosts_info'] = await this.http_get_modules_details(value['uuid']);
-            } catch (e) {
-                console.log(e);
-            }
-            try { //suggerimento per MARIA -> vedere se possibile cambiare il ritorno in caso di non trovate da undefined ad -> [ ]
-                this.data_modules[key]['interfaces_info'] = await this.http_get_modules_interface(value['id']);
-            } catch (e) {
-                console.log(e);
-            }
-        })
+        ////////////////// MODULI ////////////////////////////////////////////////7
+        var modules: [] = await this.http_get_all_modules(theater);
+        var modules_plus = modules;
+        await Promise.all( // prendo i dati host e interface
+            Object.entries(modules).map(async ([key, value]) => {
+                try {
+                    modules_plus[key]['hosts_info'] = await this.http_get_modules_details(value['uuid']);
+                } catch (e) {
+                    console.log(e);
+                }
+                try { //suggerimento per MARIA -> vedere se possibile cambiare il ritorno in caso di non trovate da undefined ad -> [ ]
+                    modules_plus[key]['interfaces_info'] = await this.http_get_modules_interface(value['id']);
+                } catch (e) {
+                    console.log(e);
+                }
+            })
         );
-
-
         // option for modules
-        var p = this.get_basic_modules();
-        var m = [];
-        Object.entries(this.data_theater["blueprintFile"]["node_templates"]).map(([key, value]) => {
-            m[key.toString()] = {};
-            m[key.toString()]["into_theater"] = value["properties"];
-            m[key.toString()]["into_theater"]["type"] = value["type"];
-            m[key.toString()]["module_details"] = p[value["properties"]["module"]];
-            m[key.toString()]["for_retejs"] = { title: key.toString(), type: value["type"], sequence: value["properties"]["sequence"], area: value["properties"]["area"], Input: [], Output: [] };
+        modules= [];
+        var modules_dict = this.get_modules_dict_uuid(modules_plus);// console.log("---->",modules_dict)
+        Object.entries(theater["blueprintFile"]["node_templates"]).map(([key, value]) => {
+            var module_uuid = Object.values(theater["deploymentSequence"]).filter(element => element["moduleInstanceName"] === key)[0]; // trovo uuid corrispondente al modulo
+            modules[key.toString()] = {};
+            modules[key.toString()]["into_theater"] = value["properties"];
+            modules[key.toString()]["into_theater"]["type"] = value["type"];
+            modules[key.toString()]["module_details"] = modules_dict[ module_uuid["moduleUUID"] ];
+            modules[key.toString()]["for_retejs"] = { title: key.toString(), type: value["type"], sequence: value["properties"]["sequence"], area: value["properties"]["area"], Input: [], Output: [] };
         });
-        this.data_modules = m;
+        this.data_modules = modules;
 
 
         console.log("End fetching");
@@ -76,18 +83,6 @@ export class VisualEditorFetcher {
 
     get_data_modules() {
         return this.data_modules;
-        // var t = this.get_data_theater();
-        // var p = this.get_basic_modules();
-        // var m = {};
-        // Object.entries(t["blueprintFile"]["node_templates"]).map(([key, value]) => {
-        //     m[key.toString()] = {};
-        //     m[key.toString()]["into_theater"] = value["properties"];
-        //     m[key.toString()]["into_theater"]["type"] = value["type"];
-        //     m[key.toString()]["module_details"] = p[value["properties"]["module"]];
-        //     m[key.toString()]["for_retejs"] = { title: key.toString(), type: value["type"], sequence: value["properties"]["sequence"], area: value["properties"]["area"], Input: [], Output: [] };
-        //     // console.log(m[key])
-        // });
-        // return m;
     }
 
 
@@ -102,10 +97,10 @@ export class VisualEditorFetcher {
         return t;
     }
 
-    get_basic_modules() {
+    get_modules_dict_uuid(modules) {
         var m = [];
-        Object.entries(this.data_modules).map(async ([key, value]) => {
-            m[value["name"]] = value;
+        Object.entries(modules).map(async ([key, value]) => {
+            m[value["uuid"]] = value;
         });
         return m;
     }
@@ -146,7 +141,7 @@ export class VisualEditorFetcher {
         //     )
     }
 
-    async http_get_modules(theater: any): Promise<any> {
+    async http_get_all_modules(theater: any): Promise<any> {
 
         const promise = await new Promise<any>((resolve, reject) => {
             this.http.get(`http://10.20.30.210:8000/library-asset/api/v1/rest/modules/theatre_uuid/${theater["uuid"]}`,

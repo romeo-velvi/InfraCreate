@@ -24,7 +24,6 @@ export class VisualEditorParser {
 
 
     parse_module_for_rete() {
-
         Object.entries(this.parsed_modules).map(([key, value]) => {
 
             var K = key;
@@ -64,20 +63,21 @@ export class VisualEditorParser {
         var connection_list = [];
         Object.entries(this.parsed_theater["blueprintFile"]["node_templates"]).map(([key, value]) => {
             var conn_v = value["properties"]["consumer_interfaces_link"];
+            var K = key;
             if (conn_v !== undefined) {
-                var conn_tmplt = { from: key, port_src: "", to: "", port_dst: "" }
                 Object.entries(conn_v).map(([key, value]) => {
-                    var conn_cpy = conn_tmplt;
-                    conn_cpy.port_src = value["local_interface"];
-                    conn_cpy.to = value["module_instance"];
-                    conn_cpy.port_dst = value["remote_interface"];
-                    connection_list.push(conn_cpy);
-                    console.log("conn->",conn_cpy);
-                    //TODO
+                    connection_list.push(
+                        {
+                            from: K,
+                            port_src: value["local_interface"],
+                            to: value["module_instance"],
+                            port_dst: value["remote_interface"]
+                        }
+                    );
                 });
             }
         });
-        this.parsed_theater["for_retejs"]["module_connection"] = connection_list;
+        this.parsed_theater["for_retejs"]["modules_connection"] = connection_list;
     }
 
     get_parsed_theater() {

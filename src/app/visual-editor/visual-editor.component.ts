@@ -35,11 +35,11 @@ export class VisualEditorComponent implements OnInit {
   async ngOnInit() {
 
     // TAKE DATA
-    await this.fetcher.retrieve_data();
+    await this.fetcher.retrieve_data(502);
     var data_theater = this.fetcher.get_data_theater();
     var data_modules = this.fetcher.get_data_modules();
-    // console.log("thr component", data_theater);
-    // console.log("mds component", data_modules);
+     console.log("thr component", data_theater);
+     console.log("mds component", data_modules);
 
     await new Promise(resolve => setTimeout(resolve, 1000));
 

@@ -33,35 +33,35 @@ export class ReteComponent implements AfterViewInit {
   components = null;
   engine = null;
 
-  constructor(private spinner: NgxSpinnerService){}
+  constructor(private spinner: NgxSpinnerService) { }
 
   async ngAfterViewInit() {
 
     await this.spinner.show()
-    .then(
-      async () =>{
-        await this.delay(1000);
-        // console.log("start 3")
-        await this.StartApp();
-      }
-    )
-    .then(
-      async ()=>{
-        // console.log("start 5")
-        await this.spinner.hide();
-      }
-    )
+      .then(
+        async () => {
+          await this.delay(1000);
+          // console.log("start 3")
+          await this.StartApp();
+        }
+      )
+      .then(
+        async () => {
+          // console.log("start 5")
+          await this.spinner.hide();
+        }
+      )
 
 
   }
 
 
-  async StartApp(){
+  async StartApp() {
 
-    console.log("data passed: ",this.theater, this.modules);
+    console.log("data passed: ", this.theater, this.modules);
 
     // console.log("start 4");
-    
+
     this.container = this.el.nativeElement;
 
     // stored all node-types
@@ -97,8 +97,8 @@ export class ReteComponent implements AfterViewInit {
       translateExtent: { width: 5000, height: 4000 }
     })
     this.editor.use(AutoArrangePlugin, {
-      margin: { x: 80, y: 240 },
-      depth: 0,
+      margin: { x: 400, y: 200 },
+      depth: 100,
       vertical: false,
     })
 
@@ -155,8 +155,6 @@ export class ReteComponent implements AfterViewInit {
   }
 
 
-
-
   public getNodes(): Object[] {
     var x = this.editor.toJSON();
     var z = [];
@@ -172,71 +170,100 @@ export class ReteComponent implements AfterViewInit {
 
 
   public async addNodes() {
-    try {
 
+    var nodes = [];
+    await Promise.all(
+      Object.entries(this.modules).map(async ([key, value]) => {
+        nodes[key] = await this.components[1].createNode(value["for_retejs"]);
+      })
+    );
 
+    console.log(nodes);
 
-      // DATA info-node
-      var infon1 = { title: "node-type2", Output: 2, Input: 3 }
-      var infon2 = { title: "node-type3", Output: ["output0","output1","output2"], Input: ["intput0","input1","input2"], type: 'Server' }
-      var infon3 = { title: "node-type3-1", Output: ["output0","output1","output2"], Input: ["intput0","input1","input2"],  type: 'port' }
-      // var infon3 = { title:"node-type1", Output:4, Input:9 }
+    Object.entries(nodes).map(async ([key, value]) => {
+      this.editor.addNode(value);
+    })
 
-      // Component creation (foreach module)
-      const n1 = await this.components[0].createNode(infon1);
-      const n2 = await this.components[1].createNode(infon2);
-      const n3 = await this.components[1].createNode(infon3);
-      const n4 = await this.components[2].createNode({ title: "nodotipo3" });
+    /*
+          // // DATA info-node
+          // var infon1 = { title: "node-type2", Output: 2, Input: 3 }
+          // var infon2 = { title: "node-type3", Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'Server' }
+          // var infon3 = { title: "node-type3-1", Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'port' }
+          // // var infon3 = { title:"node-type1", Output:4, Input:9 }
+    
+          // // Component creation (foreach module)
+          // const n1 = await this.components[0].createNode(infon1);
+          // const n2 = await this.components[1].createNode(infon2);
+          // const n3 = await this.components[1].createNode(infon3);
+          // const n4 = await this.components[2].createNode({ title: "nodotipo3" });
+    
+    
+          // const aa = await this.components[1].createNode(this.modules["Lab_1_in_1"]["for_retejs"]);
+          // this.editor.addNode(aa);
+    
+          // /*
+          // //insert name
+          // // n1.data['title'] = "nodotipo1";
+          // // n2.data['title'] = "nodotipo2";
+          // // n3.data['title'] = "nodotipo3";
+    
+          // // n1.position = [80, 200];
+          // // n2.position = [80, 400];
+          // // n3.position = [500, 240];
+          // /
+    
+          // // Insert into editor
+          // this.editor.addNode(n1);
+          // this.editor.addNode(n2);
+          // this.editor.addNode(n3);
+          // this.editor.addNode(n4);
+    */
 
-      const aa = await this.components[1].createNode(this.modules["Lab_1_in_1"]["for_retejs"]);
-      this.editor.addNode(aa);
+    // Sempre prima che avvengano i collegamenti
 
-      /* 
-      //insert name
-      // n1.data['title'] = "nodotipo1";
-      // n2.data['title'] = "nodotipo2";
-      // n3.data['title'] = "nodotipo3";
+    //Necessario per il path delle connessioni (altrimenti si fottono)
+    this.editor.on("connectioncreated", connection => {
+      setInterval(() => {
+        let node = connection.output.node;
+        this.editor.view.updateConnections({ node });
+      }, 1);
+    });
 
-      // n1.position = [80, 200];
-      // n2.position = [80, 400];
-      // n3.position = [500, 240];
-      */
+    Object.entries(this.theater["for_retejs"]["modules_connection"]).map(async ([key, value]) => {
+      try {
+        if (nodes[value["to"]] !== undefined && nodes[value["from"]] !== undefined) {
+          this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
+        }
+      } catch (e) {
+        console.log(
+          "PROBLEM: ", e, "\ntry",
+          " connect ",
+          value["from"], " port ", value["port_src"], " data: ", nodes[value["from"]],
+          " to ",
+          value["to"], " port ", value["port_dst"], " data: ", nodes[value["to"]],
+        );
+        // console.log(e);
+      }
+    })
 
-      // Insert into editor
-      this.editor.addNode(n1);
-      this.editor.addNode(n2);
-      this.editor.addNode(n3);
-      this.editor.addNode(n4);
+    /*
+    // // Create connection
+    // this.editor.connect(n2.outputs.get('output0'), n4.inputs.get('num2'));
+    // this.editor.connect(n2.outputs.get('output1'), n3.inputs.get('input1'));
+    // this.editor.connect(n1.outputs.get('output1'), n4.inputs.get('num1'));
+    // this.editor.connect(n3.outputs.get('output1'), n4.inputs.get('num2'));
+    */
 
-      // Sempre prima che avvengano i collegamenti
-      //Necessario per il path delle connessioni (altrimenti si fottono)
-      this.editor.on("connectioncreated", connection => {
-        setInterval(() => {
-          let node = connection.output.node;
-          this.editor.view.updateConnections({ node });
-        }, 1);
-      });
-
-      // Create connection
-      this.editor.connect(n2.outputs.get('output0'), n4.inputs.get('num2'));
-      this.editor.connect(n2.outputs.get('output1'), n3.inputs.get('input1'));
-      this.editor.connect(n1.outputs.get('output1'), n4.inputs.get('num1'));
-      this.editor.connect(n3.outputs.get('output1'), n4.inputs.get('num2'));
-      
-      
-    } catch (error) {
-      console.log(error);
-    }
   }
-  
 
-  public async stresstest(num:number){
+
+  public async stresstest(num: number) {
     var a_node = [];
     for (let index = 0; index < num; index++) {
-      var info = { title: "node-name->"+index.toString(), Output: ["output0","output1","output2"], Input: ["intput0","input1","input2"], type: 'Server' }
+      var info = { title: "node-name->" + index.toString(), Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'Server' }
       a_node[index] = await this.components[1].createNode(info);
     }
-    
+
     for (let index = 0; index < num; index++) {
       this.editor.addNode(a_node[index]);
     }
@@ -250,10 +277,9 @@ export class ReteComponent implements AfterViewInit {
 
     for (let index = 1; index < a_node.length; index++) {
       var element1 = a_node[index];
-      var element0 = a_node[index-1];
+      var element0 = a_node[index - 1];
       this.editor.connect(element1.outputs.get('output1'), element0.inputs.get('input1'));
     }
-
 
   }
 
