@@ -5,7 +5,7 @@ import { AngularComponent, AngularComponentData } from 'rete-angular-render-plug
 import { MyNodeComponent3 } from './node3/node3.component';
 import { NodeTemplate } from './node-template/node-template.component';
 
-export class OthComponent extends Component implements AngularComponent {
+export class NodeComponent extends Component implements AngularComponent {
 
   data: AngularComponentData;
 

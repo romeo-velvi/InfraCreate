@@ -141,6 +141,11 @@ export class VisualEditorFetcher {
         //     )
     }
 
+    // per le connessioni degli host con le porte/if-net esposte dal modulo andare in:
+    // [host_info] -> port -> subnet -> network -> name *
+    // essendo che il nome-net trovato qui * non coincide con il nome dell'if-net esposto dal modulo:
+    // per trovarlo bisogna andare su: 
+    // [interfaces_info] -> network -> name
     async http_get_all_modules(theater: any): Promise<any> {
 
         const promise = await new Promise<any>((resolve, reject) => {
@@ -177,6 +182,7 @@ export class VisualEditorFetcher {
         //     )
     }
 
+    //  only one and then filter, but return only 15 out of >20 -> http://10.20.30.210:8000/library-asset/api/v1/rest/moduleVms/theatre/9c0bf7a7-2ea3-4f88-9860-1c0ad212e2fc/virtual/machines
     async http_get_modules_details(module_uuid: any): Promise<any> {
 
         const promise = await new Promise<any>((resolve, reject) => {

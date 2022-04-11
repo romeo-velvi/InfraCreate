@@ -1,5 +1,4 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
-
 import { NodeEditor, Engine } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
@@ -10,7 +9,7 @@ import AutoArrangePlugin from 'rete-auto-arrange-plugin'
 
 import { NumComponent } from './components/number-component';
 import { AddComponent } from './components/add-component';
-import { OthComponent } from './components/other-component';
+import { NodeComponent } from './components/node-component';
 
 import { NgxSpinnerService } from "ngx-spinner";
 
@@ -33,7 +32,12 @@ export class ReteComponent implements AfterViewInit {
   components = null;
   engine = null;
 
-  constructor(private spinner: NgxSpinnerService) { }
+  // for html dynamic part
+  hidemoduleinfo: boolean = false;
+  nodeselected: any;
+
+  constructor(private spinner: NgxSpinnerService) {
+  }
 
   async ngAfterViewInit() {
 
@@ -67,7 +71,7 @@ export class ReteComponent implements AfterViewInit {
     // stored all node-types
     this.components = [
       new NumComponent(),
-      new OthComponent(),
+      new NodeComponent(),
       new AddComponent(),
     ];
 
@@ -75,7 +79,9 @@ export class ReteComponent implements AfterViewInit {
 
     this.editor.use(ConnectionPlugin);
     this.editor.use(AngularRenderPlugin)//, { component: MyNodeComponent });
-    this.editor.use(MinimapPlugin);
+    this.editor.use(MinimapPlugin,{
+      size: { x: 400, y: 200 }
+    });
     this.editor.use(ContextMenuPlugin, {
       searchBar: false,
       items: {
@@ -98,9 +104,20 @@ export class ReteComponent implements AfterViewInit {
     })
     this.editor.use(AutoArrangePlugin, {
       margin: { x: 400, y: 200 },
-      depth: 100,
+      depth: 1,
       vertical: false,
     })
+
+    var _this = this;
+    this.editor.on("selectnode", (node) => {
+      console.log("select node ->", node);
+      var x =[];
+      x["title"] = node.node["data"]["title"].toString();
+      x["area"] = node.node["data"]["area"];
+      x["type"] = node.node["data"]["type"];
+      _this.showhidemoduleinfo(x);
+    }
+    );
 
 
 
@@ -139,21 +156,24 @@ export class ReteComponent implements AfterViewInit {
 
     // to arrange all nodes
     this.editor.nodes.forEach(node => {
-      //console.log(node);
       this.editor.trigger("arrange", { node: node });
     });
 
-    //AreaPlugin.zoomAt(editor, [n3]);
-    // console.log("end");
+    //AreaPlugin.zoomAt(editor, [nodo_a_caso]);
   }
 
+
+  public showhidemoduleinfo(node) {
+    this.hidemoduleinfo = !this.hidemoduleinfo;
+    this.nodeselected = node;
+    console.log("node -> ", this.nodeselected);
+  }
 
 
   public printjson() {
     console.log(this.editor.toJSON());
     console.log(JSON.stringify(this.editor.toJSON()));
   }
-
 
   public getNodes(): Object[] {
     var x = this.editor.toJSON();
@@ -165,8 +185,6 @@ export class ReteComponent implements AfterViewInit {
     }
     return z;
   }
-
-
 
 
   public async addNodes() {
@@ -255,6 +273,11 @@ export class ReteComponent implements AfterViewInit {
     */
 
   }
+
+
+
+
+
 
 
   public async stresstest(num: number) {

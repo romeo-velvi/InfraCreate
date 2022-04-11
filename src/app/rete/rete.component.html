@@ -1,26 +1,43 @@
-<div class="container">
+<!-- DIV HEAD ESTERNO -->
+<div>
+    <!-- SPINNER -->
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" type="ball-scale-multiple">
+        <p style="font-size: 20px; color: white">Loading Elements...</p>
+    </ngx-spinner>
+</div>
+
+<div class="container container-wrapper">
+
     <div class="row">
         <div class="col">
             <button (click)="printjson()">Printjson</button>
-
         </div>
         <div class="col">
             <button (click)="getNodes()">getnodes</button>
         </div>
     </div>
-</div>
 
-<ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="large"
-  color="#fff"
-  type="ball-scale-multiple"
->
-  <p style="font-size: 20px; color: white">Loading Elements...</p>
-</ngx-spinner>
-
-<div class="wrapper">
-    <div #nodeEditor class="node-editor">
-
+    <div class="row wrapper">
+        <div class="col">
+            <div #nodeEditor class="node-editor rete-wrapper"></div>
+        </div>
+        <div class="col side-wrapper" *ngIf="hidemoduleinfo" style="background-color: blue;">
+            Elementi:
+            <div *ngFor="let item of nodeselected | keyvalue">
+                Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- <div class="row strong-wrapper">
+    <div class="col">
+        <div #nodeEditor class="node-editor"></div>
+    </div>
+    <div *ngIf="hidemoduleinfo" style=" position: absolute; top: 40px; right: 40px;  background-color: blue;">
+        Elementi:
+        <div *ngFor="let item of nodeselected | keyvalue">
+            Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+        </div>
+    </div>
+</div> -->
