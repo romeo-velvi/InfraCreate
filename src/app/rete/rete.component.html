@@ -21,10 +21,13 @@
         <div class="col">
             <div #nodeEditor class="node-editor rete-wrapper"></div>
         </div>
-        <div class="col side-wrapper" *ngIf="hidemoduleinfo" style="background-color: blue;">
+        <div class="col side-wrapper" *ngIf="showside && hidemoduleinfo" style="background-color: blue;">
             Elementi:
             <div *ngFor="let item of nodeselected | keyvalue">
                 Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+            </div>
+            <div style="width: 100%; height: 100%;">
+                <app-rete-modules [modules]="parsed_modules"></app-rete-modules>
             </div>
         </div>
     </div>

@@ -6,21 +6,19 @@ import { AngularRenderPlugin } from 'rete-angular-render-plugin';
 import AreaPlugin from 'rete-area-plugin';
 import MinimapPlugin from 'rete-minimap-plugin';
 import AutoArrangePlugin from 'rete-auto-arrange-plugin'
-
-import { NumComponent } from './components/number-component';
-import { AddComponent } from './components/add-component';
-import { NodeComponent } from './components/node-component';
-
 import { NgxSpinnerService } from "ngx-spinner";
+import { NumComponent } from '../rete/components/number-component';
+import { AddComponent } from '../rete/components/add-component';
+import { NodeComponent } from '../rete/components/node-component';
 
 
 @Component({
-  selector: 'app-rete',
-  templateUrl: './rete.component.html',
-  styleUrls: ['./rete.component.css'],
+  selector: 'app-rete-modules',
+  templateUrl: './rete-modules.component.html',
+  styleUrls: ['./rete-modules.component.sass']
 })
 
-export class ReteComponent implements AfterViewInit {
+export class ReteModulesComponent implements AfterViewInit {
 
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
 
@@ -58,7 +56,6 @@ export class ReteComponent implements AfterViewInit {
         }
       )
 
-
   }
 
 
@@ -72,12 +69,12 @@ export class ReteComponent implements AfterViewInit {
 
     // stored all node-types
     this.components = [
-      new NumComponent(),
       new NodeComponent(),
+      new NumComponent(),
       new AddComponent(),
     ];
 
-    this.editor = new NodeEditor('demo@0.2.0', this.container);
+    this.editor = new NodeEditor('demo@0.1.0', this.container);
 
     this.editor.use(ConnectionPlugin);
     this.editor.use(AngularRenderPlugin)//, { component: MyNodeComponent });
@@ -111,7 +108,7 @@ export class ReteComponent implements AfterViewInit {
     var _this = this;
     this.editor.on("selectnode", (node) => {
       console.log("select node ->", node);
-      var x =[];
+      var x = [];
       x["title"] = node.node["data"]["title"].toString();
       x["area"] = node.node["data"]["area"];
       x["type"] = node.node["data"]["type"];
@@ -133,13 +130,9 @@ export class ReteComponent implements AfterViewInit {
       }, 1);
     });
 
-    if(this.type !== undefined && this.type === 1){
-      this.showside = false;
-      await this.stresstest(20);
-    }
-    else{
-      await this.addNodes();
-    }
+
+    await this.stresstest(20);
+
 
 
 
@@ -159,14 +152,15 @@ export class ReteComponent implements AfterViewInit {
     //   ) as any
     // );
 
-
-    this.editor.view.resize();
-    this.editor.trigger('process');
-
     // to arrange all nodes
     this.editor.nodes.forEach(node => {
       this.editor.trigger("arrange", { node: node });
     });
+
+    this.editor.view.resize();
+    this.editor.trigger('process');
+
+
 
     //AreaPlugin.zoomAt(editor, [nodo_a_caso]);
   }
@@ -201,7 +195,7 @@ export class ReteComponent implements AfterViewInit {
     var nodes = [];
     await Promise.all(
       Object.entries(this.modules).map(async ([key, value]) => {
-        nodes[key] = await this.components[1].createNode(value["for_retejs"]);
+        nodes[key] = await this.components[0].createNode(value["for_retejs"]);
       })
     );
 
@@ -211,50 +205,6 @@ export class ReteComponent implements AfterViewInit {
       this.editor.addNode(value);
     })
 
-    /*
-          // // DATA info-node
-          // var infon1 = { title: "node-type2", Output: 2, Input: 3 }
-          // var infon2 = { title: "node-type3", Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'Server' }
-          // var infon3 = { title: "node-type3-1", Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'port' }
-          // // var infon3 = { title:"node-type1", Output:4, Input:9 }
-    
-          // // Component creation (foreach module)
-          // const n1 = await this.components[0].createNode(infon1);
-          // const n2 = await this.components[1].createNode(infon2);
-          // const n3 = await this.components[1].createNode(infon3);
-          // const n4 = await this.components[2].createNode({ title: "nodotipo3" });
-    
-    
-          // const aa = await this.components[1].createNode(this.modules["Lab_1_in_1"]["for_retejs"]);
-          // this.editor.addNode(aa);
-    
-          // /*
-          // //insert name
-          // // n1.data['title'] = "nodotipo1";
-          // // n2.data['title'] = "nodotipo2";
-          // // n3.data['title'] = "nodotipo3";
-    
-          // // n1.position = [80, 200];
-          // // n2.position = [80, 400];
-          // // n3.position = [500, 240];
-          // /
-    
-          // // Insert into editor
-          // this.editor.addNode(n1);
-          // this.editor.addNode(n2);
-          // this.editor.addNode(n3);
-          // this.editor.addNode(n4);
-    */
-
-    // DECOMMENTARE SE NON VANNO I COLLEGAMENTI
-    // Sempre prima che avvengano i collegamenti 
-    //Necessario per il path delle connessioni (altrimenti si fottono)
-    // this.editor.on("connectioncreated", connection => {
-    //   setInterval(() => {
-    //     let node = connection.output.node;
-    //     this.editor.view.updateConnections({ node });
-    //   }, 1);
-    // });
 
     Object.entries(this.theater["for_retejs"]["modules_connection"]).map(async ([key, value]) => {
       try {
@@ -301,7 +251,7 @@ export class ReteComponent implements AfterViewInit {
     var a_node = [];
     for (let index = 0; index < num; index++) {
       var info = { title: "node-name->" + index.toString(), Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'Server' }
-      a_node[index] = await this.components[1].createNode(info);
+      a_node[index] = await this.components[0].createNode(info);
     }
 
     for (let index = 0; index < num; index++) {
@@ -320,6 +270,8 @@ export class ReteComponent implements AfterViewInit {
       var element0 = a_node[index - 1];
       this.editor.connect(element1.outputs.get('output1'), element0.inputs.get('input1'));
     }
+
+
 
   }
 
