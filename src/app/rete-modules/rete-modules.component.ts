@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef, Input, OnChanges, Simp
 import { NodeEditor, Engine } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
 import { AngularRenderPlugin } from 'rete-angular-render-plugin';
+import ContextMenuPlugin from 'rete-context-menu-plugin';
 import AreaPlugin from 'rete-area-plugin';
 import AutoArrangePlugin from 'rete-auto-arrange-plugin'
 import { NumComponent } from '../rete/components/number-component';
@@ -13,10 +14,10 @@ import { NodeComponent } from '../rete/components/node-component';
   selector: 'app-rete-modules',
   templateUrl: './rete-modules.component.html',
   styleUrls: ['./rete-modules.component.sass'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ReteModulesComponent implements AfterViewInit, OnChanges {
+export class ReteModulesComponent implements AfterViewInit {
 
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
 
@@ -32,14 +33,7 @@ export class ReteModulesComponent implements AfterViewInit, OnChanges {
   hidemoduleinfo: boolean = false;
   nodeselected: any;
 
-  constructor() {
-  }
-
-  ngOnInit(){}
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log("************\n",changes,"  ", this.module);
-  }
+  constructor() {}
 
   async ngAfterViewInit() {
 
@@ -82,6 +76,25 @@ export class ReteModulesComponent implements AfterViewInit, OnChanges {
 
     this.editor.use(ConnectionPlugin);
     this.editor.use(AngularRenderPlugin)//, { component: MyNodeComponent });
+    this.editor.use(ContextMenuPlugin, {
+      searchBar: false,
+      components: {},
+      items: {
+        "Dump JSON": () => {
+          this.printjson();
+        },
+        "Get nodes": () => {
+          this.getNodes();
+        }
+      },
+      allocate(component) {
+        return null;
+      },
+      // rename(component) {
+      //   return component.name;
+      // }
+    });
+
 
     this.editor.use(AreaPlugin, {
       background: true, //righe

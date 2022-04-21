@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output as outcore, ChangeDetectionStrategy } from '@angular/core';
 import { NodeEditor, Engine, Output } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
+import ConnectionPathPlugin from 'rete-connection-path-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
 import { AngularRenderPlugin } from 'rete-angular-render-plugin';
 import AreaPlugin from 'rete-area-plugin';
@@ -13,12 +14,10 @@ import { NodeComponent } from './components/node-component';
 
 import { NgxSpinnerService } from "ngx-spinner";
 
-
 @Component({
   selector: 'app-rete',
   templateUrl: './rete.component.html',
   styleUrls: ['./rete.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ReteComponent implements AfterViewInit {
@@ -37,7 +36,7 @@ export class ReteComponent implements AfterViewInit {
   // for html dynamic part
   showside: boolean = true;
   hidemoduleinfo: boolean = false;
-  @outcore() nodeselected: any;
+  @outcore() nodeselected: any = {};
 
   constructor(private spinner: NgxSpinnerService) {
   }
@@ -81,6 +80,11 @@ export class ReteComponent implements AfterViewInit {
     this.editor = new NodeEditor('demo@0.2.0', this.container);
 
     this.editor.use(ConnectionPlugin);
+    /* DECOMMENTARE SE SI NECESSITA DELLE CURVATURE DELLE CONNESSINI AD ANGOLO */
+    //   this.editor.use(ConnectionPathPlugin, {
+    //     transformer: () => ([x1, y1, x2, y2]) => [[x1, y1], [(x1+x2)/2, y1], [(x1+x2)/2, y2], [x2, y2]],
+    //    curve: ConnectionPathPlugin.curveLinear
+    //  });
     this.editor.use(AngularRenderPlugin)//, { component: MyNodeComponent });
     this.editor.use(MinimapPlugin);
     this.editor.use(ContextMenuPlugin, {
@@ -102,7 +106,7 @@ export class ReteComponent implements AfterViewInit {
       // }
     });
     this.editor.use(AreaPlugin, {
-      background: true, //righe
+      background: false, //righe
       snap: false,
       scaleExtent: { min: 0.1, max: 1 },
       translateExtent: { width: 5000, height: 4000 }
@@ -115,20 +119,20 @@ export class ReteComponent implements AfterViewInit {
 
     var _this = this;
     this.editor.on("nodeselected", (node) => {
-      // console.log("select node ->", node);
-      var x = [];
-      x["title"] = node["data"]["title"].toString();
-      x["area"] = node["data"]["area"];
-      x["type"] = node["data"]["type"];
-      _this.showhidemoduleinfo(x);
-      /* DA USARE SOLO QUANDO SI SELEZIONA UN NODO, PER TRASCINI ETC... NO */
-      // AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
+
     }
     );
 
     this.editor.on('rendernode', ({ el, node }) => {
-      el.addEventListener('dblclick', () => {
-        console.log("accicra -------> ", node);
+      el.addEventListener('dblclick', async () => {
+        // console.log("select node ->", node);
+        var x = [];
+        x["title"] = node["data"]["title"].toString();
+        x["area"] = node["data"]["area"];
+        x["type"] = node["data"]["type"];
+        _this.showhidemoduleinfo(x);
+        /* DA USARE SOLO QUANDO SI SELEZIONA DOUBLECLICK UN NODO */
+        AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
       });
     });
 
@@ -190,32 +194,33 @@ export class ReteComponent implements AfterViewInit {
 
   public showhidemoduleinfo(node) {
     /* DA UTILIZZARE QUANDO SI CAPISCE COME EFFETTUARE IL REFRESH DEL CANVAS */
-    if (this.nodeselected === undefined) {
-      var x = {};
-      x["canvas_info"] = node;
-      x["data"] = this.modules[node["title"]];
-      this.nodeselected = x;
-      this.hidemoduleinfo = true;
-      return;
-    }
+    /* USARE SERVICES PER PASSAGGIO DI DATI */
+    // if (this.nodeselected === undefined) {
+    //   var x = {};
+    //   x["canvas_info"] = node;
+    //   x["data"] = this.modules[node["title"]];
+    //   this.nodeselected = x;
+    //   this.hidemoduleinfo = true;
+    //   return;
+    // }
 
-    if (this.hidemoduleinfo && this.nodeselected.canvas_info.title !== node.title) {
-      this.nodeselected["canvas_info"] = node;
-      this.nodeselected["data"] = this.modules[node["title"]];
-    }
-    else if (!this.hidemoduleinfo) {
-      this.hidemoduleinfo = true;
-      this.nodeselected["canvas_info"] = node;
-      this.nodeselected["data"] = this.modules[node["title"]];
-    }
-    else {
-      this.hidemoduleinfo = false;
-    }
+    // if (this.hidemoduleinfo && this.nodeselected.canvas_info.title !== node.title) {
+    //   this.nodeselected["canvas_info"] = node;
+    //   this.nodeselected["data"] = this.modules[node["title"]];
+    // }
+    // else if (!this.hidemoduleinfo) {
+    //   this.hidemoduleinfo = true;
+    //   this.nodeselected["canvas_info"] = node;
+    //   this.nodeselected["data"] = this.modules[node["title"]];
+    // }
+    // else {
+    //   this.hidemoduleinfo = false;
+    // }
     /**/
-    // this.hidemoduleinfo = !this.hidemoduleinfo;
-    // this.nodeselected["canvas_info"] = node;
-    // this.nodeselected["data"] = this.modules[node["title"]];
-    // // console.log("node -> ", this.nodeselected);
+    this.hidemoduleinfo = !this.hidemoduleinfo;
+    this.nodeselected["canvas_info"] = node;
+    this.nodeselected["data"] = this.modules[node["title"]];
+    console.log("node -> ", this.nodeselected);
   }
 
 

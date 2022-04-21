@@ -36,6 +36,7 @@
     "rete-angular-render-plugin": "^0.2.0-rc.2",
     "rete-area-plugin": "^0.2.1",
     "rete-auto-arrange-plugin": "^0.5.0-rc.1",
+    "rete-connection-path-plugin": "^0.3.1",
     "rete-connection-plugin": "^0.8.3",
     "rete-context-menu-plugin": "^0.6.0",
     "rete-minimap-plugin": "^0.3.1",

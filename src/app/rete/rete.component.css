@@ -18,7 +18,7 @@
 }
 
 .side-wrapper{
-    max-width: 40% !important;
+    max-width: 60% !important;
     height: 100% !important;
     overflow: hidden;
 }
@@ -28,4 +28,13 @@
     height: 100% !important;
     display: contents !important;
     overflow: hidden !important;
+}
+
+.node-editor{
+    background: #0f131a;
+    background-image: none!important; 
+}
+
+p,h4,cite,h5{
+    color: #FFF;
 }
