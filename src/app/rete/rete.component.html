@@ -7,27 +7,27 @@
 </div>
 
 <div class="container container-wrapper">
-
-    <div class="row">
+ 
+    <!-- <div class="row">
         <div class="col">
             <button (click)="printjson()">Printjson</button>
         </div>
         <div class="col">
             <button (click)="getNodes()">getnodes</button>
         </div>
-    </div>
+    </div> -->
 
     <div class="row wrapper">
         <div class="col">
             <div #nodeEditor class="node-editor rete-wrapper"></div>
         </div>
-        <div class="col side-wrapper" *ngIf="showside && hidemoduleinfo" style="background-color: blue;">
+        <div class="col side-wrapper" *ngIf="showside && hidemoduleinfo" style="background-color:azure;">
             Elementi:
-            <div *ngFor="let item of nodeselected | keyvalue">
-                Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+            <div *ngFor="let item of nodeselected.canvas_info | keyvalue">
+               <b>{{item.key}}</b>: <b>{{item.value}}</b>
             </div>
             <div style="width: 100%; height: 100%;">
-                <app-rete-modules [modules]="parsed_modules"></app-rete-modules>
+                <app-rete-modules [module]="nodeselected"></app-rete-modules>
             </div>
         </div>
     </div>

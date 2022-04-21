@@ -26,6 +26,7 @@ export class VisualEditorFetcher {
 
     async retrieve_data(id: number = 502) {
         console.log("Start fetching");
+        
         ////////////////// TEATRO ////////////////////////////////////////////////7
         var theater: [] = await this.http_get_theater(id);// console.log(theater);
         // option for theater -> passo proprietà espresse in node_template in for_retejs e le cancello, per evitare problemi con i normali moduli
@@ -41,13 +42,14 @@ export class VisualEditorFetcher {
         theater["for_retejs"] = theater["blueprintFile"]["node_templates"][theater["ref_name"]]["properties"];
         delete theater["blueprintFile"]["node_templates"][theater["ref_name"]];
         this.data_theater = theater;
+
         ////////////////// MODULI ////////////////////////////////////////////////7
         var modules: [] = await this.http_get_all_modules(theater);
         var modules_plus = modules;
         await Promise.all( // prendo i dati host e interface
             Object.entries(modules).map(async ([key, value]) => {
                 try {
-                    modules_plus[key]['hosts_info'] = await this.http_get_modules_details(value['uuid']);
+                    modules_plus[key]['hosts_info'] = await this.http_get_modules_host(value['uuid']);
                 } catch (e) {
                     console.log(e);
                 }
@@ -183,7 +185,7 @@ export class VisualEditorFetcher {
     }
 
     //  only one and then filter, but return only 15 out of >20 -> http://10.20.30.210:8000/library-asset/api/v1/rest/moduleVms/theatre/9c0bf7a7-2ea3-4f88-9860-1c0ad212e2fc/virtual/machines
-    async http_get_modules_details(module_uuid: any): Promise<any> {
+    async http_get_modules_host(module_uuid: any): Promise<any> {
 
         const promise = await new Promise<any>((resolve, reject) => {
             this.http.get(`http://10.20.30.210:8000/library-asset/api/v1/rest/moduleVms/module/${module_uuid}/host`,

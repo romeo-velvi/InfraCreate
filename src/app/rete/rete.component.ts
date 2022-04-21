@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { NodeEditor, Engine } from 'rete';
+import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output as outcore, ChangeDetectionStrategy } from '@angular/core';
+import { NodeEditor, Engine, Output } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
 import { AngularRenderPlugin } from 'rete-angular-render-plugin';
@@ -18,6 +18,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   selector: 'app-rete',
   templateUrl: './rete.component.html',
   styleUrls: ['./rete.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ReteComponent implements AfterViewInit {
@@ -36,7 +37,7 @@ export class ReteComponent implements AfterViewInit {
   // for html dynamic part
   showside: boolean = true;
   hidemoduleinfo: boolean = false;
-  nodeselected: any;
+  @outcore() nodeselected: any;
 
   constructor(private spinner: NgxSpinnerService) {
   }
@@ -84,17 +85,21 @@ export class ReteComponent implements AfterViewInit {
     this.editor.use(MinimapPlugin);
     this.editor.use(ContextMenuPlugin, {
       searchBar: false,
+      components: {},
       items: {
         "Dump JSON": () => {
-          console.log(this.editor.toJSON());
+          this.printjson();
+        },
+        "Get nodes": () => {
+          this.getNodes();
         }
       },
       allocate(component) {
-        return ["+ New"];
+        return null;
       },
-      rename(component) {
-        return component.name;
-      }
+      // rename(component) {
+      //   return component.name;
+      // }
     });
     this.editor.use(AreaPlugin, {
       background: true, //righe
@@ -109,15 +114,23 @@ export class ReteComponent implements AfterViewInit {
     })
 
     var _this = this;
-    this.editor.on("selectnode", (node) => {
-      console.log("select node ->", node);
-      var x =[];
-      x["title"] = node.node["data"]["title"].toString();
-      x["area"] = node.node["data"]["area"];
-      x["type"] = node.node["data"]["type"];
+    this.editor.on("nodeselected", (node) => {
+      // console.log("select node ->", node);
+      var x = [];
+      x["title"] = node["data"]["title"].toString();
+      x["area"] = node["data"]["area"];
+      x["type"] = node["data"]["type"];
       _this.showhidemoduleinfo(x);
+      /* DA USARE SOLO QUANDO SI SELEZIONA UN NODO, PER TRASCINI ETC... NO */
+      // AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
     }
     );
+
+    this.editor.on('rendernode', ({ el, node }) => {
+      el.addEventListener('dblclick', () => {
+        console.log("accicra -------> ", node);
+      });
+    });
 
     this.engine = new Engine('demo@0.2.0');
 
@@ -133,11 +146,11 @@ export class ReteComponent implements AfterViewInit {
       }, 1);
     });
 
-    if(this.type !== undefined && this.type === 1){
+    if (this.type !== undefined && this.type === 1) {
       this.showside = false;
       await this.stresstest(20);
     }
-    else{
+    else {
       await this.addNodes();
     }
 
@@ -168,14 +181,41 @@ export class ReteComponent implements AfterViewInit {
       this.editor.trigger("arrange", { node: node });
     });
 
-    //AreaPlugin.zoomAt(editor, [nodo_a_caso]);
+    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+    this.editor.on('zoom', ({ source }) => {
+      return source !== 'dblclick';
+    });
   }
 
 
   public showhidemoduleinfo(node) {
-    this.hidemoduleinfo = !this.hidemoduleinfo;
-    this.nodeselected = node;
-    console.log("node -> ", this.nodeselected);
+    /* DA UTILIZZARE QUANDO SI CAPISCE COME EFFETTUARE IL REFRESH DEL CANVAS */
+    if (this.nodeselected === undefined) {
+      var x = {};
+      x["canvas_info"] = node;
+      x["data"] = this.modules[node["title"]];
+      this.nodeselected = x;
+      this.hidemoduleinfo = true;
+      return;
+    }
+
+    if (this.hidemoduleinfo && this.nodeselected.canvas_info.title !== node.title) {
+      this.nodeselected["canvas_info"] = node;
+      this.nodeselected["data"] = this.modules[node["title"]];
+    }
+    else if (!this.hidemoduleinfo) {
+      this.hidemoduleinfo = true;
+      this.nodeselected["canvas_info"] = node;
+      this.nodeselected["data"] = this.modules[node["title"]];
+    }
+    else {
+      this.hidemoduleinfo = false;
+    }
+    /**/
+    // this.hidemoduleinfo = !this.hidemoduleinfo;
+    // this.nodeselected["canvas_info"] = node;
+    // this.nodeselected["data"] = this.modules[node["title"]];
+    // // console.log("node -> ", this.nodeselected);
   }
 
 
@@ -256,7 +296,7 @@ export class ReteComponent implements AfterViewInit {
     //   }, 1);
     // });
 
-    Object.entries(this.theater["for_retejs"]["modules_connection"]).map(async ([key, value]) => {
+    Object.entries(this.theater["for_retejs"]["module_connection"]).map(async ([key, value]) => {
       try {
         if (nodes[value["to"]] !== undefined && nodes[value["from"]] !== undefined) {
           this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));

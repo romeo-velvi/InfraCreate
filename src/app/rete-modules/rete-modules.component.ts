@@ -1,12 +1,9 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { NodeEditor, Engine } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
-import ContextMenuPlugin from 'rete-context-menu-plugin';
 import { AngularRenderPlugin } from 'rete-angular-render-plugin';
 import AreaPlugin from 'rete-area-plugin';
-import MinimapPlugin from 'rete-minimap-plugin';
 import AutoArrangePlugin from 'rete-auto-arrange-plugin'
-import { NgxSpinnerService } from "ngx-spinner";
 import { NumComponent } from '../rete/components/number-component';
 import { AddComponent } from '../rete/components/add-component';
 import { NodeComponent } from '../rete/components/node-component';
@@ -15,16 +12,15 @@ import { NodeComponent } from '../rete/components/node-component';
 @Component({
   selector: 'app-rete-modules',
   templateUrl: './rete-modules.component.html',
-  styleUrls: ['./rete-modules.component.sass']
+  styleUrls: ['./rete-modules.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ReteModulesComponent implements AfterViewInit {
+export class ReteModulesComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
 
-  @Input() modules: any;
-  @Input() theater: any;
-  @Input() type: any; //per teatro e moduli
+  @Input() module: any;
 
   container = null;
   editor: NodeEditor = null;
@@ -36,32 +32,40 @@ export class ReteModulesComponent implements AfterViewInit {
   hidemoduleinfo: boolean = false;
   nodeselected: any;
 
-  constructor(private spinner: NgxSpinnerService) {
+  constructor() {
+  }
+
+  ngOnInit(){}
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("************\n",changes,"  ", this.module);
   }
 
   async ngAfterViewInit() {
 
-    await this.spinner.show()
-      .then(
-        async () => {
-          await this.delay(1000);
-          // console.log("start 3")
-          await this.StartApp();
-        }
-      )
-      .then(
-        async () => {
-          // console.log("start 5")
-          await this.spinner.hide();
-        }
-      )
+    // await this.spinner.show()
+    //   .then(
+    //     async () => {
+    //       await this.delay(1000);
+    //       // console.log("start 3")
+    //       await this.StartApp();
+    //     }
+    //   )
+    //   .then(
+    //     async () => {
+    //       // console.log("start 5")
+    //       await this.spinner.hide();
+    //     }
+    //   )
+
+    await this.StartApp();
 
   }
 
 
   async StartApp() {
 
-    console.log("data passed: ", this.theater, this.modules);
+    console.log("data passed----->: ", this.module);
 
     // console.log("start 4");
 
@@ -78,21 +82,7 @@ export class ReteModulesComponent implements AfterViewInit {
 
     this.editor.use(ConnectionPlugin);
     this.editor.use(AngularRenderPlugin)//, { component: MyNodeComponent });
-    this.editor.use(MinimapPlugin);
-    this.editor.use(ContextMenuPlugin, {
-      searchBar: false,
-      items: {
-        "Dump JSON": () => {
-          console.log(this.editor.toJSON());
-        }
-      },
-      allocate(component) {
-        return ["+ New"];
-      },
-      rename(component) {
-        return component.name;
-      }
-    });
+
     this.editor.use(AreaPlugin, {
       background: true, //righe
       snap: false,
@@ -131,26 +121,10 @@ export class ReteModulesComponent implements AfterViewInit {
     });
 
 
-    await this.stresstest(20);
+    // await this.stresstest(20);
+    await this.addNodes();
 
 
-
-
-    // this.editor.on(
-    //   [
-    //     'process',
-    //     'nodecreated',
-    //     'noderemoved',
-    //     'connectioncreated',
-    //     'connectionremoved'
-    //   ],
-    //   (
-    //     async () => {
-    //       await this.engine.abort();
-    //       await this.engine.process(this.editor.toJSON());
-    //     }
-    //   ) as any
-    // );
 
     // to arrange all nodes
     this.editor.nodes.forEach(node => {
@@ -162,7 +136,7 @@ export class ReteModulesComponent implements AfterViewInit {
 
 
 
-    //AreaPlugin.zoomAt(editor, [nodo_a_caso]);
+    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
   }
 
 
@@ -190,26 +164,61 @@ export class ReteModulesComponent implements AfterViewInit {
   }
 
 
+
+
+
   public async addNodes() {
 
     var nodes = [];
-    await Promise.all(
-      Object.entries(this.modules).map(async ([key, value]) => {
+    await Promise.all( // per host
+      Object.entries(this.module["data"]["hosts"]["host_list"]).map(async ([key, value]) => {
         nodes[key] = await this.components[0].createNode(value["for_retejs"]);
       })
     );
 
-    console.log(nodes);
+    await Promise.all( // per network
+      Object.entries(this.module["data"]["hosts"]["network"]).map(async ([key, value]) => {
+        nodes[key] = await this.components[0].createNode(value["for_retejs"]);
+      })
+    );
 
-    Object.entries(nodes).map(async ([key, value]) => {
-      this.editor.addNode(value);
-    })
+    await Promise.all( // per subnet
+      Object.entries(this.module["data"]["hosts"]["subnet"]).map(async ([key, value]) => {
+        nodes[key] = await this.components[0].createNode(value["for_retejs"]);
+      })
+    );
 
+    await Promise.all(
+      Object.entries(nodes).map(async ([key, value]) => {
+        this.editor.addNode(value);
+      })
+    );
 
-    Object.entries(this.theater["for_retejs"]["modules_connection"]).map(async ([key, value]) => {
+    await Promise.all(
+      Object.entries(this.module["data"]["hosts"]["host_connection"]).map(async ([key, value]) => { // connection host-subnet
+        try {
+          if (nodes[value["to"]] !== undefined && nodes[value["from"]] !== undefined) {
+            // this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
+            this.editor.connect(nodes[value["from"]].outputs.get(value["port_src"]), nodes[value["to"]].inputs.get(value["port_dst"]));
+          }
+        } catch (e) {
+          console.log(
+            "PROBLEM: ", e, "\ntry",
+            " connect ",
+            value["from"], " port ", value["port_src"], " data: ", nodes[value["from"]],
+            " to ",
+            value["to"], " port ", value["port_dst"], " data: ", nodes[value["to"]],
+          );
+          // console.log(e);
+        }
+      })
+    );
+
+    Object.entries(this.module["data"]["hosts"]["subnet_connection"]).map(async ([key, value]) => { // connection subnet-net
       try {
         if (nodes[value["to"]] !== undefined && nodes[value["from"]] !== undefined) {
-          this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
+          // this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
+          this.editor.connect(nodes[value["from"]].outputs.get(value["port_src"]), nodes[value["to"]].inputs.get(value["port_dst"]));
         }
       } catch (e) {
         console.log(
@@ -223,13 +232,7 @@ export class ReteModulesComponent implements AfterViewInit {
       }
     })
 
-    /*
-    // // Create connection
-    // this.editor.connect(n2.outputs.get('output0'), n4.inputs.get('num2'));
-    // this.editor.connect(n2.outputs.get('output1'), n3.inputs.get('input1'));
-    // this.editor.connect(n1.outputs.get('output1'), n4.inputs.get('num1'));
-    // this.editor.connect(n3.outputs.get('output1'), n4.inputs.get('num2'));
-    */
+    console.log(nodes);
 
   }
 

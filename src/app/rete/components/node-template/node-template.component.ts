@@ -41,7 +41,6 @@ export class NodeTemplate extends NodeComponent {
   }
 
   selectimge(type: any = "not-recognized") {
-    // console.log("dddd", type);
     type = type.toLowerCase();
     let img = type;
     switch (type) {
@@ -57,13 +56,22 @@ export class NodeTemplate extends NodeComponent {
       case "subnet":
         img = "subnet"
         break;
+      case "sysman.creo.nodes.TheaterModuleInstance".toLowerCase():
+        img = "module"
+        break;
+      case "sysman.creo.nodes.TheaterInternalServiceModuleInstance".toLowerCase():
+        img = "module"
+        break;
+      case "sysman.creo.nodes.MirroringModuleInstance".toLowerCase():
+        img = "module"
+        break;
       default:
         img = type;
         break;
     }
     this.imageSrc += img + ".png";
     this.imageAlt = img;
-    this.imgalt = '<img src="' + this.imageSrc + '"class="d-inline-block" alt="' + this.imageAlt + '" />'
+    this.imgalt = '<img src="' + this.imageSrc + '"class="d-inline-block" width="100" height="100"  alt="' + this.imageAlt + '" />'
   
   }
 

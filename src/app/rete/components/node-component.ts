@@ -20,10 +20,10 @@ export class NodeComponent extends Component implements AngularComponent {
     // console.log(node);
     var i = node['data']['Input'];
     var o = node['data']['Output'];
-    // console.log(i,o);
+    var il = i.length, ol = o.length;
+    // console.log(node,i.length,o.length);
 
-    
-    for (let index = 0; index < i.length ; index++) {
+    for (let index = 0; index < il ; index++) {
       var key = i[index]
       var title = i[index]
       var socket = numSocket;
@@ -31,7 +31,7 @@ export class NodeComponent extends Component implements AngularComponent {
       node.addInput(inp);
     }
 
-    for (let index = 0; index < o.length ; index++) {
+    for (let index = 0; index < ol ; index++) {
       var key = o[index]
       var title = o[index]
       var socket = numSocket;
