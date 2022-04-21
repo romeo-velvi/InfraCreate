@@ -32,7 +32,7 @@ export class VisualEditorComponent implements OnInit {
     this.parser = new VisualEditorParser();
 
     document.body.style.overflow = 'hidden'; // per prevenire lo scrolling
-
+    document.body.style.background = '#0f131a'; // per background
   } 
 
   async ngOnInit() {

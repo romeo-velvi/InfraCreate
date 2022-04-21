@@ -112,7 +112,7 @@ export class ReteComponent implements AfterViewInit {
       translateExtent: { width: 5000, height: 4000 }
     })
     this.editor.use(AutoArrangePlugin, {
-      margin: { x: 400, y: 200 },
+      margin: { x: 400, y: 100 },
       depth: 1,
       vertical: false,
     })
