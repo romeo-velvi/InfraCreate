@@ -29,6 +29,7 @@
     "keycloak-angular": "^8.0.1",
     "keycloak-js": "^11.0.2",
     "ngx-spinner": "^9.0.1",
+    "ngx-typeahead": "^9.2.0",
     "popper": "^1.0.1",
     "popper.js": "^1.14.0",
     "qs": "^6.10.3",

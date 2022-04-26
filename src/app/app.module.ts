@@ -26,7 +26,6 @@ import { NodeComponent } from './rete/components/node-component';
 
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 
-import { NgxPopper } from 'angular-popper';
 
 import { CommonModule, NgClass } from '@angular/common';
 
@@ -35,6 +34,10 @@ import { initializeKeycloak } from './utility/app.init';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxTypeaheadModule } from "ngx-typeahead";
+import { NgxPopper } from 'angular-popper';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VisualEditorModuleComponent } from './visual-editor-module/visual-editor-module.component';
 
@@ -77,6 +80,8 @@ const keycloakService = new KeycloakService();
     HttpClientModule,
 
     NgxSpinnerModule,
+    NgxTypeaheadModule,
+    
     BrowserAnimationsModule,
 
   ],

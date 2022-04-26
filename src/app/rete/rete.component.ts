@@ -13,6 +13,10 @@ import { AddComponent } from './components/add-component';
 import { NodeComponent } from './components/node-component';
 
 import { NgxSpinnerService } from "ngx-spinner";
+import { NgxTypeaheadModule } from "ngx-typeahead";
+
+import { Observable, OperatorFunction } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rete',
@@ -38,6 +42,10 @@ export class ReteComponent implements AfterViewInit {
   hidemoduleinfo: boolean = false;
   @outcore() nodeselected: any = {};
 
+  // variabili per input-research
+  nodetofind: string = '';
+  namelist = [];
+
 
   constructor(private spinner: NgxSpinnerService, private render: Renderer2) {
   }
@@ -58,6 +66,7 @@ export class ReteComponent implements AfterViewInit {
           await this.spinner.hide();
         }
       )
+
 
 
   }
@@ -132,7 +141,7 @@ export class ReteComponent implements AfterViewInit {
         x["area"] = node["data"]["area"];
         x["type"] = node["data"]["type"];
         _this.showhidemoduleinfo(x);
-        /* DA USARE SOLO QUANDO SI SELEZIONA DOUBLECLICK UN NODO */
+        console.log(_this.editor.selected.list);
         AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
       });
     });
@@ -190,6 +199,7 @@ export class ReteComponent implements AfterViewInit {
     this.editor.on('zoom', ({ source }) => {
       return source !== 'dblclick';
     });
+
   }
 
 
@@ -222,6 +232,7 @@ export class ReteComponent implements AfterViewInit {
     this.nodeselected["canvas_info"] = node;
     this.nodeselected["data"] = this.modules[node["title"]];
     console.log("node -> ", this.nodeselected);
+
   }
 
 
@@ -229,6 +240,21 @@ export class ReteComponent implements AfterViewInit {
     console.log(this.editor.toJSON());
     console.log(JSON.stringify(this.editor.toJSON()));
   }
+
+  public makezoom(k) {
+    // k is declarend in (click) ad +- 0.1
+    const { area, container } = this.editor.view; // read from Vue component data;
+    const rect = area.el.getBoundingClientRect();
+    const ox = (rect.left - container.clientWidth / 2) * k;
+    const oy = (rect.top - container.clientHeight / 2) * k;
+    area.zoom(area.transform.k + k, ox, oy, 'wheel');
+  }
+
+  public showallcomponent() {
+    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+  }
+
+
 
   public getNodes(): Object[] {
     var x = this.editor.toJSON();
@@ -248,6 +274,8 @@ export class ReteComponent implements AfterViewInit {
     await Promise.all(
       Object.entries(this.modules).map(async ([key, value]) => {
         nodes[key] = await this.components[1].createNode(value["for_retejs"]);
+        // creare array dei nomi dei nodi (utile per gli hint dell'imput-ricerca)
+        this.namelist.push(key);
       })
     );
 
@@ -290,6 +318,12 @@ export class ReteComponent implements AfterViewInit {
           // this.editor.addNode(n2);
           // this.editor.addNode(n3);
           // this.editor.addNode(n4);
+
+          // // Create connection
+          // this.editor.connect(n2.outputs.get('output0'), n4.inputs.get('num2'));
+          // this.editor.connect(n2.outputs.get('output1'), n3.inputs.get('input1'));
+          // this.editor.connect(n1.outputs.get('output1'), n4.inputs.get('num1'));
+          // this.editor.connect(n3.outputs.get('output1'), n4.inputs.get('num2'));
     */
 
     // DECOMMENTARE SE NON VANNO I COLLEGAMENTI
@@ -319,17 +353,19 @@ export class ReteComponent implements AfterViewInit {
       }
     })
 
-    /*
-    // // Create connection
-    // this.editor.connect(n2.outputs.get('output0'), n4.inputs.get('num2'));
-    // this.editor.connect(n2.outputs.get('output1'), n3.inputs.get('input1'));
-    // this.editor.connect(n1.outputs.get('output1'), n4.inputs.get('num1'));
-    // this.editor.connect(n3.outputs.get('output1'), n4.inputs.get('num2'));
-    */
 
   }
 
-
+  public findElement(result) {
+    this.nodetofind = result;
+    console.log("finding ",this.nodetofind);
+    
+    let elementfound = this.editor.nodes.find(n => n["data"]["title"] === this.nodetofind)
+    let elementpick = new Array(elementfound); // deve necessariamente trovarsi in un array...
+    
+    AreaPlugin.zoomAt(this.editor, elementpick);
+    this.editor.selectNode(elementpick[0]);
+  }
 
 
 

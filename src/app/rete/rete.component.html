@@ -37,20 +37,29 @@
 <div class="container container-wrapper">
 
 
-    <div class="row" style="height: 2em;">
-        <div class="col text-center p-1">
-            <button type="button" class="btn btn-primary">Primary</button>
-            <button type="button" class="btn btn-secondary">Secondary</button>
+    <div class="row p-1" style="height: 2em;">
+
+        <div class="col-6 text-center">
+            <button type="button" class="btn btn-primary" (click)="makezoom(0.1)">Zoom in</button>
+            <button type="button" class="btn btn-primary" (click)="makezoom(-0.1)">Zoom out</button>
+            <button type="button" class="btn btn-primary" (click)="showallcomponent()">Show all</button>
+
+            <!-- <button type="button" class="btn btn-secondary">Secondary</button>
             <button type="button" class="btn btn-success">Success</button>
             <button type="button" class="btn btn-danger">Danger</button>
             <button type="button" class="btn btn-warning">Warning</button>
             <button type="button" class="btn btn-info">Info</button>
             <button type="button" class="btn btn-light">Light</button>
-            <button type="button" class="btn btn-dark">Dark</button>
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfo" aria-controls="offcanvasInfo">
+            <button type="button" class="btn btn-dark">Dark</button> -->
+            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfo" aria-controls="offcanvasInfo">
                 Button with data-bs-target
-              </button>
+              </button> -->
+        </div>
+        <div class="col-4">
+            <input type="text" placeholder="Find Module" ngxTypeahead
+                class="col-sm-12 form-control" [value]="nodetofind" [taList]="namelist"
+                (taSelected)="findElement($event)">
+            <!-- <button type="button" class="btn btn-info" (click)="findElement()">find</button> -->
         </div>
 
     </div>
@@ -97,11 +106,13 @@
 </div>
 
 
-<div *ngIf="showside && hidemoduleinfo" class="offcanvas offcanvas-end show offcanvasstyle" tabindex="-1" id="offcanvasInfo" data-bs-scroll="true" data-bs-backdrop="false" aria-labelledby="offcanvasInfoLabel" 
-style="visibility: visible; min-width: 50%; opacity: 99%; box-shadow: 0 .5rem 1rem rgba(0,0,0,.53)!important;">
+<div *ngIf="showside && hidemoduleinfo" class="offcanvas offcanvas-end show offcanvasstyle" tabindex="-1"
+    id="offcanvasInfo" data-bs-scroll="true" data-bs-backdrop="false" aria-labelledby="offcanvasInfoLabel"
+    style="visibility: visible; min-width: 50%; opacity: 99%; box-shadow: 0 .5rem 1rem rgba(0,0,0,.53)!important;">
     <div class="offcanvas-header side-wrapper-opt">
-      <h5 class="offcanvas-title" id="offcanvasInfoLabel">{{nodeselected.canvas_info.title}}</h5>
-      <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="hidemoduleinfo=false"></button>
+        <h5 class="offcanvas-title" id="offcanvasInfoLabel">{{nodeselected.canvas_info.title}}</h5>
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas"
+            aria-label="Close" (click)="hidemoduleinfo=false"></button>
     </div>
     <div class="offcanvas-body side-wrapper-opt offcanvasbodystyle">
         <h5 class="pb-2">Node Properties</h5>
@@ -116,7 +127,7 @@ style="visibility: visible; min-width: 50%; opacity: 99%; box-shadow: 0 .5rem 1r
             <app-rete-modules [module]="nodeselected"></app-rete-modules>
         </div>
     </div>
-  </div>
+</div>
 
 
 
