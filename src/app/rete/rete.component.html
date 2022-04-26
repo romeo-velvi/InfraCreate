@@ -29,16 +29,16 @@
 
 
 <!-- 
-                #0f131a  OUT
-                #212529  INT 
-            -->
+    #0f131a  OUT
+    #212529  INT 
+ -->
 
 
 <div class="container container-wrapper">
 
 
     <div class="row" style="height: 2em;">
-        <div class="col text-center">
+        <div class="col text-center p-1">
             <button type="button" class="btn btn-primary">Primary</button>
             <button type="button" class="btn btn-secondary">Secondary</button>
             <button type="button" class="btn btn-success">Success</button>
@@ -47,6 +47,10 @@
             <button type="button" class="btn btn-info">Info</button>
             <button type="button" class="btn btn-light">Light</button>
             <button type="button" class="btn btn-dark">Dark</button>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfo" aria-controls="offcanvasInfo">
+                Button with data-bs-target
+              </button>
         </div>
 
     </div>
@@ -67,8 +71,7 @@
             #212529  INT 
         -->
 
-        <div class="col side-wrapper" *ngIf="showside && hidemoduleinfo"
-            style="background-color:#2a2f34; padding-right: 1.5em;">
+        <!-- <div class="col side-wrapper side-wrapper-opt" *ngIf="showside && hidemoduleinfo">
             <div class="row mt-2 mb-2">
                 <div class="col m-auto">
                     <h4 class="m-auto">Node Properties</h4>
@@ -84,26 +87,40 @@
                     <cite class="mt-4" style="font-size: small;"> -{{item.key}} </cite>
                     <h5> {{item.value}} </h5>
                 </div>
-                <!-- <b>{{item.key}}</b>: <b>{{item.value}}</b> -->
             </div>
             <div style="width: 100%; height: 100%;">
                 <app-rete-modules [module]="nodeselected"></app-rete-modules>
             </div>
-        </div>
+        </div> -->
+
     </div>
 </div>
 
-<!-- <div class="row strong-wrapper">
-    <div class="col">
-        <div #nodeEditor class="node-editor"></div>
+
+<div *ngIf="showside && hidemoduleinfo" class="offcanvas offcanvas-end show offcanvasstyle" tabindex="-1" id="offcanvasInfo" data-bs-scroll="true" data-bs-backdrop="false" aria-labelledby="offcanvasInfoLabel" 
+style="visibility: visible; min-width: 50%; opacity: 99%; box-shadow: 0 .5rem 1rem rgba(0,0,0,.53)!important;">
+    <div class="offcanvas-header side-wrapper-opt">
+      <h5 class="offcanvas-title" id="offcanvasInfoLabel">{{nodeselected.canvas_info.title}}</h5>
+      <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="hidemoduleinfo=false"></button>
     </div>
-    <div *ngIf="hidemoduleinfo" style=" position: absolute; top: 40px; right: 40px;  background-color: blue;">
-        Elementi:
-        <div *ngFor="let item of nodeselected | keyvalue">
-            Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+    <div class="offcanvas-body side-wrapper-opt offcanvasbodystyle">
+        <h5 class="pb-2">Node Properties</h5>
+        <div *ngFor="let item of nodeselected.canvas_info | keyvalue">
+            <div>
+                <cite class="mt-4" style="font-size: small;"> -{{item.key}} </cite>
+                <h5> {{item.value}} </h5>
+            </div>
+            <!-- <b>{{item.key}}</b>: <b>{{item.value}}</b> -->
+        </div>
+        <div style="width: 100%; height: 100%;">
+            <app-rete-modules [module]="nodeselected"></app-rete-modules>
         </div>
     </div>
-</div> -->
+  </div>
+
+
+
+
 
 
 <!-- DIV HEAD ESTERNO -->

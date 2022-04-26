@@ -97,7 +97,7 @@ export class ReteModulesComponent implements AfterViewInit {
 
 
     this.editor.use(AreaPlugin, {
-      background: true, //righe
+      background: false, //righe
       snap: false,
       scaleExtent: { min: 0.1, max: 1 },
       translateExtent: { width: 5000, height: 4000 }

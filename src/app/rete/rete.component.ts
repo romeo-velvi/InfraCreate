@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output as outcore, ChangeDetectionStrategy } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output as outcore, ChangeDetectionStrategy, Renderer2 } from '@angular/core';
 import { NodeEditor, Engine, Output } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
 import ConnectionPathPlugin from 'rete-connection-path-plugin';
@@ -38,7 +38,8 @@ export class ReteComponent implements AfterViewInit {
   hidemoduleinfo: boolean = false;
   @outcore() nodeselected: any = {};
 
-  constructor(private spinner: NgxSpinnerService) {
+
+  constructor(private spinner: NgxSpinnerService, private render: Renderer2) {
   }
 
   async ngAfterViewInit() {
