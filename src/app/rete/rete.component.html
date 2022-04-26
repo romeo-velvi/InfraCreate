@@ -16,7 +16,7 @@
                     <a class="nav-link" href="javascript:void(0)" (click)="showhidetheaterinfo()">Theater info</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Download JSON</a>
+                    <a class="nav-link" href="javascript:void(0)" (click)="downloadJSON()" [href]="downloadJsonHref" download="{{theater['name']}}.json">Download JSON</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0)" routerLink="/home">Home</a>

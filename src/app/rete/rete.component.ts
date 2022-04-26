@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output as outcore, ChangeDetectionStrategy, Renderer2 } from '@angular/core';
+import { DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { NodeEditor, Engine, Output } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
 import ConnectionPathPlugin from 'rete-connection-path-plugin';
@@ -50,7 +51,10 @@ export class ReteComponent implements AfterViewInit {
   //for map bool
   ismapvisible: boolean = true;
 
-  constructor(private spinner: NgxSpinnerService, private render: Renderer2) {
+  // to download
+  downloadJsonHref: SafeUrl;
+
+  constructor(private spinner: NgxSpinnerService, private render: Renderer2, private sanitizer: DomSanitizer) {
   }
 
   async ngAfterViewInit() {
@@ -279,6 +283,12 @@ export class ReteComponent implements AfterViewInit {
     }
     this.ismapvisible = !this.ismapvisible
 
+  }
+
+  public downloadJSON() {
+    var theJSON = JSON.stringify(this.editor.toJSON());
+    var uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(theJSON));
+    this.downloadJsonHref = uri;
   }
 
 
