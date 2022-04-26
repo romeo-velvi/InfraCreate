@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 // import { ReteComponent } from '../rete/rete.component';
 import { KeycloakService } from 'keycloak-angular';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -12,7 +12,7 @@ import { VisualEditorParser } from './visual-editor.parser';
   styleUrls: ['./visual-editor.component.sass']
 })
 
-export class VisualEditorComponent implements OnInit {
+export class VisualEditorComponent implements OnInit, OnDestroy {
 
   fetcher: any;
   parser: any;
@@ -34,6 +34,11 @@ export class VisualEditorComponent implements OnInit {
     document.body.style.overflow = 'hidden'; // per prevenire lo scrolling
     document.body.style.background = '#0f131a'; // per background
   } 
+
+  ngOnDestroy(): void {
+    document.body.style.overflow = 'auto'; // per prevenire lo scrolling
+    document.body.style.background = 'white'; // per background
+  }
 
   async ngOnInit() {
 

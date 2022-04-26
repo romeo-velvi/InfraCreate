@@ -70,3 +70,21 @@ cite {
     margin-bottom: 0.25rem !important;
     margin-left: 0rem !important;
 }
+
+::placeholder {
+    color: white;
+    opacity: 80%;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: white;
+    opacity: 80%;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: white;
+    opacity: 80%;
+}

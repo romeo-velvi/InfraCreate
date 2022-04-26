@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
   showio: boolean;
   type: String = "";
 
-  constructor() {
+  constructor(private router: Router) {
     this.showio = false;
     this.type = "";
   }
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   startapplication():void{
-
+    this.router.navigate(['/application'])
   }
 
   
