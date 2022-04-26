@@ -40,12 +40,15 @@ export class ReteComponent implements AfterViewInit {
   // for html dynamic part
   showside: boolean = true;
   hidemoduleinfo: boolean = false;
+  hidetheaterinfo: boolean = false;
   @outcore() nodeselected: any = {};
 
   // variabili per input-research
   nodetofind: string = '';
   namelist = [];
 
+  //for map bool
+  ismapvisible: boolean = true;
 
   constructor(private spinner: NgxSpinnerService, private render: Renderer2) {
   }
@@ -143,6 +146,8 @@ export class ReteComponent implements AfterViewInit {
         _this.showhidemoduleinfo(x);
         console.log(_this.editor.selected.list);
         AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
+        const { area, container } = this.editor.view; // read from Vue component data;
+        area.translate(area.transform.x-200,area.transform.y);
       });
     });
 
@@ -235,10 +240,8 @@ export class ReteComponent implements AfterViewInit {
 
   }
 
-
-  public printjson() {
-    console.log(this.editor.toJSON());
-    console.log(JSON.stringify(this.editor.toJSON()));
+  public showhidetheaterinfo() {
+    this.hidetheaterinfo = !this.hidetheaterinfo;
   }
 
   public makezoom(k) {
@@ -254,17 +257,28 @@ export class ReteComponent implements AfterViewInit {
     AreaPlugin.zoomAt(this.editor, this.editor.nodes);
   }
 
+  public findElement(result) {
+    this.nodetofind = result;
+    console.log("finding ", this.nodetofind);
 
+    let elementfound = this.editor.nodes.find(n => n["data"]["title"] === this.nodetofind)
+    let elementpick = new Array(elementfound); // deve necessariamente trovarsi in un array...
 
-  public getNodes(): Object[] {
-    var x = this.editor.toJSON();
-    var z = [];
-    for (let key in x) {
-      let value = x[key];
-      console.log(value);
-      z.push(value);
+    AreaPlugin.zoomAt(this.editor, elementpick);
+    this.editor.selectNode(elementpick[0]);
+  }
+
+  public removeminimap() {
+    var z = document.getElementsByClassName("minimap")[0];
+    z.removeAttribute("style");
+    if (this.ismapvisible) {
+      z.setAttribute("style", "visibility: hidden;");
     }
-    return z;
+    else {
+      z.setAttribute("style", "visibility: visible;");
+    }
+    this.ismapvisible = !this.ismapvisible
+
   }
 
 
@@ -356,20 +370,22 @@ export class ReteComponent implements AfterViewInit {
 
   }
 
-  public findElement(result) {
-    this.nodetofind = result;
-    console.log("finding ",this.nodetofind);
-    
-    let elementfound = this.editor.nodes.find(n => n["data"]["title"] === this.nodetofind)
-    let elementpick = new Array(elementfound); // deve necessariamente trovarsi in un array...
-    
-    AreaPlugin.zoomAt(this.editor, elementpick);
-    this.editor.selectNode(elementpick[0]);
+
+  public printjson() {
+    console.log(this.editor.toJSON());
+    console.log(JSON.stringify(this.editor.toJSON()));
   }
 
-
-
-
+  public getNodes(): Object[] {
+    var x = this.editor.toJSON();
+    var z = [];
+    for (let key in x) {
+      let value = x[key];
+      console.log(value);
+      z.push(value);
+    }
+    return z;
+  }
 
   public async stresstest(num: number) {
 
