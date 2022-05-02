@@ -138,16 +138,14 @@ export class ReteComponent implements AfterViewInit {
     })
 
     var _this = this;
-    this.editor.on("nodeselected", (node) => {
-
-    }
-    );
-
+    this.editor.on("nodeselected", (node) => {});
     this.editor.on('rendernode', ({ el, node }) => {
       el.addEventListener('dblclick', async () => {
         let title:string = node["data"]["title"].toString();
-        _this.showhidemoduleinfo(this.modules[title]["module_details"]);
-        console.log(_this.editor.selected.list);
+        // _this.showhidemoduleinfo(this.modules[title]);
+        _this.hidemoduleinfo = !_this.hidemoduleinfo;
+        _this.nodeselected = _this.modules[title];
+        //console.log(_this.editor.selected.list);
         AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
         const { area, container } = this.editor.view; // read from Vue component data;
         area.translate(area.transform.x-200,area.transform.y);
@@ -330,8 +328,7 @@ export class ReteComponent implements AfterViewInit {
     // }
     /**/
     this.hidemoduleinfo = !this.hidemoduleinfo;
-    this.nodeselected["canvas_info"] = node;
-    this.nodeselected["data"] = this.modules[node["title"]];
+    this.nodeselected["data"] = node;
     console.log("node -> ", this.nodeselected);
 
   }

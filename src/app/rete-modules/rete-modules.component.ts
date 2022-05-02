@@ -184,19 +184,19 @@ export class ReteModulesComponent implements AfterViewInit {
 
     var nodes = [];
     await Promise.all( // per host
-      Object.entries(this.module["data"]["hosts"]["host_list"]).map(async ([key, value]) => {
+      Object.entries(this.module["hosts"]["host_list"]).map(async ([key, value]) => {
         nodes[key] = await this.components[0].createNode(value["for_retejs"]);
       })
     );
 
     await Promise.all( // per network
-      Object.entries(this.module["data"]["hosts"]["network"]).map(async ([key, value]) => {
+      Object.entries(this.module["hosts"]["network"]).map(async ([key, value]) => {
         nodes[key] = await this.components[0].createNode(value["for_retejs"]);
       })
     );
 
     await Promise.all( // per subnet
-      Object.entries(this.module["data"]["hosts"]["subnet"]).map(async ([key, value]) => {
+      Object.entries(this.module["hosts"]["subnet"]).map(async ([key, value]) => {
         nodes[key] = await this.components[0].createNode(value["for_retejs"]);
       })
     );
@@ -208,7 +208,7 @@ export class ReteModulesComponent implements AfterViewInit {
     );
 
     await Promise.all(
-      Object.entries(this.module["data"]["hosts"]["host_connection"]).map(async ([key, value]) => { // connection host-subnet
+      Object.entries(this.module["hosts"]["host_connection"]).map(async ([key, value]) => { // connection host-subnet
         try {
           if (nodes[value["to"]] !== undefined && nodes[value["from"]] !== undefined) {
             // this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
@@ -227,7 +227,7 @@ export class ReteModulesComponent implements AfterViewInit {
       })
     );
 
-    Object.entries(this.module["data"]["hosts"]["subnet_connection"]).map(async ([key, value]) => { // connection subnet-net
+    Object.entries(this.module["hosts"]["subnet_connection"]).map(async ([key, value]) => { // connection subnet-net
       try {
         if (nodes[value["to"]] !== undefined && nodes[value["from"]] !== undefined) {
           // this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
