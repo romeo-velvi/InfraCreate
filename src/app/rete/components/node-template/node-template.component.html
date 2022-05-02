@@ -10,9 +10,9 @@
         </div>
       </div>
       <div class="col-2 m-auto">
-        <button class="btn btn-secondary" type="button" (click)="showhidesocket()" style="vertical-align: baseline;"> 
+        <button class="btn btn-secondary" type="button" (click)="showhidesocket()" style="vertical-align: baseline;">
           <i *ngIf="nothide" class="bi bi-diagram-3"></i>
-          <i *ngIf="!nothide"class="bi bi-diagram-2"></i>
+          <i *ngIf="!nothide" class="bi bi-diagram-2"></i>
         </button>
       </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="row justify-content-center">
       <!-- <app-rete></app-rete> -->
       <!-- <span [innerHTML]="imgalt" style="display: contents;"></span> -->
-      <!-- <img src="{{imageSrc}}" class="d-inline-block" alt="{{imageAlt}}" /> -->
+      <img src="{{imageSrc}}" style="width: 4em;height: 2.5em;" class="d-inline-block" alt="{{imageAlt}}" />
     </div>
 
   </div>
@@ -44,19 +44,31 @@
     </div>
   </div> -->
 
-  <!-- OUTPUT SOCKET  MODIFICATO NGIF -->
+
   <div *ngIf="nothide">
-    <div class="output" *ngFor="let output of outputs">
+
+    <!-- OUTPUT SOCKET  MODIFICATO NGIF -->
+    <div class="output" style="text-align: right;display: flex;justify-content: end;" *ngFor="let output of outputs">
       <div class="output-title">{{output.name}}</div>
-      <rete-socket rete-socket [io]="output" [socket]="output.socket"></rete-socket>
+      <div class="" style="display: grid;">
+        <rete-socket style="grid-row: 1;grid-column: 1; z-index: 2;" rete-socket [io]="output" [socket]="output.socket">
+        </rete-socket>
+        <i class="bi bi-broadcast-pin m-auto"
+          style="z-index: 1;grid-row: 1;grid-column: 1; margin-right: 12px!important; color: white/*#96b38a*/;transform: rotate(270deg);"></i>
+      </div>
     </div>
 
 
     <!-- <div class="control" *ngFor="let control of controls" [rete-control]="control"></div> -->
 
     <!-- INPUT SOCKET -->
-    <div class="input" *ngFor="let input of inputs">
-      <rete-socket rete-socket [io]="input" [socket]="input.socket"></rete-socket>
+    <div class="input" style="text-align: left;display: flex;justify-content: start;" *ngFor="let input of inputs">
+      <div class="" style="display: grid;">
+        <rete-socket style="grid-row: 1;grid-column: 1; z-index: 2;" rete-socket [io]="input" [socket]="input.socket">
+        </rete-socket>
+        <i class="bi bi-wifi m-auto"
+          style="z-index: 1;grid-row: 1;grid-column: 1; margin-left: 8.75px!important; color: white/*#96b38a*/;transform: rotate(90deg);"></i>
+      </div>
       <div class="input-title" *ngIf="!input.showControl()">{{input.name}}</div>
       <div class="input-control" *ngIf="input.showControl()" [rete-control]="input.control"></div>
     </div>

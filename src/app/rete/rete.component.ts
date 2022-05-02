@@ -45,7 +45,7 @@ export class ReteComponent implements AfterViewInit {
   @outcore() nodeselected: any = {};
 
   // variabili per input-research
-  nodetofind: string = '';
+  nodetofind: string = ''; 
   namelist = [];
 
   //for map bool
@@ -53,6 +53,9 @@ export class ReteComponent implements AfterViewInit {
 
   // to download
   downloadJsonHref: SafeUrl;
+
+  //tab
+  activetab=1;
 
   constructor(private spinner: NgxSpinnerService, private render: Renderer2, private sanitizer: DomSanitizer) {
   }
@@ -95,7 +98,7 @@ export class ReteComponent implements AfterViewInit {
     ];
 
     this.editor = new NodeEditor('demo@0.2.0', this.container);
-
+    /* https://github.com/retejs/connection-path-plugin */
     this.editor.use(ConnectionPlugin);
     /* DECOMMENTARE SE SI NECESSITA DELLE CURVATURE DELLE CONNESSINI AD ANGOLO */
     //   this.editor.use(ConnectionPathPlugin, {
@@ -142,12 +145,8 @@ export class ReteComponent implements AfterViewInit {
 
     this.editor.on('rendernode', ({ el, node }) => {
       el.addEventListener('dblclick', async () => {
-        // console.log("select node ->", node);
-        var x = [];
-        x["title"] = node["data"]["title"].toString();
-        x["area"] = node["data"]["area"];
-        x["type"] = node["data"]["type"];
-        _this.showhidemoduleinfo(x);
+        let title:string = node["data"]["title"].toString();
+        _this.showhidemoduleinfo(this.modules[title]["module_details"]);
         console.log(_this.editor.selected.list);
         AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
         const { area, container } = this.editor.view; // read from Vue component data;
@@ -208,6 +207,99 @@ export class ReteComponent implements AfterViewInit {
     this.editor.on('zoom', ({ source }) => {
       return source !== 'dblclick';
     });
+
+  }
+
+
+
+
+
+  public async addNodes() {
+
+    var nodes = [];
+    await Promise.all(
+      Object.entries(this.modules).map(async ([key, value]) => {
+        var v = value["for_retejs"]; 
+        // v["MD"] = value["module_details"];
+        nodes[key] = await this.components[1].createNode(v);
+        this.namelist.push(key);// creare array dei nomi dei nodi (utile per gli hint dell'imput-ricerca)
+      })
+    );
+
+    console.log(nodes);
+
+    Object.entries(nodes).map(async ([key, value]) => {
+      this.editor.addNode(value);
+    })
+
+    /*
+          // // DATA info-node
+          // var infon1 = { title: "node-type2", Output: 2, Input: 3 }
+          // var infon2 = { title: "node-type3", Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'Server' }
+          // var infon3 = { title: "node-type3-1", Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'port' }
+          // // var infon3 = { title:"node-type1", Output:4, Input:9 }
+    
+          // // Component creation (foreach module)
+          // const n1 = await this.components[0].createNode(infon1);
+          // const n2 = await this.components[1].createNode(infon2);
+          // const n3 = await this.components[1].createNode(infon3);
+          // const n4 = await this.components[2].createNode({ title: "nodotipo3" });
+    
+    
+          // const aa = await this.components[1].createNode(this.modules["Lab_1_in_1"]["for_retejs"]);
+          // this.editor.addNode(aa);
+    
+          // /*
+          // //insert name
+          // // n1.data['title'] = "nodotipo1";
+          // // n2.data['title'] = "nodotipo2";
+          // // n3.data['title'] = "nodotipo3";
+    
+          // // n1.position = [80, 200];
+          // // n2.position = [80, 400];
+          // // n3.position = [500, 240];
+          // /
+    
+          // // Insert into editor
+          // this.editor.addNode(n1);
+          // this.editor.addNode(n2);
+          // this.editor.addNode(n3);
+          // this.editor.addNode(n4);
+
+          // // Create connection
+          // this.editor.connect(n2.outputs.get('output0'), n4.inputs.get('num2'));
+          // this.editor.connect(n2.outputs.get('output1'), n3.inputs.get('input1'));
+          // this.editor.connect(n1.outputs.get('output1'), n4.inputs.get('num1'));
+          // this.editor.connect(n3.outputs.get('output1'), n4.inputs.get('num2'));
+    */
+
+    // DECOMMENTARE SE NON VANNO I COLLEGAMENTI
+    // Sempre prima che avvengano i collegamenti 
+    //Necessario per il path delle connessioni (altrimenti si fottono)
+    // this.editor.on("connectioncreated", connection => {
+    //   setInterval(() => {
+    //     let node = connection.output.node;
+    //     this.editor.view.updateConnections({ node });
+    //   }, 1);
+    // });
+
+    Object.entries(this.theater["for_retejs"]["module_connection"]).map(async ([key, value]) => {
+      try {
+        if (nodes[value["to"]] !== undefined && nodes[value["from"]] !== undefined) {
+          this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
+        }
+      } catch (e) {
+        console.log(
+          "PROBLEM: ", e, "\ntry",
+          " connect ",
+          value["from"], " port ", value["port_src"], " data: ", nodes[value["from"]],
+          " to ",
+          value["to"], " port ", value["port_dst"], " data: ", nodes[value["to"]],
+        );
+        // console.log(e);
+      }
+    })
+
 
   }
 
@@ -291,95 +383,30 @@ export class ReteComponent implements AfterViewInit {
     this.downloadJsonHref = uri;
   }
 
-
-  public async addNodes() {
-
-    var nodes = [];
-    await Promise.all(
-      Object.entries(this.modules).map(async ([key, value]) => {
-        nodes[key] = await this.components[1].createNode(value["for_retejs"]);
-        // creare array dei nomi dei nodi (utile per gli hint dell'imput-ricerca)
-        this.namelist.push(key);
-      })
-    );
-
-    console.log(nodes);
-
-    Object.entries(nodes).map(async ([key, value]) => {
-      this.editor.addNode(value);
-    })
-
-    /*
-          // // DATA info-node
-          // var infon1 = { title: "node-type2", Output: 2, Input: 3 }
-          // var infon2 = { title: "node-type3", Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'Server' }
-          // var infon3 = { title: "node-type3-1", Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'port' }
-          // // var infon3 = { title:"node-type1", Output:4, Input:9 }
-    
-          // // Component creation (foreach module)
-          // const n1 = await this.components[0].createNode(infon1);
-          // const n2 = await this.components[1].createNode(infon2);
-          // const n3 = await this.components[1].createNode(infon3);
-          // const n4 = await this.components[2].createNode({ title: "nodotipo3" });
-    
-    
-          // const aa = await this.components[1].createNode(this.modules["Lab_1_in_1"]["for_retejs"]);
-          // this.editor.addNode(aa);
-    
-          // /*
-          // //insert name
-          // // n1.data['title'] = "nodotipo1";
-          // // n2.data['title'] = "nodotipo2";
-          // // n3.data['title'] = "nodotipo3";
-    
-          // // n1.position = [80, 200];
-          // // n2.position = [80, 400];
-          // // n3.position = [500, 240];
-          // /
-    
-          // // Insert into editor
-          // this.editor.addNode(n1);
-          // this.editor.addNode(n2);
-          // this.editor.addNode(n3);
-          // this.editor.addNode(n4);
-
-          // // Create connection
-          // this.editor.connect(n2.outputs.get('output0'), n4.inputs.get('num2'));
-          // this.editor.connect(n2.outputs.get('output1'), n3.inputs.get('input1'));
-          // this.editor.connect(n1.outputs.get('output1'), n4.inputs.get('num1'));
-          // this.editor.connect(n3.outputs.get('output1'), n4.inputs.get('num2'));
-    */
-
-    // DECOMMENTARE SE NON VANNO I COLLEGAMENTI
-    // Sempre prima che avvengano i collegamenti 
-    //Necessario per il path delle connessioni (altrimenti si fottono)
-    // this.editor.on("connectioncreated", connection => {
-    //   setInterval(() => {
-    //     let node = connection.output.node;
-    //     this.editor.view.updateConnections({ node });
-    //   }, 1);
-    // });
-
-    Object.entries(this.theater["for_retejs"]["module_connection"]).map(async ([key, value]) => {
-      try {
-        if (nodes[value["to"]] !== undefined && nodes[value["from"]] !== undefined) {
-          this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
-        }
-      } catch (e) {
-        console.log(
-          "PROBLEM: ", e, "\ntry",
-          " connect ",
-          value["from"], " port ", value["port_src"], " data: ", nodes[value["from"]],
-          " to ",
-          value["to"], " port ", value["port_dst"], " data: ", nodes[value["to"]],
-        );
-        // console.log(e);
-      }
-    })
-
-
+  public async arrangenodes(){
+    this.editor.nodes.forEach(async node => {
+      this.editor.trigger("arrange", { node: node });
+      await node.update()
+    });
   }
 
+  public activatetab(num){
+    for(var i=1; i<=3; i++){
+      var x = "a"+i;
+      var el = document.getElementById(x);
+      // console.log("-->",x,el);
+      if(i===num){
+        this.activetab = num;
+        el.setAttribute("aria-selected","true");
+        el.classList.add("active");
+      }
+      else{
+        el.setAttribute("aria-selected","false");
+        el.classList.remove("active");
+      }
+    }
+
+  }
 
   public printjson() {
     console.log(this.editor.toJSON());
