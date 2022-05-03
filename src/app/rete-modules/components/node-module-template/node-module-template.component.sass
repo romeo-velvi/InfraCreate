@@ -2,7 +2,7 @@
 
 .node
   background: $node-color
-  border: 2px solid #4e58bf
+  border: 2px solid #f124
   border-radius: 10px
   cursor: pointer
   min-width: $node-width
@@ -15,10 +15,10 @@
     background: lighten($node-color,4%)
   &.selected
     background: $node-color-selected
-    border-color: #e3c000
+    border-color: #ff0000
   .title
-    color: white
-    font-family: sans-serif
+    color: $text-color
+    font-family: $font-fam
     font-size: 18px
     padding: 8px
   .output
@@ -27,9 +27,9 @@
     text-align: left
   .input-title,.output-title
     vertical-align: middle
-    color: white
+    color: $text-color
     display: inline-block
-    font-family: sans-serif
+    font-family: $font-fam
     font-size: 14px
     margin: $socket-margin
     line-height: $socket-size

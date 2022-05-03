@@ -15,14 +15,10 @@ import { ReteModule } from 'rete-angular-render-plugin';
 import { ReteComponent } from './rete/rete.component';
 import { ReteModulesComponent } from './rete-modules/rete-modules.component';
 
-import { MyNodeComponent1 } from './rete/components/node1/node1.component';
-import { MyNodeComponent2 } from './rete/components/node2/node2.component';
 import { NodeTemplate } from './rete/components/node-template/node-template.component';
+import { NodeModuleTemplate } from './rete-modules/components/node-module-template/node-module-template.component';
 
-import { AddComponent } from './rete/components/add-component';
-import { NumComponent } from './rete/components/number-component';
 import { NodeComponent } from './rete/components/node-component';
-
 
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 
@@ -51,9 +47,8 @@ const keycloakService = new KeycloakService();
     ReteComponent,
     ReteModulesComponent,
 
-    MyNodeComponent1,
-    MyNodeComponent2,
     NodeTemplate,
+    NodeModuleTemplate,
 
     AppComponent,
     HomeComponent,
@@ -97,7 +92,7 @@ const keycloakService = new KeycloakService();
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
-  entryComponents: [MyNodeComponent1, MyNodeComponent2, NodeTemplate]
+  entryComponents: [NodeTemplate, NodeModuleTemplate]
 })
 
 export class AppModule implements DoBootstrap {

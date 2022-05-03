@@ -56,8 +56,22 @@ export class VisualEditorParser {
         });
 
         this.parse_host_for_rete();
-        // console.log(this.parsed_modules);
-
+        Object.entries(this.parsed_modules).map(([key, value]) => {
+            var x=0,y=0,z=0;
+            Object.entries(this.parsed_modules[key.toString()]["hosts"]["host_list"]).map(([key, value]) => {
+                x++;
+            });
+            Object.entries(this.parsed_modules[key.toString()]["hosts"]["network"]).map(([key, value]) => {
+                y++;
+            });
+            Object.entries(this.parsed_modules[key.toString()]["hosts"]["subnet"]).map(([key, value]) => {
+                z++;
+            });
+            this.parsed_modules[key.toString()]["for_retejs"]["host_number"] = x;
+            this.parsed_modules[key.toString()]["for_retejs"]["network_number"] = y;
+            this.parsed_modules[key.toString()]["for_retejs"]["subnet_number"] = z;
+            this.parsed_modules[key.toString()]["for_retejs"]["module_name"] =  this.parsed_modules[key.toString()]["module_details"]["name"];
+        });
     }
 
     parse_theater_for_rete() {

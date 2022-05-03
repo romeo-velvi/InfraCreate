@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output as outcore, ChangeDetectionStrategy, Renderer2 } from '@angular/core';
-import { DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NodeEditor, Engine, Output } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
 import ConnectionPathPlugin from 'rete-connection-path-plugin';
@@ -9,15 +9,11 @@ import AreaPlugin from 'rete-area-plugin';
 import MinimapPlugin from 'rete-minimap-plugin';
 import AutoArrangePlugin from 'rete-auto-arrange-plugin'
 
-import { NumComponent } from './components/number-component';
-import { AddComponent } from './components/add-component';
 import { NodeComponent } from './components/node-component';
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { NgxTypeaheadModule } from "ngx-typeahead";
 
-import { Observable, OperatorFunction } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rete',
@@ -45,7 +41,7 @@ export class ReteComponent implements AfterViewInit {
   @outcore() nodeselected: any = {};
 
   // variabili per input-research
-  nodetofind: string = ''; 
+  nodetofind: string = '';
   namelist = [];
 
   //for map bool
@@ -55,7 +51,7 @@ export class ReteComponent implements AfterViewInit {
   downloadJsonHref: SafeUrl;
 
   //tab
-  activetab=1;
+  activetab = 1;
 
   constructor(private spinner: NgxSpinnerService, private render: Renderer2, private sanitizer: DomSanitizer) {
   }
@@ -92,19 +88,19 @@ export class ReteComponent implements AfterViewInit {
 
     // stored all node-types
     this.components = [
-      new NumComponent(),
       new NodeComponent(),
-      new AddComponent(),
     ];
 
     this.editor = new NodeEditor('demo@0.2.0', this.container);
     /* https://github.com/retejs/connection-path-plugin */
     this.editor.use(ConnectionPlugin);
     /* DECOMMENTARE SE SI NECESSITA DELLE CURVATURE DELLE CONNESSINI AD ANGOLO */
-    //   this.editor.use(ConnectionPathPlugin, {
-    //     transformer: () => ([x1, y1, x2, y2]) => [[x1, y1], [(x1+x2)/2, y1], [(x1+x2)/2, y2], [x2, y2]],
-    //    curve: ConnectionPathPlugin.curveLinear
-    //  });
+    // this.editor.use(ConnectionPathPlugin, {
+    //   //  transformer: () => ([x1, y1, x2, y2]) => [[x1, y1], [(x1+x2)/2, y1], [(x1+x2)/2, y2], [x2, y2]],
+    //   // transformer: () => ([x1, y1, x2, y2]) => [[x1, y1],[x2, y2]],
+    //   // curve: ConnectionPathPlugin.curveLinear
+    //   curve: ConnectionPathPlugin.curveBundle
+    // });
     this.editor.use(AngularRenderPlugin)//, { component: MyNodeComponent });
     this.editor.use(MinimapPlugin);
     this.editor.use(ContextMenuPlugin, {
@@ -132,23 +128,24 @@ export class ReteComponent implements AfterViewInit {
       translateExtent: { width: 5000, height: 4000 }
     })
     this.editor.use(AutoArrangePlugin, {
+      // snap: {size: 64, dynamic: true},
       margin: { x: 400, y: 100 },
-      depth: 1,
+      depth: 0,
       vertical: false,
     })
 
     var _this = this;
-    this.editor.on("nodeselected", (node) => {});
+    this.editor.on("nodeselected", (node) => { });
     this.editor.on('rendernode', ({ el, node }) => {
       el.addEventListener('dblclick', async () => {
-        let title:string = node["data"]["title"].toString();
+        let title: string = node["data"]["title"].toString();
         // _this.showhidemoduleinfo(this.modules[title]);
         _this.hidemoduleinfo = !_this.hidemoduleinfo;
         _this.nodeselected = _this.modules[title];
         //console.log(_this.editor.selected.list);
         AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
         const { area, container } = this.editor.view; // read from Vue component data;
-        area.translate(area.transform.x-200,area.transform.y);
+        area.translate(area.transform.x - 200, area.transform.y);
       });
     });
 
@@ -165,6 +162,16 @@ export class ReteComponent implements AfterViewInit {
         this.editor.view.updateConnections({ node });
       }, 1);
     });
+
+    // this.editor.on("connectioncreated", async connection => {
+    //   let nodeO = connection.output.node;
+    //   let nodeI = connection.input.node;
+    //   await nodeI.update();
+    //   this.editor.view.updateConnections({ node:nodeI })
+    //   await nodeO.update();
+    //   this.editor.view.updateConnections({ node:nodeO })
+    // });
+
 
     if (this.type !== undefined && this.type === 1) {
       this.showside = false;
@@ -217,9 +224,9 @@ export class ReteComponent implements AfterViewInit {
     var nodes = [];
     await Promise.all(
       Object.entries(this.modules).map(async ([key, value]) => {
-        var v = value["for_retejs"]; 
+        var v = value["for_retejs"];
         // v["MD"] = value["module_details"];
-        nodes[key] = await this.components[1].createNode(v);
+        nodes[key] = await this.components[0].createNode(v);
         this.namelist.push(key);// creare array dei nomi dei nodi (utile per gli hint dell'imput-ricerca)
       })
     );
@@ -239,12 +246,12 @@ export class ReteComponent implements AfterViewInit {
     
           // // Component creation (foreach module)
           // const n1 = await this.components[0].createNode(infon1);
-          // const n2 = await this.components[1].createNode(infon2);
-          // const n3 = await this.components[1].createNode(infon3);
+          // const n2 = await this.components[0].createNode(infon2);
+          // const n3 = await this.components[0].createNode(infon3);
           // const n4 = await this.components[2].createNode({ title: "nodotipo3" });
     
     
-          // const aa = await this.components[1].createNode(this.modules["Lab_1_in_1"]["for_retejs"]);
+          // const aa = await this.components[0].createNode(this.modules["Lab_1_in_1"]["for_retejs"]);
           // this.editor.addNode(aa);
     
           // /*
@@ -380,25 +387,25 @@ export class ReteComponent implements AfterViewInit {
     this.downloadJsonHref = uri;
   }
 
-  public async arrangenodes(){
+  public async arrangenodes() {
     this.editor.nodes.forEach(async node => {
-      this.editor.trigger("arrange", { node: node });
       await node.update()
+      this.editor.trigger("arrange", { node: node });
     });
   }
 
-  public activatetab(num){
-    for(var i=1; i<=3; i++){
-      var x = "a"+i;
+  public activatetab(num) {
+    for (var i = 1; i <= 3; i++) {
+      var x = "a" + i;
       var el = document.getElementById(x);
       // console.log("-->",x,el);
-      if(i===num){
+      if (i === num) {
         this.activetab = num;
-        el.setAttribute("aria-selected","true");
+        el.setAttribute("aria-selected", "true");
         el.classList.add("active");
       }
-      else{
-        el.setAttribute("aria-selected","false");
+      else {
+        el.setAttribute("aria-selected", "false");
         el.classList.remove("active");
       }
     }
@@ -433,7 +440,7 @@ export class ReteComponent implements AfterViewInit {
     var a_node = [];
     for (let index = 0; index < num; index++) {
       var info = { title: "node-name->" + index.toString(), Output: ["output0", "output1", "output2"], Input: ["intput0", "input1", "input2"], type: 'Server' }
-      a_node[index] = await this.components[1].createNode(info);
+      a_node[index] = await this.components[0].createNode(info);
     }
 
     for (let index = 0; index < num; index++) {

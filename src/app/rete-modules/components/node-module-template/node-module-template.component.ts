@@ -2,22 +2,22 @@ import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/
 import { NodeComponent, NodeService } from 'rete-angular-render-plugin';
 
 @Component({
-  templateUrl: './node-template.component.html',
-  styleUrls: ['./node-template.component.sass',],
+  templateUrl: './node-module-template.component.html',
+  styleUrls: ['./node-module-template.component.sass',],
   providers: [NodeService],
   changeDetection: ChangeDetectionStrategy.OnPush, // render più veloce.
 })
 
-export class NodeTemplate extends NodeComponent {
+export class NodeModuleTemplate extends NodeComponent {
 
   public isCollapsed = false;
   public nothide = true;
+  public type = '';
   public imageSrc = 'assets/images/nodeimg/';
   public imageAlt = '';
   public nodedata: any;
   public active = true;
   public imgalt = '';
-  public type= '';
 
   constructor(
     protected service: NodeService,
@@ -32,7 +32,7 @@ export class NodeTemplate extends NodeComponent {
       this.active = false;
       // console.log("td: ", data);
       this.nodedata = data;
-      this.type=data.type.toLowerCase();;
+      this.type = data.type.toLowerCase();
       this.selectimge();
     }
   }
@@ -43,16 +43,19 @@ export class NodeTemplate extends NodeComponent {
   }
 
   selectimge() {
-    let img = this.type.toLowerCase();;
+    let img = this.type;
     switch (this.type) {
-      case "sysman.creo.nodes.TheaterModuleInstance".toLowerCase():
-        img = "module"
+      case "server":
+        img = "server"
         break;
-      case "sysman.creo.nodes.TheaterInternalServiceModuleInstance".toLowerCase():
-        img = "module"
+      case "port":
+        img = "port"
         break;
-      case "sysman.creo.nodes.MirroringModuleInstance".toLowerCase():
-        img = "module"
+      case "network":
+        img = "network"
+        break;
+      case "subnet":
+        img = "subnet"
         break;
       default:
         img = this.type;

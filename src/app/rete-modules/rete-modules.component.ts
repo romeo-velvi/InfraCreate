@@ -5,10 +5,7 @@ import { AngularRenderPlugin } from 'rete-angular-render-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
 import AreaPlugin from 'rete-area-plugin';
 import AutoArrangePlugin from 'rete-auto-arrange-plugin'
-import { NumComponent } from '../rete/components/number-component';
-import { AddComponent } from '../rete/components/add-component';
-import { NodeComponent } from '../rete/components/node-component';
-
+import { NodeModuleComponent } from './components/node-module-component';
 
 @Component({
   selector: 'app-rete-modules',
@@ -67,9 +64,7 @@ export class ReteModulesComponent implements AfterViewInit {
 
     // stored all node-types
     this.components = [
-      new NodeComponent(),
-      new NumComponent(),
-      new AddComponent(),
+      new NodeModuleComponent(),
     ];
 
     this.editor = new NodeEditor('demo@0.1.0', this.container);

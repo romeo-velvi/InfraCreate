@@ -23,25 +23,7 @@
   <!-- CONTENT -->
   <div class="container">
     <div class="row justify-content-center">
-      <!-- <div class="container">
-        <div class="row">
-          <div class="col">
-            <img src="{{imageSrc}}" style="width: 4em;height: 2.5em;" class="d-inline-block" alt="{{imageAlt}}" />
-          </div>
-          <div class="col">
-            <div class="row">
-              ATTR1
-            </div>
-            <div class="row">
-              ATTR2
-            </div>
-            <div class="row">
-              ATTR3
-            </div>
-          </div>
-        </div>
-      </div> -->
-
+      <!-- <img src="{{imageSrc}}" style="width: 4em;height: 2.5em;" class="d-inline-block" alt="{{imageAlt}}" /> -->
       <div class="card" style="margin-top: 0.5em;">
         <div class="card-content">
           <div class="card-body" style="padding: 0;">
@@ -56,28 +38,23 @@
               justify-content: center;
               display: flex;">
                 <!-- <img src="{{imageSrc}}" style="height: 2.5em;" class="d-inline-block" alt="{{imageAlt}}" /> -->
-                <i *ngIf="type==='sysman.creo.nodes.TheaterModuleInstance'.toLowerCase()" class="bi bi-pencil"
+                <i *ngIf="type==='server'.toLowerCase()" class="bi bi-server"
                   style="font-size: 2em; margin:auto;"> </i>
-                <i *ngIf="type==='sysman.creo.nodes.TheaterInternalServiceModuleInstance'.toLowerCase()"
-                  class="bi bi-gear-wide-connected" style="font-size: 2em; margin:auto;"> </i>
-                <i *ngIf="type==='sysman.creo.nodes.MirroringModuleInstance'.toLowerCase()"
-                  class="bi bi-textarea-resize" style="font-size: 2em; margin:auto;"> </i>
+                <i *ngIf="type==='subnet'.toLowerCase()"
+                  class="bi bi-hdd-network-fill" style="font-size: 2em; margin:auto;"> </i>
+                <i *ngIf="type==='network'.toLowerCase()"
+                  class="bi bi-cloud-fill" style="font-size: 2em; margin:auto;"> </i>
               </div>
               <div class="media-body text-right" style="margin-left: auto; font-family: Bahnschrift SemiBold;">
-                <h5 style="margin: 10px!important;"> {{node.data.title}} </h5>
-                <h6 style="margin: 10px!important; text-align: end;">module: {{node.data.module_name}}</h6>
-                <h6 style="margin: 10px!important;text-align: end;">area: {{node.data.area}} </h6>
+                <h5 style="margin: 10px!important;"> ATTR1 </h5>
+                <h6 style="margin: 10px!important; text-align: end;"> ATTR2 </h6>
+                <h6 style="margin: 10px!important;text-align: end;"> ATTR3 </h6>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
     </div>
-
   </div>
 
 
@@ -103,18 +80,10 @@
       <div class="" style="display: grid;">
         <rete-socket style="grid-row: 1;grid-column: 1; z-index: 2;" rete-socket [io]="output" [socket]="output.socket">
         </rete-socket>
-        <p style="    
-        bottom: -5.45px;
-        left: 5.6px;
-        font-weight: 700;
-        position: relative;
-        z-index: 3;
-        grid-row: 1;
-        grid-column: 1;
-        margin: 0;
-        pointer-events: none;">P</p>
-        <i class="bi bi-broadcast-pin m-auto"
-          style="z-index: 1;grid-row: 1;grid-column: 1; margin-right: 12px!important; color: white/*#96b38a*/;transform: rotate(270deg);"></i>
+        <i *ngIf="type==='server'" class="bi bi-ethernet m-auto"
+          style="z-index: 1;grid-row: 1;grid-column: 1; margin-right: 15px!important; color: white/*#96b38a*/;"></i>
+        <i *ngIf="type==='subnet'" class="bi bi-clouds m-auto"
+          style="z-index: 1;grid-row: 1;grid-column: 1; margin-right: 15px!important; color: white/*#96b38a*/;"></i>
       </div>
     </div>
 
@@ -126,44 +95,15 @@
       <div class="" style="display: grid;">
         <rete-socket style="grid-row: 1;grid-column: 1; z-index: 2;" rete-socket [io]="input" [socket]="input.socket">
         </rete-socket>
-        <p style="    
-        bottom: -5.45px;
-        left: -5.6px;
-        font-weight: 700;
-        position: relative;
-        z-index: 3;
-        grid-row: 1;
-        grid-column: 1;
-        margin: 0;
-        pointer-events: none;">C</p>
-        <i class="bi bi-wifi m-auto"
-          style="z-index: 1;grid-row: 1;grid-column: 1; margin-left: 8.75px!important; color: white/*#96b38a*/;transform: rotate(90deg);"></i>
-      </div>
+        <i *ngIf="type==='network'" class="bi bi-cloud-plus m-auto"
+          style="z-index: 1;grid-row: 1;grid-column: 1; margin-left: 15px!important; color: white/*#96b38a*/;"></i>
+        <i *ngIf="type==='subnet'" class="bi bi-box-arrow-right m-auto"
+          style="z-index: 1;grid-row: 1;grid-column: 1; margin-left: 15px!important; color: white/*#96b38a*/;"></i>
+        <i *ngIf="type==='server'" class="bi bi-ethernet m-auto"
+          style="z-index: 1;grid-row: 1;grid-column: 1; margin-left: 15px!important; color: white/*#96b38a*/;"></i>
+        </div>
       <div class="input-title" *ngIf="!input.showControl()">{{input.name}}</div>
       <div class="input-control" *ngIf="input.showControl()" [rete-control]="input.control"></div>
-    </div>
-  </div>
-
-
-  <!-- FOOT -->
-  <div class="container">
-    <div class="row" style="font-family: Bahnschrift SemiBold;">
-
-      <div class="col col-4" style="text-align: center;">
-          <i class="bi bi-server m-auto"></i>
-          {{node.data.host_number}}
-      </div>
-
-      <div class="col col-4" style="text-align: center;">
-          <i class="bi bi-hdd-network m-auto" ></i>
-          {{node.data.subnet_number}}
-      </div>
-
-      <div class="col col-4" style="text-align: center;">
-          <i class="bi bi-cloud m-auto"></i>
-          {{node.data.network_number}}
-      </div>
-
     </div>
   </div>
 
