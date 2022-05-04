@@ -58,19 +58,21 @@ export class VisualEditorParser {
         this.parse_host_for_rete();
         Object.entries(this.parsed_modules).map(([key, value]) => {
             var x=0,y=0,z=0;
-            Object.entries(this.parsed_modules[key.toString()]["hosts"]["host_list"]).map(([key, value]) => {
+            Object.entries(this.parsed_modules[key.toString()]["topology"]["host"]).map(([key, value]) => {
                 x++;
             });
-            Object.entries(this.parsed_modules[key.toString()]["hosts"]["network"]).map(([key, value]) => {
+            Object.entries(this.parsed_modules[key.toString()]["topology"]["network"]).map(([key, value]) => {
                 y++;
             });
-            Object.entries(this.parsed_modules[key.toString()]["hosts"]["subnet"]).map(([key, value]) => {
+            Object.entries(this.parsed_modules[key.toString()]["topology"]["subnet"]).map(([key, value]) => {
                 z++;
             });
             this.parsed_modules[key.toString()]["for_retejs"]["host_number"] = x;
             this.parsed_modules[key.toString()]["for_retejs"]["network_number"] = y;
             this.parsed_modules[key.toString()]["for_retejs"]["subnet_number"] = z;
             this.parsed_modules[key.toString()]["for_retejs"]["module_name"] =  this.parsed_modules[key.toString()]["module_details"]["name"];
+            this.parsed_modules[key.toString()]["for_retejs"]["instance_name"] =  this.parsed_modules[key.toString()]["for_retejs"]["title"];
+            this.parsed_modules[key.toString()]["for_retejs"]["version"] =  this.parsed_modules[key.toString()]["into_theater"]["version"];
         });
     }
 
@@ -101,16 +103,16 @@ export class VisualEditorParser {
 
             var K = key;
 
-            this.parsed_modules[K]["hosts"] = { // foreach moduls initialize empty variables
+            this.parsed_modules[K]["topology"] = { // foreach moduls initialize empty variables
                 into_module_details: this.parsed_modules[K]["module_details"]["hosts_info"],
-                host_list: {},
+                host: {},
                 host_connection: {},
                 subnet: {},
                 network: {},
                 subnet_connection: {},
             };
 
-            var host_for_retejs = [];
+            var host = [];
             var host_connection = [];
             var subnet_connection = [];
             var network = [];
@@ -134,7 +136,7 @@ export class VisualEditorParser {
                         var subname = value["name"]; // subnet name
 
                         if (subnetwork[subname] === undefined) { // if not exists -> create subnet
-                            
+
                             subnetwork[subname] = {};
                             subnetwork[subname]["counter"] = 0;
                             subnetwork[subname]["linkedto"] = [];
@@ -144,7 +146,9 @@ export class VisualEditorParser {
                                 Input: [],
                                 Output: [],
                                 title: subname,
-                                type: "Subnet",
+                                type: "Subnet", 
+                                cidr: value["cidr"],
+                                version: value["version"],
                             };
                             subnetwork[subname]["for_retejs"]["Input"].push("from_host");
                             subnetwork[subname]["for_retejs"]["Output"].push(netname);
@@ -200,22 +204,23 @@ export class VisualEditorParser {
                     O.push(portname);
 
                 });
-                host_for_retejs[hostname] = {
+                host[hostname] = {
                     for_retejs: [],
                 }
-                host_for_retejs[hostname]["for_retejs"] = {
+                host[hostname]["for_retejs"] = {
                     Input: [],
                     Output: O,
                     title: hostname,
                     type: "Server",
+                    os: "Linux",
                 }
 
             });
-            this.parsed_modules[K]["hosts"]["host_list"] = host_for_retejs;
-            this.parsed_modules[K]["hosts"]["subnet"] = subnetwork;
-            this.parsed_modules[K]["hosts"]["network"] = network;
-            this.parsed_modules[K]["hosts"]["host_connection"] = host_connection;
-            this.parsed_modules[K]["hosts"]["subnet_connection"] = subnet_connection;
+            this.parsed_modules[K]["topology"]["host"] = host;
+            this.parsed_modules[K]["topology"]["subnet"] = subnetwork;
+            this.parsed_modules[K]["topology"]["network"] = network;
+            this.parsed_modules[K]["topology"]["host_connection"] = host_connection;
+            this.parsed_modules[K]["topology"]["subnet_connection"] = subnet_connection;
         });
 
     }

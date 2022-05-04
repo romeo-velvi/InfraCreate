@@ -2,7 +2,7 @@
 
   {{ this.active ? initdatanode(node.data) : null }}
 
-  <div class="container">
+  <!-- <div class="container">
     <div class="row justify-content-between">
       <div class="col-auto mr-auto">
         <div class="title">
@@ -16,8 +16,7 @@
         </button>
       </div>
     </div>
-
-  </div>
+  </div> -->
 
 
   <!-- CONTENT -->
@@ -64,9 +63,9 @@
                   class="bi bi-textarea-resize" style="font-size: 2em; margin:auto;"> </i>
               </div>
               <div class="media-body text-right" style="margin-left: auto; font-family: Bahnschrift SemiBold;">
-                <h5 style="margin: 10px!important;"> {{node.data.title}} </h5>
-                <h6 style="margin: 10px!important; text-align: end;">module: {{node.data.module_name}}</h6>
+                <h5 style="margin: 10px!important;text-align: end;"> {{node.data.module_name}} </h5>
                 <h6 style="margin: 10px!important;text-align: end;">area: {{node.data.area}} </h6>
+                <h6 style="margin: 10px!important; text-align: end;">version: {{node.data.version}}</h6>
               </div>
             </div>
           </div>

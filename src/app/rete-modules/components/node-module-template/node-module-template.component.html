@@ -2,7 +2,7 @@
 
   {{ this.active ? initdatanode(node.data) : null }}
 
-  <div class="container">
+  <!-- <div class="container">
     <div class="row justify-content-between">
       <div class="col-auto mr-auto">
         <div class="title">
@@ -16,8 +16,7 @@
         </button>
       </div>
     </div>
-
-  </div>
+  </div> -->
 
 
   <!-- CONTENT -->
@@ -45,10 +44,17 @@
                 <i *ngIf="type==='network'.toLowerCase()"
                   class="bi bi-cloud-fill" style="font-size: 2em; margin:auto;"> </i>
               </div>
-              <div class="media-body text-right" style="margin-left: auto; font-family: Bahnschrift SemiBold;">
-                <h5 style="margin: 10px!important;"> ATTR1 </h5>
-                <h6 style="margin: 10px!important; text-align: end;"> ATTR2 </h6>
-                <h6 style="margin: 10px!important;text-align: end;"> ATTR3 </h6>
+              <div *ngIf="type==='server'" class="media-body text-right" style="margin-left: auto; font-family: Bahnschrift SemiBold;">
+                <h5 style="margin: 10px!important;"> {{node.data.title}} </h5>
+                <h6 style="margin: 10px!important; text-align: end;"> os: {{node.data.os}} </h6>
+              </div>
+              <div *ngIf="type==='subnet'" class="media-body text-right" style="margin-left: auto; font-family: Bahnschrift SemiBold;">
+                <h5 style="margin: 10px!important;"> {{node.data.title}} </h5>
+                <h6 style="margin: 10px!important; text-align: end;"> cidr: {{node.data.cidr}} </h6>
+                <h6 style="margin: 10px!important;text-align: end;"> version: {{node.data.version}} </h6>
+              </div>
+              <div *ngIf="type==='network'" class="media-body text-right" style="margin-left: auto; font-family: Bahnschrift SemiBold;">
+                <h5 style="margin: 10px!important;"> {{node.data.title}} </h5>
               </div>
             </div>
           </div>
