@@ -12,16 +12,18 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { ReteModule } from 'rete-angular-render-plugin';
 
-import { ReteComponent } from './rete/rete.component';
-import { ReteModulesComponent } from './rete-modules/rete-modules.component';
+import { ReteTheaterComponent } from './rete-theater/rete-theater.component';
+import { ReteModuleComponent } from './rete-module/rete-module.component';
+import { ReteComposerComponent } from './rete-composer/rete-composer.component'; 
 
-import { NodeTemplate } from './rete/components/node-template/node-template.component';
-import { NodeModuleTemplate } from './rete-modules/components/node-module-template/node-module-template.component';
+import { NodeTheaterTemplate } from './rete-theater/components/node-theater-template/node-theater-template.component';
+import { NodeModuleTemplate } from './rete-module/components/node-module-template/node-module-template.component';
+import { NodeComposerTemplate } from './rete-composer/components/node-composer-template/node-composer-template.component';
 
-import { NodeComponent } from './rete/components/node-component';
+import { ServerComposer } from './rete-composer/components/server-composer/server-composer.component';
 
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
-
+import { DesignerEditorComponent } from './designer-editor/designer-editor.component';
 
 import { CommonModule, NgClass } from '@angular/common';
 
@@ -35,7 +37,6 @@ import { NgxPopper } from 'angular-popper';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { VisualEditorModuleComponent } from './visual-editor-module/visual-editor-module.component';
 
 
 const keycloakService = new KeycloakService();
@@ -44,19 +45,25 @@ const keycloakService = new KeycloakService();
   declarations: [
 
     AppComponent,
-    ReteComponent,
-    ReteModulesComponent,
 
-    NodeTemplate,
+    ReteTheaterComponent,
+    ReteModuleComponent,
+    ReteComposerComponent,
+
+    NodeTheaterTemplate,
     NodeModuleTemplate,
+    NodeComposerTemplate,
+
+    ServerComposer,
 
     AppComponent,
     HomeComponent,
     AboutUsComponent,
     HowToUseComponent,
     NavbarComponent,
+
     VisualEditorComponent,
-    VisualEditorModuleComponent,
+    DesignerEditorComponent,
 
   ],
   imports: [
@@ -92,7 +99,7 @@ const keycloakService = new KeycloakService();
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
-  entryComponents: [NodeTemplate, NodeModuleTemplate]
+  entryComponents: [NodeTheaterTemplate, NodeModuleTemplate, NodeComposerTemplate, ServerComposer]
 })
 
 export class AppModule implements DoBootstrap {

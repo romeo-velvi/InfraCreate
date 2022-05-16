@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
+import { DesignerEditorComponent } from './designer-editor/designer-editor.component';
 import { AuthGuard } from './utility/app.guard';
 
 const routes: Routes = [
@@ -24,12 +25,20 @@ const routes: Routes = [
     component: HowToUseComponent,
   },
   {
-    path: "Application",
+    path: "visual",
     component: VisualEditorComponent, canActivate: [AuthGuard]
   },
   {
-    path: "application",
+    path: "Visual",
     component: VisualEditorComponent, canActivate: [AuthGuard],
+  },
+  {
+    path: "designer",
+    component: DesignerEditorComponent,
+  },
+  {
+    path: "Designer",
+    component: DesignerEditorComponent,
   },
   {
     path: "**",

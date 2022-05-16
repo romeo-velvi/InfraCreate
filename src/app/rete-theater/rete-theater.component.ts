@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output as outcore, ChangeDetectionStrategy, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { NodeEditor, Engine, Output } from 'rete';
+import { NodeEditor, Engine, Output, Connection } from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
 import ConnectionPathPlugin from 'rete-connection-path-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
@@ -9,7 +9,7 @@ import AreaPlugin from 'rete-area-plugin';
 import MinimapPlugin from 'rete-minimap-plugin';
 import AutoArrangePlugin from 'rete-auto-arrange-plugin'
 
-import { NodeComponent } from './components/node-component';
+import { NodeTheaterComponent } from './components/node-theater-component';
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { NgxTypeaheadModule } from "ngx-typeahead";
@@ -17,11 +17,11 @@ import { NgxTypeaheadModule } from "ngx-typeahead";
 
 @Component({
   selector: 'app-rete',
-  templateUrl: './rete.component.html',
-  styleUrls: ['./rete.component.css'],
+  templateUrl: './rete-theater.component.html',
+  styleUrls:  ['./rete-theater.component.css'],
 })
 
-export class ReteComponent implements AfterViewInit {
+export class ReteTheaterComponent implements AfterViewInit {
 
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
 
@@ -88,7 +88,7 @@ export class ReteComponent implements AfterViewInit {
 
     // stored all node-types
     this.components = [
-      new NodeComponent(),
+      new NodeTheaterComponent(),
     ];
 
     this.editor = new NodeEditor('demo@0.2.0', this.container);
@@ -142,11 +142,25 @@ export class ReteComponent implements AfterViewInit {
         // _this.showhidemoduleinfo(this.modules[title]);
         _this.hidemoduleinfo = !_this.hidemoduleinfo;
         _this.nodeselected = _this.modules[title];
-        //console.log(_this.editor.selected.list);
+        // TODO: VEDERE A NODO SELEZIONATO IL CAMPIO COLORE
+        // let conn: Connection[] = node.getConnections();
+        // conn.forEach(element => {
+        //   console.log("--->",element,element.data);
+        // });
         AreaPlugin.zoomAt(_this.editor, _this.editor.selected.list);
         const { area, container } = this.editor.view; // read from Vue component data;
         area.translate(area.transform.x - 200, area.transform.y);
       });
+    });
+
+    // TODO: CONTROLLARE L'UNSELECTING
+    this.editor.on("click", ({e,container}) => { 
+      // console.log(e);
+      // console.log("before unselect:",this.editor.selected.list);
+      // this.editor.selected.list.forEach(element => {
+      //   this.editor.selected.remove(element); 
+      // });
+      // console.log("after unselect:",this.editor.selected.list);
     });
 
     this.engine = new Engine('demo@0.2.0');

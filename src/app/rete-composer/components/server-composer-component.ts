@@ -1,31 +1,31 @@
 import { Component, Input, Output, Node } from 'rete';
-import { numSocket } from '../sockets';
+import { _Socket } from '../sockets';
 import { _Control } from '../controls/control-template/control-template';
 import { AngularComponent, AngularComponentData } from 'rete-angular-render-plugin';
-import { NodeTemplate } from './node-template/node-template.component';
+import { ServerComposer } from './server-composer/server-composer.component';
 
-export class NodeComponent extends Component implements AngularComponent {
+export class ServerComposerComponent extends Component implements AngularComponent {
 
   data: AngularComponentData;
 
   constructor() {
-    super('ELEM-3');
+    super('ELEM');
     this.data.render = 'angular';
     // this.data.component = MyNodeComponent3;
-    this.data.component = NodeTemplate;
+    this.data.component = ServerComposer;
   }
  
   async builder(node) {
     // console.log(node);
-    var i = node['data']['Input'];
-    var o = node['data']['Output'];
+    var i = ["1","2","3"];
+    var o = ["1","2","3","4"];;
     var il = i.length, ol = o.length;
     // console.log(node,i.length,o.length);
 
     for (let index = 0; index < il ; index++) {
       var key = i[index]
       var title = i[index]
-      var socket = numSocket;
+      var socket = _Socket;
       var inp = new Input(key, title, socket, true);
       node.addInput(inp);
     }
@@ -33,7 +33,7 @@ export class NodeComponent extends Component implements AngularComponent {
     for (let index = 0; index < ol ; index++) {
       var key = o[index]
       var title = o[index]
-      var socket = numSocket;
+      var socket = _Socket;
       var out = new Output(key, title, socket, true);
       node.addOutput(out);
     }

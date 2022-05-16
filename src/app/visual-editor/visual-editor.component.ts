@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-// import { ReteComponent } from '../rete/rete.component';
+import { Router } from '@angular/router';
+// import { ReteComponent } from '../rete-theaters/rete.component';
 import { KeycloakService } from 'keycloak-angular';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { VisualEditorFetcher } from './visual-editor.fetcher';
@@ -17,12 +18,15 @@ export class VisualEditorComponent implements OnInit, OnDestroy {
   fetcher: any;
   parser: any;
 
+  id: number = 502;
+
   parsed_modules: any;
   parsed_theater: any;
 
   isDataAvailable: boolean = false;
+  hasproblem: boolean = false;
 
-  constructor(private keycloakService: KeycloakService, private http: HttpClient, private spinner: NgxSpinnerService) {
+  constructor(private router: Router, private keycloakService: KeycloakService, private http: HttpClient, private spinner: NgxSpinnerService) {
 
     this.fetcher = new VisualEditorFetcher(
       this.keycloakService,
@@ -30,10 +34,16 @@ export class VisualEditorComponent implements OnInit, OnDestroy {
     );
 
     this.parser = new VisualEditorParser();
+    try {
+      this.id = this.router.getCurrentNavigation().extras.state.id;
+    }catch{}
+    if (this.id === undefined || this.id === null)
+      this.id = 505;
+
 
     document.body.style.overflow = 'hidden'; // per prevenire lo scrolling
     document.body.style.background = '#0f131a'; // per background
-  } 
+  }
 
   ngOnDestroy(): void {
     document.body.style.overflow = 'auto'; // per prevenire lo scrolling
@@ -41,13 +51,16 @@ export class VisualEditorComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-
     await this.spinner.show()
       .then(
         async () => {
           await this.delay(1000);
           // console.log("start 3")
-          await this.FetchParseData();
+          try{
+            await this.FetchParseData();
+          } catch{
+            this.hasproblem=true;
+          }
         }
       )
       .then(
@@ -56,13 +69,12 @@ export class VisualEditorComponent implements OnInit, OnDestroy {
           await this.spinner.hide();
         }
       )
-
   }
 
   async FetchParseData() {
 
     // TAKE DATA
-    await this.fetcher.retrieve_data(502);
+    await this.fetcher.retrieve_data(this.id);
     var data_theater = this.fetcher.get_data_theater();
     var data_modules = this.fetcher.get_data_modules();
     console.log("thr component", data_theater);
@@ -85,6 +97,16 @@ export class VisualEditorComponent implements OnInit, OnDestroy {
     // console.log("start -> delay");
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  public gohome(){
+    this.router.navigate(['/home']);
+  }
+
+  public reloadPage(){
+    window.location.reload();
+    this.router.navigateByUrl('/application',{ state: { id: this.id}})
+  }
+
 
 }
 

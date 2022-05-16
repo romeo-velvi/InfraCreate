@@ -2,13 +2,13 @@ import { Component, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/
 import { NodeComponent, NodeService } from 'rete-angular-render-plugin';
 
 @Component({
-  templateUrl: './node-template.component.html',
-  styleUrls: ['./node-template.component.sass',],
+  templateUrl: './node-theater-template.component.html',
+  styleUrls: ['./node-theater-template.component.sass',],
   providers: [NodeService],
   changeDetection: ChangeDetectionStrategy.OnPush, // render più veloce.
 })
 
-export class NodeTemplate extends NodeComponent {
+export class NodeTheaterTemplate extends NodeComponent {
 
   public isCollapsed = false;
   public nothide = true;

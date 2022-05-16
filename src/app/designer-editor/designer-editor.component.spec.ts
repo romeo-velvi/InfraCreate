@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VisualEditorModuleComponent } from './visual-editor-module.component';
+import { DesignerEditorComponent } from './designer-editor.component';
 
-describe('VisualEditorModuleComponent', () => {
-  let component: VisualEditorModuleComponent;
-  let fixture: ComponentFixture<VisualEditorModuleComponent>;
+describe('DesignerEditorComponent', () => {
+  let component: DesignerEditorComponent;
+  let fixture: ComponentFixture<DesignerEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VisualEditorModuleComponent ]
+      declarations: [ DesignerEditorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VisualEditorModuleComponent);
+    fixture = TestBed.createComponent(DesignerEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

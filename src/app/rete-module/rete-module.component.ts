@@ -10,12 +10,12 @@ import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-rete-modules',
-  templateUrl: './rete-modules.component.html',
-  styleUrls: ['./rete-modules.component.sass'],
+  templateUrl: './rete-module.component.html',
+  styleUrls: ['./rete-module.component.sass'],
   //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ReteModulesComponent implements AfterViewInit {
+export class ReteModuleComponent implements AfterViewInit {
 
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
 
