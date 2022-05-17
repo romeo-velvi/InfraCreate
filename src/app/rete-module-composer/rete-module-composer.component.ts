@@ -12,18 +12,20 @@ import DockPlugin from 'rete-dock-plugin';
 
 import { NodeComposerComponent } from './components/node-composer-component';
 import { ServerComposerComponent } from './components/server-composer-component';
+import { SubnetComposerComponent } from './components/subnet-composer-component';
+import { NetworkComposerComponent } from './components/network-composer-component';
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { NgxTypeaheadModule } from "ngx-typeahead";
 
 
 @Component({
-  selector: 'app-rete-composer',
-  templateUrl: './rete-composer.component.html',
-  styleUrls:  ['./rete-composer.component.css'],
+  selector: 'app-rete-module-composer',
+  templateUrl: './rete-module-composer.component.html',
+  styleUrls:  ['./rete-module-composer.component.css'],
 })
 
-export class ReteComposerComponent implements OnInit,AfterViewInit {
+export class ReteModuleComposerComponent implements OnInit,AfterViewInit {
 
   @ViewChild('nodeEditor', { static: true }) el: ElementRef;
 
@@ -73,8 +75,10 @@ export class ReteComposerComponent implements OnInit,AfterViewInit {
 
     // stored all node-types
     this.components = [
-      new NodeComposerComponent(),
       new ServerComposerComponent(),
+      new SubnetComposerComponent(),
+      new NetworkComposerComponent(),
+      new NodeComposerComponent(),
     ];
 
     this.editor = new NodeEditor('demo@0.2.0', this.container);
@@ -133,7 +137,7 @@ export class ReteComposerComponent implements OnInit,AfterViewInit {
     this.editor.on("nodeselected", (node) => { });
     this.editor.on('rendernode', ({ el, node }) => {
       el.addEventListener('dblclick', async () => {
-        let title: string = node["data"]["title"].toString();
+        // let title: string = node["data"]["title"].toString();
         // _this.showhidemoduleinfo(this.modules[title]);
         _this.hidemoduleinfo = !_this.hidemoduleinfo;
         // _this.nodeselected = _this.modules[title];
@@ -239,10 +243,21 @@ export class ReteComposerComponent implements OnInit,AfterViewInit {
   }
 
   public displayded(show:boolean){
-    if(show)
+    if(show){
       this.dedsb.nativeElement.style.visibility="visible";
-    else
-    this.dedsb.nativeElement.style.visibility="hidden";
+      this.changestyledock();
+    }
+    else{
+      this.dedsb.nativeElement.style.visibility="hidden";
+    }
+  }
+  public changestyledock(){
+    let list = document.getElementsByClassName("dock-item");
+    let n = list.length;
+    for (let index = 0; index < n; index++) {
+      const element = list[index];
+      element.setAttribute("style","margin-top:2em");
+    }
   }
 
   public downloadJSON() {

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="padding-left: 1em !important;">
     <div class="container-fluid">
         <!-- TL LOGO -->
-        <a class="navbar-brand m-0"> {{name}} </a>
+        <a class="navbar-brand m-0"> {{name}} - theater </a>
 
         <!-- BUTTON FOR MENU COLLAPSE -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -28,9 +28,9 @@
 </nav>
 
 
-<!-- 
+<!--
     #0f131a  OUT
-    #212529  INT 
+    #212529  INT
  -->
 
 
@@ -40,6 +40,15 @@
 
         <div class="col-6 text-left d-flex">
             &nbsp;
+
+            <div class="">
+                <button type="button" class="btn btn-secondary" (click)="displayded(true)">
+                    <i class="bi bi-layout-text-sidebar"></i>
+                </button>
+            </div>
+
+            <i class="bi bi-grip-vertical" style="margin-top: auto; margin-bottom: auto;"></i>
+
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-secondary" (click)="makezoom(0.1)">
                     <i class="bi bi-zoom-in"></i>
@@ -63,7 +72,7 @@
 
             <i class="bi bi-grip-vertical" style="margin-top: auto; margin-bottom: auto;"></i>
 
-            <div class="">
+            <div class="" style="min-width: fit-content;">
                 <input ngxTypeahead type="text" placeholder="Find Module" style="color:white;"
                     class="col-sm-12 form-control bg-secondary" [value]="nodetofind" [taList]="namelist"
                     (taSelected)="findElement($event)">
@@ -77,17 +86,11 @@
                     <i class="bi bi-bezier"></i>
                 </button>
             </div>
-            
+
             <i class="bi bi-grip-vertical" style="margin-top: auto; margin-bottom: auto;"></i>
 
-            <div class="">
-                <button type="button" class="btn btn-secondary" (click)="displayded(true)">
-                    <i class="bi bi-layout-text-sidebar"></i>
-                </button>
-            </div>
 
         </div>
-
 
 
     </div>
@@ -119,6 +122,7 @@
     <div class="offcanvas-body side-wrapper-opt offcanvasbodystyle">
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
+            
             <li class="nav-item active" role="presentation">
                 <a class="nav-link disable-select" id="a1" data-toggle="tab" role="tab" aria-controls="tp1"
                     aria-selected="true" (click)="activatetab(1)">
@@ -128,7 +132,7 @@
             <li class="nav-item" role="presentation">
                 <a class="nav-link disable-select" id="a2" data-toggle="tab" role="tab" aria-controls="tp2"
                     aria-selected="false" (click)="activatetab(2)">
-                    Topology
+                    Ports
                 </a>
             </li>
             <li class="nav-item" role="presentation">
@@ -141,21 +145,21 @@
         <div class="tab-content" id="myTabContent" style="width: 100%; height: 100%;">
             <div class="tab-pane fade show active" *ngIf="activetab===1" style="color: aliceblue;" role="tabpanel"
                 aria-labelledby="tp1" style="width: 100%; height: 100%;">
-
+<!-- 
                 <div *ngFor="let item of nodeselected.module_details | keyvalue">
                     <div>
                         <cite class="mt-4" style="font-size: small;"> -{{item.key}} </cite>
                         <h5> {{item.value}} </h5>
                     </div>
-                </div>
+                </div> -->
 
             </div>
+
             <div class="tab-pane fade show active" *ngIf="activetab===2" style="color: aliceblue;" role="tabpanel"
                 aria-labelledby="tp2" style="width: 100%; height: 100%;">
 
-                <!-- <cite class="mt-4" style="font-size: small;"> - Hosts topoloy </cite> -->
                 <div style="width: 100%; height: 100%;">
-                    <app-rete-modules [module]="nodeselected"></app-rete-modules>
+                    <!-- <app-rete-modules [module]="nodeselected"></app-rete-modules> -->
                 </div>
 
             </div>
@@ -186,27 +190,27 @@
     </div>
     <div class="offcanvas-body side-wrapper-opt offcanvasbodystyle" style="overflow-y: visible;">
         <h5 class="pb-2" style="font-style: italic;">Data</h5>
-        <div *ngFor="let item of theater | keyvalue">
+        <!-- <div *ngFor="let item of theater | keyvalue">
             <div>
                 <cite class="mt-4" style="font-size: small;"> -{{item.key}} </cite>
                 <h5> {{item.value}} </h5>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
 
 <!-- D&D nodes -->
 
-<div #dedsb id="dedsb" class="offcanvas offcanvas-start offcanvasstyle show ded" tabindex="-1"
+<div #dedsb id="dedsb" class="offcanvas offcanvas-start offcanvasded show ded" tabindex="-1"
     id="offcanvasInfo" data-bs-scroll="true" data-bs-backdrop="false" aria-labelledby="offcanvasInfoLabel"
     style="min-width: 30%; opacity: 99%; box-shadow: 0 .5rem 1rem rgba(0,0,0,.53)!important;">
-    <div class="offcanvas-header side-wrapper-opt">
+    <div class="offcanvas-header side-wrapper-opt" >
         <h5 class="offcanvas-title" id="offcanvasInfoLabel">Drag&Drop nodes</h5>
         <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas"
             aria-label="Close" (click)="displayded(false)"></button>
     </div>
-    <div class="offcanvas-body side-wrapper-opt offcanvasbodystyle" style="overflow-y: visible; padding-left: 5em;">
+    <div class="offcanvas-body side-wrapper-opt offcanvasbodystyle" style="overflow-y: visible; padding: 0; text-align: center;">
         <div #dragdrop id="dragdrop" class="dock"></div>
     </div>
 </div>

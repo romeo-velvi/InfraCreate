@@ -9,7 +9,7 @@ export class NodeTheaterComponent extends Component implements AngularComponent 
   data: AngularComponentData;
 
   constructor() {
-    super('ELEM-3');
+    super('template-theater');
     this.data.render = 'angular';
     // this.data.component = MyNodeComponent3;
     this.data.component = NodeTheaterTemplate;

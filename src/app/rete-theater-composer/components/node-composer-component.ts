@@ -9,16 +9,15 @@ export class NodeComposerComponent extends Component implements AngularComponent
   data: AngularComponentData;
 
   constructor() {
-    super('ELEM-3');
+    super('template');
     this.data.render = 'angular';
-    // this.data.component = MyNodeComponent3;
     this.data.component = NodeComposerTemplate;
   }
  
   async builder(node) {
     // console.log(node);
     var i = ["1","2","3"];
-    var o = ["1","2","3","4"];;
+    var o = ["1","2","3"];
     var il = i.length, ol = o.length;
     // console.log(node,i.length,o.length);
 

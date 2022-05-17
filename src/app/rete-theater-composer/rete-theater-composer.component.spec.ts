@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReteComposerComponent } from './rete-composer.component';
+import { ReteTheaterComposerComponent } from './rete-theater-composer.component';
 
 describe('ReteModulesComponent', () => {
-  let component: ReteComposerComponent;
-  let fixture: ComponentFixture<ReteComposerComponent>;
+  let component: ReteTheaterComposerComponent;
+  let fixture: ComponentFixture<ReteTheaterComposerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReteComposerComponent ]
+      declarations: [ ReteTheaterComposerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReteComposerComponent);
+    fixture = TestBed.createComponent(ReteTheaterComposerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

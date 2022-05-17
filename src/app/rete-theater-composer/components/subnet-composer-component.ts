@@ -2,23 +2,23 @@ import { Component, Input, Output, Node } from 'rete';
 import { _Socket } from '../sockets';
 import { _Control } from '../controls/control-template/control-template';
 import { AngularComponent, AngularComponentData } from 'rete-angular-render-plugin';
-import { NodeModuleTemplate } from './node-module-template/node-module-template.component';
+import { SubnetComposer } from './subnet-composer/subnet-composer.component';
 
-export class NodeModuleComponent extends Component implements AngularComponent {
+export class SubnetComposerComponent extends Component implements AngularComponent {
 
   data: AngularComponentData;
 
   constructor() {
-    super('template-module');
+    super('subnet');
     this.data.render = 'angular';
     // this.data.component = MyNodeComponent3;
-    this.data.component = NodeModuleTemplate;
+    this.data.component = SubnetComposer;
   }
  
   async builder(node) {
     // console.log(node);
-    var i = node['data']['Input'];
-    var o = node['data']['Output'];
+    var i = ["host_in"];
+    var o = ["contained_in"];
     var il = i.length, ol = o.length;
     // console.log(node,i.length,o.length);
 

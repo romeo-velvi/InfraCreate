@@ -14,13 +14,16 @@ import { ReteModule } from 'rete-angular-render-plugin';
 
 import { ReteTheaterComponent } from './rete-theater/rete-theater.component';
 import { ReteModuleComponent } from './rete-module/rete-module.component';
-import { ReteComposerComponent } from './rete-composer/rete-composer.component'; 
+import { ReteModuleComposerComponent } from './rete-module-composer/rete-module-composer.component'; 
+import { ReteTheaterComposerComponent } from './rete-theater-composer/rete-theater-composer.component';
 
 import { NodeTheaterTemplate } from './rete-theater/components/node-theater-template/node-theater-template.component';
 import { NodeModuleTemplate } from './rete-module/components/node-module-template/node-module-template.component';
-import { NodeComposerTemplate } from './rete-composer/components/node-composer-template/node-composer-template.component';
+import { NodeComposerTemplate } from './rete-module-composer/components/node-composer-template/node-composer-template.component';
 
-import { ServerComposer } from './rete-composer/components/server-composer/server-composer.component';
+import { ServerComposer } from './rete-module-composer/components/server-composer/server-composer.component';
+import { SubnetComposer } from './rete-module-composer/components/subnet-composer/subnet-composer.component';
+import { NetworkComposer } from './rete-module-composer/components/network-composer/network-composer.component';
 
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 import { DesignerEditorComponent } from './designer-editor/designer-editor.component';
@@ -48,13 +51,16 @@ const keycloakService = new KeycloakService();
 
     ReteTheaterComponent,
     ReteModuleComponent,
-    ReteComposerComponent,
+    ReteModuleComposerComponent,
+    ReteTheaterComposerComponent,
 
     NodeTheaterTemplate,
     NodeModuleTemplate,
     NodeComposerTemplate,
 
     ServerComposer,
+    SubnetComposer,
+    NetworkComposer,
 
     AppComponent,
     HomeComponent,
@@ -99,7 +105,7 @@ const keycloakService = new KeycloakService();
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
-  entryComponents: [NodeTheaterTemplate, NodeModuleTemplate, NodeComposerTemplate, ServerComposer]
+  entryComponents: [NodeTheaterTemplate, NodeModuleTemplate, NodeComposerTemplate, ServerComposer,NetworkComposer,SubnetComposer]
 })
 
 export class AppModule implements DoBootstrap {

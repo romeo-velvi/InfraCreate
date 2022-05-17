@@ -55,14 +55,14 @@ export class HomeComponent implements OnInit {
         var x = this.name.nativeElement.value;
         var y = this.description.nativeElement.value;
         console.log("element taken",x,y);
-        this.router.navigateByUrl('/designer',{ state: { name: x, description: y}})
+        this.router.navigateByUrl('/designer',{ state: { name: x, description: y, type:"module"}})
         // this.router.navigate(['/designer'])
         break;
       case "Theater":
         var x = this.name.nativeElement.value;
         var y = this.description.nativeElement.value;
         console.log("element taken",x,y);
-        //this.router.navigate(['/application'])
+        this.router.navigateByUrl('/designer',{ state: { name: x, description: y, type:"theater"}})
         console.log("todo");
         break;
 
