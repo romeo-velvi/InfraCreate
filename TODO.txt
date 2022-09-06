@@ -1,6 +1,3 @@
-
-opportunamente nel caso, creare nuove socket a cui fare afferimento con gli id.
-
 VEDERE IN BASE ALL'AREA, CONTRASSEGNARE/INSERIRE I NODI CON DIVERSO COLORE
 
 ____________________________________________________________________________
