@@ -1,0 +1,31 @@
+<nav *ngIf="element" class="navbar navbar-expand-sm navbar-dark bg-dark" style="padding-left: 1em !important;">
+    <div class="container-fluid">
+
+        <!-- TL LOGO -->
+        <a class="navbar-brand m-0">
+            <h5 *ngIf="!element.template_title" style="margin: 0; cursor:default"> {{title}} {{'-'+' '+element.type}} </h5>
+            <ng-container *ngIf="element.template_title"  [ngTemplateOutlet]="element.template_title" class="navbar-brand m-0">
+            </ng-container>
+        </a>
+
+        <!-- BUTTON FOR MENU COLLAPSE -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: end;">
+            <ul class="navbar-nav ul-menu">
+                <li *ngFor="let item of element.element" class="nav-item">
+                    <a *ngIf="!item.template" class="nav-link" [id]="item.id" href="javascript:void(0)"
+                        (click)="select_item(item)">
+                        {{item.text}}
+                    </a>
+                    <ng-container *ngIf="item.template" [ngTemplateOutlet]="item.template">
+                    </ng-container>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

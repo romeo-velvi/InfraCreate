@@ -1,9 +1,17 @@
-# Angular~9
+# InfraCreate
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
 
 nvm version 12.16.1 
 for update/install 12.20.
+
+## Aggiunta e modifiche elementi in libreria
+aggiungere ad event.d.ts <node_modules\rete\types\events.d.ts> : 
+    - arrange: void;
+    - showcontextmenu: { e: MouseEvent, node: Node };
+    - undo: void;
+    - redo: void;
+installare minimap-plugin versione 0.3.0
 
 ## Development server
 

@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ModalItem } from './components/modal/modaltype';
+import { ModalService } from './services/application/modal/modal.service';
+import { SpinnerService } from './services/application/spinner/spinner.service';
 
 
 @Component({
@@ -8,7 +12,45 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  constructor(public router: Router){
+
+  // general
+  title = 'InfraCreate';
+
+  // global spinner
+  spinner: Observable<any>;
+  showspinner: boolean = false;
+  textspinner: string = "";
+
+  //global modal
+  modalData: ModalItem;
+  showmodal: boolean;
+
+  constructor(
+    public router: Router,
+    public spinnerService: SpinnerService,
+    private cdr: ChangeDetectorRef,
+    protected modal: ModalService
+  ) {
+
+    document.body.style.overflow = 'hidden'; // per prevenire lo scrolling
+    document.body.style.background = '#0f131a'; // per background
+
+    this.spinner = spinnerService.getSpinner();
+    this.spinner.subscribe(
+      el => {
+        this.showspinner = el.show;
+        this.textspinner = el.text;
+        this.cdr.detectChanges();
+      }
+    )
+
+    this.modal.modalData.asObservable().subscribe(v => this.modalData = v);
+    this.modal.show.asObservable().subscribe(v => this.showmodal = v);
   }
-  title = 'InfraCreate-v1';
+
+  print(...Params: any[]) {
+    console.log(Params);
+  }
+
+
 }

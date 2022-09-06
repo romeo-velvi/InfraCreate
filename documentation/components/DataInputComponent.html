@@ -1,0 +1,853 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>InfraCreate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">InfraCreate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  DataInputComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/data-input/data-input.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-data-input</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./data-input.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./data-input.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dataForm" >dataForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#exit" >exit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#print" >print</a>
+                            </li>
+                            <li>
+                                <a href="#returnOutput" >returnOutput</a>
+                            </li>
+                            <li>
+                                <a href="#save" >save</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#element" >element</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dataSubmitted" >dataSubmitted</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/data-input/data-input.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="element"></a>
+                        <b>element</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/DataInputElement.html" target="_self" >DataInputElement</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/data-input/data-input.component.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dataSubmitted"></a>
+                        <b>dataSubmitted</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/data-input/data-input.component.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exit"></a>
+                    <span class="name">
+                        <span ><b>exit</b></span>
+                        <a href="#exit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/components/data-input/data-input.component.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/components/data-input/data-input.component.ts:24</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="print"></a>
+                    <span class="name">
+                        <span ><b>print</b></span>
+                        <a href="#print"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>print(val: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/components/data-input/data-input.component.ts:33</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>val</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="returnOutput"></a>
+                    <span class="name">
+                        <span ><b>returnOutput</b></span>
+                        <a href="#returnOutput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>returnOutput(val: <a href="../classes/DataInputReturned.html" target="_self">DataInputReturned</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/app/components/data-input/data-input.component.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>val</td>
+                                    <td>
+                                                <code><a href="../classes/DataInputReturned.html" target="_self" >DataInputReturned</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="save"></a>
+                    <span class="name">
+                        <span ><b>save</b></span>
+                        <a href="#save"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>save()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/components/data-input/data-input.component.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataForm"></a>
+                    <span class="name">
+                        <span ><b>dataForm</b></span>
+                        <a href="#dataForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/data-input/data-input.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from &#x27;@angular/core&#x27;;
+import { FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { DataInputElement, DataInputReturned, SingleDataInputReturned } from &#x27;./datainputtype&#x27;;
+
+@Component({
+  selector: &#x27;app-data-input&#x27;,
+  templateUrl: &#x27;./data-input.component.html&#x27;,
+  styleUrls: [&#x27;./data-input.component.sass&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class DataInputComponent implements OnInit {
+
+  @Input() element: DataInputElement;
+  @Output() dataSubmitted &#x3D; new EventEmitter&lt;DataInputReturned&gt;();
+  dataForm: FormGroup;
+  // dataForm: FormGroup &#x3D; new FormGroup({
+  //   ISrequired: new FormControl(&#x27;&#x27;, Validators.required)
+  // });
+
+
+  constructor(private cdr: ChangeDetectorRef) {
+  }
+
+  ngOnInit(): void {
+    this.dataForm &#x3D; new FormGroup({});
+    this.element.element.forEach(e&#x3D;&gt;{
+      e.required
+      ? this.dataForm.addControl(e.id,new FormControl(&#x27;&#x27;, Validators.required))
+      : this.dataForm.addControl(e.id,new FormControl())
+    })
+  }
+
+  print(val: any) {
+    console.log(val);
+  }
+
+  save() {
+    let values: { [key: string]: SingleDataInputReturned } &#x3D; {};
+    this.element.element.forEach(
+      (el) &#x3D;&gt; {
+        let val: HTMLInputElement &#x3D; document.getElementById(el.id) as HTMLInputElement;
+        if (el.type &#x3D;&#x3D;&#x3D; &#x27;checkbox&#x27;)
+          values[el.id] &#x3D; { id: el.id, text: el.text, type: el.type, value: val.checked };
+        else
+          values[el.id] &#x3D; { id: el.id, text: el.text, type: el.type, value: val?val.value:undefined };
+      }
+    )
+    let event: DataInputReturned &#x3D; {
+      element: values,
+      isValid: true,
+      exitStatus: &#x27;submitted&#x27;
+    }
+    this.returnOutput(event);
+  }
+
+  exit() {
+    let event: DataInputReturned &#x3D; {
+      element: {},
+      isValid: false,
+      exitStatus: &#x27;cancel&#x27;
+    }
+    this.returnOutput(event);
+  }
+
+  returnOutput(val: DataInputReturned) {
+    this.dataSubmitted.emit(val);
+    this.cdr.detectChanges();
+  }
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container input-group p-0&quot;&gt;
+    &lt;form [formGroup]&#x3D;&quot;dataForm&quot; (ngSubmit)&#x3D;&quot;save()&quot; class&#x3D;&quot;w-100&quot;&gt;
+        &lt;ng-container *ngFor&#x3D;&quot;let item of element.element&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 text-left&quot; *ngIf&#x3D;&quot;item.text&quot;&gt;
+                &lt;cite style&#x3D;&quot;font-size: small;&quot;&gt; - {{item.text}} &lt;/cite&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-12 input-group mb-2&quot;&gt;
+                &lt;!-- ELEMENT PREPENDED --&gt;
+                &lt;div *ngIf&#x3D;&quot;item.data_prepended&quot; class&#x3D;&quot;input-group-prepend&quot;&gt;
+                    &lt;span class&#x3D;&quot;input-group-text&quot;&gt; {{item.data_prepended}} &lt;/span&gt;
+                &lt;/div&gt;
+                &lt;!-- ELEMENT INPUT --&gt;
+                &lt;!-- text --&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;item.type &#x3D;&#x3D;&#x3D; &#x27;text&#x27;&quot;&gt;
+                    &lt;input [id]&#x3D;&quot;item.id&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;{{item.id}}&quot;
+                        [placeholder]&#x3D;&quot;item.placeholder?item.placeholder:&#x27;&#x27;&quot; [attr.aria-label]&#x3D;&quot;item.text&quot;&gt;
+                &lt;/ng-container&gt;
+                &lt;!-- text-area --&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;item.type &#x3D;&#x3D;&#x3D; &#x27;textarea&#x27;&quot;&gt;
+                    &lt;textarea [id]&#x3D;&quot;item.id&quot; class&#x3D;&quot;form-control&quot; [attr.aria-label]&#x3D;&quot;item.id&quot;
+                        formControlName&#x3D;&quot;{{item.id}}&quot; [placeholder]&#x3D;&quot;item.placeholder?item.placeholder:&#x27;&#x27;&quot;
+                        maxlength&#x3D;&quot;5000&quot;&gt;&lt;/textarea&gt;
+                &lt;/ng-container&gt;
+                &lt;!-- selection --&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;item.type &#x3D;&#x3D;&#x3D; &#x27;selection&#x27;&quot;&gt;
+                    &lt;select *ngIf&#x3D;&quot;item.selection.length&quot; [id]&#x3D;&quot;item.id&quot; class&#x3D;&quot;form-select&quot;
+                        formControlName&#x3D;&quot;{{item.id}}&quot;&gt;
+                        &lt;option *ngFor&#x3D;&quot;let opt of item.selection; let i&#x3D;index&quot; [selected]&#x3D;&quot;i&#x3D;&#x3D;&#x3D;item.selected_number&quot;
+                            [attr.value]&#x3D;&quot;opt.value&quot;&gt;
+                            {{opt.text}}
+                        &lt;/option&gt;
+                    &lt;/select&gt;
+                    &lt;h5 *ngIf&#x3D;&quot;!(item.selection.length)&quot;&gt; No selectable list found &lt;/h5&gt;
+                &lt;/ng-container&gt;
+                &lt;!-- checkbox --&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;item.type &#x3D;&#x3D;&#x3D; &#x27;checkbox&#x27;&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-check form-switch&quot;&gt;
+                        &lt;input [id]&#x3D;&quot;item.id&quot; class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot;
+                            [checked]&#x3D;&quot;item.checked?true:false&quot; formControlName&#x3D;&quot;{{item.id}}&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-check-label&quot;&gt;{{item.text}}&lt;/label&gt;
+                    &lt;/div&gt;
+                &lt;/ng-container&gt;
+                &lt;!-- ELEMENT APPENDED --&gt;
+                &lt;div *ngIf&#x3D;&quot;item.data_appended&quot; class&#x3D;&quot;input-group-appended&quot;&gt;
+                    &lt;span class&#x3D;&quot;input-group-text&quot;&gt; {{item.data_appended}} &lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/ng-container&gt;
+        &lt;div class&#x3D;&quot;row&quot; style&#x3D;&quot;
+            width: 100%;
+            justify-content: center;
+            text-align: center;&quot;&gt;
+            &lt;div class&#x3D;&quot;col-6&quot;&gt;
+                &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-primary w-75&quot; [disabled]&#x3D;&quot;dataForm.invalid&quot;&gt;Save&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-6&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger w-75&quot; (click)&#x3D;&quot;exit()&quot;&gt;Cancel&lt;/button&gt;
+                &lt;!-- &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-info w-100&quot; (click)&#x3D;&quot;print(dataForm)&quot;&gt;aaa&lt;/button&gt; --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./data-input.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container input-group p-0">    <form [formGroup]="dataForm" (ngSubmit)="save()" class="w-100">        <ng-container *ngFor="let item of element.element">            <div class="col-12 text-left" *ngIf="item.text">                <cite style="font-size: small;"> - {{item.text}} </cite>            </div>            <div class="col-12 input-group mb-2">                <!-- ELEMENT PREPENDED -->                <div *ngIf="item.data_prepended" class="input-group-prepend">                    <span class="input-group-text"> {{item.data_prepended}} </span>                </div>                <!-- ELEMENT INPUT -->                <!-- text -->                <ng-container *ngIf="item.type === \'text\'">                    <input [id]="item.id" type="text" class="form-control" formControlName="{{item.id}}"                        [placeholder]="item.placeholder?item.placeholder:\'\'" [attr.aria-label]="item.text">                </ng-container>                <!-- text-area -->                <ng-container *ngIf="item.type === \'textarea\'">                    <textarea [id]="item.id" class="form-control" [attr.aria-label]="item.id"                        formControlName="{{item.id}}" [placeholder]="item.placeholder?item.placeholder:\'\'"                        maxlength="5000"></textarea>                </ng-container>                <!-- selection -->                <ng-container *ngIf="item.type === \'selection\'">                    <select *ngIf="item.selection.length" [id]="item.id" class="form-select"                        formControlName="{{item.id}}">                        <option *ngFor="let opt of item.selection; let i=index" [selected]="i===item.selected_number"                            [attr.value]="opt.value">                            {{opt.text}}                        </option>                    </select>                    <h5 *ngIf="!(item.selection.length)"> No selectable list found </h5>                </ng-container>                <!-- checkbox -->                <ng-container *ngIf="item.type === \'checkbox\'">                    <div class="form-check form-switch">                        <input [id]="item.id" class="form-check-input" type="checkbox"                            [checked]="item.checked?true:false" formControlName="{{item.id}}">                        <label class="form-check-label">{{item.text}}</label>                    </div>                </ng-container>                <!-- ELEMENT APPENDED -->                <div *ngIf="item.data_appended" class="input-group-appended">                    <span class="input-group-text"> {{item.data_appended}} </span>                </div>            </div>        </ng-container>        <div class="row" style="            width: 100%;            justify-content: center;            text-align: center;">            <div class="col-6">                <button type="submit" class="btn btn-primary w-75" [disabled]="dataForm.invalid">Save</button>            </div>            <div class="col-6">                <button type="button" class="btn btn-danger w-75" (click)="exit()">Cancel</button>                <!-- <button type="button" class="btn btn-info w-100" (click)="print(dataForm)">aaa</button> -->            </div>        </div>    </form></div></div>'
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AccordionComponent', 'selector': 'app-accordion'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComposerComponent', 'selector': 'app-composer'},{'name': 'ControlTemplate', 'selector': ''},{'name': 'DataInputComponent', 'selector': 'app-data-input'},{'name': 'DataInputV2Component', 'selector': 'app-data-input-v2'},{'name': 'DataItemComponent', 'selector': 'app-window-item'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HostComponent', 'selector': ''},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'MirroringModuleInstanceComponent', 'selector': ''},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarElementComponent', 'selector': 'app-navbar-element'},{'name': 'NetworkComponent', 'selector': ''},{'name': 'OffcanvasComponent', 'selector': 'app-offcanvas'},{'name': 'ReteModuleComposerComponent', 'selector': 'app-rete-module-composer'},{'name': 'ReteModuleVisualizerComponent', 'selector': 'app-rete-module-visualizer'},{'name': 'ReteTheaterComposerComponent', 'selector': 'app-rete-theater-composer'},{'name': 'ReteTheaterVisualizerComponent', 'selector': 'app-rete-theater-visualizer'},{'name': 'SubnetComponent', 'selector': ''},{'name': 'TabnavComponent', 'selector': 'app-tabnav'},{'name': 'TheaterInternalServiceModuleInstanceComponent', 'selector': ''},{'name': 'TheaterModuleInstanceComponent', 'selector': ''},{'name': 'UnderbarComponent', 'selector': 'app-underbar'},{'name': 'VisualizerComponent', 'selector': 'app-displayer'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DataInputComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DataInputComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

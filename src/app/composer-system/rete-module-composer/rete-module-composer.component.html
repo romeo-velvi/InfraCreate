@@ -1,0 +1,486 @@
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!------------------------NAVBAR----------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+
+<app-navbar *ngIf="navbarData" [title]="module?module.name?module.name:'@':'@'" [element]="navbarData"
+    (itemSelected)="navItemSelected($event)">
+</app-navbar>
+<ng-template #download>
+    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="dd" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" (click)="showbtn=!showbtn">
+        Download
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dd"  [ngStyle]="{'display': (showbtn?'block':'none')}" (click)="showbtn=!showbtn">
+        <a class="dropdown-item" href="javascript:void(0)" (click)="downloadYAMLfunction()">YAML</a>
+        <a class="dropdown-item" href="javascript:void(0)" (click)="downloadJSONfunction()">JSON</a>
+    </div>
+</ng-template>
+
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!------------------------underBAR--------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<div class="container container-wrapper">
+
+    <app-underbar *ngIf="underbarData" [(element)]="underbarData" (itemSelected)="underbarElementSelected($event)">
+    </app-underbar>
+    <!-- | -->
+    <!-- V -->
+    <ng-template #map_underbar>
+        <button type="button" class="btn btn-secondary" (click)="showMinimap()" data-toggle="tooltip"
+            data-placement="bottom" title="show/hide map">
+            <div class="d-grid">
+                <i *ngIf="!ismapvisible" class="bi bi-slash-lg d-grid-1-1-1"></i>
+                <i class="bi bi-map d-grid-1-1-2"></i>
+            </div>
+        </button>
+    </ng-template>
+    <ng-template #search_underbar>
+        <div class="search-div">
+            <input ngxTypeahead *ngIf="NodeNameList" type="text"
+                class="col-sm-12 form-control bg-secondary search-input" placeholder="Find node" [value]="nodetofind"
+                [taList]="NodeNameList" (taSelected)="findElement($event)" (click)="updateNameList()">
+            <!-- <button type="button" class="btn btn-info" (click)="findElement()">find</button> -->
+        </div>
+    </ng-template>
+    <ng-template #arrange_underbar>
+        <button type="button" class="btn btn-secondary" (click)="arrangeNodes()" data-toggle="tooltip"
+            data-placement="bottom" title="arrange nodes">
+            <i class="bi bi-bezier"></i>
+        </button>
+    </ng-template>
+
+    <!-- -------NODE EDITOR------- -->
+    <div class="row wrapper padding-div-node-editor">
+        <div class="col p-0 w-h-100">
+            <div #moduleEditorComponer class="node-editor w-h-100-important border-node-editor"
+                (dragover)="dragPreventDefault($event)" (drop)="onDrop()">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!------------------------OFFCANVAS NODE--------------------------------------->
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<app-offcanvas *ngIf="nodeSelected" [(show)]="hideNodeInfo" [element]="offcanvasElementNode"
+    [title]="nodeSelected.data?.name" [alt_title]="nodeSelected.data?.type+' node'" position="end"></app-offcanvas>
+
+<!-- | -->
+<!-- V -->
+
+<ng-template #offcanvasElementNode>
+    <app-tabnav *ngIf="nodeSelected && tabnavElementNode" [element]="tabnavElementNode"></app-tabnav>
+</ng-template>
+
+<!-- | -->
+<!-- V -->
+
+<ng-template #tab_node_data>
+    <div *ngIf="nodeSelected.data">
+        <ng-container *ngIf="nodeSelected.data.type===HOST" [ngTemplateOutlet]="dataHost"></ng-container>
+        <ng-container *ngIf="nodeSelected.data.type===SUBNET" [ngTemplateOutlet]="dataSubnet"></ng-container>
+        <ng-container *ngIf="nodeSelected.data.type===NETWORK" [ngTemplateOutlet]="dataNetwork"></ng-container>
+    </div>
+</ng-template>
+<!-- | -->
+<!-- V -->
+<ng-template #dataHost>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Name" directChange="function" [value]="nodeSelected.data.name" formType="text"
+            (onChange)="updateNodeName($event,HOST)">
+        </app-data-input-v2>
+    </div>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Operating Sistem" [(value)]="nodeSelected.data.os" formType="selection"
+            [selectOption]="osSelection" (onChange)="updateNode(nodeSelected)"></app-data-input-v2>
+    </div>
+    <!-- <div class="row div-data-item">
+        <app-data-input-v2 title="RAM (MB)" [(value)]="nodeSelected.data.os" formType="text"
+            (onChange)="updateNode(nodeSelected)"></app-data-input-v2>
+    </div>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Disk (MB)" [(value)]="nodeSelected.data.os" formType="text"
+            (onChange)="updateNode(nodeSelected)"></app-data-input-v2>
+    </div>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="CPU (number)" [(value)]="nodeSelected.data.os" formType="text"
+            (onChange)="updateNode(nodeSelected)"></app-data-input-v2>
+    </div> -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Flavor" [(value)]="nodeSelected.data.flavorName" formType="selection"
+            [selectOption]="flavorSelection" (onChange)="updateNodeFlavour($event)"></app-data-input-v2>
+        <ul *ngIf="nodeSelected.data.flavorName" class="list-group list">
+            <li class="list-group-item list-item">
+                DISK (MB): {{nodeSelected.data.disk}}
+            </li>
+            <li class="list-group-item list-item">
+                RAM (MB): {{nodeSelected.data.ram}}
+            </li>
+            <li class="list-group-item list-item">
+                CPU (#): {{nodeSelected.data.cpu}}
+            </li>
+        </ul>
+    </div>
+</ng-template>
+<ng-template #dataSubnet>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Name" directChange="function" [value]="nodeSelected.data.name" formType="text"
+            (onChange)="updateNodeName($event,SUBNET)">
+        </app-data-input-v2>
+    </div>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="cidr" [(value)]="nodeSelected.data.cidr" formType="text"
+            (onChange)="updateNode(nodeSelected)">
+        </app-data-input-v2>
+    </div>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="version" [(value)]="nodeSelected.data.version" formType="selection"
+            [selectOption]="versionSelection" (onChange)="updateNode(nodeSelected)"></app-data-input-v2>
+    </div>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="DHCP" [(value)]="nodeSelected.data.isDhcp" formType="checkbox"
+            [checked]="nodeSelected.data.isDhcp" (onChange)="updateNode(nodeSelected)"></app-data-input-v2>
+    </div>
+</ng-template>
+<ng-template #dataNetwork>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Name" directChange="function" [value]="nodeSelected.data.name" formType="text"
+            (onChange)="updateNodeName($event,NETWORK)">></app-data-input-v2>
+    </div>
+    <div class="row div-data-item">
+        <app-data-input-v2 title="External interface name" directChange="function"
+            [value]="nodeSelected.data.externalInterfaceName" formType="selection"
+            [selectOption]="interfacesSelection()" (onChange)="updateNetworkInterface($event)">
+        </app-data-input-v2>
+        <div *ngIf="nodeSelected.data.externalInterfaceName && nodeSelected.data.externalInterfaceType">
+            <h5>External interface type: </h5>{{nodeSelected.data.externalInterfaceType}}
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #tab_node_ports>
+    <app-tabnav *ngIf="nodeSelected && tabnavPorts" [element]="tabnavPorts"></app-tabnav>
+</ng-template>
+<!-- | -->
+<!-- V -->
+<ng-template #tab_port_in>
+    <nc-container *ngIf="nodeSelected && nodeSelected.data.type!==HOST">
+        <button class="btn btn-primary w-100" (click)="addPortIn()"> <span class="h5">Add input port</span> &nbsp; <i
+                class="bi bi-plus-circle h5"></i> </button>
+        <ng-container *ngFor="let item of nodeSelected.data.Input; let i = index">
+            <app-window-item *ngIf="item" [title]="item"
+                (onRemove)="removePortIn(item)">
+                <app-data-input-v2 title="Port name" directChange="function" [value]="item" formType="text"
+                    (onChange)="updatePortName($event,INPUT)" style="margin-top: 0.7em!important"></app-data-input-v2>
+            </app-window-item>
+        </ng-container>
+    </nc-container>
+    <div *ngIf="nodeSelected.data.Input.length<=0 || nodeSelected.data.type===HOST" class="row div-data-item">
+        <h5>This node doesn't have input port</h5>
+    </div>
+</ng-template>
+<ng-template #tab_port_out>
+    <nc-container *ngIf="nodeSelected && nodeSelected.data.type!==NETWORK">
+        <button class="btn btn-primary w-100" (click)="addPortOut()"> <span class="h5">Add output port</span> &nbsp; <i
+                class="bi bi-plus-circle h5"></i> </button>
+        <nc-container *ngFor="let item of nodeSelected.data.Output; let i = index">
+            <app-window-item *ngIf="item" [title]="item"
+                (onRemove)="removePortOut(item)">
+                <app-data-input-v2 title="Port name" directChange="function" [value]="item" formType="text"
+                    (onChange)="updatePortName($event,OUTPUT)" style="margin-top: 0.7em!important"></app-data-input-v2>
+            </app-window-item>
+        </nc-container>
+    </nc-container>
+    <div *ngIf="!nodeSelected || nodeSelected.data.type===NETWORK" class="row div-data-item">
+        <h5>This node doesn't have output port</h5>
+    </div>
+</ng-template>
+
+<ng-template #tab_node_more>
+    ...
+</ng-template>
+
+
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!---------------------OFFCANVAS MODULE DATA----------------------------------->
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+
+<app-offcanvas *ngIf="module" [(show)]="hideModuleInfo" [element]="offcanvasElementModule"
+    [title]="this.module?this.module.name?this.module.name+' info':'Module info':'Module info'" position="start">
+</app-offcanvas>
+
+<ng-template #offcanvasElementModule class="search-input">
+    <app-tabnav *ngIf="module && tabnavElementModule" [element]="tabnavElementModule"></app-tabnav>
+</ng-template>
+<!-- | -->
+<!-- V -->
+<ng-template #tab_module_basic>
+    <!-- NAME -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Name" [(value)]="module.name" formType="text" (onChange)="print($event)">
+        </app-data-input-v2>
+    </div>
+    <!-- DESCRIPTION -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Description" [(value)]="module.description" formType="textarea"
+            (onChange)="print($event)"></app-data-input-v2>
+    </div>
+    <!-- VERSION -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Version" [(value)]="module.version" formType="text" (onChange)="print($event)">
+        </app-data-input-v2>
+    </div>
+    <!-- AUTHOR -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Author" [(value)]="module.author" formType="text" [selectOption]="(areaSelection)"
+            (onChange)="print($event)"></app-data-input-v2>
+    </div>
+    <!-- TYPE -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Module type" [(value)]="module.type" formType="selection"
+            [selectOption]="moduleTypeOption" (onChange)="print($event)">
+        </app-data-input-v2>
+    </div>
+    <!-- CREATION DATE -> Not editable -->
+    <div class="row div-data-item">
+        <h5> Creation date </h5>
+        <ul class="list-group list">
+            <li class="list-group-item list-item">
+                {{module.createdDate}}
+            </li>
+        </ul>
+    </div>
+</ng-template>
+<ng-template #tab_module_flavor>
+    <ng-container *ngFor="let f of (availableFlavor|async)">
+        <app-window-item [title]="f.flavorName" [onlyResize]="true">
+            <ul class="list-group list">
+                <li class="list-group-item list-item">
+                    DISK (MB): {{f.disk}}
+                </li>
+                <li class="list-group-item list-item">
+                    RAM (MB): {{f.ram}}
+                </li>
+                <li class="list-group-item list-item">
+                    CPU (#): {{f.cpu}}
+                </li>
+            </ul>
+        </app-window-item>
+    </ng-container>
+</ng-template>
+<ng-template #tab_module_interfaces>
+    <app-tabnav *ngIf="tabnavIF" [element]="tabnavIF"></app-tabnav>
+</ng-template>
+<!-- | -->
+<!-- V -->
+<ng-template #tab_if_cons>
+    <button class="btn btn-primary w-100" (click)="addInterface(CONSUMER)"> <span class="h5">Add consumer
+            interface</span> &nbsp; <i class="bi bi-plus-circle h5"></i> </button>
+    <ng-container *ngFor="let ifc of (consumerInterface|async); let i = index">
+        <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,CONSUMER)">
+            <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName" formType="text"
+                (onChange)="updateInterfaceName($event,ifc.nodeName,CONSUMER)"></app-data-input-v2>
+            <div *ngIf="ifc.network && ifc.network.name">
+                <h5> Network associated: </h5>
+                <div class="row div-data-item">
+                    {{ifc.network.name}}
+                </div>
+            </div>
+        </app-window-item>
+    </ng-container>
+    <div *ngIf="(consumerInterface|async)?.length<=0" class="row div-data-item">
+        <h5> No Consumer interface found </h5>
+    </div>
+</ng-template>
+<ng-template #tab_if_prod>
+    <button class="btn btn-primary w-100" (click)="addInterface(PRODUCER)"> <span class="h5">Add producer
+            interface</span> &nbsp; <i class="bi bi-plus-circle h5"></i> </button>
+    <ng-container *ngFor="let ifc of (producerInterface|async); let i = index">
+        <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,PRODUCER)">
+            <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName" formType="text"
+                (onChange)="updateInterfaceName($event,ifc.nodeName,PRODUCER)" style="margin-top: 0.7em!important"></app-data-input-v2>
+            <div *ngIf="ifc.network && ifc.network.name">
+                <h5> Network associated: </h5>
+                <div class="row div-data-item">
+                    {{ifc.network.name}}
+                </div>
+            </div>
+        </app-window-item>
+    </ng-container>
+    <div *ngIf="(producerInterface|async)?.length<=0" class="row div-data-item">
+        <h5> No Producer interface found </h5>
+    </div>
+</ng-template>
+
+
+<ng-template #tab_module_counter>
+    <!-- <h5>{{item.key}}</h5> -->
+    <div *ngIf="counterList" class="row div-data-item">
+        {{print(counterList)}}
+        <ul class="list-group list">
+            <li class="list-group-item list-item">
+                {{"Host number"}}: {{counterList[HOST]?counterList[HOST]:0}}
+            </li>
+            <li class="list-group-item list-item">
+                {{"Subnet number"}}: {{counterList[SUBNET]?counterList[SUBNET]:0}}
+            </li>
+            <li class="list-group-item list-item">
+                {{"Network number"}}: {{counterList[NETWORK]?counterList[NETWORK]:0}}
+            </li>
+        </ul>
+    </div>
+</ng-template>
+
+<!-- NOT USED -> FUTURE IMPLEMENTATION -->
+<ng-template #tab_module_capabilities>
+    <!-- <ng-container *ngFor="let field of displayMdata['capabilities']|keyvalue : notSort">
+            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                <div class="row div-data-item">
+                    <h5>{{item.key}}</h5>
+                    <ul class="list-group list">
+                        <li class="list-group-item list-item">
+                            {{item.value}}
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+        </ng-container> -->
+</ng-template>
+<ng-template #tab_module_statistics>
+    <!-- <ng-container *ngFor="let field of displayMdata['statistics']|keyvalue : notSort">
+        <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+            <div *ngIf="item.key" class="row div-data-item">
+                <h5> {{item.key}} </h5>
+                <ul class="list-group list">
+                    <li *ngFor="let x of item.value" class="list-group-item list-item">
+                        {{x}}
+                    </li>
+                </ul>
+            </div>
+        </ng-container>
+    </ng-container> -->
+</ng-template>
+<ng-template #tab_module_more>
+    <!-- <app-tabnav *ngIf="module && tabnavOpt" [element]="tabnavOpt"></app-tabnav> -->
+</ng-template>
+<!-- | -->
+<!-- V -->
+<ng-template #tab_in_opt>
+    <!-- <ng-container *ngFor="let item of displayMdata['option']['input']|keyvalue : notSort">
+            <div *ngFor="let field of item.value|keyvalue : notSort" class="row div-data-item">
+                <h5> {{field.key}} </h5>
+                <ul class="list-group list">
+                    <li *ngFor="let x of field.value|keyvalue : notSort" class="list-group-item list-item">
+                        {{x.key.toUpperCase()}}:<br>{{x.value}}
+                    </li>
+                </ul>
+            </div>
+        </ng-container> -->
+</ng-template>
+<ng-template #tab_out_opt>
+    <!-- <ng-container *ngFor="let item of displayMdata['option']['output']|keyvalue : notSort">
+            <div *ngFor="let field of item.value|keyvalue : notSort" class="row div-data-item">
+                <h5> {{field.key}} </h5>
+                <ul class="list-group list">
+                    <li *ngFor="let x of field.value|keyvalue : notSort" class="list-group-item list-item">
+                        {{x.value}}
+                    </li>
+                </ul>
+            </div>
+        </ng-container> -->
+</ng-template>
+
+
+<ng-template #tab_theater_imports>
+    <button class="btn btn-primary w-100" (click)="addImport()"> <span class="h5">Add import</span> &nbsp; <i
+            class="bi bi-plus-circle h5"></i> </button>
+    <div *ngFor="let imp of (importList|async); let i = index">
+        <div class="row div-data-item">
+            <app-data-input-v2 title="Import" [value]="imp" formType="text" (onChange)="updateImport($event,imp)" style="margin-top: 0.7em!important">
+            </app-data-input-v2>
+            <div class="text-end">
+                <button class="btn btn-danger w-auto btn-sm" (click)="removeImport(imp)" style="margin-top:1em;margin-right:1em"> remove import </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!(importList|async)" class="row div-data-item">
+        <h5 class="text-center">No import found</h5>
+    </div>
+</ng-template>
+
+
+
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!---------------------DRAG DROP------------------------------.---------------->
+<!-------- IL D&D DEVE ESSERE COSI VUOLE UN DIV SEMPRE PRESENTE---------------->
+<!----------------------------------------------------------------------------->
+
+<app-offcanvas *ngIf="hidedragdrop" [(show)]="hidedragdrop" [element]="dragdrop_template" title="Drag & Drop nodes"
+    position="start"></app-offcanvas>
+<ng-template #dragdrop_template>
+    <div class="offcanvas-body side-wrapper-opt my-offcanvas-body">
+        <div [id]="HOST" class="row div-data-item draggable" draggable="true" (drag)="onDrag($event, HOST)"
+            (dragend)="dropPreventDefault($event)">
+            <h5>HOST</h5>
+        </div>
+        <div [id]="SUBNET" class="row div-data-item draggable" draggable="true" (drag)="onDrag($event, SUBNET)"
+            (dragend)="dropPreventDefault($event)">
+            <h5>SUBNET</h5>
+        </div>
+        <div [id]="NETWORK" class="row div-data-item draggable" draggable="true" (drag)="onDrag($event, NETWORK)"
+            (dragend)="dropPreventDefault($event)">
+            <h5>NETWORK</h5>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- MODAL -->
+<app-modal *ngIf="dataModal" [element]="dataModal" [(show)]="isModalActive" (onButtonPressed)="closeModal()">
+</app-modal>
+<!-- MESSAGE -->
+<ng-template #data_message>
+    {{modalMessage}}
+</ng-template>
+
+<!-- INTERFACE CONSUMER FORM -->
+<ng-template #data_input_interface_consumer>
+    <app-data-input [element]="formInterfaceElement" (dataSubmitted)="validateInterface($event,CONSUMER)">
+    </app-data-input>
+</ng-template>
+<!-- INTERFACE PRODUCER FORM -->
+<ng-template #data_input_interface_producer>
+    <app-data-input [element]="formInterfaceElement" (dataSubmitted)="validateInterface($event,PRODUCER)">
+    </app-data-input>
+</ng-template>
+
+
+<!-- INPUT PORT FORM -->
+<ng-template #data_input_port_in>
+    <app-data-input [element]="formPort" (dataSubmitted)="validatePortIn($event)">
+    </app-data-input>
+</ng-template>
+<!-- OUTPUT PORT FORM -->
+<ng-template #data_input_port_out>
+    <app-data-input [element]="formPort" (dataSubmitted)="validatePortOut($event)">
+    </app-data-input>
+</ng-template>
+<!-- IMPORT FORM -->
+<ng-template #data_input_import>
+    <app-data-input [element]="formImportElement" (dataSubmitted)="validateImport($event)">
+    </app-data-input>
+</ng-template>

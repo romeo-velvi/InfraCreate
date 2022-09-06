@@ -1,0 +1,145 @@
+<div *ngIf="node" class="node" [ngClass]="[selected(), node.name] | kebab">
+
+  <!-- <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-auto mr-auto">
+        <div class="title">
+          {{ node.data.name === "" || node.data.name === undefined ? "Assign name" : node.data.name }}
+        </div>
+      </div>
+      <div class="col-2 m-auto">
+        <button class="btn btn-secondary" type="button" (click)="showhidesocket()" style="vertical-align: baseline;">
+          <i *ngIf="showPorts" class="bi bi-eye"></i>
+          <i *ngIf="!showPorts" class="bi bi-eye-slash"></i>
+        </button>
+      </div>
+    </div>
+  </div> -->
+
+
+  <!-- CONTENT -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card my-card">
+        <div class="card-content my-card-content">
+          <div class="card-body my-card-body">
+            <div class="media my-media">
+              <div class="my-media-icon">
+                <i class="my-media-icon-inside" [ngClass]="MirroringModuleInstanceIcon.ICON"> </i>
+              </div>
+              <div class="media-body my-media-body">
+                <h5 class="my-media-title">
+                  {{
+                  (node.data.name && node.data.name!=='')
+                  ?node.data.name
+                  :ModuleType.MirroringModuleInstance
+                  }}
+                </h5>
+                <h6 class="my-media-attribute">
+                  {{
+                  (node.data.area && node.data.area!=='')
+                  ?"area: "+node.data.area
+                  :''
+                  }}
+                </h6>
+                <h6 class="my-media-attribute">
+                  {{
+                  (node.data.version && node.data.version!=='')
+                  ?"version: "+node.data.version
+                  :''
+                  }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+      aria-expanded="false" aria-controls="collapseExample">
+      Button with data-bs-target
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user
+      activates the relevant trigger.
+    </div>
+  </div> -->
+
+
+  <div *ngIf="showPorts">
+
+    <!-- OUTPUT SOCKET  MODIFICATO NGIF -->
+    <ng-container *ngIf="showOutputOutlet" >
+      <div class="output" *ngFor="let output of outputs">
+        <div class="output-title">{{output.name}}</div>
+        <div class="d-grid">
+          <rete-socket class="d-grid-1-1-2" rete-socket [io]="output" [socket]="output.socket"></rete-socket>
+          <p class="overlay-letter-output-port d-grid-1-1-3">P</p>
+          <i class="d-grid-1-1-1 icon-output-style" [ngClass]="MirroringModuleInstanceIcon.PORTOUT"></i>
+        </div>
+      </div>
+    </ng-container>
+
+
+    <!-- <div class="control" *ngFor="let control of controls" [rete-control]="control"></div> -->
+
+    <!-- INPUT SOCKET -->
+    <ng-container *ngIf="showInputOutlet">
+      <div class="input" *ngFor="let input of inputs">
+        <div class="d-grid">
+          <rete-socket class="d-grid-1-1-2" rete-socket [io]="input" [socket]="input.socket">
+          </rete-socket>
+          <p class="overlay-letter-input-port d-grid-1-1-3">C</p>
+          <i class="d-grid-1-1-1 icon-input-style" [ngClass]="MirroringModuleInstanceIcon.PORTIN"></i>
+        </div>
+        <div class="input-title" *ngIf="!input.showControl()">{{input.name}}</div>
+        <div class="input-control" *ngIf="input.showControl()" [rete-control]="input.control"></div>
+      </div>
+    </ng-container>
+
+  </div>
+
+
+
+  <!-- FOOT -->
+  <div *ngIf="showFooter" class="container" >
+    <div class="row" style="font-family: Bahnschrift SemiBold;">
+
+      <div class="col col-4 text-center">
+        <i class="m-auto" [ngClass]="HostIcon.ICON"></i>
+        {{
+        node.data.host_number
+        ?node.data.host_number
+        :0
+        }}
+      </div>
+
+      <div class="col col-4 text-center">
+        <i class="m-auto" [ngClass]="SubnetIcon.ICON"></i>
+        {{
+        node.data.subnet_number
+        ?node.data.subnet_number
+        :0
+        }}
+      </div>
+
+      <div class="col col-4" style="text-align: center;">
+        <i class="m-auto" [ngClass]="NetworkIcon.ICON"></i>
+        {{
+        node.data.network_number
+        ?node.data.network_number
+        :0
+        }}
+      </div>
+
+    </div>
+  </div>
+
+
+</div>

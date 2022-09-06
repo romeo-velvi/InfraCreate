@@ -5,30 +5,30 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { HomeComponent } from './home/home.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { HowToUseComponent } from './how-to-use/how-to-use.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { HowToUseComponent } from './pages/how-to-use/how-to-use.component';
 
 import { ReteModule } from 'rete-angular-render-plugin';
 
-import { ReteTheaterComponent } from './rete-theater/rete-theater.component';
-import { ReteModuleComponent } from './rete-module/rete-module.component';
-import { ReteModuleComposerComponent } from './rete-module-composer/rete-module-composer.component'; 
-import { ReteTheaterComposerComponent } from './rete-theater-composer/rete-theater-composer.component';
+import { ReteTheaterVisualizerComponent } from './visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component';
+import { ReteModuleVisualizerComponent } from './visualizer-system/rete-module-visualizer/rete-module-visualizer.component';
 
-import { NodeTheaterTemplate } from './rete-theater/components/node-theater-template/node-theater-template.component';
-import { NodeModuleTemplate } from './rete-module/components/node-module-template/node-module-template.component';
-import { NodeComposerTemplate } from './rete-module-composer/components/node-composer-template/node-composer-template.component';
+import { ReteModuleComposerComponent } from './composer-system/rete-module-composer/rete-module-composer.component';
+import { ReteTheaterComposerComponent } from './composer-system/rete-theater-composer/rete-theater-composer.component';
 
-import { ServerComposer } from './rete-module-composer/components/server-composer/server-composer.component';
-import { SubnetComposer } from './rete-module-composer/components/subnet-composer/subnet-composer.component';
-import { NetworkComposer } from './rete-module-composer/components/network-composer/network-composer.component';
 
-import { VisualEditorComponent } from './visual-editor/visual-editor.component';
-import { DesignerEditorComponent } from './designer-editor/designer-editor.component';
+import { HostComponent } from './rete-settings/nodes/rete-nodes/host/host.component';
+import { SubnetComponent } from './rete-settings/nodes/rete-nodes/subnet/subnet.component';
+import { NetworkComponent } from './rete-settings/nodes/rete-nodes/network/network.component';
+import { MirroringModuleInstanceComponent } from './rete-settings/nodes/rete-modules/mirroringModuleInstance/mirroringModuleInstance.component';
+import { TheaterInternalServiceModuleInstanceComponent } from './rete-settings/nodes/rete-modules/theaterInternalServiceModuleInstance/theaterInternalServiceModuleInstance.component';
+import { TheaterModuleInstanceComponent } from './rete-settings/nodes/rete-modules/theaterModuleInstance/theaterModuleInstance.component';
 
-import { CommonModule, NgClass } from '@angular/common';
+import { VisualizerComponent } from './visualizer-system/visualizer/visualizer.component';
+import { ComposerComponent } from './composer-system/composer/composer.component';
+
+import { CommonModule, NgClass, NgStyle } from '@angular/common';
 
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './utility/app.init';
@@ -40,7 +40,26 @@ import { NgxPopper } from 'angular-popper';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TokenService } from './services/token/token.service';
+import { ModuleService } from './services/api/module.service';
+import { TheaterService } from './services/api/theater.service';
 
+import { OffcanvasComponent } from './components/offcanvas/offcanvas.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { NavbarElementComponent } from './pages/elements/navbar-element/navbar-element.component';
+import { DataInputComponent } from './components/data-input/data-input.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { UnderbarComponent } from './components/underbar/underbar.component';
+import { DataInputV2Component } from './components/data-input-v2/data-input-v2.component';
+import { TabnavComponent } from './components/tabnav/tabnav.component';
+import { ParseService } from './services/application/parse/parse.service';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { DataItemComponent } from './components/data-item/data-item.component';
+import { environment } from 'src/environments/environment';
+
+// import { ColorPickerModule } from 'ngx-color-picker';
 
 const keycloakService = new KeycloakService();
 
@@ -49,27 +68,40 @@ const keycloakService = new KeycloakService();
 
     AppComponent,
 
-    ReteTheaterComponent,
-    ReteModuleComponent,
+    VisualizerComponent,
+    ComposerComponent,
+
+    ReteTheaterVisualizerComponent,
+    ReteModuleVisualizerComponent,
     ReteModuleComposerComponent,
     ReteTheaterComposerComponent,
 
-    NodeTheaterTemplate,
-    NodeModuleTemplate,
-    NodeComposerTemplate,
-
-    ServerComposer,
-    SubnetComposer,
-    NetworkComposer,
+    HostComponent,
+    SubnetComponent,
+    NetworkComponent,
+    MirroringModuleInstanceComponent,
+    TheaterInternalServiceModuleInstanceComponent,
+    TheaterModuleInstanceComponent,
 
     AppComponent,
     HomeComponent,
     AboutUsComponent,
     HowToUseComponent,
-    NavbarComponent,
+    NavbarElementComponent,
 
-    VisualEditorComponent,
-    DesignerEditorComponent,
+    VisualizerComponent,
+    ComposerComponent,
+    OffcanvasComponent,
+    NavbarComponent,
+    DataInputComponent,
+    ModalComponent,
+    UnderbarComponent,
+    DataInputV2Component,
+    TabnavComponent,
+    AccordionComponent,
+    DataItemComponent,
+
+    // ColorPickerModule
 
   ],
   imports: [
@@ -89,11 +121,14 @@ const keycloakService = new KeycloakService();
 
     NgxSpinnerModule,
     NgxTypeaheadModule,
-    
+
     BrowserAnimationsModule,
 
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
+    ////////////////////////////////////////////////////// COMMENT IF DATA ARE MOCKED & set mocked = true in visualizer
     {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
@@ -102,23 +137,37 @@ const keycloakService = new KeycloakService();
       // provide: KeycloakService,
       // useValue: keycloakService,
     },
+    TokenService,
+    ModuleService,
+    TheaterService,
+    ParseService
   ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  exports: [OffcanvasComponent, NavbarComponent, NavbarElementComponent, DataInputComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
-  entryComponents: [NodeTheaterTemplate, NodeModuleTemplate, NodeComposerTemplate, ServerComposer,NetworkComposer,SubnetComposer]
+  entryComponents: [
+    MirroringModuleInstanceComponent,
+    TheaterInternalServiceModuleInstanceComponent,
+    TheaterModuleInstanceComponent,
+    SubnetComponent,
+    NetworkComponent,
+    HostComponent
+  ]
 })
 
 export class AppModule implements DoBootstrap {
   ngDoBootstrap(appRef: ApplicationRef) {
-    keycloakService
-      .init()
-      .then(() => {
-        console.log('[ngDoBootstrap] bootstrap app');
-        appRef.bootstrap(AppComponent);
-      })
-      .catch((error) =>
-        console.error('[ngDoBootstrap] init Keycloak failed', error)
-      );
+    if (environment.mocked) { // mocked check
+      keycloakService
+        .init()
+        .then(() => {
+          console.log('[ngDoBootstrap] bootstrap app');
+          appRef.bootstrap(AppComponent);
+        })
+        .catch((error) =>
+          console.error('[ngDoBootstrap] init Keycloak failed', error)
+        );
+    }
   }
 }
 

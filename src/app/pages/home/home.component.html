@@ -1,0 +1,62 @@
+<!-- <app-navbar-element *ngIf="router.url !== '/visualizer' && router.url !== '/composer' "></app-navbar-element> -->
+<div class="bg-component">
+    <app-navbar-element></app-navbar-element>
+
+
+    <!-- <p>home works!</p> -->
+    <div class="component-div">
+        <div class='container' style="color: white;">
+            <div class='row text-center mt-4'>
+                <span class="display-3"> Cyber Range Theater and Module Visualization/Constructor </span>
+            </div>
+            <div class='row text-center mt-3'>
+                <span class="h5"> Visual design orchestrator for infrastructured system </span>
+            </div>
+            <div class='row justify-content-center text-center mt-3'>
+                <div class="col-4 box-color-2 zoom">
+                    <div class="row justify-content-center">
+                        <h1 class="display-4 font-size-05 mb-1 text-break"> Designer </h1>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="row justify-content-center">
+                            <button type="button" class="btn btn-outline-light m-2 w-75 text-break"
+                                (click)="buttonClick(Composer,Theater)">Create Theater</button>
+                        </div>
+                        <div class="row justify-content-center">
+                            <button type="button" class="btn btn-outline-light m-2 w-75 text-break"
+                                (click)="buttonClick(Composer,Module)">Create Module</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 box-color-1 zoom">
+                    <div class="row justify-content-center">
+                        <h1 class="display-4 font-size-05 mb-1 text-break"> CyberRange</h1>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="row justify-content-center">
+                            <button type="button" class="btn btn-outline-light m-2 w-75 text-break"
+                                (click)="buttonClick(Visualizer,Theater)">Visualize Theater</button>
+                        </div>
+                        <div class="row justify-content-center">
+                            <button type="button" class="btn btn-outline-light m-2 w-75 text-break"
+                                (click)="buttonClick(Visualizer,Module)">Visualize Module</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<app-modal *ngIf="formElementModal" [element]="dataModal" [(show)]="isModalActive" (onButtonPressed)="print($event)">
+</app-modal>
+
+<!-- FORM -->
+<ng-template #data_input_template>
+    <!-- <app-data-input-v2 title="titolo a caso" [(value)]="valore" formType="text"></app-data-input-v2> -->
+    <app-data-input #data_input [element]="formElementModal" (dataSubmitted)="dataInputReturned($event)">
+    </app-data-input>
+</ng-template>

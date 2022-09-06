@@ -1,0 +1,44 @@
+<!-- module composr -->
+<app-rete-module-composer 
+*ngIf="type===MODULE && active"
+class="oh-imp"
+[ModuleName]="name"
+[ModuleDescription]="description" 
+[ModuleAuthor]="author"
+[flavor]="flavor"
+ModuleVersion = "1.0"
+>
+</app-rete-module-composer>
+
+<!-- theater composer -->
+<app-rete-theater-composer 
+*ngIf="type===THEATER && active" 
+class="oh-imp"
+[TheaterName]="name"
+[TheaterDescription]="description" 
+[TheaterAuthor]="author" 
+[ModulesDict]="modulesDict"
+TheaterVersion="1.0"
+>
+</app-rete-theater-composer>
+
+
+<!-- Error handler  -->
+<div *ngIf="hasproblem" class="container">
+    <div class="row justify-content-center" style="margin-top: 10%;">
+        <div class="col-8" style="color: white; text-align:center;">
+            <div class="row">
+                <i class="bi bi-emoji-frown d-inline-block" style="font-size: 4em;"></i>
+                <h1 class="d-inline"> A Problem occurred when loading designer system </h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <button type="button" class="btn btn-success" (click)="gohome()"> Go home </button>
+                <!-- </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-warning" (click)="reloadPage()"> Retry </button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

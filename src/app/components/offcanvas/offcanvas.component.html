@@ -1,0 +1,38 @@
+<div *ngIf="show" class="offcanvas show my-offcanvas" [ngClass]="'offcanvas-'+position"
+    [ngStyle]="{'width': (isfull?'100':'50')+'%'}" tabindex="-1" id="offcanvasInfo" data-bs-scroll="true"
+    data-bs-backdrop="false" aria-labelledby="offcanvasInfoLabel">
+
+    <!-- --------- HEADER --------- -->
+    <div class="offcanvas-header side-wrapper-opt">
+        <h5 *ngIf="title" class="offcanvas-title my-offcanvas-title" id="offcanvasInfoLabel">
+            {{ title }}
+        </h5>
+        <h5 *ngIf="!title && alt_title" class="offcanvas-title my-offcanvas-title" id="offcanvasInfoLabel">
+            {{ alt_title }}
+        </h5>
+        <ng-container *ngIf="!title && !alt_title && title_template" [ngTemplateOutlet]="title_template">
+        </ng-container>
+
+
+        <div class="justifty-content-end">
+            <div class="btn-group" role="group">
+                <button class="btn btn-outline-light w-auto btn-sm " data-toggle="tooltip" data-placement="top"
+                    title="resize" (click)="reduce()">
+                    <i [ngClass]="isfull?toReduceIconClass:toOpenIconClass"></i>
+                </button>
+                <button class="btn btn-outline-light w-auto btn-sm" data-bs-dismiss="offcanvas" type="button"
+                    aria-label="Close" data-toggle="tooltip" data-placement="top" title="remove"
+                    (click)="closeOffcanvas()"> <i [ngClass]="closeIconClass"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- --------- BODY --------- -->
+    <div class="offcanvas-body side-wrapper-opt my-offcanvas-body">
+
+        <!-- content -->
+        <ng-container *ngIf="element" [ngTemplateOutlet]="element"></ng-container>
+
+    </div>
+</div>

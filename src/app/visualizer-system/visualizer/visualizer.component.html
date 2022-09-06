@@ -1,0 +1,34 @@
+<!-- module visualizer -->
+<!-- [moduleID]="id"  -->
+<app-rete-module-visualizer *ngIf="type===MODULE && active" class="oh-imp" [module]="module" [isSimple]="false">
+</app-rete-module-visualizer>
+
+
+
+<!-- theater visualizer -->
+<!-- [theaterID]="id" -->
+<app-rete-theater-visualizer 
+*ngIf="type===THEATER && active" 
+class="oh-imp" 
+[theater]="theater"
+[isSimple]="false">
+</app-rete-theater-visualizer>
+
+
+<!-- IF ERROR OCCOUR -->
+<div *ngIf="hasproblem" class="container">
+    <div class="row justify-content-center" style="margin-top: 10%;">
+        <div class="col-8" style="color: white; text-align:center;">
+            <div class="row">
+                <i class="bi bi-emoji-frown d-inline-block" style="font-size: 4em;"></i>
+                <h1 *ngIf="type && id" class="d-inline"> A Problem occurred when loading {{type}} with id: {{id}} </h1>
+                <h1 *ngIf="!type && !id" class="d-inline"> A Problem occurred when loading visualizer system </h1>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-success" (click)="gohome()"> Go home </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

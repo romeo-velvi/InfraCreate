@@ -1,0 +1,121 @@
+<div *ngIf="node" class="node" [ngClass]="[selected(), node.name] | kebab">
+
+  <!-- <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-auto mr-auto">
+        <div class="title">
+          {{ node.data.name === "" || node.data.name === undefined ? "Assign name" : node.data.name }}
+        </div>
+      </div>
+      <div class="col-2 m-auto">
+        <button class="btn btn-secondary" type="button" (click)="showhidesocket()" style="vertical-align: baseline;">
+          <i *ngIf="showPorts" class="bi bi-eye"></i>
+          <i *ngIf="!showPorts" class="bi bi-eye-slash"></i>
+        </button>
+      </div>
+    </div>
+  </div> -->
+
+
+  <!-- CONTENT -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card my-card">
+        <div class="card-content my-card-content">
+          <div class="card-body my-card-body">
+            <div class="media my-media">
+              <div class="my-media-icon">
+                <i class="my-media-icon-inside" [ngClass]="HostIcon.ICON"> </i>
+              </div>
+              <div class="media-body my-media-body">
+                <h5 class="my-media-title">
+                  {{
+                  (node.data.name && node.data.name!=='')
+                  ?node.data.name
+                  :NodeType.HOST
+                  }}
+                </h5>
+                <h6 class="my-media-attribute">
+                  {{
+                  (node.data.os && node.data.os!=='')
+                  ?"os: "+node.data.os
+                  :''
+                  }}
+                </h6>
+                <div *ngIf="node.data.flavorName">
+                  <h6 class="my-media-attribute">
+                    {{
+                    (node.data.ram && node.data.ram!=='')
+                    ?"ram (MB): "+node.data.ram
+                    :''
+                    }}
+                  </h6>
+                  <h6 class="my-media-attribute">
+                    {{
+                    (node.data.disk && node.data.disk!=='')
+                    ?"disk (MB): "+node.data.disk
+                    :''
+                    }}
+                  </h6>
+                  <h6 class="my-media-attribute">
+                    {{
+                    (node.data.cpu && node.data.cpu!=='')
+                    ?"cpu (#): "+node.data.cpu
+                    :''
+                    }}
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+      aria-expanded="false" aria-controls="collapseExample">
+      Button with data-bs-target
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user
+      activates the relevant trigger.
+    </div>
+  </div> -->
+
+
+  <div *ngIf="showPorts">
+
+    <!-- OUTPUT SOCKET  MODIFICATO NGIF -->
+    <ng-container *ngIf="showOutputOutlet">
+      <div class="output" *ngFor="let output of outputs">
+        <div class="output-title">{{output.name}}</div>
+        <div class="d-grid">
+          <rete-socket class="d-grid-1-1-2" rete-socket [io]="output" [socket]="output.socket"></rete-socket>
+          <i class="d-grid-1-1-1 icon-output-style" [ngClass]="HostIcon.PORTOUT"></i>
+        </div>
+      </div>
+    </ng-container>
+
+
+    <!-- <div class="control" *ngFor="let control of controls" [rete-control]="control"></div> -->
+
+    <!-- INPUT SOCKET -->
+    <ng-container *ngIf="showInputOutlet">
+      <div class="input" *ngFor="let input of inputs">
+        <div class="d-grid">
+          <rete-socket class="d-grid-1-1-2" rete-socket [io]="input" [socket]="input.socket">
+          </rete-socket>
+          <i class="d-grid-1-1-1 icon-input-style" [ngClass]="HostIcon.PORTIN"></i>
+        </div>
+        <div class="input-title" *ngIf="!input.showControl()">{{input.name}}</div>
+        <div class="input-control" *ngIf="input.showControl()" [rete-control]="input.control"></div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

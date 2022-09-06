@@ -1,0 +1,4064 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>InfraCreate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">InfraCreate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ReteTheaterVisualizerComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-rete-theater-visualizer</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./rete-theater-visualizer.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./rete-theater-visualizer.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#arrange_underbar" >arrange_underbar</a>
+                            </li>
+                            <li>
+                                <a href="#components" >components</a>
+                            </li>
+                            <li>
+                                <a href="#container" >container</a>
+                            </li>
+                            <li>
+                                <a href="#displayMdata" >displayMdata</a>
+                            </li>
+                            <li>
+                                <a href="#displayModuleData" >displayModuleData</a>
+                            </li>
+                            <li>
+                                <a href="#displayTdata" >displayTdata</a>
+                            </li>
+                            <li>
+                                <a href="#displayTheaterData" >displayTheaterData</a>
+                            </li>
+                            <li>
+                                <a href="#downloadJsonHref" >downloadJsonHref</a>
+                            </li>
+                            <li>
+                                <a href="#editor" >editor</a>
+                            </li>
+                            <li>
+                                <a href="#el" >el</a>
+                            </li>
+                            <li>
+                                <a href="#engine" >engine</a>
+                            </li>
+                            <li>
+                                <a href="#hideModuleInfo" >hideModuleInfo</a>
+                            </li>
+                            <li>
+                                <a href="#hideTheaterInfo" >hideTheaterInfo</a>
+                            </li>
+                            <li>
+                                <a href="#ismapvisible" >ismapvisible</a>
+                            </li>
+                            <li>
+                                <a href="#map_underbar" >map_underbar</a>
+                            </li>
+                            <li>
+                                <a href="#ModuleNameList" >ModuleNameList</a>
+                            </li>
+                            <li>
+                                <a href="#moduleSelected" >moduleSelected</a>
+                            </li>
+                            <li>
+                                <a href="#navbarData" >navbarData</a>
+                            </li>
+                            <li>
+                                <a href="#nodeSelected" >nodeSelected</a>
+                            </li>
+                            <li>
+                                <a href="#nodetofind" >nodetofind</a>
+                            </li>
+                            <li>
+                                <a href="#search_underbar" >search_underbar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_if_cons" >tab_if_cons</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_if_prod" >tab_if_prod</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_module_basic" >tab_module_basic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_module_counter" >tab_module_counter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_module_interfaces" >tab_module_interfaces</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_module_topology" >tab_module_topology</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_theater_areas" >tab_theater_areas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_theater_basic" >tab_theater_basic</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_theater_deploy" >tab_theater_deploy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_theater_imports" >tab_theater_imports</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_theater_map" >tab_theater_map</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#tab_theater_tags" >tab_theater_tags</a>
+                            </li>
+                            <li>
+                                <a href="#tabnavElementModule" >tabnavElementModule</a>
+                            </li>
+                            <li>
+                                <a href="#tabnavElementTheater" >tabnavElementTheater</a>
+                            </li>
+                            <li>
+                                <a href="#tabnavIF" >tabnavIF</a>
+                            </li>
+                            <li>
+                                <a href="#underbarData" >underbarData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#addNodes" >addNodes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#arrangenodes" >arrangenodes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#arrangeNodes" >arrangeNodes</a>
+                            </li>
+                            <li>
+                                <a href="#displaceLeft" >displaceLeft</a>
+                            </li>
+                            <li>
+                                <a href="#displayAllNodes" >displayAllNodes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#downloadZIP" >downloadZIP</a>
+                            </li>
+                            <li>
+                                <a href="#findElement" >findElement</a>
+                            </li>
+                            <li>
+                                <a href="#goHome" >goHome</a>
+                            </li>
+                            <li>
+                                <a href="#initNavbar" >initNavbar</a>
+                            </li>
+                            <li>
+                                <a href="#initTabModuleNavs" >initTabModuleNavs</a>
+                            </li>
+                            <li>
+                                <a href="#initTabTheaterNavs" >initTabTheaterNavs</a>
+                            </li>
+                            <li>
+                                <a href="#initUnderbar" >initUnderbar</a>
+                            </li>
+                            <li>
+                                <a href="#makezoom" >makezoom</a>
+                            </li>
+                            <li>
+                                <a href="#navItemSelected" >navItemSelected</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#notSort" >notSort</a>
+                            </li>
+                            <li>
+                                <a href="#print" >print</a>
+                            </li>
+                            <li>
+                                <a href="#redoEditor" >redoEditor</a>
+                            </li>
+                            <li>
+                                <a href="#showhideModuleInfo" >showhideModuleInfo</a>
+                            </li>
+                            <li>
+                                <a href="#showhideTheaterInfo" >showhideTheaterInfo</a>
+                            </li>
+                            <li>
+                                <a href="#showMinimap" >showMinimap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#startApp" >startApp</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#startSimpleApp" >startSimpleApp</a>
+                            </li>
+                            <li>
+                                <a href="#touchModule" >touchModule</a>
+                            </li>
+                            <li>
+                                <a href="#underbarElementSelected" >underbarElementSelected</a>
+                            </li>
+                            <li>
+                                <a href="#undoEditor" >undoEditor</a>
+                            </li>
+                            <li>
+                                <a href="#updateNameList" >updateNameList</a>
+                            </li>
+                            <li>
+                                <a href="#updateSelectedNode" >updateSelectedNode</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isSimple" >isSimple</a>
+                            </li>
+                            <li>
+                                <a href="#theater" >theater</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(render: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>, sanitizer: <a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank">DomSanitizer</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, parseService: <a href="../injectables/ParseService.html" target="_self">ParseService</a>, zone: <a href="https://angular.io/api/core/NgZone" target="_blank">NgZone</a>, spinnerService: <a href="../injectables/SpinnerService.html" target="_self">SpinnerService</a>, attachmentsService: <a href="../injectables/AttachmentsService.html" target="_self">AttachmentsService</a>, exportService: <a href="../injectables/ExportService.html" target="_self">ExportService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:94</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>render</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sanitizer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank" >DomSanitizer</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>parseService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ParseService.html" target="_self" >ParseService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>zone</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/NgZone" target="_blank" >NgZone</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinnerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SpinnerService.html" target="_self" >SpinnerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>attachmentsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AttachmentsService.html" target="_self" >AttachmentsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>exportService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ExportService.html" target="_self" >ExportService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isSimple"></a>
+                        <b>isSimple</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:33</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="theater"></a>
+                        <b>theater</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/TheaterApplication.html" target="_self" >TheaterApplication</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:32</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addNodes"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>addNodes</b></span>
+                        <a href="#addNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addNodes()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="506"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:506</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrangenodes"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>arrangenodes</b></span>
+                        <a href="#arrangenodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>arrangenodes()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="558"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:558</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrangeNodes"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>arrangeNodes</b></span>
+                        <a href="#arrangeNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>arrangeNodes()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="473"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:473</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displaceLeft"></a>
+                    <span class="name">
+                        <span ><b>displaceLeft</b></span>
+                        <a href="#displaceLeft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>displaceLeft()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="481"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:481</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayAllNodes"></a>
+                    <span class="name">
+                        <span ><b>displayAllNodes</b></span>
+                        <a href="#displayAllNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>displayAllNodes()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="453"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:453</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadZIP"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>downloadZIP</b></span>
+                        <a href="#downloadZIP"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>downloadZIP()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="383"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:383</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findElement"></a>
+                    <span class="name">
+                        <span ><b>findElement</b></span>
+                        <a href="#findElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findElement(result: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="456"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:456</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>result</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goHome"></a>
+                    <span class="name">
+                        <span ><b>goHome</b></span>
+                        <a href="#goHome"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goHome()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="398"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:398</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initNavbar"></a>
+                    <span class="name">
+                        <span ><b>initNavbar</b></span>
+                        <a href="#initNavbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initNavbar()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:256</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTabModuleNavs"></a>
+                    <span class="name">
+                        <span ><b>initTabModuleNavs</b></span>
+                        <a href="#initTabModuleNavs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initTabModuleNavs()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="332"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:332</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTabTheaterNavs"></a>
+                    <span class="name">
+                        <span ><b>initTabTheaterNavs</b></span>
+                        <a href="#initTabTheaterNavs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initTabTheaterNavs()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="320"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:320</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initUnderbar"></a>
+                    <span class="name">
+                        <span ><b>initUnderbar</b></span>
+                        <a href="#initUnderbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initUnderbar()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:266</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makezoom"></a>
+                    <span class="name">
+                        <span ><b>makezoom</b></span>
+                        <a href="#makezoom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makezoom(k: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="445"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:445</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>k</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navItemSelected"></a>
+                    <span class="name">
+                        <span ><b>navItemSelected</b></span>
+                        <a href="#navItemSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navItemSelected(val: <a href="../classes/NavbarItem.html" target="_self">NavbarItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="351"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:351</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>val</td>
+                                    <td>
+                                                <code><a href="../classes/NavbarItem.html" target="_self" >NavbarItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="249"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:249</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:110</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notSort"></a>
+                    <span class="name">
+                        <span ><b>notSort</b></span>
+                        <a href="#notSort"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>notSort()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="567"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:567</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="print"></a>
+                    <span class="name">
+                        <span ><b>print</b></span>
+                        <a href="#print"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>print(...Params: any[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="571"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:571</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Params</td>
+                                    <td>
+                                            <code>any[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="redoEditor"></a>
+                    <span class="name">
+                        <span ><b>redoEditor</b></span>
+                        <a href="#redoEditor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>redoEditor()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="442"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:442</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showhideModuleInfo"></a>
+                    <span class="name">
+                        <span ><b>showhideModuleInfo</b></span>
+                        <a href="#showhideModuleInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showhideModuleInfo(node: Node)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="377"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:377</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                            <code>Node</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showhideTheaterInfo"></a>
+                    <span class="name">
+                        <span ><b>showhideTheaterInfo</b></span>
+                        <a href="#showhideTheaterInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showhideTheaterInfo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="366"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:366</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showMinimap"></a>
+                    <span class="name">
+                        <span ><b>showMinimap</b></span>
+                        <a href="#showMinimap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showMinimap()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="486"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:486</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startApp"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>startApp</b></span>
+                        <a href="#startApp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>startApp()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="172"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:172</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startSimpleApp"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>startSimpleApp</b></span>
+                        <a href="#startSimpleApp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>startSimpleApp()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:131</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="touchModule"></a>
+                    <span class="name">
+                        <span ><b>touchModule</b></span>
+                        <a href="#touchModule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>touchModule(node: Node)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="371"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:371</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                            <code>Node</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="underbarElementSelected"></a>
+                    <span class="name">
+                        <span ><b>underbarElementSelected</b></span>
+                        <a href="#underbarElementSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>underbarElementSelected(val: <a href="../classes/UnderbarItem.html" target="_self">UnderbarItem</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="404"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:404</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>val</td>
+                                    <td>
+                                                <code><a href="../classes/UnderbarItem.html" target="_self" >UnderbarItem</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="undoEditor"></a>
+                    <span class="name">
+                        <span ><b>undoEditor</b></span>
+                        <a href="#undoEditor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>undoEditor()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="439"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:439</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateNameList"></a>
+                    <span class="name">
+                        <span ><b>updateNameList</b></span>
+                        <a href="#updateNameList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateNameList()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="465"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:465</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateSelectedNode"></a>
+                    <span class="name">
+                        <span ><b>updateSelectedNode</b></span>
+                        <a href="#updateSelectedNode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateSelectedNode()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="499"
+                            class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:499</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrange_underbar"></a>
+                    <span class="name">
+                        <span ><b>arrange_underbar</b></span>
+                        <a href="#arrange_underbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;arrange_underbar&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="components"></a>
+                    <span class="name">
+                        <span ><b>components</b></span>
+                        <a href="#components"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ModuleComponents</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="container"></a>
+                    <span class="name">
+                        <span ><b>container</b></span>
+                        <a href="#container"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayMdata"></a>
+                    <span class="name">
+                        <span ><b>displayMdata</b></span>
+                        <a href="#displayMdata"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[][]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayModuleData"></a>
+                    <span class="name">
+                        <span ><b>displayModuleData</b></span>
+                        <a href="#displayModuleData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayTdata"></a>
+                    <span class="name">
+                        <span ><b>displayTdata</b></span>
+                        <a href="#displayTdata"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[][]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayTheaterData"></a>
+                    <span class="name">
+                        <span ><b>displayTheaterData</b></span>
+                        <a href="#displayTheaterData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadJsonHref"></a>
+                    <span class="name">
+                        <span ><b>downloadJsonHref</b></span>
+                        <a href="#downloadJsonHref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/platform-browser/SafeUrl" target="_blank" >SafeUrl</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editor"></a>
+                    <span class="name">
+                        <span ><b>editor</b></span>
+                        <a href="#editor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>NodeEditor</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="el"></a>
+                    <span class="name">
+                        <span ><b>el</b></span>
+                        <a href="#el"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;theaterEditor&#x27;, {static: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="engine"></a>
+                    <span class="name">
+                        <span ><b>engine</b></span>
+                        <a href="#engine"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Engine</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hideModuleInfo"></a>
+                    <span class="name">
+                        <span ><b>hideModuleInfo</b></span>
+                        <a href="#hideModuleInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hideTheaterInfo"></a>
+                    <span class="name">
+                        <span ><b>hideTheaterInfo</b></span>
+                        <a href="#hideTheaterInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ismapvisible"></a>
+                    <span class="name">
+                        <span ><b>ismapvisible</b></span>
+                        <a href="#ismapvisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="map_underbar"></a>
+                    <span class="name">
+                        <span ><b>map_underbar</b></span>
+                        <a href="#map_underbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;map_underbar&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ModuleNameList"></a>
+                    <span class="name">
+                        <span ><b>ModuleNameList</b></span>
+                        <a href="#ModuleNameList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moduleSelected"></a>
+                    <span class="name">
+                        <span ><b>moduleSelected</b></span>
+                        <a href="#moduleSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/SimpleModuleApplication.html" target="_self" >SimpleModuleApplication</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navbarData"></a>
+                    <span class="name">
+                        <span ><b>navbarData</b></span>
+                        <a href="#navbarData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/NavbarElement.html" target="_self" >NavbarElement</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nodeSelected"></a>
+                    <span class="name">
+                        <span ><b>nodeSelected</b></span>
+                        <a href="#nodeSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Node</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nodetofind"></a>
+                    <span class="name">
+                        <span ><b>nodetofind</b></span>
+                        <a href="#nodetofind"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="search_underbar"></a>
+                    <span class="name">
+                        <span ><b>search_underbar</b></span>
+                        <a href="#search_underbar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;search_underbar&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_if_cons"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_if_cons</b></span>
+                        <a href="#tab_if_cons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_if_cons&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_if_prod"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_if_prod</b></span>
+                        <a href="#tab_if_prod"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_if_prod&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_module_basic"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_module_basic</b></span>
+                        <a href="#tab_module_basic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_module_basic&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_module_counter"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_module_counter</b></span>
+                        <a href="#tab_module_counter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_module_counter&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_module_interfaces"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_module_interfaces</b></span>
+                        <a href="#tab_module_interfaces"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_module_interfaces&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_module_topology"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_module_topology</b></span>
+                        <a href="#tab_module_topology"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_module_topology&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_theater_areas"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_theater_areas</b></span>
+                        <a href="#tab_theater_areas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_theater_areas&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_theater_basic"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_theater_basic</b></span>
+                        <a href="#tab_theater_basic"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_theater_basic&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_theater_deploy"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_theater_deploy</b></span>
+                        <a href="#tab_theater_deploy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_theater_deploy&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_theater_imports"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_theater_imports</b></span>
+                        <a href="#tab_theater_imports"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_theater_imports&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_theater_map"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_theater_map</b></span>
+                        <a href="#tab_theater_map"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_theater_map&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tab_theater_tags"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>tab_theater_tags</b></span>
+                        <a href="#tab_theater_tags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;tab_theater_tags&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tabnavElementModule"></a>
+                    <span class="name">
+                        <span ><b>tabnavElementModule</b></span>
+                        <a href="#tabnavElementModule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/TabnavElement.html" target="_self" >TabnavElement</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tabnavElementTheater"></a>
+                    <span class="name">
+                        <span ><b>tabnavElementTheater</b></span>
+                        <a href="#tabnavElementTheater"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/TabnavElement.html" target="_self" >TabnavElement</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tabnavIF"></a>
+                    <span class="name">
+                        <span ><b>tabnavIF</b></span>
+                        <a href="#tabnavIF"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/TabnavElement.html" target="_self" >TabnavElement</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="underbarData"></a>
+                    <span class="name">
+                        <span ><b>underbarData</b></span>
+                        <a href="#underbarData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/UnderbarElement.html" target="_self" >UnderbarElement[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/visualizer-system/rete-theater-visualizer/rete-theater-visualizer.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output, ChangeDetectionStrategy, Renderer2, OnInit, TemplateRef, ChangeDetectorRef, NgZone } from &#x27;@angular/core&#x27;;
+import { DomSanitizer, SafeUrl } from &#x27;@angular/platform-browser&#x27;;
+import { NodeEditor, Node, Engine, Output as or, Input as ir } from &#x27;rete&#x27;;
+import AreaPlugin from &#x27;rete-area-plugin&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { _Socket } from &#x27;../../rete-settings/sockets/socket&#x27;;
+import { NavbarItem, NavbarElement } from &#x27;../../components/navbar/navbartype&#x27;;
+import { UnderbarItem, UnderbarElement } from &#x27;../../components/underbar/underbartypes&#x27;;
+import { TabnavElement } from &#x27;../../components/tabnav/tabnavtype&#x27;;
+import { BehaviorSubject, from } from &#x27;rxjs&#x27;;
+import { ParseService } from &#x27;src/app/services/application/parse/parse.service&#x27;;
+import { SimpleModuleApplication, ModuleApplication, ReteConnection, TheaterApplication } from &#x27;src/app/services/modelsApplication/applicationModels&#x27;;
+import { ReteTheaterVisualizerSettings } from &#x27;src/app/rete-settings/settings/theater-visualizer/settings&#x27;;
+import { IndexModuleComponent, ModuleComponents, ModuleType1 } from &#x27;src/app/rete-settings/nodes/rete-modules/export-rete-modules&#x27;;
+import { SpinnerService } from &#x27;src/app/services/application/spinner/spinner.service&#x27;;
+import { ReteDisplayModuleDataTV, ReteDisplayTheaterDataTV } from &#x27;src/app/rete-settings/settings/displayData&#x27;;
+import { AttachmentsService } from &#x27;src/app/services/api/attachments.service&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
+import { ExportService } from &#x27;src/app/services/application/export/export.service&#x27;;
+
+
+@Component({
+  selector: &#x27;app-rete-theater-visualizer&#x27;,
+  templateUrl: &#x27;./rete-theater-visualizer.component.html&#x27;,
+  styleUrls: [&#x27;./rete-theater-visualizer.component.sass&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+
+export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
+
+  // input data
+  @Input() theater: TheaterApplication;
+  @Input() isSimple: boolean &#x3D; true;
+  // @Input() theaterID: string | number;
+
+  //node editor component
+  @ViewChild(&#x27;theaterEditor&#x27;, { static: false }) el: ElementRef;
+  nodeSelected: Node;
+  moduleSelected: SimpleModuleApplication;
+  displayMdata: { [field: string]: string[] }[][];
+  displayTdata: { [field: string]: string[] }[][];
+  displayModuleData &#x3D; (module: SimpleModuleApplication): { [field: string]: string[] }[][] &#x3D;&gt; { let x &#x3D; ReteDisplayModuleDataTV(module); return x; }
+  displayTheaterData &#x3D; (theater: TheaterApplication): { [field: string]: string[] }[][] &#x3D;&gt; { let x &#x3D; ReteDisplayTheaterDataTV(theater); return x; }
+
+
+  // node editor data
+  container &#x3D; null;
+  editor: NodeEditor &#x3D; null;
+  components: any &#x3D; ModuleComponents; // type ComponentRete[]
+  engine: Engine &#x3D; null;
+
+  // variabili per input-research
+  nodetofind: string &#x3D; &#x27;&#x27;;
+  ModuleNameList: string[] &#x3D; [];
+
+  // for map bool
+  ismapvisible: boolean &#x3D; true;
+
+  // to download
+  downloadJsonHref: SafeUrl;
+
+  // navbar data
+  navbarData: NavbarElement;
+
+  // underbar data
+  underbarData: UnderbarElement[] &#x3D; [];
+  @ViewChild(&#x27;map_underbar&#x27;) map_underbar: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;search_underbar&#x27;) search_underbar: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;arrange_underbar&#x27;) arrange_underbar: TemplateRef&lt;any&gt;;
+
+  //// offcanvas theater info
+  hideTheaterInfo: boolean &#x3D; false;
+  //-&gt; nav data for nodes
+  tabnavElementTheater: TabnavElement;
+  @ViewChild(&#x27;tab_theater_basic&#x27;) tab_theater_basic?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_theater_areas&#x27;) tab_theater_areas?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_theater_tags&#x27;) tab_theater_tags?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_theater_imports&#x27;) tab_theater_imports?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_theater_deploy&#x27;) tab_theater_deploy?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_theater_map&#x27;) tab_theater_map?: TemplateRef&lt;any&gt;;
+
+
+  // offcanvas Module info
+  hideModuleInfo: boolean &#x3D; false;
+  tabnavElementModule: TabnavElement;
+  //-&gt; nav data for basic tab
+  @ViewChild(&#x27;tab_module_basic&#x27;) tab_module_basic?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_module_interfaces&#x27;) tab_module_interfaces?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_module_counter&#x27;) tab_module_counter?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_module_topology&#x27;) tab_module_topology?: TemplateRef&lt;any&gt;;
+  ///-&gt; nav for option
+  tabnavIF: TabnavElement;
+  @ViewChild(&#x27;tab_if_cons&#x27;) tab_if_cons?: TemplateRef&lt;any&gt;;
+  @ViewChild(&#x27;tab_if_prod&#x27;) tab_if_prod?: TemplateRef&lt;any&gt;;
+
+
+  constructor(
+    private render: Renderer2,
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+    private parseService: ParseService,
+    private zone: NgZone,
+    private spinnerService: SpinnerService,
+    private attachmentsService: AttachmentsService,
+    private exportService: ExportService
+  ) {
+  }
+
+  async ngOnInit(): Promise&lt;void&gt; {
+    this.spinnerService.setSpinner(true, &quot;Loading canvas&quot;);
+    if (this.isSimple) {
+      // this.theater &#x3D; {
+      //   ...this.simpleTheater,
+      //   ....TODO
+      // }  
+      this.cdr.detectChanges();
+      this.startSimpleApp();
+      this.spinnerService.setSpinner(false);
+    }
+    else {
+      from(this.startApp())
+        .subscribe(
+          (el) &#x3D;&gt; {
+            this.spinnerService.setSpinner(false);
+          }
+        )
+    }
+  }
+
+  async startSimpleApp(): Promise&lt;void&gt; {
+
+    this.container &#x3D; this.el.nativeElement;
+
+    this.editor &#x3D; new NodeEditor(&#x27;theaterEditor@0.1.0&#x27;, this.container);
+
+    this.engine &#x3D; new Engine(&#x27;theaterEngine@0.2.0&#x27;);
+
+    var v &#x3D; new ReteTheaterVisualizerSettings(this.container, this.editor, this.components, this.engine);
+
+    v.editorUSE_simple();
+    this.editor.on(&quot;nodeselected&quot;, (node) &#x3D;&gt; {
+      this.nodeSelected &#x3D; node;
+    });
+    this.editor.on(&quot;connectioncreated&quot;, connection &#x3D;&gt; {
+      let node &#x3D; connection.output.node;
+      this.editor.view.updateConnections({ node });
+    });
+    // prevent connection creation
+    this.editor.on(&#x27;connectiondrop&#x27;, io &#x3D;&gt; {
+      return null;
+    });
+
+    this.editor.on(&#x27;connectionpick&#x27;, io &#x3D;&gt; {
+      return false;
+    });
+
+    await this.addNodes();
+
+    this.arrangenodes();
+
+    // this.displayAllNodes();
+
+    this.editor.view.resize();
+
+    this.editor.trigger(&#x27;process&#x27;);
+
+    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+
+  }
+
+  async startApp(): Promise&lt;void&gt; {
+
+    // this.module &#x3D; await this.parseService.parseModuleForModuleVisualizer(1459);
+
+    this.container &#x3D; this.el.nativeElement;
+
+    this.editor &#x3D; new NodeEditor(&#x27;theaterEditor@0.1.0&#x27;, this.container);
+
+    this.engine &#x3D; new Engine(&#x27;theaterEngine@0.2.0&#x27;);
+
+    var v &#x3D; new ReteTheaterVisualizerSettings(this.container, this.editor, this.components, this.engine);
+
+    v.editorUSE();
+
+    this.editor.on(&quot;nodeselected&quot;, (node) &#x3D;&gt; {
+      // this.zone.run(() &#x3D;&gt; {
+      this.touchModule(node);
+      // });
+    });
+
+
+    this.editor.on(&#x27;rendernode&#x27;, ({ el, node }) &#x3D;&gt; {
+      el.addEventListener(&#x27;dblclick&#x27;, () &#x3D;&gt; {
+        // this.zone.run(() &#x3D;&gt; {
+        this.showhideModuleInfo(node)
+        // })
+      });
+    });
+
+    this.editor.on(&quot;connectioncreated&quot;, connection &#x3D;&gt; {
+      // this.zone.run(() &#x3D;&gt; {
+      let node &#x3D; connection.output.node;
+      this.editor.view.updateConnections({ node });
+      // });
+    });
+
+    // prevent connection creation
+    this.editor.on(&#x27;connectiondrop&#x27;, io &#x3D;&gt; {
+      return null;
+    });
+
+    this.editor.on(&#x27;connectionpick&#x27;, io &#x3D;&gt; {
+      return false;
+    });
+
+    this.editor.on(&quot;nodecreate&quot;, (node) &#x3D;&gt; {
+      // console.log(node);
+    });
+
+    this.editor.on(&#x27;zoom&#x27;, ({ source }) &#x3D;&gt; {
+      return source !&#x3D;&#x3D; &#x27;dblclick&#x27;;
+    });
+
+
+    this.editor.on(&#x27;showcontextmenu&#x27;, ({ node }) &#x3D;&gt; { // prevent context menu for nodes -&gt; no delete/copy
+      return !node
+    });
+
+    this.components.map(c &#x3D;&gt; {
+      this.editor.register(c);
+      this.engine.register(c);
+    });
+
+    await this.addNodes();
+
+    // this.displayAllNodes();
+
+    this.editor.view.resize();
+
+    this.editor.trigger(&#x27;process&#x27;);
+
+    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+
+  }
+
+
+  // init func
+  ngAfterViewInit() {
+    this.initNavbar();
+    this.initUnderbar();
+    this.initTabModuleNavs();
+    this.initTabTheaterNavs();
+    this.cdr.detectChanges();
+  }
+  initNavbar() {
+    this.navbarData &#x3D; {
+      type: &quot;theater&quot;,
+      element: [
+        { text: &quot;Theater info&quot;, id: &#x27;info&#x27; },
+        { text: &quot;Download zip&quot;, id: &#x27;download&#x27; },
+        { text: &quot;Home&quot;, id: &#x27;home&#x27; },
+      ]
+    }
+  }
+  initUnderbar() {
+    this.underbarData &#x3D; [
+      {
+        element: [
+          { type: &quot;button&quot;, button: { iconClass: &quot;bi bi-arrow-counterclockwise&quot;, tooltipText: &quot;undo&quot; }, id: &#x27;undo&#x27; },
+          { type: &quot;button&quot;, button: { iconClass: &quot;bi bi-arrow-clockwise&quot;, tooltipText: &quot;redo&quot; }, id: &#x27;redo&#x27; },
+        ]
+      },
+      {
+        element: [
+          { type: &quot;separator&quot;, button: { iconClass: &quot;bi bi-grip-vertical&quot;, tooltipText: &quot;&quot; }, id: &#x27;separartor&#x27; }
+        ]
+      },
+      {
+        element: [
+          { type: &quot;button&quot;, button: { iconClass: &quot;bi bi-zoom-in&quot;, tooltipText: &quot;zoom in&quot; }, id: &#x27;zoomin&#x27; },
+          { type: &quot;button&quot;, button: { iconClass: &quot;bi bi-aspect-ratio&quot;, tooltipText: &quot;display context&quot; }, id: &#x27;showall&#x27; },
+          { type: &quot;button&quot;, button: { iconClass: &quot;bi bi-zoom-out&quot;, tooltipText: &quot;zoom out&quot; }, id: &#x27;zoomout&#x27; },
+        ]
+      },
+      {
+        element: [
+          { type: &quot;separator&quot;, button: { iconClass: &quot;bi bi-grip-vertical&quot;, tooltipText: &quot;&quot; }, id: &#x27;separator&#x27; }
+        ]
+      },
+      {
+        element: [
+          { type: &quot;template&quot;, template: this.map_underbar, id: &#x27;showmap&#x27; },
+          { type: &quot;template&quot;, template: this.arrange_underbar, id: &#x27;arrange&#x27; }
+        ]
+      },
+      {
+        element: [
+          { type: &quot;separator&quot;, button: { iconClass: &quot;bi bi-grip-vertical&quot;, tooltipText: &quot;&quot; }, id: &#x27;separator&#x27; }
+        ]
+      },
+      {
+        element: [
+          { type: &quot;template&quot;, template: this.search_underbar, id: &#x27;search&#x27; }
+        ]
+      },
+      {
+        element: [
+          { type: &quot;separator&quot;, button: { iconClass: &quot;bi bi-grip-vertical&quot;, tooltipText: &quot;&quot; }, id: &#x27;separator&#x27; }
+        ]
+      },
+      {
+        element: [
+          { type: &quot;button&quot;, button: { iconClass: &quot;bi bi-arrow-repeat&quot;, tooltipText: &quot;restore context&quot; }, id: &#x27;restore&#x27; },
+        ]
+      },
+
+    ]
+  }
+  initTabTheaterNavs() {
+    this.tabnavElementTheater &#x3D; {
+      element: [
+        { id: &quot;id_basic&quot;, text: &quot;Properties&quot;, template: this.tab_theater_basic },
+        { id: &quot;id_areas&quot;, text: &quot;Areas&quot;, template: this.tab_theater_areas },
+        { id: &quot;id_tags&quot;, text: &quot;Tags&quot;, template: this.tab_theater_tags },
+        { id: &quot;id_imp&quot;, text: &quot;Imports&quot;, template: this.tab_theater_imports },
+        { id: &quot;id_seq&quot;, text: &quot;Deployment&quot;, template: this.tab_theater_deploy },
+        { id: &quot;id_map&quot;, text: &quot;Mapping&quot;, template: this.tab_theater_map },
+      ]
+    }
+  }
+  initTabModuleNavs() {
+    this.tabnavElementModule &#x3D; {
+      element: [
+        { id: &quot;id_basic&quot;, text: &quot;Properties&quot;, template: this.tab_module_basic },
+        { id: &quot;id_if&quot;, text: &quot;Interfaces&quot;, template: this.tab_module_interfaces },
+        { id: &quot;id_cnt&quot;, text: &quot;Counter&quot;, template: this.tab_module_counter },
+        { id: &quot;id_top&quot;, text: &quot;Topology&quot;, template: this.tab_module_topology },
+      ]
+    }
+    this.tabnavIF &#x3D; {
+      element: [
+        { id: &quot;if_cons&quot;, text: &quot;Consumer&quot;, template: this.tab_if_cons },
+        { id: &quot;if_prod&quot;, text: &quot;Producer&quot;, template: this.tab_if_prod }
+      ]
+    }
+  }
+
+
+  //// NAV FUNC
+  navItemSelected(val: NavbarItem) {
+    switch (val.id) {
+      case &quot;info&quot;:
+        this.showhideTheaterInfo();
+        break;
+      case &quot;download&quot;:
+        this.downloadZIP();
+        break;
+      case &quot;home&quot;:
+        this.goHome();
+        break;
+      default:
+        break;
+    }
+  }
+  showhideTheaterInfo() {
+    this.displayTdata &#x3D; this.displayTheaterData(this.theater);
+    this.hideTheaterInfo &#x3D; !this.hideTheaterInfo;
+    this.cdr.detectChanges();
+  }
+  touchModule(node: Node) {
+    this.nodeSelected &#x3D; { ...node } as Node;
+    this.moduleSelected &#x3D; this.theater.topology.elements[node.data.name as string].moduleInfo;
+    this.displayMdata &#x3D; this.displayModuleData(this.moduleSelected);
+    this.cdr.detectChanges();
+  }
+  showhideModuleInfo(node: Node) {
+    this.touchModule(node);
+    this.hideModuleInfo &#x3D; !this.hideModuleInfo;
+    this.displaceLeft();
+    this.cdr.detectChanges();
+  }
+  async downloadZIP() {
+    this.spinnerService.setSpinner(true, &quot;Creating theater download&quot;);
+    if (!environment.mocked) {
+      (await this.attachmentsService.getTheaterAttachment(this.theater.id))
+        .subscribe(
+          () &#x3D;&gt; {
+            this.spinnerService.setSpinner(false);
+          }
+        )
+    }
+    else {
+      this.exportService.exportTheaterToYAML(this.theater, this.editor.toJSON());
+      this.spinnerService.setSpinner(false);
+    }
+  }
+  goHome() {
+    this.router.navigateByUrl(&#x27;/home&#x27;);
+  }
+
+
+  //// operation sub.nav
+  underbarElementSelected(val: UnderbarItem) {
+    switch (val.id) {
+      case &quot;restore&quot;:
+        this.spinnerService.setSpinner(true, &quot;Restoring Nodes&quot;);
+        this.editor.clear();
+        from(this.addNodes()).subscribe(el &#x3D;&gt; {
+          this.spinnerService.setSpinner(false);
+        })
+        break;
+      case &quot;undo&quot;:
+        this.undoEditor();
+        break;
+      case &quot;redo&quot;:
+        this.redoEditor();
+        break;
+      case &quot;zoomin&quot;:
+        this.makezoom(0.1);
+        break;
+      case &quot;zoomout&quot;:
+        this.makezoom(-0.1);
+        break;
+      case &quot;showall&quot;:
+        this.displayAllNodes();
+        break;
+      case &quot;showmap&quot;:
+        this.showMinimap();
+        break;
+      case &quot;search&quot;:
+        // console.log(&quot;search&quot;);
+        break;
+      default:
+        console.warn(&quot;problem with button pressed: &quot;, val.id);
+        break;
+    }
+  }
+  undoEditor() {
+    this.editor.trigger(&quot;undo&quot;);
+  }
+  redoEditor() {
+    this.editor.trigger(&quot;redo&quot;);
+  }
+  makezoom(k: number) {
+    // k is declarend in (click) ad +- 0.1
+    const { area, container } &#x3D; this.editor.view; // read from Vue component data;
+    const rect &#x3D; area.el.getBoundingClientRect();
+    const ox &#x3D; (rect.left - container.clientWidth / 2) * k;
+    const oy &#x3D; (rect.top - container.clientHeight / 2) * k;
+    area.zoom(area.transform.k + k, ox, oy, &#x27;wheel&#x27;);
+  }
+  displayAllNodes() {
+    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+  }
+  findElement(result: string) {
+    this.nodetofind &#x3D; result;
+
+    let elementfound &#x3D; this.editor.nodes.find(n &#x3D;&gt; n.data.name &#x3D;&#x3D;&#x3D; this.nodetofind)
+    let elementpick &#x3D; new Array(elementfound); // deve necessariamente trovarsi in un array...
+
+    AreaPlugin.zoomAt(this.editor, elementpick);
+    this.editor.selectNode(elementpick[0]);
+  }
+  updateNameList() {
+    this.ModuleNameList &#x3D; [];
+    this.editor.nodes.forEach(
+      (el) &#x3D;&gt; {
+        this.ModuleNameList.push(el.data.name as string);
+      }
+    )
+  }
+  async arrangeNodes() {
+    this.editor.nodes.forEach(
+      async node &#x3D;&gt; {
+        await node.update()
+        this.editor.trigger(&quot;arrange&quot;, { node: node });
+      }
+    );
+  }
+  displaceLeft() {
+    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
+    const { area, container } &#x3D; this.editor.view; // read from Vue component data;
+    area.translate(area.transform.x - 200, area.transform.y);
+  }
+  showMinimap() {
+    var z &#x3D; document.getElementsByClassName(&quot;minimap&quot;)[0];
+    z.removeAttribute(&quot;style&quot;);
+    if (this.ismapvisible) {
+      z.setAttribute(&quot;style&quot;, &quot;visibility: hidden;&quot;);
+    }
+    else {
+      z.setAttribute(&quot;style&quot;, &quot;visibility: visible;&quot;);
+    }
+    this.ismapvisible &#x3D; !this.ismapvisible
+  }
+
+  ////// node func
+  updateSelectedNode() {
+    this.nodeSelected.update();
+  }
+
+
+
+  // add node function
+  public async addNodes() {
+
+    var nodes &#x3D; [];
+
+    await Promise.all(
+      Object.entries(this.theater.topology.elements).map(async ([key, value]) &#x3D;&gt; {
+        try {
+          nodes[key] &#x3D; await this.components[IndexModuleComponent[ModuleType1[value.type]]].createNode(value.rete);
+        }
+        catch (e) {
+          console.warn(&quot;Problem with: &quot;, key, &quot; with value: \n&quot;, value)
+        }
+      })
+    );
+
+    await Promise.all(
+      Object.entries(nodes).map(([key, value]) &#x3D;&gt; {
+        try {
+          this.editor.addNode(value);
+        }
+        catch (e) {
+          console.warn(&quot;Problem with: &quot;, key, &quot; with value: \n&quot;, value)
+        }
+      })
+    );
+
+    await Promise.all(
+      Object.entries(this.theater.topology.connection).map(([key, value]) &#x3D;&gt; {
+        let connection: ReteConnection &#x3D; value;
+        try {
+          if (nodes[connection[&quot;to&quot;]] !&#x3D;&#x3D; undefined &amp;&amp; nodes[connection[&quot;from&quot;]] !&#x3D;&#x3D; undefined) {
+            // this.editor.connect(nodes[value[&quot;to&quot;]].outputs.get(value[&quot;port_dst&quot;]), nodes[value[&quot;from&quot;]].inputs.get(value[&quot;port_src&quot;]));
+            this.editor.connect(nodes[connection[&quot;to&quot;]].outputs.get(connection[&quot;port_dst&quot;]), nodes[connection[&quot;from&quot;]].inputs.get(connection[&quot;port_src&quot;]));
+            // console.log(&quot;try connection:&quot;,nodes[value[&quot;from&quot;]].inputs.get(value[&quot;port_src&quot;]), nodes[value[&quot;to&quot;]].outputs.get(value[&quot;port_dst&quot;]))
+          }
+        } catch (e) {
+          console.warn(
+            &quot;PROBLEM: &quot;, e, &quot;\ntry&quot;,
+            &quot; fomr (output)&quot;,
+            connection[&quot;from&quot;], &quot; port &quot;, connection[&quot;port_src&quot;], &quot; data: &quot;, nodes[connection[&quot;from&quot;]],
+            &quot; to (input)&quot;,
+            connection[&quot;to&quot;], &quot; port &quot;, connection[&quot;port_dst&quot;], &quot; data: &quot;, nodes[connection[&quot;to&quot;]],
+          );
+        }
+      })
+    );
+
+    this.arrangenodes();
+
+  }
+
+  // editor func
+  public async arrangenodes() {
+    this.editor.nodes.forEach(async node &#x3D;&gt; {
+      await node.update()
+      this.editor.trigger(&quot;arrange&quot;, { node: node });
+    });
+
+  }
+
+  // async not parse
+  notSort() {
+    return 0;
+  }
+
+  print(...Params: any[]) {
+    console.log(Params);
+  }
+
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;isSimple&quot; class&#x3D;&quot;container container-wrapper&quot;&gt;
+    &lt;div class&#x3D;&quot;row wrapper&quot; style&#x3D;&quot;padding: 3%;&quot;&gt;
+        &lt;div #theaterEditor class&#x3D;&quot;node-editor rete-wrapper shadow&quot;
+            style&#x3D;&quot;background: rgb(33, 37, 41); border-radius: 5%;&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;ng-container *ngIf&#x3D;&quot;!isSimple&quot;&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!------------------------NAVBAR-----------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;app-navbar *ngIf&#x3D;&quot;navbarData&quot; [title]&#x3D;&quot;theater?theater.name:&#x27;@&#x27;&quot; [element]&#x3D;&quot;navbarData&quot;
+        (itemSelected)&#x3D;&quot;navItemSelected($event)&quot;&gt;
+    &lt;/app-navbar&gt;
+
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!------------------------underBAR---------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;div class&#x3D;&quot;container container-wrapper&quot;&gt;
+
+        &lt;app-underbar *ngIf&#x3D;&quot;underbarData&quot; [(element)]&#x3D;&quot;underbarData&quot; (itemSelected)&#x3D;&quot;underbarElementSelected($event)&quot;&gt;
+        &lt;/app-underbar&gt;
+        &lt;!-- | --&gt;
+        &lt;!-- V --&gt;
+        &lt;ng-template #map_underbar&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot; (click)&#x3D;&quot;showMinimap()&quot; data-toggle&#x3D;&quot;tooltip&quot;
+                data-placement&#x3D;&quot;bottom&quot; title&#x3D;&quot;show/hide map&quot;&gt;
+                &lt;div class&#x3D;&quot;d-grid&quot;&gt;
+                    &lt;i *ngIf&#x3D;&quot;!ismapvisible&quot; class&#x3D;&quot;bi bi-slash-lg d-grid-1-1-1&quot;&gt;&lt;/i&gt;
+                    &lt;i class&#x3D;&quot;bi bi-map d-grid-1-1-2&quot;&gt;&lt;/i&gt;
+                &lt;/div&gt;
+            &lt;/button&gt;
+        &lt;/ng-template&gt;
+        &lt;ng-template #search_underbar&gt;
+            &lt;div class&#x3D;&quot;search-div&quot;&gt;
+                &lt;input ngxTypeahead *ngIf&#x3D;&quot;ModuleNameList&quot; type&#x3D;&quot;text&quot;
+                    class&#x3D;&quot;col-sm-12 form-control bg-secondary search-input&quot; placeholder&#x3D;&quot;Find Module&quot;
+                    [value]&#x3D;&quot;nodetofind&quot; [taList]&#x3D;&quot;ModuleNameList&quot; (taSelected)&#x3D;&quot;findElement($event)&quot;
+                    (click)&#x3D;&quot;updateNameList()&quot;&gt;
+                &lt;!-- &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-info&quot; (click)&#x3D;&quot;findElement()&quot;&gt;find&lt;/button&gt; --&gt;
+            &lt;/div&gt;
+        &lt;/ng-template&gt;
+        &lt;ng-template #arrange_underbar&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot; (click)&#x3D;&quot;arrangeNodes()&quot; data-toggle&#x3D;&quot;tooltip&quot;
+                data-placement&#x3D;&quot;bottom&quot; title&#x3D;&quot;arrange modules&quot;&gt;
+                &lt;i class&#x3D;&quot;bi bi-bezier&quot;&gt;&lt;/i&gt;
+            &lt;/button&gt;
+        &lt;/ng-template&gt;
+
+        &lt;!-- -------NODE EDITOR------- --&gt;
+        &lt;div class&#x3D;&quot;row wrapper padding-div-node-editor&quot;&gt;
+            &lt;div class&#x3D;&quot;col p-0 w-h-100&quot;&gt;
+                &lt;div #theaterEditor class&#x3D;&quot;node-editor w-h-100-important border-node-editor&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!---------------------OFFCANVAS MODULE DATA----------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+
+    &lt;app-offcanvas *ngIf&#x3D;&quot;nodeSelected &amp;&amp; moduleSelected&quot; [(show)]&#x3D;&quot;hideModuleInfo&quot; [element]&#x3D;&quot;offcanvasElementModule&quot;
+        [title]&#x3D;&quot;(moduleSelected.name?moduleSelected.name:&#x27;Module&#x27;)+&#x27; info&#x27;&quot; position&#x3D;&quot;end&quot;&gt;
+    &lt;/app-offcanvas&gt;
+    &lt;!-- | --&gt;
+    &lt;!-- V --&gt;
+    &lt;ng-template #offcanvasElementModule class&#x3D;&quot;search-input&quot;&gt;
+        &lt;app-tabnav *ngIf&#x3D;&quot;nodeSelected &amp;&amp; moduleSelected &amp;&amp; tabnavElementModule&quot; [element]&#x3D;&quot;tabnavElementModule&quot;&gt;
+        &lt;/app-tabnav&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #tab_module_basic&gt;
+        &lt;ng-container *ngFor&#x3D;&quot;let field of displayMdata[&#x27;basic&#x27;]|keyvalue : notSort&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let item of field.value | keyvalue : notSort&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;item.key&quot; class&#x3D;&quot;row div-data-item&quot;&gt;
+                    &lt;h5&gt; {{item.key}} &lt;/h5&gt;
+                    &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                        &lt;li *ngFor&#x3D;&quot;let x of item.value&quot; class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                            {{x}}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #tab_module_counter&gt;
+        &lt;ng-container *ngFor&#x3D;&quot;let field of displayMdata[&#x27;counter&#x27;]|keyvalue : notSort&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let item of field.value | keyvalue : notSort&quot;&gt;
+                &lt;div class&#x3D;&quot;row div-data-item&quot;&gt;
+                    &lt;h5&gt;{{item.key}}&lt;/h5&gt;
+                    &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                        &lt;li class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                            {{item.value}}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #tab_module_topology&gt;
+        &lt;div class&#x3D;&quot;wrapper-module-topology&quot;&gt;
+            &lt;app-rete-module-visualizer *ngIf&#x3D;&quot;moduleSelected&quot; [isSimple]&#x3D;&quot;true&quot; [simpleModule]&#x3D;&quot;moduleSelected&quot;&gt;
+            &lt;/app-rete-module-visualizer&gt;
+        &lt;/div&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #tab_module_interfaces&gt;
+        &lt;app-tabnav *ngIf&#x3D;&quot;moduleSelected &amp;&amp; tabnavIF&quot; [element]&#x3D;&quot;tabnavIF&quot;&gt;&lt;/app-tabnav&gt;
+    &lt;/ng-template&gt;
+    &lt;!-- | --&gt;
+    &lt;!-- V --&gt;
+    &lt;ng-template #tab_if_cons&gt;
+        &lt;ng-container *ngIf&#x3D;&quot;displayMdata[&#x27;interfaces&#x27;][&#x27;consumer_if&#x27;].length&gt;0&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let item of displayMdata[&#x27;interfaces&#x27;][&#x27;consumer_if&#x27;]|keyvalue : notSort&quot;&gt;
+                &lt;ng-container *ngFor&#x3D;&quot;let field of item.value|keyvalue : notSort&quot; class&#x3D;&quot;row div-data-item&quot;&gt;
+                    &lt;app-window-item [title]&#x3D;&quot;field.key&quot; [onlyResize]&#x3D;&quot;true&quot;&gt;
+                        &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                            &lt;li *ngFor&#x3D;&quot;let x of field.value|keyvalue : notSort&quot; class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                                {{x.key}}&lt;br&gt;{{x.value}}
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/app-window-item&gt;
+                &lt;/ng-container&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+        &lt;div *ngIf&#x3D;&quot;displayMdata[&#x27;interfaces&#x27;][&#x27;consumer_if&#x27;].length&lt;&#x3D;0&quot; class&#x3D;&quot;div-data-item&quot;&gt;
+            &lt;h5&gt; This module doesn&#x27;t have consumer interface &lt;/h5&gt;
+        &lt;/div&gt;
+    &lt;/ng-template&gt;
+    &lt;ng-template #tab_if_prod&gt;
+        &lt;ng-container *ngIf&#x3D;&quot;displayMdata[&#x27;interfaces&#x27;][&#x27;producer_if&#x27;].length&gt;0&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let item of displayMdata[&#x27;interfaces&#x27;][&#x27;producer_if&#x27;]|keyvalue : notSort&quot;&gt;
+                &lt;ng-container *ngFor&#x3D;&quot;let field of item.value|keyvalue : notSort&quot; class&#x3D;&quot;row div-data-item&quot;&gt;
+                    &lt;app-window-item [title]&#x3D;&quot;field.key&quot; [onlyResize]&#x3D;&quot;true&quot;&gt;
+                        &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                            &lt;li *ngFor&#x3D;&quot;let x of field.value|keyvalue : notSort&quot; class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                                {{x.key}}&lt;br&gt;{{x.value}}
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/app-window-item&gt;
+                &lt;/ng-container&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+        &lt;div *ngIf&#x3D;&quot;displayMdata[&#x27;interfaces&#x27;][&#x27;producer_if&#x27;].length&lt;&#x3D;0&quot; class&#x3D;&quot;div-data-item&quot;&gt;
+            &lt;h5&gt; This module doesn&#x27;t have producer interface &lt;/h5&gt;
+        &lt;/div&gt;
+    &lt;/ng-template&gt;
+
+
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!------------------------OFFCANVAS THEATER------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;!-----------------------------------------------------------------------------&gt;
+    &lt;app-offcanvas *ngIf&#x3D;&quot;theater&quot; [(show)]&#x3D;&quot;hideTheaterInfo&quot; [element]&#x3D;&quot;offcanvasElementTheater&quot; [title]&#x3D;&quot;theater.name&quot;
+        alt_title&#x3D;&quot;Theater info&quot; position&#x3D;&quot;start&quot;&gt;
+    &lt;/app-offcanvas&gt;
+
+    &lt;!-- | --&gt;
+    &lt;!-- V --&gt;
+
+    &lt;ng-template #offcanvasElementTheater&gt;
+        &lt;app-tabnav *ngIf&#x3D;&quot;tabnavElementTheater&quot; [element]&#x3D;&quot;tabnavElementTheater&quot;&gt;&lt;/app-tabnav&gt;
+    &lt;/ng-template&gt;
+
+    &lt;!-- | --&gt;
+    &lt;!-- V --&gt;
+
+    &lt;ng-template #tab_theater_basic&gt;
+        &lt;ng-container *ngFor&#x3D;&quot;let field of displayTdata[&#x27;basic&#x27;]|keyvalue : notSort&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let item of field.value | keyvalue : notSort&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;item.key&quot; class&#x3D;&quot;row div-data-item&quot;&gt;
+                    &lt;h5&gt; {{item.key}} &lt;/h5&gt;
+                    &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                        &lt;li *ngFor&#x3D;&quot;let x of item.value&quot; class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                            {{x}}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+    &lt;/ng-template&gt;
+
+
+    &lt;ng-template #tab_theater_areas&gt;
+        &lt;ng-container *ngFor&#x3D;&quot;let field of displayTdata[&#x27;areas&#x27;]|keyvalue : notSort&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let item of field.value | keyvalue : notSort&quot;&gt;
+                &lt;app-window-item [title]&#x3D;&quot;item.key&quot; [onlyResize]&#x3D;&quot;true&quot;&gt;
+                    &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                        &lt;li *ngFor&#x3D;&quot;let x of item.value&quot; class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                            {{x}}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/app-window-item&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #tab_theater_tags&gt;
+        &lt;div *ngIf&#x3D;&quot;displayTdata[&#x27;tags&#x27;].length&lt;&#x3D;0&quot; class&#x3D;&quot;div-data-item&quot;&gt;
+            &lt;h5&gt; No tags found &lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;ng-container *ngIf&#x3D;&quot;displayTdata[&#x27;tags&#x27;].length&gt;0&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let field of displayTdata[&#x27;tags&#x27;]|keyvalue : notSort&quot;&gt;
+                &lt;ng-container *ngFor&#x3D;&quot;let item of field.value | keyvalue : notSort&quot;&gt;
+                    &lt;app-window-item [title]&#x3D;&quot;item.key&quot; [onlyResize]&#x3D;&quot;true&quot;&gt;
+                        &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                            &lt;li *ngFor&#x3D;&quot;let x of item.value&quot; class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                                {{x}}
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/app-window-item&gt;
+                &lt;/ng-container&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #tab_theater_imports&gt;
+        &lt;ng-container *ngFor&#x3D;&quot;let field of displayTdata[&#x27;imports&#x27;]|keyvalue : notSort&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let item of field.value | keyvalue : notSort&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;item.key&quot; class&#x3D;&quot;row div-data-item&quot;&gt;
+                    &lt;h5&gt; {{item.key}} &lt;/h5&gt;
+                    &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                        &lt;li *ngFor&#x3D;&quot;let x of item.value&quot; class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                            {{x}}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #tab_theater_deploy&gt;
+        &lt;div class&#x3D;&quot;row div-data-item&quot;&gt;
+            &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                &lt;ng-container *ngFor&#x3D;&quot;let field of displayTdata[&#x27;deploymentSequence&#x27;]|keyvalue : notSort&quot;&gt;
+                    &lt;ng-container *ngFor&#x3D;&quot;let item of field.value | keyvalue : notSort&quot;&gt;
+                        &lt;li class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                            {{item.key}}: {{item.value}}
+                        &lt;/li&gt;
+                    &lt;/ng-container&gt;
+                &lt;/ng-container&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #tab_theater_map&gt;
+        &lt;ng-container *ngFor&#x3D;&quot;let field of displayTdata[&#x27;mapping&#x27;]|keyvalue&quot;&gt;
+            &lt;ng-container *ngFor&#x3D;&quot;let item of field.value | keyvalue : notSort&quot;&gt;
+                &lt;app-window-item [title]&#x3D;&quot;item.key&quot; [onlyResize]&#x3D;&quot;true&quot;&gt;
+                    &lt;ul class&#x3D;&quot;list-group list&quot;&gt;
+                        &lt;li *ngFor&#x3D;&quot;let x of item.value | keyvalue : notSort&quot; class&#x3D;&quot;list-group-item list-item&quot;&gt;
+                            {{x.key.toUpperCase()}}: &lt;br&gt; {{x.value}}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/app-window-item&gt;
+            &lt;/ng-container&gt;
+        &lt;/ng-container&gt;
+    &lt;/ng-template&gt;
+
+
+&lt;/ng-container&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./rete-theater-visualizer.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;src/app/rete-settings/style/reteStyle.sass&#x27;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="isSimple" class="container container-wrapper">    <div class="row wrapper" style="padding: 3%;">        <div #theaterEditor class="node-editor rete-wrapper shadow"            style="background: rgb(33, 37, 41); border-radius: 5%;"></div>    </div></div><ng-container *ngIf="!isSimple">    <!----------------------------------------------------------------------------->    <!----------------------------------------------------------------------------->    <!------------------------NAVBAR----------------------------------------------->    <!----------------------------------------------------------------------------->    <!----------------------------------------------------------------------------->    <app-navbar *ngIf="navbarData" [title]="theater?theater.name:\'@\'" [element]="navbarData"        (itemSelected)="navItemSelected($event)">    </app-navbar>    <!----------------------------------------------------------------------------->    <!----------------------------------------------------------------------------->    <!------------------------underBAR--------------------------------------------->    <!----------------------------------------------------------------------------->    <!----------------------------------------------------------------------------->    <div class="container container-wrapper">        <app-underbar *ngIf="underbarData" [(element)]="underbarData" (itemSelected)="underbarElementSelected($event)">        </app-underbar>        <!-- | -->        <!-- V -->        <ng-template #map_underbar>            <button type="button" class="btn btn-secondary" (click)="showMinimap()" data-toggle="tooltip"                data-placement="bottom" title="show/hide map">                <div class="d-grid">                    <i *ngIf="!ismapvisible" class="bi bi-slash-lg d-grid-1-1-1"></i>                    <i class="bi bi-map d-grid-1-1-2"></i>                </div>            </button>        </ng-template>        <ng-template #search_underbar>            <div class="search-div">                <input ngxTypeahead *ngIf="ModuleNameList" type="text"                    class="col-sm-12 form-control bg-secondary search-input" placeholder="Find Module"                    [value]="nodetofind" [taList]="ModuleNameList" (taSelected)="findElement($event)"                    (click)="updateNameList()">                <!-- <button type="button" class="btn btn-info" (click)="findElement()">find</button> -->            </div>        </ng-template>        <ng-template #arrange_underbar>            <button type="button" class="btn btn-secondary" (click)="arrangeNodes()" data-toggle="tooltip"                data-placement="bottom" title="arrange modules">                <i class="bi bi-bezier"></i>            </button>        </ng-template>        <!-- -------NODE EDITOR------- -->        <div class="row wrapper padding-div-node-editor">            <div class="col p-0 w-h-100">                <div #theaterEditor class="node-editor w-h-100-important border-node-editor">                </div>            </div>        </div>    </div>    <!----------------------------------------------------------------------------->    <!----------------------------------------------------------------------------->    <!---------------------OFFCANVAS MODULE DATA---------------------------------->    <!----------------------------------------------------------------------------->    <!----------------------------------------------------------------------------->    <app-offcanvas *ngIf="nodeSelected && moduleSelected" [(show)]="hideModuleInfo" [element]="offcanvasElementModule"        [title]="(moduleSelected.name?moduleSelected.name:\'Module\')+\' info\'" position="end">    </app-offcanvas>    <!-- | -->    <!-- V -->    <ng-template #offcanvasElementModule class="search-input">        <app-tabnav *ngIf="nodeSelected && moduleSelected && tabnavElementModule" [element]="tabnavElementModule">        </app-tabnav>    </ng-template>    <ng-template #tab_module_basic>        <ng-container *ngFor="let field of displayMdata[\'basic\']|keyvalue : notSort">            <ng-container *ngFor="let item of field.value | keyvalue : notSort">                <div *ngIf="item.key" class="row div-data-item">                    <h5> {{item.key}} </h5>                    <ul class="list-group list">                        <li *ngFor="let x of item.value" class="list-group-item list-item">                            {{x}}                        </li>                    </ul>                </div>            </ng-container>        </ng-container>    </ng-template>    <ng-template #tab_module_counter>        <ng-container *ngFor="let field of displayMdata[\'counter\']|keyvalue : notSort">            <ng-container *ngFor="let item of field.value | keyvalue : notSort">                <div class="row div-data-item">                    <h5>{{item.key}}</h5>                    <ul class="list-group list">                        <li class="list-group-item list-item">                            {{item.value}}                        </li>                    </ul>                </div>            </ng-container>        </ng-container>    </ng-template>    <ng-template #tab_module_topology>        <div class="wrapper-module-topology">            <app-rete-module-visualizer *ngIf="moduleSelected" [isSimple]="true" [simpleModule]="moduleSelected">            </app-rete-module-visualizer>        </div>    </ng-template>    <ng-template #tab_module_interfaces>        <app-tabnav *ngIf="moduleSelected && tabnavIF" [element]="tabnavIF"></app-tabnav>    </ng-template>    <!-- | -->    <!-- V -->    <ng-template #tab_if_cons>        <ng-container *ngIf="displayMdata[\'interfaces\'][\'consumer_if\'].length>0">            <ng-container *ngFor="let item of displayMdata[\'interfaces\'][\'consumer_if\']|keyvalue : notSort">                <ng-container *ngFor="let field of item.value|keyvalue : notSort" class="row div-data-item">                    <app-window-item [title]="field.key" [onlyResize]="true">                        <ul class="list-group list">                            <li *ngFor="let x of field.value|keyvalue : notSort" class="list-group-item list-item">                                {{x.key}}<br>{{x.value}}                            </li>                        </ul>                    </app-window-item>                </ng-container>            </ng-container>        </ng-container>        <div *ngIf="displayMdata[\'interfaces\'][\'consumer_if\'].length<=0" class="div-data-item">            <h5> This module doesn\'t have consumer interface </h5>        </div>    </ng-template>    <ng-template #tab_if_prod>        <ng-container *ngIf="displayMdata[\'interfaces\'][\'producer_if\'].length>0">            <ng-container *ngFor="let item of displayMdata[\'interfaces\'][\'producer_if\']|keyvalue : notSort">                <ng-container *ngFor="let field of item.value|keyvalue : notSort" class="row div-data-item">                    <app-window-item [title]="field.key" [onlyResize]="true">                        <ul class="list-group list">                            <li *ngFor="let x of field.value|keyvalue : notSort" class="list-group-item list-item">                                {{x.key}}<br>{{x.value}}                            </li>                        </ul>                    </app-window-item>                </ng-container>            </ng-container>        </ng-container>        <div *ngIf="displayMdata[\'interfaces\'][\'producer_if\'].length<=0" class="div-data-item">            <h5> This module doesn\'t have producer interface </h5>        </div>    </ng-template>    <!----------------------------------------------------------------------------->    <!----------------------------------------------------------------------------->    <!------------------------OFFCANVAS THEATER------------------------------------>    <!----------------------------------------------------------------------------->    <!----------------------------------------------------------------------------->    <app-offcanvas *ngIf="theater" [(show)]="hideTheaterInfo" [element]="offcanvasElementTheater" [title]="theater.name"        alt_title="Theater info" position="start">    </app-offcanvas>    <!-- | -->    <!-- V -->    <ng-template #offcanvasElementTheater>        <app-tabnav *ngIf="tabnavElementTheater" [element]="tabnavElementTheater"></app-tabnav>    </ng-template>    <!-- | -->    <!-- V -->    <ng-template #tab_theater_basic>        <ng-container *ngFor="let field of displayTdata[\'basic\']|keyvalue : notSort">            <ng-container *ngFor="let item of field.value | keyvalue : notSort">                <div *ngIf="item.key" class="row div-data-item">                    <h5> {{item.key}} </h5>                    <ul class="list-group list">                        <li *ngFor="let x of item.value" class="list-group-item list-item">                            {{x}}                        </li>                    </ul>                </div>            </ng-container>        </ng-container>    </ng-template>    <ng-template #tab_theater_areas>        <ng-container *ngFor="let field of displayTdata[\'areas\']|keyvalue : notSort">            <ng-container *ngFor="let item of field.value | keyvalue : notSort">                <app-window-item [title]="item.key" [onlyResize]="true">                    <ul class="list-group list">                        <li *ngFor="let x of item.value" class="list-group-item list-item">                            {{x}}                        </li>                    </ul>                </app-window-item>            </ng-container>        </ng-container>    </ng-template>    <ng-template #tab_theater_tags>        <div *ngIf="displayTdata[\'tags\'].length<=0" class="div-data-item">            <h5> No tags found </h5>        </div>        <ng-container *ngIf="displayTdata[\'tags\'].length>0">            <ng-container *ngFor="let field of displayTdata[\'tags\']|keyvalue : notSort">                <ng-container *ngFor="let item of field.value | keyvalue : notSort">                    <app-window-item [title]="item.key" [onlyResize]="true">                        <ul class="list-group list">                            <li *ngFor="let x of item.value" class="list-group-item list-item">                                {{x}}                            </li>                        </ul>                    </app-window-item>                </ng-container>            </ng-container>        </ng-container>    </ng-template>    <ng-template #tab_theater_imports>        <ng-container *ngFor="let field of displayTdata[\'imports\']|keyvalue : notSort">            <ng-container *ngFor="let item of field.value | keyvalue : notSort">                <div *ngIf="item.key" class="row div-data-item">                    <h5> {{item.key}} </h5>                    <ul class="list-group list">                        <li *ngFor="let x of item.value" class="list-group-item list-item">                            {{x}}                        </li>                    </ul>                </div>            </ng-container>        </ng-container>    </ng-template>    <ng-template #tab_theater_deploy>        <div class="row div-data-item">            <ul class="list-group list">                <ng-container *ngFor="let field of displayTdata[\'deploymentSequence\']|keyvalue : notSort">                    <ng-container *ngFor="let item of field.value | keyvalue : notSort">                        <li class="list-group-item list-item">                            {{item.key}}: {{item.value}}                        </li>                    </ng-container>                </ng-container>            </ul>        </div>    </ng-template>    <ng-template #tab_theater_map>        <ng-container *ngFor="let field of displayTdata[\'mapping\']|keyvalue">            <ng-container *ngFor="let item of field.value | keyvalue : notSort">                <app-window-item [title]="item.key" [onlyResize]="true">                    <ul class="list-group list">                        <li *ngFor="let x of item.value | keyvalue : notSort" class="list-group-item list-item">                            {{x.key.toUpperCase()}}: <br> {{x.value}}                        </li>                    </ul>                </app-window-item>            </ng-container>        </ng-container>    </ng-template></ng-container></div>'
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AccordionComponent', 'selector': 'app-accordion'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComposerComponent', 'selector': 'app-composer'},{'name': 'ControlTemplate', 'selector': ''},{'name': 'DataInputComponent', 'selector': 'app-data-input'},{'name': 'DataInputV2Component', 'selector': 'app-data-input-v2'},{'name': 'DataItemComponent', 'selector': 'app-window-item'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HostComponent', 'selector': ''},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'MirroringModuleInstanceComponent', 'selector': ''},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarElementComponent', 'selector': 'app-navbar-element'},{'name': 'NetworkComponent', 'selector': ''},{'name': 'OffcanvasComponent', 'selector': 'app-offcanvas'},{'name': 'ReteModuleComposerComponent', 'selector': 'app-rete-module-composer'},{'name': 'ReteModuleVisualizerComponent', 'selector': 'app-rete-module-visualizer'},{'name': 'ReteTheaterComposerComponent', 'selector': 'app-rete-theater-composer'},{'name': 'ReteTheaterVisualizerComponent', 'selector': 'app-rete-theater-visualizer'},{'name': 'SubnetComponent', 'selector': ''},{'name': 'TabnavComponent', 'selector': 'app-tabnav'},{'name': 'TheaterInternalServiceModuleInstanceComponent', 'selector': ''},{'name': 'TheaterModuleInstanceComponent', 'selector': ''},{'name': 'UnderbarComponent', 'selector': 'app-underbar'},{'name': 'VisualizerComponent', 'selector': 'app-displayer'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ReteTheaterVisualizerComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ReteTheaterVisualizerComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

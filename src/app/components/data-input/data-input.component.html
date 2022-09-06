@@ -1,0 +1,62 @@
+<div class="container input-group p-0">
+    <form [formGroup]="dataForm" (ngSubmit)="save()" class="w-100">
+        <ng-container *ngFor="let item of element.element">
+            <div class="col-12 text-left" *ngIf="item.text">
+                <cite style="font-size: small;"> - {{item.text}} </cite>
+            </div>
+            <div class="col-12 input-group mb-2">
+                <!-- ELEMENT PREPENDED -->
+                <div *ngIf="item.data_prepended" class="input-group-prepend">
+                    <span class="input-group-text"> {{item.data_prepended}} </span>
+                </div>
+                <!-- ELEMENT INPUT -->
+                <!-- text -->
+                <ng-container *ngIf="item.type === 'text'">
+                    <input [id]="item.id" type="text" class="form-control" formControlName="{{item.id}}"
+                        [placeholder]="item.placeholder?item.placeholder:''" [attr.aria-label]="item.text">
+                </ng-container>
+                <!-- text-area -->
+                <ng-container *ngIf="item.type === 'textarea'">
+                    <textarea [id]="item.id" class="form-control" [attr.aria-label]="item.id"
+                        formControlName="{{item.id}}" [placeholder]="item.placeholder?item.placeholder:''"
+                        maxlength="5000"></textarea>
+                </ng-container>
+                <!-- selection -->
+                <ng-container *ngIf="item.type === 'selection'">
+                    <select *ngIf="item.selection.length" [id]="item.id" class="form-select"
+                        formControlName="{{item.id}}">
+                        <option *ngFor="let opt of item.selection; let i=index" [selected]="i===item.selected_number"
+                            [attr.value]="opt.value">
+                            {{opt.text}}
+                        </option>
+                    </select>
+                    <h5 *ngIf="!(item.selection.length)"> No selectable list found </h5>
+                </ng-container>
+                <!-- checkbox -->
+                <ng-container *ngIf="item.type === 'checkbox'">
+                    <div class="form-check form-switch">
+                        <input [id]="item.id" class="form-check-input" type="checkbox"
+                            [checked]="item.checked?true:false" formControlName="{{item.id}}">
+                        <label class="form-check-label">{{item.text}}</label>
+                    </div>
+                </ng-container>
+                <!-- ELEMENT APPENDED -->
+                <div *ngIf="item.data_appended" class="input-group-appended">
+                    <span class="input-group-text"> {{item.data_appended}} </span>
+                </div>
+            </div>
+        </ng-container>
+        <div class="row" style="
+            width: 100%;
+            justify-content: center;
+            text-align: center;">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary w-75" [disabled]="dataForm.invalid">Save</button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-danger w-75" (click)="exit()">Cancel</button>
+                <!-- <button type="button" class="btn btn-info w-100" (click)="print(dataForm)">aaa</button> -->
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,390 @@
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!------------------------NAVBAR----------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+
+<app-navbar *ngIf="navbarData" [title]="theater?theater.name?theater.name:'@':'@'" [element]="navbarData"
+    (itemSelected)="navItemSelected($event)">
+</app-navbar>
+<ng-template #download>
+    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="dd" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" (click)="showbtn=!showbtn">
+        Download
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dd"  [ngStyle]="{'display': (showbtn?'block':'none')}" (click)="showbtn=!showbtn">
+        <a class="dropdown-item" href="javascript:void(0)" (click)="downloadYAMLfunction()">YAML</a>
+        <a class="dropdown-item" href="javascript:void(0)" (click)="downloadJSONfunction()">JSON</a>
+    </div>
+</ng-template>
+
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!------------------------underBAR--------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<div class="container container-wrapper">
+
+    <app-underbar *ngIf="underbarData" [(element)]="underbarData" (itemSelected)="underbarElementSelected($event)">
+    </app-underbar>
+    <!-- | -->
+    <!-- V -->
+    <ng-template #map_underbar>
+        <button type="button" class="btn btn-secondary" (click)="showMinimap()" data-toggle="tooltip"
+            data-placement="bottom" title="show/hide map">
+            <div class="d-grid">
+                <i *ngIf="!ismapvisible" class="bi bi-slash-lg d-grid-1-1-1"></i>
+                <i class="bi bi-map d-grid-1-1-2"></i>
+            </div>
+        </button>
+    </ng-template>
+    <ng-template #search_underbar>
+        <div class="search-div">
+            <input ngxTypeahead *ngIf="ModuleNameList" type="text"
+                class="col-sm-12 form-control bg-secondary search-input" placeholder="Find Module" [value]="nodetofind"
+                [taList]="ModuleNameList" (taSelected)="findElement($event)" (click)="updateNameList()">
+            <!-- <button type="button" class="btn btn-info" (click)="findElement()">find</button> -->
+        </div>
+    </ng-template>
+    <ng-template #arrange_underbar>
+        <button type="button" class="btn btn-secondary" (click)="arrangeNodes()" data-toggle="tooltip"
+            data-placement="bottom" title="arrange modules">
+            <i class="bi bi-bezier"></i>
+        </button>
+    </ng-template>
+
+    <!-- -------NODE EDITOR------- -->
+    <div class="row wrapper padding-div-node-editor">
+        <div class="col p-0 w-h-100">
+            <div #theaterEditorComposer class="node-editor w-h-100-important border-node-editor"
+                (dragover)="dragPreventDefault($event)" (drop)="onDrop()">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!---------------------OFFCANVAS MODULE DATA---------------------------------->
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+
+<app-offcanvas *ngIf="nodeSelected && moduleSelected" [(show)]="hideModuleInfo" [element]="offcanvasElementModule"
+    [title]="(nodeSelected.data.name?nodeSelected.data.name:nodeSelected.data.module+' instance')+' info'"
+    position="end">
+</app-offcanvas>
+<!-- | -->
+<!-- V -->
+<ng-template #offcanvasElementModule class="search-input">
+    <app-tabnav *ngIf="nodeSelected && tabnavElementModule" [element]="tabnavElementModule"></app-tabnav>
+</ng-template>
+<!-- | -->
+<!-- V -->
+<ng-template #tab_module_instance>
+
+    <!-- NAME -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Name" directChange="function" [value]="nodeSelected.data['name']" formType="text"
+            idForChanges="name" (onChange)="updateModuleName($event)"></app-data-input-v2>
+    </div>
+    <!-- DESCRIPTION -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Description" [(value)]="nodeSelected.data['description']" formType="textarea"
+            (onChange)="updateModule(nodeSelected)"></app-data-input-v2>
+    </div>
+    <!-- VERSION -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Version" [(value)]="nodeSelected.data['version']" formType="text"
+            (onChange)="updateModule(nodeSelected)"></app-data-input-v2>
+    </div>
+    <!-- AREA -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Area" [(value)]="nodeSelected.data['area']" formType="selection"
+            [selectOption]="(areaSelection)" (onChange)="updateModule(nodeSelected)"></app-data-input-v2>
+    </div>
+
+
+    <!-- <ng-container *ngFor="let field of displayMIdata|keyvalue : notSort">
+        <div class="div-data-item">
+            <div *ngFor="let x of field.value|keyvalue : notSort">
+                {{x.key}}
+                <ul class="list-group list">
+                    <li class="list-group-item list-item">
+                        {{x.value[0]}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ng-container> -->
+</ng-template>
+<ng-template #tab_module_root>
+    <app-tabnav *ngIf="nodeSelected && tabnavElementModule" [element]="tabnavElementModuleRoot"></app-tabnav>
+</ng-template>
+<!-- | -->
+<!-- V -->
+<ng-template #tab_module_basic>
+    <div *ngIf="displayMdata">
+        <ng-container *ngFor="let field of displayMdata['basic']|keyvalue : notSort">
+            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                <div *ngIf="item.key" class="row div-data-item">
+                    <h5> {{item.key}} </h5>
+                    <ul class="list-group list">
+                        <li *ngFor="let x of item.value" class="list-group-item list-item">
+                            {{x}}
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</ng-template>
+<ng-template #tab_module_counter>
+    <div *ngIf="displayMdata">
+        <ng-container *ngFor="let field of displayMdata['counter']|keyvalue : notSort">
+            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                <div class="row div-data-item">
+                    <h5>{{item.key}}</h5>
+                    <ul class="list-group list">
+                        <li class="list-group-item list-item">
+                            {{item.value}}
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</ng-template>
+<ng-template #tab_module_topology>
+    <div *ngIf="moduleSelected" class="wrapper-module-topology">
+        <app-rete-module-visualizer [isSimple]="true" [simpleModule]="moduleSelected">
+        </app-rete-module-visualizer>
+    </div>
+</ng-template>
+<ng-template #tab_module_interfaces>
+    <app-tabnav *ngIf="moduleSelected && tabnavIF" [element]="tabnavIF"></app-tabnav>
+</ng-template>
+<!-- | -->
+<!-- V -->
+<ng-template #tab_if_cons>
+    <ng-container *ngIf="displayMdata">
+        <ng-container *ngFor="let item of displayMdata['interfaces']['consumer_if']|keyvalue : notSort">
+            <ng-container *ngFor="let field of item.value|keyvalue : notSort">
+                <app-window-item [title]="field.key" [onlyResize]="true">
+                    <ul class="list-group list" style="margin-top:0.7em">
+                        <li *ngFor="let x of field.value|keyvalue : notSort" class="list-group-item list-item">
+                            {{x.key}}:<br>{{x.value}}
+                        </li>
+                    </ul>
+                </app-window-item>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+    <div *ngIf="displayMdata['interfaces']['consumer_if'].length<=0" class="div-data-item">
+        <h5> This module doesn't have consumer interface </h5>
+    </div>
+</ng-template>
+<ng-template #tab_if_prod>
+    <ng-container *ngIf="displayMdata">
+        <ng-container *ngFor="let item of displayMdata['interfaces']['producer_if'] | keyvalue : notSort">
+            <ng-container *ngFor="let field of item.value|keyvalue : notSort">
+                <app-window-item [title]="field.key" [onlyResize]="true">
+                    <ul class="list-group list" style="margin-top:0.7em">
+                        <li *ngFor="let x of field.value|keyvalue : notSort" class="list-group-item list-item">
+                            {{x.key.toUpperCase()}}:<br>{{x.value}}
+                        </li>
+                    </ul>
+                </app-window-item>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+    <div *ngIf="displayMdata['interfaces']['producer_if'].length<=0" class="div-data-item">
+        <h5> This module doesn't have producer interface </h5>
+    </div>
+</ng-template>
+
+
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!------------------------OFFCANVAS THEATER------------------------------------>
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<app-offcanvas *ngIf="theater" [(show)]="hideTheaterInfo" [element]="offcanvasElementTheater" [title]="theater.name"
+    alt_title="Theater info" position="start">
+</app-offcanvas>
+
+<!-- | -->
+<!-- V -->
+
+<ng-template #offcanvasElementTheater>
+    <app-tabnav *ngIf="tabnavElementTheater" [element]="tabnavElementTheater"></app-tabnav>
+</ng-template>
+
+<!-- | -->
+<!-- V -->
+
+<ng-template #tab_theater_basic>
+    <!-- NAME -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Name" [(value)]="theater.name" formType="text" (onChange)="print($event)">
+        </app-data-input-v2>
+    </div>
+    <!-- DESCRIPTION -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Description" [(value)]="theater.description" formType="textarea"
+            (onChange)="print($event)"></app-data-input-v2>
+    </div>
+    <!-- VERSION -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Version" [(value)]="theater.version" formType="text" (onChange)="print($event)">
+        </app-data-input-v2>
+    </div>
+    <!-- AUTHOR -->
+    <div class="row div-data-item">
+        <app-data-input-v2 title="Author" [(value)]="theater.author" formType="text" [selectOption]="(areaSelection)"
+            (onChange)="print($event)"></app-data-input-v2>
+    </div>
+    <!-- CREATION DATE -> Not editable -->
+    <div class="row div-data-item">
+        <h5> Creation date </h5>
+        <ul class="list-group list">
+            <li class="list-group-item list-item">
+                {{theater.createdDate}}
+            </li>
+        </ul>
+    </div>
+</ng-template>
+
+
+<ng-template #tab_theater_areas>
+    <button class="btn btn-primary w-100" (click)="addArea()"> <span class="h5">Add area</span> &nbsp; <i
+            class="bi bi-plus-circle h5"></i> </button>
+    <div *ngFor="let area of (areaList|async)">
+        <app-window-item [title]="area.name" (onRemove)="removeArea(area.name)">
+            <app-data-input-v2 title="Area Name" directChange="function" [value]="area.name" formType="text"
+                (onChange)="updateAreaName($event,area.name)" style="margin-top: 0.7em!important">
+            </app-data-input-v2>
+            <app-data-input-v2 title="Area Description" directChange="function" [(value)]="area.description"
+                formType="textarea" (onChange)="updateAreaDescription($event,area.name)"
+                style="margin-top: 0.7em!important"></app-data-input-v2>
+            <!-- 
+                <app-data-input-v2 title="Area Color" [(value)]="area.color" formType="text"
+                (onChange)="updateArea($event,area.name,'color')">
+                <div style="width:10px;height:10px" [style.background-color]="area.color?area.color:white"></div>
+                </app-data-input-v2> 
+            -->
+        </app-window-item>
+    </div>
+    <div *ngIf="!(areaList|async)" class="row div-data-item">
+        <h5 class="text-center">No area found</h5>
+    </div>
+</ng-template>
+
+<ng-template #tab_theater_tags>
+    <button class="btn btn-primary w-100" (click)="addTag()"> <span class="h5">Add tag</span> &nbsp; <i
+            class="bi bi-plus-circle h5"></i> </button>
+    <div *ngFor="let tag of (tagList|async)">
+        <app-window-item [title]="tag.name" (onRemove)="removeTag(tag.name)">
+            <app-data-input-v2 title="Tag Name" directChange="function" [value]="tag.name" formType="text"
+                (onChange)="updateTagName($event,tag.name)" style="margin-top: 0.7em!important">
+            </app-data-input-v2>
+            <app-data-input-v2 title="Tag Description" directChange="function" [(value)]="tag.description"
+                formType="textarea" (onChange)="updateTagDescription($event,tag.name)"
+                style="margin-top: 0.7em!important"></app-data-input-v2>
+        </app-window-item>
+    </div>
+    <div *ngIf="!(tagList|async)" class="row div-data-item">
+        <h5 class="text-center">No tag found</h5>
+    </div>
+</ng-template>
+
+<ng-template #tab_theater_imports>
+    <button class="btn btn-primary w-100" (click)="addImport()"> <span class="h5">Add import</span> &nbsp; <i
+            class="bi bi-plus-circle h5"></i> </button>
+    <div *ngFor="let imp of (importList|async); let i = index">
+        <div class="row div-data-item">
+            <app-data-input-v2 title="Import" [value]="imp" formType="text" (onChange)="updateImport($event,imp)">
+            </app-data-input-v2>
+            <div class="text-end">
+                <button class="btn btn-danger w-auto btn-sm" (click)="removeImport(imp)"
+                    style="margin-top:1em;margin-right:1em;"> remove import </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!(importList|async)" class="row div-data-item">
+        <h5 class="text-center">No import found</h5>
+    </div>
+</ng-template>
+
+<ng-template #tab_theater_deploy>
+    <div *ngIf="(deploymentList|async)" class="row div-data-item">
+        <ul class="list-group list">
+            <li *ngFor="let dep of (deploymentList|async); let i = index" class="list-group-item list-item">
+                {{i+1}}: {{dep.moduleInstanceName}}
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="!(deploymentList|async)" class="row div-data-item">
+        <h5 class="text-center">No module found</h5>
+    </div>
+</ng-template>
+
+<ng-template #tab_theater_map>
+    <ng-container *ngFor="let field of displayTheaterData(theater)['mapping']|keyvalue">
+        <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+            <div *ngIf="item.key" class="row div-data-item">
+                <h5> {{item.key}} </h5>
+                <ul class="list-group list">
+                    <li *ngFor="let x of item.value | keyvalue : notSort" class="list-group-item list-item">
+                        {{x.key.toUpperCase()}}: <br> {{x.value}}
+                    </li>
+                </ul>
+            </div>
+        </ng-container>
+    </ng-container>
+</ng-template>
+
+
+
+<!----------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------->
+<!---------------------DRAG DROP------------------------------.---------------->
+<!-------- IL D&D DEVE ESSERE COSI VUOLE UN DIV SEMPRE PRESENTE---------------->
+<!----------------------------------------------------------------------------->
+
+<app-offcanvas *ngIf="hidedragdrop" [(show)]="hidedragdrop" [element]="dragdrop_template" title="Drag & Drop nodes"
+    position="start"></app-offcanvas>
+<ng-template #dragdrop_template>
+    <div class="offcanvas-body side-wrapper-opt my-offcanvas-body">
+        <div *ngFor="let mod of moduleDD" id="dragnode" class="row div-data-item draggable" draggable="true"
+            (drag)="onDrag($event, mod)" (dragend)="dropPreventDefault($event)">
+            <h5>{{mod.properties.module}}</h5>
+        </div>
+    </div>
+</ng-template>
+
+<!-- MODAL -->
+<app-modal *ngIf="dataModal" [element]="dataModal" [(show)]="isModalActive" (onButtonPressed)="closeModal()">
+</app-modal>
+<!-- MESSAGE -->
+<ng-template #data_message>
+    {{modalMessage}}
+</ng-template>
+
+<!-- AREA FORM -->
+<ng-template #data_input_area>
+    <app-data-input [element]="formAreaElement" (dataSubmitted)="validateArea($event)">
+    </app-data-input>
+</ng-template>
+<!-- IMPORT FORM -->
+<ng-template #data_input_import>
+    <app-data-input [element]="formImportElement" (dataSubmitted)="validateImport($event)">
+    </app-data-input>
+</ng-template>
+<!-- TAG FORM -->
+<ng-template #data_input_tag>
+    <app-data-input [element]="formTagElement" (dataSubmitted)="validateTag($event)">
+    </app-data-input>
+</ng-template>

@@ -1,7 +1,47 @@
-VEDERE MODULI SESSIONE SE VANNO INSERITI O MENO
 
-CONTROLLARE SE POSSIBILE IL COLLAPSING DEI NODI
--> https://github.com/retejs/rete/issues/230#issuecomment-441282686
 opportunamente nel caso, creare nuove socket a cui fare afferimento con gli id.
 
 VEDERE IN BASE ALL'AREA, CONTRASSEGNARE/INSERIRE I NODI CON DIVERSO COLORE
+
+____________________________________________________________________________
+
+Prevedere di inserire il file JSON(theaterApplication) e ti genera automaticamente il file
+
+-> not really necessaty
+SPIEGARE COME FARE AD AGGIUNGERE UN NUOVO NODO PER TEATRO E MODULO
+AGGIUNGERE VALIDATORS (https://stackoverflow.com/questions/21740309/how-to-check-in-node-if-module-exists-and-if-exists-to-load)
+per i tipo/quantità di export per i nodi in modo da essere validi.
+
+? CREARE DELLE COMPONENTI ALL'INTERNO DELLE COMP. VIS. E DES. CHE CONTENGONO GLI ELEMENTI DA VISUALIZZARE NEGLI OFFCANVAS
+
+? SELEZIONARE ANCHE I NODI AD ESSO COLLEGATO
+        // list.pop().data.softSelct=true // -> inserire del codice nel nodo, che se softSelect è premuto, cambia colore sfondo
+
+****CONTROLLARE CORENEZA NEL PARSING  ctrl+F -> @check 
+
+____________________________________________________________________________
+
+@@@@ DECOMMENTARE initializeKeycloak e gli auth guard per testing + assegnare mocked = false in Visualizer
+_______________________________________________________________
+
+IDEA
+    area theater -> color picker form input bootstrap
+    Aggiungere pulsante + per creare porte nei nodi
+    Aggiungere ricerca negli offcanvas /-> creare una componente a parte che prevede una lista di elemmenti che possano essere cancellati in base al ".include" del campo "search-text" dato
+
+____________________________________________________________________________
+
+CHIDERE: 
+1) Nelle proprietà del modulo istanza appare version: questo è legata al modulo ROOT oppure all'istanza?
+specificare multiple o singole connessioni? 
+    local_interface: acmemgmt
+    multiple_mode: no
+    module_name: EdgeNet_1
+    compatibility: 1.0
+    remote_interface: acmemgmt
+Perchè non vengono riportate nelle api 
+(in tal caso andare a modificare la porta Input/Output con il campo multi = true/false);
+
+2) VEDERE MODULI SESSIONE SE VANNO INSERITI O MENO (sdl_management)
+
+3) chiarezze su tosca: volume? mirroring? come dovrei rappresentare/prendere? 

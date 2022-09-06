@@ -1,16 +1,13 @@
-Per i moduli:
-
-Per il teatro:
 
 KEYCLOAK ,TOSEE
 https://medium.com/@damilareaadedoyin/authentication-in-angular-using-keycloak-aff8e98dd094
 
-
-KEYCLOAK may serve
-https://github.com/keycloak/keycloak-documentation/blob/main/securing_apps/topics/oidc/javascript-adapter.adoc
-
+REMOVE CONTEXT MENU ON RIGHT CLICK ON NODE -> remove delete & clone
+https://github.com/retejs/context-menu-plugin/issues/17
 
 https://github.com/retejs/rete/issues/302
+
+https://codepen.io/pierrebleroux/pen/gGpvxJ
 
 ------------------> CSS FOR NODES https://codesandbox.io/s/1d0yj?file=/src/components/HelloWorld.vue
 html,

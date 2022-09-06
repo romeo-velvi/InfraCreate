@@ -1,0 +1,25 @@
+<div class="col div-data-item">
+    <div class="row m-0 op-bar">
+        <div *ngIf="title" class="col text-break m-auto">
+            <h5 class="text-break m-0">{{title}}</h5>
+        </div>
+        <div class="col-auto text-end p-0 m-0">
+            <div *ngIf="!onlyResize" class="btn-group" role="group">
+                <button class="btn btn-secondary w-auto btn-sm " data-toggle="tooltip" data-placement="top" title="resize"
+                    (click)="reduce()"> <i [ngClass]="isfull?toReduceIconClass:toOpenIconClass"></i> </button>
+                <button class="btn btn-danger w-auto btn-sm one-side-rounded" data-toggle="tooltip" data-placement="top"
+                    title="remove" (click)="remove()" [ngClass]="!isfull?'two-side-rounded':''"> <i [ngClass]="closeIconClass"></i>
+                </button>
+            </div>
+            <div *ngIf="onlyResize" class="btn-group" role="group">
+                <button class="btn btn-secondary w-auto btn-sm one-side-rounded" data-toggle="tooltip" data-placement="top"
+                    title="remove" [ngClass]="!isfull?'two-side-rounded':''" (click)="reduce()">
+                    <i [ngClass]="isfull?toReduceIconClass:toOpenIconClass"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isfull" class="row content-div">
+        <ng-content></ng-content>
+    </div>
+</div>

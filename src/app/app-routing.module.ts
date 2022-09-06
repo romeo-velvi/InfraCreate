@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { HowToUseComponent } from './how-to-use/how-to-use.component';
-import { VisualEditorComponent } from './visual-editor/visual-editor.component';
-import { DesignerEditorComponent } from './designer-editor/designer-editor.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { HowToUseComponent } from './pages/how-to-use/how-to-use.component';
+import { VisualizerComponent } from './visualizer-system/visualizer/visualizer.component';
+import { ComposerComponent } from './composer-system/composer/composer.component';
 import { AuthGuard } from './utility/app.guard';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   {
@@ -25,20 +26,45 @@ const routes: Routes = [
     component: HowToUseComponent,
   },
   {
-    path: "visual",
-    component: VisualEditorComponent, canActivate: [AuthGuard]
+    path: "visualizer",
+    component: VisualizerComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: "Visual",
-    component: VisualEditorComponent, canActivate: [AuthGuard],
+    path: "composer",
+    component: ComposerComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path: "designer",
-    component: DesignerEditorComponent,
+    path: "**",
+    component: HomeComponent,
+  },
+];
+const routesMocked: Routes = [
+  {
+    path: "",
+    component: HomeComponent,
   },
   {
-    path: "Designer",
-    component: DesignerEditorComponent,
+    path: "home",
+    component: HomeComponent,
+  },
+  {
+    path: "about-us",
+    component: AboutUsComponent,
+  },
+  {
+    path: "how-to-use",
+    component: HowToUseComponent,
+  },
+  {
+    path: "visualizer",
+    component: VisualizerComponent,
+  },
+  {
+    path: "composer",
+    component: ComposerComponent,
   },
   {
     path: "**",
@@ -46,8 +72,15 @@ const routes: Routes = [
   },
 ];
 
+const routesSwitch = (): Routes => {
+  if (environment.mocked)
+    return routesMocked
+  else
+    return routes
+}
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routesSwitch())],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

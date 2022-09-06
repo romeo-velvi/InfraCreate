@@ -1,0 +1,1459 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>InfraCreate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">InfraCreate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li >ParseDataForTheaterVisualizer</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/application/parse/parseDataForTheaterVisualizer.ts</code>
+        </p>
+
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#fixTheaterName" >fixTheaterName</a>
+                            </li>
+                            <li>
+                                <a href="#get_and_remove_theater_properties_from_blueprint" >get_and_remove_theater_properties_from_blueprint</a>
+                            </li>
+                            <li>
+                                <a href="#getModuleConnection" >getModuleConnection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getModuleDict" >getModuleDict</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getModulesDetails" >getModulesDetails</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getModulesInterfaces" >getModulesInterfaces</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getModulesNodes" >getModulesNodes</a>
+                            </li>
+                            <li>
+                                <a href="#getModulesTopology" >getModulesTopology</a>
+                            </li>
+                            <li>
+                                <a href="#initTheaterAfterFetch" >initTheaterAfterFetch</a>
+                            </li>
+                            <li>
+                                <a href="#parseModuleInstance" >parseModuleInstance</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#parseModulesFromTheater" >parseModulesFromTheater</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#parseTheater" >parseTheater</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#parseTheaterForTheaterVisualizer" >parseTheaterForTheaterVisualizer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(theaterService: <a href="../injectables/TheaterService.html" target="_self">TheaterService</a>, moduleService: <a href="../injectables/ModuleService.html" target="_self">ModuleService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>theaterService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TheaterService.html" target="_self" >TheaterService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>moduleService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ModuleService.html" target="_self" >ModuleService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fixTheaterName"></a>
+                    <span class="name">
+                        <span ><b>fixTheaterName</b></span>
+                        <a href="#fixTheaterName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fixTheaterName(rowTheater: <a href="../classes/TheaterDTO.html" target="_self">TheaterDTO</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rowTheater</td>
+                                    <td>
+                                                <code><a href="../classes/TheaterDTO.html" target="_self" >TheaterDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="get_and_remove_theater_properties_from_blueprint"></a>
+                    <span class="name">
+                        <span ><b>get_and_remove_theater_properties_from_blueprint</b></span>
+                        <a href="#get_and_remove_theater_properties_from_blueprint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>get_and_remove_theater_properties_from_blueprint(rowTheater: <a href="../classes/TheaterDTO.html" target="_self">TheaterDTO</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rowTheater</td>
+                                    <td>
+                                                <code><a href="../classes/TheaterDTO.html" target="_self" >TheaterDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/TheaterInstancePropertiesDTO.html" target="_self" >TheaterInstancePropertiesDTO</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModuleConnection"></a>
+                    <span class="name">
+                        <span ><b>getModuleConnection</b></span>
+                        <a href="#getModuleConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getModuleConnection(theater: <a href="../classes/TheaterApplication.html" target="_self">TheaterApplication</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>theater</td>
+                                    <td>
+                                                <code><a href="../classes/TheaterApplication.html" target="_self" >TheaterApplication</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ReteConnection.html" target="_self" >ReteConnection[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModuleDict"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getModuleDict</b></span>
+                        <a href="#getModuleDict"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getModuleDict(modules: SimpleModuleDTO[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:87</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>modules</td>
+                                    <td>
+                                            <code>SimpleModuleDTO[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModulesDetails"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getModulesDetails</b></span>
+                        <a href="#getModulesDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getModulesDetails(modules: SimpleModuleDTO[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:115</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>modules</td>
+                                    <td>
+                                            <code>SimpleModuleDTO[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;SimpleModuleApplication[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModulesInterfaces"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getModulesInterfaces</b></span>
+                        <a href="#getModulesInterfaces"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getModulesInterfaces(modules: SimpleModuleDTO[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>modules</td>
+                                    <td>
+                                            <code>SimpleModuleDTO[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModulesNodes"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getModulesNodes</b></span>
+                        <a href="#getModulesNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getModulesNodes(modules: SimpleModuleDTO[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:130</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>modules</td>
+                                    <td>
+                                            <code>SimpleModuleDTO[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModulesTopology"></a>
+                    <span class="name">
+                        <span ><b>getModulesTopology</b></span>
+                        <a href="#getModulesTopology"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getModulesTopology(modulesInfo: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:178</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>modulesInfo</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTheaterAfterFetch"></a>
+                    <span class="name">
+                        <span ><b>initTheaterAfterFetch</b></span>
+                        <a href="#initTheaterAfterFetch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initTheaterAfterFetch(rowTheater: <a href="../classes/TheaterDTO.html" target="_self">TheaterDTO</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rowTheater</td>
+                                    <td>
+                                                <code><a href="../classes/TheaterDTO.html" target="_self" >TheaterDTO</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/TheaterApplication.html" target="_self" >TheaterApplication</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseModuleInstance"></a>
+                    <span class="name">
+                        <span ><b>parseModuleInstance</b></span>
+                        <a href="#parseModuleInstance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parseModuleInstance(theater: <a href="../classes/TheaterApplication.html" target="_self">TheaterApplication</a>, modules: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>theater</td>
+                                    <td>
+                                                <code><a href="../classes/TheaterApplication.html" target="_self" >TheaterApplication</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>modules</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseModulesFromTheater"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>parseModulesFromTheater</b></span>
+                        <a href="#parseModulesFromTheater"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>parseModulesFromTheater(theaterUUID: string | number)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>theaterUUID</td>
+                                    <td>
+                                            <code>string | number</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseTheater"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>parseTheater</b></span>
+                        <a href="#parseTheater"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>parseTheater(id: string | number)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                            <code>string | number</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseTheaterForTheaterVisualizer"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>parseTheaterForTheaterVisualizer</b></span>
+                        <a href="#parseTheaterForTheaterVisualizer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>parseTheaterForTheaterVisualizer(id: string | number)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/app/services/application/parse/parseDataForTheaterVisualizer.ts:22</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                            <code>string | number</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/TheaterApplication.html" target="_self" >Promise&lt;TheaterApplication&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TheaterService } from &#x27;../../api/theater.service&#x27;;
+import { ModuleService } from &#x27;../../api/module.service&#x27;;
+import { TheaterDTO, TheaterType } from &#x27;../../modelsDTO/theaterDTO&#x27;;
+import { ElementIntoTheaterDTO, ModuleInstanceDTO,  ModuleNetworkInterfaceDTO, SimpleModuleDTO, TheaterInstancePropertiesDTO  } from &#x27;../../modelsDTO/moduleDTO&#x27;;
+import { SimpleModuleApplication, ModuleInstance, TheaterApplication,  ReteConnection   } from &#x27;../../modelsApplication/applicationModels&#x27;;
+import { HostModuleDTO, HostPortModuleDTO } from &#x27;../../modelsDTO/hostDTO&#x27;;
+import { SubnetDTO } from &#x27;../../modelsDTO/networkDTO&#x27;;
+import {  ReteHostInfo } from &#x27;src/app/rete-settings/nodes/rete-nodes/host/hostNode&#x27;;
+import { ReteNetworkInfo } from &#x27;src/app/rete-settings/nodes/rete-nodes/network/networkNode&#x27;;
+import { ReteSubnetInfo } from &#x27;src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode&#x27;;
+import { StaticValue } from &#x27;src/app/models/appType&#x27;;
+import { createHost, createSubnet, createNetwork, createModuleNode } from &#x27;./parseCommonElement&#x27;;
+
+export class ParseDataForTheaterVisualizer {
+
+    constructor(
+        private theaterService: TheaterService,
+        private moduleService: ModuleService,
+    ) {
+    }
+
+    async parseTheaterForTheaterVisualizer(id: string | number): Promise&lt;TheaterApplication&gt; {
+
+        var theaterDTO: TheaterDTO;
+        var theater: TheaterApplication;
+        [theaterDTO, theater] &#x3D; await this.parseTheater(id as string);
+
+        var modules: { [name: string]: SimpleModuleApplication } &#x3D; await this.parseModulesFromTheater(theater.uuid);
+
+        // connect modules to instance-module into theater
+        var moduleInstances: { [name: string]: ModuleInstance }
+            &#x3D; await this.parseModuleInstance(theater, modules);
+
+        //assign theater topology
+        theater.topology &#x3D; {
+            elements: moduleInstances,
+            connection: this.getModuleConnection(theater)
+        }
+
+        return theater;
+    }
+    async parseTheater(id: string | number): Promise&lt;[TheaterDTO, TheaterApplication]&gt; {
+        //normalizzazione &amp; get theater
+        var rowTheater: TheaterDTO &#x3D; await this.theaterService.getTheaterInfoByID(id);
+        let theater: TheaterApplication &#x3D; await this.initTheaterAfterFetch(rowTheater);
+        return [rowTheater, theater];
+    }
+    initTheaterAfterFetch(rowTheater: TheaterDTO): TheaterApplication {
+        this.fixTheaterName(rowTheater);
+        let theaterProperties: TheaterInstancePropertiesDTO &#x3D; this.get_and_remove_theater_properties_from_blueprint(rowTheater);
+        let theater: TheaterApplication &#x3D; {
+            ...rowTheater,
+            properties: theaterProperties,
+            elements: {},
+            connection: [],
+            topology: undefined
+        };
+        return theater;
+    }
+    fixTheaterName(rowTheater: TheaterDTO) {
+        // @check controllo incoerenza nome teatro con quello riporato in node_templates -&gt; si preferisce quello proveniente dal blueprint
+        if (!rowTheater.blueprintFile.node_templates[rowTheater.name]) {
+            Object.entries(rowTheater.blueprintFile.node_templates).map(([key, value]) &#x3D;&gt; {
+                let moduleIntoTheater: ElementIntoTheaterDTO &#x3D; value as ElementIntoTheaterDTO
+                if (moduleIntoTheater.type.toLowerCase().includes(TheaterType.toLowerCase())) {
+                    rowTheater.name &#x3D; key;
+                    return;
+                }
+            });
+            console.warn(&quot;Theater name doesn&#x27;t match&quot;);
+        }
+    }
+    get_and_remove_theater_properties_from_blueprint(rowTheater: TheaterDTO): TheaterInstancePropertiesDTO {
+        // esporta e rimuove le proprietà situate in node_modules
+        let moduleIntoTheater: ElementIntoTheaterDTO &#x3D; rowTheater.blueprintFile.node_templates[rowTheater.name];
+        let theaterProperties: TheaterInstancePropertiesDTO &#x3D; moduleIntoTheater.properties as TheaterInstancePropertiesDTO;
+        delete rowTheater.blueprintFile.node_templates[rowTheater.name];
+        return theaterProperties;
+    }
+    async parseModulesFromTheater(theaterUUID: string | number): Promise&lt;{ [name: string]: SimpleModuleApplication }&gt; {
+        //normalizzazione &amp; get modules -&gt; Assign Map
+        let rowModules: SimpleModuleDTO[] &#x3D; await this.theaterService.getTheaterModulesByUUID(theaterUUID);
+        let modules: { [name: string]: SimpleModuleApplication } &#x3D; await this.getModuleDict(rowModules);
+        this.getModulesTopology(modules);
+        return modules;
+    }
+    async getModuleDict(modules: SimpleModuleDTO[]): Promise&lt;{ [name: string]: SimpleModuleApplication }&gt; {
+        let moduleDict: { [name: string]: SimpleModuleApplication } &#x3D; {};
+        let modulesApplication: SimpleModuleApplication[] &#x3D; await this.getModulesDetails(modules);
+        Object.entries(modulesApplication).map(async ([key, value]) &#x3D;&gt; {
+            moduleDict[value.name] &#x3D; value;
+        });
+        return moduleDict;
+    }
+    parseModuleInstance(theater: TheaterApplication, modules: { [name: string]: SimpleModuleApplication }): { [name: string]: ModuleInstance } {
+        var elements: { [name: string]: ModuleInstance } &#x3D; {};
+        Object.entries(theater.blueprintFile.node_templates).map(async ([key, value]) &#x3D;&gt; {
+            let moduleInstanceName: string &#x3D; key;
+            let moduleInstance: ModuleInstanceDTO &#x3D; value as ModuleInstanceDTO;
+            let smr &#x3D; modules[moduleInstance.properties.module]
+            // @check -&gt; if module instance has connection with module root &amp; name is correct
+            if (!smr) {
+                for (let key in modules) {
+                    if (key.toLowerCase().includes(moduleInstance.properties.module.toLowerCase())) {
+                        smr &#x3D; modules[key]; //modulo più probabile
+                    }
+                }
+                console.warn(&quot;Root module not exists or invalid.\n Declared into instance: &quot;, moduleInstance.properties.module, &quot;.\nLinked to&quot;, smr.name, &quot;into Root module list&quot;)
+            }
+            let newModule: ModuleInstance &#x3D; createModuleNode(moduleInstanceName, moduleInstance, smr);
+            elements[moduleInstanceName] &#x3D; newModule;
+        });
+        return elements;
+    }
+    async getModulesDetails(modules: SimpleModuleDTO[]): Promise&lt;SimpleModuleApplication[]&gt; {
+        let h: { [key: string]: HostModuleDTO[] } &#x3D; await this.getModulesNodes(modules);
+        let i: { [key: string]: ModuleNetworkInterfaceDTO[] } &#x3D; await this.getModulesInterfaces(modules);
+        let moduleInfo: SimpleModuleApplication[] &#x3D; [];
+        await Promise.all(
+            Object.entries(modules).map(async ([key, value]) &#x3D;&gt; {
+                moduleInfo[key] &#x3D; {
+                    ...value,
+                    hosts: h[key],
+                    interfaces: i[key],
+                }
+            })
+        )
+        return moduleInfo;
+    }
+    async getModulesNodes(modules: SimpleModuleDTO[]): Promise&lt;{ [key: string]: HostModuleDTO[] }&gt; {
+        let h: { [key: string]: HostModuleDTO[] } &#x3D; {};
+        await Promise.all(
+            Object.entries(modules).map(async ([key, value]) &#x3D;&gt; {
+                let simpleModuleDTO: SimpleModuleDTO &#x3D; value as SimpleModuleDTO;
+                try {
+                    h[key] &#x3D; await this.moduleService.getModuleHostByTheaterUUID(simpleModuleDTO.uuid);
+                } catch (e) {
+                    console.error(e);
+                }
+            })
+        )
+        return h;
+    }
+    async getModulesInterfaces(modules: SimpleModuleDTO[]): Promise&lt;{ [key: string]: ModuleNetworkInterfaceDTO[] }&gt; {
+        let i: { [key: string]: ModuleNetworkInterfaceDTO[] } &#x3D; {};
+        await Promise.all(
+            Object.entries(modules).map(async ([key, value]) &#x3D;&gt; {
+                let simpleModuleDTO: SimpleModuleDTO &#x3D; value as SimpleModuleDTO;
+                try {
+                    i[key] &#x3D; await this.moduleService.getModuleInterfacesByModuleID(simpleModuleDTO.id);
+                } catch (e) {
+                    console.error(e);
+                }
+            })
+        )
+        return i;
+    }
+    getModuleConnection(theater: TheaterApplication): ReteConnection[] {
+        var connections_list: ReteConnection[] &#x3D; [];
+        Object.entries(theater.blueprintFile.node_templates).map(([key, value]) &#x3D;&gt; {
+            let module_name: string &#x3D; key;
+            let module_content: ModuleInstanceDTO &#x3D; value as ModuleInstanceDTO;
+            if (module_content.properties.consumer_interfaces_link) {
+                Object.entries(module_content.properties.consumer_interfaces_link).map(([key, value]) &#x3D;&gt; {
+                    connections_list.push(
+                        {
+                            from: module_name,
+                            port_src: value.local_interface,
+                            to: value.module_instance,
+                            port_dst: value.remote_interface
+                        }
+                    );
+                });
+            }
+        });
+        return connections_list;
+    }
+    getModulesTopology(modulesInfo: { [name: string]: SimpleModuleApplication }) {
+        Object.entries(modulesInfo).map(([key, value]) &#x3D;&gt; {
+            let moduleInfo: SimpleModuleApplication &#x3D; value;
+            var occourence: Map&lt;string, string&gt; &#x3D; new Map&lt;any, any&gt;();
+            var connections_list: ReteConnection[] &#x3D; [];
+            var elements: { [name: string]: ReteHostInfo | ReteSubnetInfo | ReteNetworkInfo } &#x3D; {};
+            var hn: number &#x3D; 0, sn: number &#x3D; 0, nn: number &#x3D; 0;
+            moduleInfo.hosts.forEach(
+                (node: HostModuleDTO) &#x3D;&gt; {
+                    let host_name: string &#x3D; node.name;
+                    elements[host_name] &#x3D; createHost(host_name, node);
+                    hn++; // counter
+                    node.ports.forEach(
+                        (port: HostPortModuleDTO) &#x3D;&gt; {
+                            let port_name: string &#x3D; port.name;
+                            port.subnets.forEach(
+                                (subnet: SubnetDTO) &#x3D;&gt; { // controllo subnet &amp; network
+                                    let subnet_name: string &#x3D; subnet.name;
+                                    let network_name: string &#x3D; subnet.network.name;
+                                    if (!occourence.get(subnet_name)) { // se non è stata considerata la subnet -&gt; add
+                                        elements[subnet_name] &#x3D; createSubnet(subnet_name, subnet)
+                                        occourence.set(subnet_name, subnet_name) // segno l&#x27;occorrenza
+                                        sn++; // counter
+                                        elements[subnet_name].Output.push(network_name) // add output port to sub
+
+                                        if (!occourence.get(network_name)) { // se non è stata considerata la network -&gt; add
+                                            elements[network_name] &#x3D; createNetwork(network_name, moduleInfo.interfaces);
+                                            occourence.set(network_name, network_name); // segno l&#x27;occorrenza
+                                            nn++; // counter
+                                        }
+                                        elements[network_name].Input.push(subnet_name) // add input port to net
+
+                                        connections_list.push( // add connection sub-&gt;net
+                                            {
+                                                from: subnet_name,
+                                                port_src: network_name,
+                                                to: network_name,
+                                                port_dst: subnet_name
+                                            }
+                                        )
+                                    }
+                                    elements[host_name].Output.push(port_name) // add output port to host
+                                    connections_list.push( // add connection host-&gt;sub
+                                        {
+                                            from: host_name,
+                                            port_src: port_name,
+                                            to: subnet_name,
+                                            port_dst: StaticValue.SubnetOutput
+                                        }
+                                    )
+                                }
+                            )
+                        }
+                    )
+                }
+            )
+            // assign value to module
+            moduleInfo.topology &#x3D; {
+                connection: connections_list,
+                elements: elements
+            };
+            moduleInfo.host_number &#x3D; hn;
+            moduleInfo.subnet_number &#x3D; sn;
+            moduleInfo.network_number &#x3D; nn;
+        });
+    }
+}
+
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'ParseDataForTheaterVisualizer.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
