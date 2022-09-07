@@ -12,7 +12,7 @@ import { ModalItem } from '../../components/modal/modaltype';
 import { TabnavElement } from '../../components/tabnav/tabnavtype';
 import { BehaviorSubject, from } from 'rxjs';
 import { ParseService } from 'src/app/services/application/parse/parse.service';
-import { AreaApplication, ModuleInstance, SimpleModuleApplication, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
+import { AreaApplication, ModuleInstance, ReteConnection, SimpleModuleApplication, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
 import { SimpleAreaDTO } from 'src/app/services/modelsDTO/moduleDTO';
 import { BlueprintFileDTO, DeployInstanceDTO, EntityNameMappingFileDTO, TagCatalogueDTO, TheatreStatusDTO } from 'src/app/services/modelsDTO/theaterDTO';
@@ -46,7 +46,8 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
 
 
   //  Variable
-  theater: TheaterApplication;
+  @Input() theater: TheaterApplication;
+  fromFile: boolean = false;
 
   //module D&D
   moduleDD: ModuleInstance[] = [];
@@ -251,39 +252,42 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   async ngOnInit() {
     this.spinnerService.setSpinner(true, "Loading theater composer")
     let stringdate = new Date;
-    this.theater = {
-      elements: {},
-      connection: [],
-      properties: {
-        mode: '',
-        tags: [],
-        areas: [],
+    if (!this.theater)
+      this.theater = {
+        elements: {},
+        connection: [],
+        properties: {
+          mode: '',
+          tags: [],
+          areas: [],
+          author: this.TheaterAuthor,
+          version: this.TheaterAuthor,
+          description: this.TheaterDescription,
+        },
+        topology: undefined,
         author: this.TheaterAuthor,
-        version: this.TheaterAuthor,
+        blueprintFile: new BlueprintFileDTO,
+        blueprintUUID: '',
+        createdBy: this.TheaterAuthor,
+        createdDate: stringdate as unknown as string,
+        deploymentSequence: {},
         description: this.TheaterDescription,
-      },
-      topology: undefined,
-      author: this.TheaterAuthor,
-      blueprintFile: new BlueprintFileDTO,
-      blueprintUUID: '',
-      createdBy: this.TheaterAuthor,
-      createdDate: stringdate as unknown as string,
-      deploymentSequence: {},
-      description: this.TheaterDescription,
-      entityNameMappingFile: new EntityNameMappingFileDTO,
-      id: '',
-      isLocked: false,
-      lastModifiedBy: this.TheaterAuthor,
-      lastModifiedDate: stringdate as unknown as string,
-      lockAcquiredTimestamp: stringdate as unknown as string,
-      lockLastUserAcquiring: this.TheaterAuthor,
-      lockReleasedTimestamp: '',
-      name: this.TheaterName,
-      status: new TheatreStatusDTO,
-      tags: [],
-      uuid: '',
-      version: this.TheaterVersion as string
-    };
+        entityNameMappingFile: new EntityNameMappingFileDTO,
+        id: '',
+        isLocked: false,
+        lastModifiedBy: this.TheaterAuthor,
+        lastModifiedDate: stringdate as unknown as string,
+        lockAcquiredTimestamp: stringdate as unknown as string,
+        lockLastUserAcquiring: this.TheaterAuthor,
+        lockReleasedTimestamp: '',
+        name: this.TheaterName,
+        status: new TheatreStatusDTO,
+        tags: [],
+        uuid: '',
+        version: this.TheaterVersion as string
+      };
+    else
+      this.fromFile = true;
     Object.entries(this.ModulesDict).map(([key, value]) => {
       this.moduleDD.push(value);
     });
@@ -301,9 +305,9 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
 
     this.container = this.el.nativeElement;
 
-    this.editor = new NodeEditor('theaterEditorComposer@0.1.0', this.container);
+    this.editor = new NodeEditor('InfraCreateEditor@0.2.0', this.container);
 
-    this.engine = new Engine('theaterEditorComposer@0.2.0');
+    this.engine = new Engine('InfraCreateEngine@0.2.0');
 
     const v = new ReteTheaterComposerSettings(this.container, this.editor, this.components, this.engine);
     v.editorUSE();
@@ -347,6 +351,10 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
       this.editor.register(c);
       this.engine.register(c);
     });
+
+    this.fromFile
+      ? await this.initTheaterFromFile()
+      : false;
 
     this.editor.view.resize();
 
@@ -857,7 +865,9 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   }
   loadJson() {
     let json = prompt("Insert json");
-    this.editor.fromJSON(JSON.parse(json));
+    json
+      ? this.editor.fromJSON(JSON.parse(json))
+      : false;
   }
   findElement(result: string) {
     this.nodetofind = result;
@@ -966,6 +976,112 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   //other
   print(any: any) {
     console.log(any);
+  }
+
+
+  public async initTheaterFromFile() {
+
+    var nodes = [];
+
+    await Promise.all(
+      Object.entries(this.theater.topology.elements).map(async ([key, value]) => {
+        try {
+          nodes[key] = await this.components[IndexModuleComponent[ModuleType1[value.type]]].createNode(value.rete);
+        }
+        catch (e) {
+          console.warn("Problem with: ", key, " with value: \n", value)
+        }
+      })
+    );
+
+    await Promise.all(
+      Object.entries(nodes).map(([key, value]) => {
+        try {
+          this.editor.addNode(value);
+        }
+        catch (e) {
+          console.warn("Problem with: ", key, " with value: \n", value)
+        }
+      })
+    );
+
+    await Promise.all(
+      Object.entries(this.theater.topology.connection).map(([key, value]) => {
+        let connection: ReteConnection = value;
+        try {
+          if (nodes[connection["to"]] !== undefined && nodes[connection["from"]] !== undefined) {
+            // this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
+            this.editor.connect(nodes[connection["to"]].outputs.get(connection["port_dst"]), nodes[connection["from"]].inputs.get(connection["port_src"]));
+            // console.log("try connection:",nodes[value["from"]].inputs.get(value["port_src"]), nodes[value["to"]].outputs.get(value["port_dst"]))
+          }
+        } catch (e) {
+          console.warn(
+            "PROBLEM: ", e, "\ntry",
+            " fomr (output)",
+            connection["from"], " port ", connection["port_src"], " data: ", nodes[connection["from"]],
+            " to (input)",
+            connection["to"], " port ", connection["port_dst"], " data: ", nodes[connection["to"]],
+          );
+        }
+      })
+    );
+
+    this.arrangeNodes();
+
+    //parsefile section
+
+    let areas: AreaApplication[] = [];
+    this.theater.properties.areas?.forEach(a => {
+      areas.push({
+        name: a.area,
+        description: a.description,
+        color: '',
+        deleted: false,
+        id: '',
+        uuid: '',
+        theater: undefined,
+      })
+    });
+    this.areaList.next(areas);
+
+    let imports: string[] = [];
+    this.theater.blueprintFile.imports?.forEach(i => {
+      imports.push(i)
+    });
+    this.importList.next(imports);
+
+    let tags: TagCatalogueDTO[] = []; // essendo che ci sono 2 tag in posizioni differenti.
+    if (this.theater.tags.length > 0)
+      this.theater.tags?.forEach(t => {
+        tags.push({
+          name: t.name,
+          description: t.description,
+          id: t.id
+        })
+      });
+    else
+      this.theater.properties.tags.forEach(t => {
+        tags.push({
+          name: t.tag,
+          description: "",
+          id: null
+        })
+      })
+    this.tagList.next(tags);
+
+
+    let deploymentSequence: DeployInstanceDTO[] = [];
+    Object.entries(this.theater.deploymentSequence!).map(([key, value]) => {
+      deploymentSequence.push({
+        moduleInstanceConfigurationUUID: value.moduleInstanceConfigurationUUID,
+        moduleInstanceUUID: value.moduleInstanceUUID,
+        moduleInstanceName: value.moduleInstanceName,
+        moduleUUID: value.moduleUUID,
+      })
+    })
+    this.deploymentList.next(deploymentSequence);
+
+
   }
 
 

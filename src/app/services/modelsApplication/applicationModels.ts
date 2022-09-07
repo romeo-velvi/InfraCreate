@@ -25,7 +25,7 @@ export interface CommonModule {
  * Can ereditate field from SimpleModuleRoot implementing some fields
  */
 export class ModuleApplication extends ModuleDTO implements CommonModule {
-    import: string[] // perchè nell'export yaml è previsto
+    imports: string[] // perchè nell'export yaml è previsto
     interfaces: ModuleNetworkInterfaceDTO[]
     hosts: HostModuleDTO[]
     host_number: number

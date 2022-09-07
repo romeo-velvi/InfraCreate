@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ApplicationRef, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, DoBootstrap, NgModule } from '@angular/core';
+import { ApplicationRef, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, DoBootstrap, NgModule, Provider } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
@@ -62,6 +62,17 @@ import { environment } from 'src/environments/environment';
 // import { ColorPickerModule } from 'ngx-color-picker';
 
 const keycloakService = new KeycloakService();
+let providerInitKeycloak: Provider = (!environment.mocked)
+  ? {
+    provide: APP_INITIALIZER,
+    useFactory: initializeKeycloak,
+    multi: true,
+    deps: [KeycloakService],
+    // provide: KeycloakService,
+    // useValue: keycloakService,
+  }
+  : [];
+
 
 @NgModule({
   declarations: [
@@ -100,9 +111,6 @@ const keycloakService = new KeycloakService();
     TabnavComponent,
     AccordionComponent,
     DataItemComponent,
-
-    // ColorPickerModule
-
   ],
   imports: [
     BrowserModule,
@@ -128,15 +136,7 @@ const keycloakService = new KeycloakService();
     ReactiveFormsModule
   ],
   providers: [
-    ////////////////////////////////////////////////////// COMMENT IF DATA ARE MOCKED & set mocked = true in visualizer
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService],
-      // provide: KeycloakService,
-      // useValue: keycloakService,
-    },
+    providerInitKeycloak,
     TokenService,
     ModuleService,
     TheaterService,
@@ -157,7 +157,7 @@ const keycloakService = new KeycloakService();
 
 export class AppModule implements DoBootstrap {
   ngDoBootstrap(appRef: ApplicationRef) {
-    if (environment.mocked) { // mocked check
+    if (!environment.mocked) { // se non è mockato
       keycloakService
         .init()
         .then(() => {

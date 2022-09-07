@@ -6,12 +6,16 @@ import { ExportModule } from './exportModule';
 import { ExportTheater } from './exportTheater';
 import { stringify as YAMLstringfy } from "json-to-pretty-yaml"
 import { TheaterExport } from '../../modelsExport/theaterExport';
+import { SubjectType } from 'src/app/models/appType';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExportService {
+
+  theaterType="."+SubjectType.THEATER.toLowerCase();
+  moduleType="."+SubjectType.MODULE.toLowerCase();
 
   constructor() { }
 
@@ -20,7 +24,7 @@ export class ExportService {
     return this.exportToYaml(module.name, data);
   }
   exportModuleToJSON(module: ModuleApplication, editor: Data) {
-    return this.exportToJson(module.name, module);
+    return this.exportToJson(module.name+this.moduleType, module);
   }
 
   exportTheaterToYAML(theater: TheaterApplication, editor: Data) {
@@ -28,7 +32,7 @@ export class ExportService {
     return this.exportToYaml(theater.name, data);
   }
   exportTheaterToJSON(theater: TheaterApplication, editor: Data) {
-    return this.exportToJson(theater.name, theater);
+    return this.exportToJson(theater.name+this.theaterType, theater);
   }
 
   exportToYaml(fn: string, objectData: any) {

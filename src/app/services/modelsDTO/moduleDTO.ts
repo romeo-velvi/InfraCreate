@@ -146,11 +146,14 @@ export class SimpleAreaDTO {
 }
 export class TheaterInstancePropertiesDTO {
     mode: string
-    tags: []
+    tags: TagTIP[]
     areas: SimpleAreaDTO[]
     author: string
     version: string | number
     description: string
+}
+export class TagTIP{
+    tag: string
 }
 export class ElementIntoTheaterDTO {  // goes into map in blueprint [name:string]: Module...
     properties: ModuleInstancePropertiesDTO | TheaterInstancePropertiesDTO

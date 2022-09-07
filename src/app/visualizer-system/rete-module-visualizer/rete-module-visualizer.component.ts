@@ -56,9 +56,6 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   // for map bool
   ismapvisible: boolean = true;
 
-  // to download
-  downloadJsonHref: SafeUrl;
-
   // navbar data
   navbarData: NavbarElement;
 
@@ -129,7 +126,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
     this.spinnerService.setSpinner(true, "Loading theater elements");
     if (this.isSimple) {
       this.module = {
-        import: [],
+        imports: [],
         ...this.simpleModule,
         attachments: undefined,
         author: undefined,
@@ -164,9 +161,9 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
 
     this.container = this.el.nativeElement;
 
-    this.editor = new NodeEditor('moduleEditor@0.1.0', this.container);
+    this.editor = new NodeEditor('InfraCreateEditor@0.2.0', this.container);
 
-    this.engine = new Engine('moduleEngine@0.2.0');
+    this.engine = new Engine('InfraCreateEngine@0.2.0');
 
     var v = new ReteModuleVisualizerSettings(this.container, this.editor, this.components, this.engine);
 
@@ -218,9 +215,9 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
 
     this.container = this.el.nativeElement;
 
-    this.editor = new NodeEditor('moduleEditor@0.1.0', this.container);
+    this.editor = new NodeEditor('InfraCreateEditor@0.2.0', this.container);
 
-    this.engine = new Engine('moduleEngine@0.2.0');
+    this.engine = new Engine('InfraCreateEngine@0.2.0');
 
     var v = new ReteModuleVisualizerSettings(this.container, this.editor, this.components, this.engine);
 
@@ -306,7 +303,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
       type: "module",
       element: [
         { text: "Module info", id: 'mod_info' },
-        { text: "Download zip", id: 'download' },
+        { text: "Download", id: 'download' },
         { text: "Home", id: 'home' },
       ]
     }
@@ -422,7 +419,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
         this.showhideModuleInfo();
         break;
       case "download":
-        this.downloadZIP();
+        this.download();
         break;
       case "home":
         this.goHome();
@@ -443,7 +440,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
     this.displaceLeft();
     this.cdr.detectChanges();
   }
-  async downloadZIP() {
+  async download() {
     this.spinnerService.setSpinner(true, "Creating module download");
     if (!environment.mocked) {
       (await this.attachmentsService.getModuleAttachment(this.module.id, this.module.attachments[0]))
@@ -454,7 +451,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
         )
     }
     else {
-      this.exportService.exportModuleToYAML(this.module, this.editor.toJSON());
+      this.exportService.exportModuleToJSON(this.module, this.editor.toJSON());
       this.spinnerService.setSpinner(false);
     }
   }
@@ -612,18 +609,10 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
       })
     );
 
-    this.arrangenodes();
+    this.arrangeNodes();
 
   }
 
-  // editor func
-  public async arrangenodes() {
-    this.editor.nodes.forEach(async node => {
-      await node.update()
-      this.editor.trigger("arrange", { node: node });
-    });
-
-  }
 
   // async not parse
   notSort() {

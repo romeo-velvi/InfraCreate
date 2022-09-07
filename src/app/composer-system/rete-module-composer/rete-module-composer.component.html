@@ -292,9 +292,9 @@
     <ng-container *ngFor="let ifc of (consumerInterface|async); let i = index">
         <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,CONSUMER)">
             <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName" formType="text"
-                (onChange)="updateInterfaceName($event,ifc.nodeName,CONSUMER)"></app-data-input-v2>
+                (onChange)="updateInterfaceName($event,ifc.nodeName,CONSUMER)" style="margin-top: 0.7em!important;"></app-data-input-v2>
             <div *ngIf="ifc.network && ifc.network.name">
-                <h5> Network associated: </h5>
+                <h5 style="margin-top: 0.7em!important;"> Network associated: </h5>
                 <div class="row div-data-item">
                     {{ifc.network.name}}
                 </div>
@@ -313,7 +313,7 @@
             <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName" formType="text"
                 (onChange)="updateInterfaceName($event,ifc.nodeName,PRODUCER)" style="margin-top: 0.7em!important"></app-data-input-v2>
             <div *ngIf="ifc.network && ifc.network.name">
-                <h5> Network associated: </h5>
+                <h5 style="margin-top: 0.7em!important;"> Network associated: </h5>
                 <div class="row div-data-item">
                     {{ifc.network.name}}
                 </div>

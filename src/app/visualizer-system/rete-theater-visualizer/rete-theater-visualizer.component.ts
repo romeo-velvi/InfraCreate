@@ -56,9 +56,6 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
   // for map bool
   ismapvisible: boolean = true;
 
-  // to download
-  downloadJsonHref: SafeUrl;
-
   // navbar data
   navbarData: NavbarElement;
 
@@ -132,9 +129,9 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
 
     this.container = this.el.nativeElement;
 
-    this.editor = new NodeEditor('theaterEditor@0.1.0', this.container);
+    this.editor = new NodeEditor('InfraCreateEditor@0.2.0', this.container);
 
-    this.engine = new Engine('theaterEngine@0.2.0');
+    this.engine = new Engine('InfraCreateEngine@0.2.0');
 
     var v = new ReteTheaterVisualizerSettings(this.container, this.editor, this.components, this.engine);
 
@@ -157,7 +154,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
 
     await this.addNodes();
 
-    this.arrangenodes();
+    this.arrangeNodes();
 
     // this.displayAllNodes();
 
@@ -175,9 +172,9 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
 
     this.container = this.el.nativeElement;
 
-    this.editor = new NodeEditor('theaterEditor@0.1.0', this.container);
+    this.editor = new NodeEditor('InfraCreateEditor@0.2.0', this.container);
 
-    this.engine = new Engine('theaterEngine@0.2.0');
+    this.engine = new Engine('InfraCreateEngine@0.2.0');
 
     var v = new ReteTheaterVisualizerSettings(this.container, this.editor, this.components, this.engine);
 
@@ -258,7 +255,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
       type: "theater",
       element: [
         { text: "Theater info", id: 'info' },
-        { text: "Download zip", id: 'download' },
+        { text: "Download", id: 'download' },
         { text: "Home", id: 'home' },
       ]
     }
@@ -354,7 +351,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
         this.showhideTheaterInfo();
         break;
       case "download":
-        this.downloadZIP();
+        this.download();
         break;
       case "home":
         this.goHome();
@@ -380,7 +377,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
     this.displaceLeft();
     this.cdr.detectChanges();
   }
-  async downloadZIP() {
+  async download() {
     this.spinnerService.setSpinner(true, "Creating theater download");
     if (!environment.mocked) {
       (await this.attachmentsService.getTheaterAttachment(this.theater.id))
@@ -391,7 +388,8 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
         )
     }
     else {
-      this.exportService.exportTheaterToYAML(this.theater, this.editor.toJSON());
+      //CHANGE TO YAML
+      this.exportService.exportTheaterToJSON(this.theater, this.editor.toJSON());
       this.spinnerService.setSpinner(false);
     }
   }
@@ -550,16 +548,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
       })
     );
 
-    this.arrangenodes();
-
-  }
-
-  // editor func
-  public async arrangenodes() {
-    this.editor.nodes.forEach(async node => {
-      await node.update()
-      this.editor.trigger("arrange", { node: node });
-    });
+    this.arrangeNodes();
 
   }
 

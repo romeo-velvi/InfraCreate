@@ -30,7 +30,7 @@ export class PerseDataForModuleVisualizer {
         let h: HostModuleDTO[] = await this.getMainModuleNodes(module);
         let i: ModuleNetworkInterfaceDTO[] = await this.getMainModuleInterfaces(module);
         let moduleInfo2: ModuleApplication = {
-            import: [],
+            imports: [],
             ...module,
             hosts: h,
             interfaces: i,

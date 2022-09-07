@@ -17,7 +17,7 @@ import { DataInputElement, DataInputReturned, SelectOption } from '../../compone
 import { ModalItem } from '../../components/modal/modaltype';
 import { TabnavElement } from '../../components/tabnav/tabnavtype';
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
-import { AreaApplication, FlavorApplication, ModuleApplication, NodeTopologyElement } from 'src/app/services/modelsApplication/applicationModels';
+import { AreaApplication, FlavorApplication, ModuleApplication, NodeTopologyElement, ReteConnection } from 'src/app/services/modelsApplication/applicationModels';
 import { BehaviorSubject, from, Observable, ObservableInput, Subject } from 'rxjs';
 import { ModuleClassificationDTO, ModuleModeDTO, ModuleNetworkInterfaceDTO, TypesCatalogueDTO } from 'src/app/services/modelsDTO/moduleDTO';
 import { EnumModuleType, EnumModuleTypeDescription, EnumNodeType, InterfacePortType, NodePortType, StaticValue } from 'src/app/models/appType';
@@ -75,7 +75,8 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   engine: Engine = null;
 
   // Variable
-  module: ModuleApplication;
+  @Input() module: ModuleApplication;
+  fromFile: boolean = false;
 
   // variabili per input-research
   nodetofind: string = '';
@@ -311,55 +312,55 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     });
     this.importList.asObservable().subscribe((imp) => {
       if (this.module)
-        this.module.import = imp ? imp : [];
+        this.module.imports = imp ? imp : [];
     });
   }
-
-
-
 
 
   async ngOnInit() {
     this.spinnerService.setSpinner(true, "Loading module composer");
     let stringdate = new Date;
-    this.module = {
-      import: [],
-      createdBy: this.ModuleAuthor,
-      createdDate: stringdate as unknown as string,
-      description: this.ModuleDescription,
-      author: this.ModuleAuthor,
-      version: this.ModuleVersion as string,
-      host_number: 0,
-      subnet_number: 0,
-      network_number: 0,
-      mode: null,
-      tags: null,
-      id: null,
-      isLocked: null,
-      lastModifiedBy: null,
-      lastModifiedDate: null,
-      lockAcquiredTimestamp: null,
-      lockLastUserAcquiring: null,
-      lockReleasedTimestamp: null,
-      name: this.ModuleName,
-      status: null,
-      type: null,
-      uuid: null,
-      interfaces: [],
-      hosts: [],
-      topology: null,
-      attachments: null,
-      capabilities: null,
-      catalog1: null,
-      catalog2: null,
-      catalog3: null,
-      classification: null,
-      configurationTemplate: null,
-      detailProperties: null,
-      input: null,
-      output: null,
-      statistics: null,
-    }
+    if (!this.module)
+      this.module = {
+        imports: [],
+        createdBy: this.ModuleAuthor,
+        createdDate: stringdate as unknown as string,
+        description: this.ModuleDescription,
+        author: this.ModuleAuthor,
+        version: this.ModuleVersion as string,
+        host_number: 0,
+        subnet_number: 0,
+        network_number: 0,
+        mode: null,
+        tags: null,
+        id: null,
+        isLocked: null,
+        lastModifiedBy: null,
+        lastModifiedDate: null,
+        lockAcquiredTimestamp: null,
+        lockLastUserAcquiring: null,
+        lockReleasedTimestamp: null,
+        name: this.ModuleName,
+        status: null,
+        type: null,
+        uuid: null,
+        interfaces: [],
+        hosts: [],
+        topology: null,
+        attachments: null,
+        capabilities: null,
+        catalog1: null,
+        catalog2: null,
+        catalog3: null,
+        classification: null,
+        configurationTemplate: null,
+        detailProperties: null,
+        input: null,
+        output: null,
+        statistics: null,
+      };
+    else
+      this.fromFile = true;
     this.availableFlavor.next(this.flavor);
     from(this.startApp())
       .subscribe(el => {
@@ -374,9 +375,9 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
 
     this.dragdrop = document.getElementById('dragdrop');
 
-    this.editor = new NodeEditor('moduleEditorComposer@0.2.0', this.container);
+    this.editor = new NodeEditor('InfraCreateEditor@0.2.0', this.container);
 
-    this.engine = new Engine('moduleEditorComposer@0.2.0');
+    this.engine = new Engine('InfraCreateEngine@0.2.0');
 
     var v = new ReteModuleComposerSettings(this.container, this.editor, this.components, this.engine);
     v.editorUSE(this.dragdrop);
@@ -433,6 +434,10 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
       this.editor.register(c);
       this.engine.register(c);
     });
+
+    this.fromFile
+      ? await this.initModuleFromFile()
+      : false;
 
     this.editor.view.resize();
 
@@ -622,7 +627,9 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   }
   loadJson() {
     let json = prompt("Insert json");
-    this.editor.fromJSON(JSON.parse(json));
+    json
+      ? this.editor.fromJSON(JSON.parse(json))
+      : false;
   }
 
 
@@ -1202,6 +1209,78 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   //// other
   print(val: any) {
     console.log(val);
+  }
+
+
+  // add node function
+  public async initModuleFromFile(): Promise<void> {
+
+    var nodes = [];
+
+    await Promise.all(
+      Object.entries(this.module.topology.elements).map(async ([key, value]) => {
+        try {
+          nodes[key] = await this.components[IndexNodeComponent[value.type]].createNode(value);
+        }
+        catch (e) {
+          console.warn("Problem with: ", key, " with value: \n", value)
+        }
+      })
+    );
+
+    await Promise.all(
+      Object.entries(nodes).map(([key, value]) => {
+        try {
+          this.editor.addNode(value);
+        }
+        catch (e) {
+          console.warn("Problem ", e, " with: ", key, " with value: \n", value)
+        }
+      })
+    );
+
+    await Promise.all(
+      Object.entries(this.module.topology.connection).map(([key, value]) => {
+        let connection: ReteConnection = value;
+        try {
+          if (nodes[connection["to"]] !== undefined && nodes[connection["from"]] !== undefined) {
+            // this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
+            this.editor.connect(nodes[connection["from"]].outputs.get(connection["port_src"]), nodes[connection["to"]].inputs.get(connection["port_dst"]));
+          }
+        } catch (e) {
+          console.warn(
+            "PROBLEM: ", e, "\ntry",
+            " connect ",
+            connection["from"], " port ", connection["port_src"], " data: ", nodes[connection["from"]],
+            " to ",
+            connection["to"], " port ", connection["port_dst"], " data: ", nodes[connection["to"]],
+          );
+        }
+      })
+    );
+
+    this.arrangeNodes();
+
+    //parsefile section
+    let cons_int: ModuleNetworkInterfaceDTO[] = [];
+    let prod_int: ModuleNetworkInterfaceDTO[] = [];
+    this.module.interfaces?.forEach(el => {
+      if (el.type === this.CONSUMER)
+        cons_int.push(el);
+      else
+        prod_int.push(el);
+    });
+    this.consumerInterface.next(cons_int);
+    this.producerInterface.next(prod_int);
+
+    let imp: string[] = [];
+    if (this.module.imports.length > 0) {
+      this.module.imports.forEach(i => {
+        imp.push(i);
+      })
+      this.importList.next(imp);
+    }
+
   }
 
 

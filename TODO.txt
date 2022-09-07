@@ -4,6 +4,7 @@ ____________________________________________________________________________
 
 Prevedere di inserire il file JSON(theaterApplication) e ti genera automaticamente il file
 
+
 -> not really necessaty
 SPIEGARE COME FARE AD AGGIUNGERE UN NUOVO NODO PER TEATRO E MODULO
 AGGIUNGERE VALIDATORS (https://stackoverflow.com/questions/21740309/how-to-check-in-node-if-module-exists-and-if-exists-to-load)
@@ -16,9 +17,6 @@ per i tipo/quantità di export per i nodi in modo da essere validi.
 
 ****CONTROLLARE CORENEZA NEL PARSING  ctrl+F -> @check 
 
-____________________________________________________________________________
-
-@@@@ DECOMMENTARE initializeKeycloak e gli auth guard per testing + assegnare mocked = false in Visualizer
 _______________________________________________________________
 
 IDEA

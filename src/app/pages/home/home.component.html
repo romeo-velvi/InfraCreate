@@ -1,4 +1,4 @@
-<!-- <app-navbar-element *ngIf="router.url !== '/visualizer' && router.url !== '/composer' "></app-navbar-element> -->
+<!-- <app-navbar-element *ngIf="router.url !== '/VISUALIZER' && router.url !== '/COMPOSER' "></app-navbar-element> -->
 <div class="bg-component">
     <app-navbar-element></app-navbar-element>
 
@@ -20,11 +20,11 @@
                     <div class="row justify-content-center">
                         <div class="row justify-content-center">
                             <button type="button" class="btn btn-outline-light m-2 w-75 text-break"
-                                (click)="buttonClick(Composer,Theater)">Create Theater</button>
+                                (click)="buttonClick(COMPOSER,Theater)">Create Theater</button>
                         </div>
                         <div class="row justify-content-center">
                             <button type="button" class="btn btn-outline-light m-2 w-75 text-break"
-                                (click)="buttonClick(Composer,Module)">Create Module</button>
+                                (click)="buttonClick(COMPOSER,Module)">Create Module</button>
                         </div>
                     </div>
                 </div>
@@ -35,11 +35,11 @@
                     <div class="row justify-content-center">
                         <div class="row justify-content-center">
                             <button type="button" class="btn btn-outline-light m-2 w-75 text-break"
-                                (click)="buttonClick(Visualizer,Theater)">Visualize Theater</button>
+                                (click)="buttonClick(VISUALIZER,Theater)">Visualize Theater</button>
                         </div>
                         <div class="row justify-content-center">
                             <button type="button" class="btn btn-outline-light m-2 w-75 text-break"
-                                (click)="buttonClick(Visualizer,Module)">Visualize Module</button>
+                                (click)="buttonClick(VISUALIZER,Module)">Visualize Module</button>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,39 @@
 
 <!-- FORM -->
 <ng-template #data_input_template>
-    <!-- <app-data-input-v2 title="titolo a caso" [(value)]="valore" formType="text"></app-data-input-v2> -->
-    <app-data-input #data_input [element]="formElementModal" (dataSubmitted)="dataInputReturned($event)">
-    </app-data-input>
+    <div class="accordion" id="accordionHome">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNew"
+                    aria-expanded="true" aria-controls="collapseNew">
+                    {{branch===COMPOSER?"Create new ":"Visualize "}}{{type}}
+                </button>
+            </h2>
+            <div id="collapseNew" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionHome">
+                <div class="accordion-body">
+                    <app-data-input #data_input [element]="formElementModal"
+                        (dataSubmitted)="dataInputReturned($event)">
+                    </app-data-input>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item" *ngIf="branch===COMPOSER">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseUpload" aria-expanded="false" aria-controls="collapseUpload">
+                    Design {{type}} from file
+                </button>
+            </h2>
+            <div id="collapseUpload" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionHome">
+                <div class="accordion-body">
+                    <input #fileInput style="display: none" type="file" (change)="onFileSelected($event)">
+                    <button class="btn" (click)="fileInput.click()">Select File</button>
+                    <button class="btn" (click)="onUpload()" [disabled]="!(fileLoaded)">Upload</button>
+                    <button class="btn" (click)="onReset(fileInput)" [disabled]="!(fileLoaded)">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-template>

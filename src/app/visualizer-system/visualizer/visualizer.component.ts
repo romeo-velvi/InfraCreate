@@ -84,9 +84,15 @@ export class VisualizerComponent implements OnInit {
       this.parseService.parseModuleForModuleVisualizer(this.id ? this.id : 1459)
     )
       .subscribe(el => {
-        this.module = el
-        this.spinnerService.setSpinner(false);
-        this.active = true;
+        if (el) {
+          this.module = el
+          this.spinnerService.setSpinner(false);
+          this.active = true;
+        }
+        else {
+          this.spinnerService.setSpinner(false);
+          this.hasproblem = true;
+        }
       });
   }
 
@@ -96,9 +102,15 @@ export class VisualizerComponent implements OnInit {
       this.parseService.parseTheaterForTheaterVisualizer(this.id ? this.id : 502)
     )
       .subscribe(el => {
-        this.theater = el
-        this.spinnerService.setSpinner(false);
-        this.active = true;
+        if (el) {
+          this.theater = el
+          this.spinnerService.setSpinner(false);
+          this.active = true;
+        }
+        else {
+          this.spinnerService.setSpinner(false);
+          this.hasproblem = true;
+        }
       });
   }
 

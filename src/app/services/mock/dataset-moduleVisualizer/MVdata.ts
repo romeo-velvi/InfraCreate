@@ -18766,19 +18766,19 @@ export const Module1459 = {
     }
 }
 
-export const MockedModule = async (module_id:string|number)=>{
+export const MockedModule = async (module_id: string | number) => {
     await delay();
-    if(module_id as string === "1461"){
+    if (module_id as string === "1461") {
         return Module1461
     }
-    else if (module_id as string === "1459"){
+    else if (module_id as string === "1459") {
         return Module1459
     }
-    else{
-        alert("module not found ");
+    else {
+        return undefined;
     }
 }
 
 let delay = async () => {
-    return new Promise(resolve => setTimeout(resolve,1000));
+    return new Promise(resolve => setTimeout(resolve, 1000));
 }

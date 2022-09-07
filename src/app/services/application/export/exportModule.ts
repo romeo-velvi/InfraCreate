@@ -21,7 +21,7 @@ export class ExportModule {
         let me: ModuleExport = new ModuleExport();
         me.tosca_definitions_version = ToscaDefinitionType.cloudify;
         me.description = this.module.description;
-        me.imports = this.module.import;
+        me.imports = this.module.imports;
         // node_Tempates
         let nt: { [name: string]: ModuleSimpleData | NodeSimpleData | PortSimpleData | NetworkSimpleData | SubnetSimpleData } = {};
         // inizia a prendere i nodi del modulo

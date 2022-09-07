@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DataInputElement, DataInputReturned } from 'src/app/components/data-input/datainputtype';
 import { ModalItem } from 'src/app/components/modal/modaltype';
 import { SubjectType, ComposerVisualizerType, DataRouteComposer, DataRouteVisualizer } from 'src/app/models/appType';
+import { FileService } from 'src/app/services/application/file/file.service';
+import { StorageService } from 'src/app/services/application/storage/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +17,15 @@ export class HomeComponent implements OnInit {
   // var
   id: number;
   name: string;
-  description:string;
-  author:string;
+  description: string;
+  author: string;
 
   // reference
   @ViewChild('data_input_template') data_input_template?: TemplateRef<any>;
 
   //tipe stat
-  Composer = ComposerVisualizerType.COMPOSER;
-  Visualizer = ComposerVisualizerType.VISUALIZER;
+  COMPOSER = ComposerVisualizerType.COMPOSER;
+  VISUALIZER = ComposerVisualizerType.VISUALIZER;
   Module = SubjectType.MODULE;
   Theater = SubjectType.THEATER;
 
@@ -88,7 +90,11 @@ export class HomeComponent implements OnInit {
   isModalActive: boolean = false;
   dataModal: ModalItem;
 
-  constructor(private router: Router) {
+  // file var
+  fileJSON: any = undefined;
+  fileLoaded: boolean = false;
+
+  constructor(private router: Router, private fileService: FileService, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -97,26 +103,26 @@ export class HomeComponent implements OnInit {
   buttonClick(branch: ComposerVisualizerType, type: SubjectType): void {
     this.branch = branch;
     this.type = type;
-    let title: string= type+" "+branch;
-    if (branch === ComposerVisualizerType.COMPOSER){
+    let title: string = type + " " + branch;
+    if (branch === ComposerVisualizerType.COMPOSER) {
       this.formElementModal = this.formElementComposer
     }
-    else{ 
+    else {
       this.formElementModal = this.formElementVisualizer
     }
-     this.dataModal = {
-        title: title,
-        template: this.data_input_template,
-        buttons: [],
-        backgroundColor: "#0000005e",
-        //f9fafb24
-      };
-      this.isModalActive=true;
+    this.dataModal = {
+      title: title,
+      template: this.data_input_template,
+      buttons: [],
+      backgroundColor: "#0000005e",
+      //f9fafb24
+    };
+    this.isModalActive = true;
   }
 
   dataInputReturned(val: DataInputReturned) {
-    this.isModalActive=false;
-    if(!val || !val.isValid) return;
+    this.isModalActive = false;
+    if (!val || !val.isValid) return;
     if (this.branch === ComposerVisualizerType.VISUALIZER) {
       this.id = val.element["id"].value
     }
@@ -160,6 +166,29 @@ export class HomeComponent implements OnInit {
         }
       );
     }
+  }
+
+
+  async onFileSelected(event: any) {
+    await this.fileService.onFileSelected(event)
+      .then((v) => {
+        this.fileJSON = v; this.fileLoaded = true;
+      })
+      .catch((e) => {
+        alert(e+"\n Make sure it ends with \" ."+this.type.toLowerCase()+".json \"")
+      })
+    console.log("->", this.fileJSON);
+  }
+
+  onUpload() {
+    this.storageService.data = this.fileJSON;
+    this.startapplication();
+  }
+
+  onReset(input) {
+    input.value = ""
+    this.fileLoaded = false;
+    this.fileJSON = undefined;
   }
 
 }
