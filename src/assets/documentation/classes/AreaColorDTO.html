@@ -91,12 +91,6 @@
                             <li>
                                 <a href="#color" >color</a>
                             </li>
-                            <li>
-                                <a href="#area" >area</a>
-                            </li>
-                            <li>
-                                <a href="#description" >description</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -142,72 +136,6 @@
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="area"></a>
-                    <span class="name">
-                        <span ><b>area</b></span>
-                        <a href="#area"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/SimpleAreaDTO.html" target="_self" >SimpleAreaDTO</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/SimpleAreaDTO.html#source" target="_self" >SimpleAreaDTO:144</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="description"></a>
-                    <span class="name">
-                        <span ><b>description</b></span>
-                        <a href="#description"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/SimpleAreaDTO.html" target="_self" >SimpleAreaDTO</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/SimpleAreaDTO.html#source" target="_self" >SimpleAreaDTO:145</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
 </section>
 
 
@@ -238,7 +166,7 @@ import { AreaApplication, ModuleInstance, ReteConnection, SimpleModuleApplicatio
 import { SpinnerService } from &#x27;src/app/services/application/spinner/spinner.service&#x27;;
 import { SimpleAreaDTO } from &#x27;src/app/services/modelsDTO/moduleDTO&#x27;;
 import { BlueprintFileDTO, DeployInstanceDTO, EntityNameMappingFileDTO, TagCatalogueDTO, TheatreStatusDTO } from &#x27;src/app/services/modelsDTO/theaterDTO&#x27;;
-import { OnChangeV2 } from &#x27;src/app/components/data-input-v2/dataInputTypeV2&#x27;;
+import { DataInputReturnedV2 } from &#x27;src/app/components/data-input-v2/dataInputTypeV2&#x27;;
 import { ReteDisplayModuleInstanceTC, ReteDisplayModuleDataTC, ReteDisplayTheaterDataTC } from &#x27;src/app/rete-settings/settings/displayData&#x27;;
 import { ExportService } from &#x27;src/app/services/application/export/export.service&#x27;;
 import { ModalService } from &#x27;src/app/services/application/modal/modal.service&#x27;;
@@ -811,7 +739,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.areaList.next(areas);
     this.cdr.detectChanges();
   }
-  updateAreaDescription(val: OnChangeV2, areaName: string) {
+  updateAreaDescription(val: DataInputReturnedV2, areaName: string) {
     let areas: AreaApplication[] &#x3D; this.areaList.getValue() ? this.areaList.getValue() : [];
     var actualIndexArea &#x3D; areas.findIndex(el &#x3D;&gt; el.name &#x3D;&#x3D;&#x3D; areaName);
     if (actualIndexArea &lt; 0) {
@@ -822,7 +750,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.areaList.next(areas);
     this.cdr.detectChanges();
   }
-  updateAreaName(val: OnChangeV2, areaName: string) {
+  updateAreaName(val: DataInputReturnedV2, areaName: string) {
     if (!val || !val.new_value || !val.old_value) return;
     let areas: AreaApplication[] &#x3D; this.areaList.getValue() ? this.areaList.getValue() : [];
     let nameAlreadyExists: boolean &#x3D; areas.findIndex(el &#x3D;&gt; el.name &#x3D;&#x3D;&#x3D; val.new_value) &gt;&#x3D; 0 ? true : false;
@@ -845,7 +773,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     })
     this.cdr.detectChanges();
   }
-  updateAreaColor(val: OnChangeV2, areaName: string) {
+  updateAreaColor(val: DataInputReturnedV2, areaName: string) {
     //TODO -&gt; future implementation
   }
 
@@ -884,7 +812,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.importList.next(imports);
     this.cdr.detectChanges();
   }
-  updateImport(val: OnChangeV2, imp: string) {
+  updateImport(val: DataInputReturnedV2, imp: string) {
     let impor: string[] &#x3D; this.importList.getValue() ? this.importList.getValue() : [];
     var check &#x3D; impor.findIndex(el &#x3D;&gt; el &#x3D;&#x3D;&#x3D; imp);
     if (check &lt; 0) { alert(&quot;import does not exist&quot;); return; }
@@ -934,7 +862,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.tagList.next(tags);
     this.cdr.detectChanges();
   }
-  updateTag(val: OnChangeV2, imp: string) {
+  updateTag(val: DataInputReturnedV2, imp: string) {
     let tags: TagCatalogueDTO[] &#x3D; this.tagList.getValue() ? this.tagList.getValue() : [];
     var check &#x3D; tags.findIndex(el &#x3D;&gt; el.name &#x3D;&#x3D;&#x3D; imp);
     if (check &lt; 0) { alert(&quot;import does not exist&quot;); return; }
@@ -942,7 +870,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.tagList.next(tags);
     this.cdr.detectChanges();
   }
-  updateTagName(val: OnChangeV2, tagName: string) {
+  updateTagName(val: DataInputReturnedV2, tagName: string) {
     if (!val || !val.new_value || !val.old_value) return;
     let tags: TagCatalogueDTO[] &#x3D; this.tagList.getValue() ? this.tagList.getValue() : [];
     let nameAlreadyExists: boolean &#x3D; tags.findIndex(el &#x3D;&gt; el.name &#x3D;&#x3D;&#x3D; val.new_value) &gt;&#x3D; 0 ? true : false;
@@ -959,7 +887,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.tagList.next(tags);
     this.cdr.detectChanges();
   }
-  updateTagDescription(val: OnChangeV2, tagName: string) {
+  updateTagDescription(val: DataInputReturnedV2, tagName: string) {
     let tags: TagCatalogueDTO[] &#x3D; this.tagList.getValue() ? this.tagList.getValue() : [];
     var actualIndexTag &#x3D; tags.findIndex(el &#x3D;&gt; el.name &#x3D;&#x3D;&#x3D; tagName);
     if (actualIndexTag &lt; 0) {
@@ -1008,7 +936,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.editor.view.updateConnections({ node });
     this.cdr.detectChanges();
   }
-  updateModuleName(val: OnChangeV2) {
+  updateModuleName(val: DataInputReturnedV2) {
     if (
       !val || //non c&#x27;è change
       !val.new_value || // non c&#x27;è alcun valore

@@ -4,10 +4,10 @@
         <h5 class="m-0"> {{value}} </h5>
         <p class="btn-text-link" (click)="updateTime()">click to change</p>
     </ng-container>
-    <ng-container *ngIf="isUpdateTime && die">
-        <app-data-input *ngIf="formType.includes('text')" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
+    <ng-container *ngIf="isUpdateTime && dataInputElement">
+        <app-data-input *ngIf="formType.includes('text')" [element]="dataInputElement" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
         <!-- Per scopi dinamici è preferibile per le selection essere rielaborate ogni cambiamento -->
-        <app-data-input *ngIf="formType === 'selection'" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
-        <app-data-input *ngIf="formType === 'checkbox'" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
+        <app-data-input *ngIf="formType === 'selection'" [element]="dataInputElement" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
+        <app-data-input *ngIf="formType === 'checkbox'" [element]="dataInputElement" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
     </ng-container>
 </ng-container>

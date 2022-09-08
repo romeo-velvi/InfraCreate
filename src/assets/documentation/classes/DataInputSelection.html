@@ -66,6 +66,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Tipo input selection.
+Estende DataInput.
+See {DataInputComponet}</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -158,7 +167,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/data-input/dataInputType.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/data-input/dataInputType.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -184,7 +193,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/data-input/dataInputType.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/data-input/dataInputType.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -210,7 +219,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/data-input/dataInputType.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/data-input/dataInputType.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +252,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:10</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:18</a></code>
 </div>
                         </td>
                     </tr>
@@ -277,7 +286,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:9</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:17</a></code>
 </div>
                         </td>
                     </tr>
@@ -310,7 +319,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:6</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:14</a></code>
 </div>
                         </td>
                     </tr>
@@ -343,7 +352,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:11</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:19</a></code>
 </div>
                         </td>
                     </tr>
@@ -377,7 +386,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:7</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:15</a></code>
 </div>
                         </td>
                     </tr>
@@ -410,7 +419,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:8</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/DataInput.html#source" target="_self" >DataInput:16</a></code>
 </div>
                         </td>
                     </tr>
@@ -434,6 +443,10 @@
     element: Array&lt;DataInputSelection | DataInputCheck | DataInputText&gt;;
 }
 
+/**
+ * Tipo di dato Input contenente variabili generali.
+ * @see {DataInputComponet}
+ */
 export class DataInput{
     id: string;
     text?: string;
@@ -442,30 +455,56 @@ export class DataInput{
     data_appended?: string;
     required: boolean;
 }
+/**
+ * Tipo input text base/area.
+ * Estende DataInput.
+  * @see {DataInputComponet}
+ */
 export class DataInputText extends DataInput{
     placeholder?: string;
 }
+/**
+ * Tipo input selection.
+ * Estende DataInput.
+  * @see {DataInputComponet}
+ */
 export class DataInputSelection extends DataInput{
     multiple?: boolean;
     selected_number: number;
     selection: SelectOption[];
 }
+/**
+ * Tipo input check (toggle).
+ * Estende DataInput.
+ * @see {DataInputComponet}
+ */
 export class DataInputCheck  extends DataInput{
     checked?: boolean;
 }
 
+/**
+ * Tipo usato per le selezioni (multiselect option).
+  * @see {DataInputComponet}
+ */
 export class SelectOption{
     value: string;
     text: string;
     other?: any;
 }
 
+/**
+ * Tipo di ritorno della componente DataInputReturned.
+  * @see {DataInputComponet}
+ */
 export class DataInputReturned{
     element: { [key:string]: SingleDataInputReturned};
     isValid: boolean;
     exitStatus?: &#x27;submitted&#x27; | &#x27;cancel&#x27; | &#x27;error&#x27;;
 }
-
+/**
+ * Singolo elemento dato in ritorno al submit.
+  * @see {DataInputComponet}
+ */
 export class SingleDataInputReturned{
     id: string;
     text: string;

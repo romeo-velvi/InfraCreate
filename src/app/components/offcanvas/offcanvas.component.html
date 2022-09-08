@@ -10,9 +10,9 @@
         <h5 *ngIf="!title && alt_title" class="offcanvas-title my-offcanvas-title" id="offcanvasInfoLabel">
             {{ alt_title }}
         </h5>
+        
         <ng-container *ngIf="!title && !alt_title && title_template" [ngTemplateOutlet]="title_template">
         </ng-container>
-
 
         <div class="justifty-content-end">
             <div class="btn-group" role="group">

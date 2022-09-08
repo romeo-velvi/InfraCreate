@@ -68,6 +68,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente utilizzata per la suddivisione dei tab a contenuto generico.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -134,9 +141,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#activetab" >activetab</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#hasMultipleTag" >hasMultipleTag</a>
                             </li>
                         </ul>
@@ -200,12 +209,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:40</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Costrutture TabnavComponent.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -256,9 +267,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:23</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile data in input che rappresenta il titolo alternativo dalla tab.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -277,9 +294,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:28</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile data in input che contiene le caratteristiche/quantità della tab.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -298,9 +321,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:18</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile data in input che rappresenta il titolo dalla tab.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -332,14 +361,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:63</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamata quando si seleziona una tab.
+See {activetab}</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -401,14 +433,18 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:53</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamata all&#39;inizializzazione del componente.
+Controlla che ci siano 1 o più tab.
+Setta la prima tab attiva, in modo da essere mostrata.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -430,6 +466,7 @@
                 <td class="col-md-4">
                     <a name="activetab"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>activetab</b></span>
                         <a href="#activetab"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -443,10 +480,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:40</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che indica l&#39;id della tab selezionata.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -456,6 +499,7 @@
                 <td class="col-md-4">
                     <a name="hasMultipleTag"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>hasMultipleTag</b></span>
                         <a href="#hasMultipleTag"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -474,10 +518,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/tabnav/tabnav.component.ts:34</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che indica se ci siano più tab.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -487,10 +537,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy } from &#x27;@angular/compiler/src/compiler_facade_interface&#x27;;
-import { ChangeDetectorRef, Component, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, Component, Input, OnInit } from &#x27;@angular/core&#x27;;
 import { TabnavElement } from &#x27;./tabnavType&#x27;;
 
+/**
+ * Componente utilizzata per la suddivisione dei tab a contenuto generico.
+ */
 @Component({
   selector: &#x27;app-tabnav&#x27;,
   templateUrl: &#x27;./tabnav.component.html&#x27;,
@@ -498,24 +550,55 @@ import { TabnavElement } from &#x27;./tabnavType&#x27;;
 })
 export class TabnavComponent implements OnInit {
 
+  /**
+   * Variabile data in input che rappresenta il titolo dalla tab.
+   * @type {string}
+   */
   @Input() title: string;
+  /**
+   * Variabile data in input che rappresenta il titolo alternativo dalla tab.
+   * @type {string}
+   */
   @Input() alt_title: string;
+  /**
+   * Variabile data in input che contiene le caratteristiche/quantità della tab.
+   * @type {TabnavElement}
+  */ 
   @Input() element: TabnavElement;
 
-  hasMultipleTag: boolean &#x3D; true;
+  /**
+   * Variabile che indica se ci siano più tab.
+   * @type {boolean}
+   */
+  protected hasMultipleTag: boolean &#x3D; true;
 
-  activetab: string;
+  /**
+   * Variabile che indica l&#x27;id della tab selezionata.
+   * @type {string}
+   */
+  protected activetab: string;
 
-  constructor(
-    private cdr: ChangeDetectorRef
-  ) {
-  }
+  /**
+   * Costrutture TabnavComponent.
+   * @param cdr 
+   */
+  constructor(private cdr: ChangeDetectorRef) { }
 
+  /**
+   * Funzione richiamata all&#x27;inizializzazione del componente.
+   * Controlla che ci siano 1 o più tab.
+   * Setta la prima tab attiva, in modo da essere mostrata. 
+   */
   ngOnInit(): void {
     this.hasMultipleTag &#x3D; (this.element.element.length &gt; 1) ? true : false;
     this.active(this.element.element[0].id);
   }
 
+  /**
+   * Funzione richiamata quando si seleziona una tab.
+   * @see {activetab} 
+   * @param val 
+   */
   active(val: string | any) {
     this.activetab &#x3D; val;
     this.cdr.detectChanges();
@@ -544,8 +627,9 @@ export class TabnavComponent implements OnInit {
         &lt;div *ngIf&#x3D;&quot;activetab&#x3D;&#x3D;&#x3D;item.id&quot; class&#x3D;&quot;tab-pane fade show&quot; style&#x3D;&quot;color: aliceblue; width: 100%; height: 100%;&quot;
             role&#x3D;&quot;tabpanel&quot; [ngClass]&#x3D;&quot;activetab&#x3D;&#x3D;&#x3D;item.id?&#x27;active&#x27;:&#x27;&#x27;&quot; [attr.aria-labelledby]&#x3D;&quot;item.id&quot;
             [attr.aria-selected]&#x3D;&quot;activetab&#x3D;&#x3D;&#x3D;item.id?&#x27;true&#x27;:&#x27;false&#x27;&quot;&gt;
-            &lt;ng-container *ngIf&#x3D;&quot;item.template&quot; [ngTemplateOutlet]&#x3D;&quot;item.template&quot;&gt;
-            &lt;/ng-container&gt;
+
+            &lt;ng-container *ngIf&#x3D;&quot;item.template&quot; [ngTemplateOutlet]&#x3D;&quot;item.template&quot;&gt;&lt;/ng-container&gt;
+
         &lt;/div&gt;
     &lt;/div&gt;
 
@@ -603,7 +687,7 @@ export class TabnavComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- --------- LINK --------- --><ul *ngIf="hasMultipleTag" class="nav nav-tabs nav-justified" id="myTab" role="tablist">    <li *ngFor="let item of element.element" class="nav-item active" role="presentation">        <a class="nav-link disable-select cursor-pointer" data-toggle="tab" role="tab" [attr.aria-controls]="item.id"            [ngClass]="activetab===item.id?\'text-tab-selected\':\'text-tab-unselected\'" name={{item.id}}            aria-selected="false" (click)="active(item.id)">            {{item.text}}        </a>    </li></ul><!-- ------- CONTENTS ------ --><div id="myTabContent" class="tab-content">    <!-- ------- CNTNT ------ -->    <div *ngFor="let item of element.element">        <div *ngIf="activetab===item.id" class="tab-pane fade show" style="color: aliceblue; width: 100%; height: 100%;"            role="tabpanel" [ngClass]="activetab===item.id?\'active\':\'\'" [attr.aria-labelledby]="item.id"            [attr.aria-selected]="activetab===item.id?\'true\':\'false\'">            <ng-container *ngIf="item.template" [ngTemplateOutlet]="item.template">            </ng-container>        </div>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- --------- LINK --------- --><ul *ngIf="hasMultipleTag" class="nav nav-tabs nav-justified" id="myTab" role="tablist">    <li *ngFor="let item of element.element" class="nav-item active" role="presentation">        <a class="nav-link disable-select cursor-pointer" data-toggle="tab" role="tab" [attr.aria-controls]="item.id"            [ngClass]="activetab===item.id?\'text-tab-selected\':\'text-tab-unselected\'" name={{item.id}}            aria-selected="false" (click)="active(item.id)">            {{item.text}}        </a>    </li></ul><!-- ------- CONTENTS ------ --><div id="myTabContent" class="tab-content">    <!-- ------- CNTNT ------ -->    <div *ngFor="let item of element.element">        <div *ngIf="activetab===item.id" class="tab-pane fade show" style="color: aliceblue; width: 100%; height: 100%;"            role="tabpanel" [ngClass]="activetab===item.id?\'active\':\'\'" [attr.aria-labelledby]="item.id"            [attr.aria-selected]="activetab===item.id?\'true\':\'false\'">            <ng-container *ngIf="item.template" [ngTemplateOutlet]="item.template"></ng-container>        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComposerComponent', 'selector': 'app-composer'},{'name': 'ControlTemplate', 'selector': ''},{'name': 'DataInputComponent', 'selector': 'app-data-input'},{'name': 'DataInputV2Component', 'selector': 'app-data-input-v2'},{'name': 'DataItemComponent', 'selector': 'app-window-item'},{'name': 'DocsComponent', 'selector': 'app-docs'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HostComponent', 'selector': ''},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'MirroringModuleInstanceComponent', 'selector': ''},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarElementComponent', 'selector': 'app-navbar-element'},{'name': 'NetworkComponent', 'selector': ''},{'name': 'OffcanvasComponent', 'selector': 'app-offcanvas'},{'name': 'ReteModuleComposerComponent', 'selector': 'app-rete-module-composer'},{'name': 'ReteModuleVisualizerComponent', 'selector': 'app-rete-module-visualizer'},{'name': 'ReteTheaterComposerComponent', 'selector': 'app-rete-theater-composer'},{'name': 'ReteTheaterVisualizerComponent', 'selector': 'app-rete-theater-visualizer'},{'name': 'SubnetComponent', 'selector': ''},{'name': 'TabnavComponent', 'selector': 'app-tabnav'},{'name': 'TheaterInternalServiceModuleInstanceComponent', 'selector': ''},{'name': 'TheaterModuleInstanceComponent', 'selector': ''},{'name': 'UnderbarComponent', 'selector': 'app-underbar'},{'name': 'VisualizerComponent', 'selector': 'app-displayer'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TabnavComponent'};

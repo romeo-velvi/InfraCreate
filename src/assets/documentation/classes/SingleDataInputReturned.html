@@ -66,6 +66,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Singolo elemento dato in ritorno al submit.
+See {DataInputComponet}</p>
+
+            </p>
 
 
 
@@ -132,7 +140,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/data-input/dataInputType.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/data-input/dataInputType.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -158,7 +166,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/data-input/dataInputType.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/data-input/dataInputType.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -184,7 +192,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/data-input/dataInputType.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/data-input/dataInputType.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -210,7 +218,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/data-input/dataInputType.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/data-input/dataInputType.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -233,6 +241,10 @@
     element: Array&lt;DataInputSelection | DataInputCheck | DataInputText&gt;;
 }
 
+/**
+ * Tipo di dato Input contenente variabili generali.
+ * @see {DataInputComponet}
+ */
 export class DataInput{
     id: string;
     text?: string;
@@ -241,30 +253,56 @@ export class DataInput{
     data_appended?: string;
     required: boolean;
 }
+/**
+ * Tipo input text base/area.
+ * Estende DataInput.
+  * @see {DataInputComponet}
+ */
 export class DataInputText extends DataInput{
     placeholder?: string;
 }
+/**
+ * Tipo input selection.
+ * Estende DataInput.
+  * @see {DataInputComponet}
+ */
 export class DataInputSelection extends DataInput{
     multiple?: boolean;
     selected_number: number;
     selection: SelectOption[];
 }
+/**
+ * Tipo input check (toggle).
+ * Estende DataInput.
+ * @see {DataInputComponet}
+ */
 export class DataInputCheck  extends DataInput{
     checked?: boolean;
 }
 
+/**
+ * Tipo usato per le selezioni (multiselect option).
+  * @see {DataInputComponet}
+ */
 export class SelectOption{
     value: string;
     text: string;
     other?: any;
 }
 
+/**
+ * Tipo di ritorno della componente DataInputReturned.
+  * @see {DataInputComponet}
+ */
 export class DataInputReturned{
     element: { [key:string]: SingleDataInputReturned};
     isValid: boolean;
     exitStatus?: &#x27;submitted&#x27; | &#x27;cancel&#x27; | &#x27;error&#x27;;
 }
-
+/**
+ * Singolo elemento dato in ritorno al submit.
+  * @see {DataInputComponet}
+ */
 export class SingleDataInputReturned{
     id: string;
     text: string;

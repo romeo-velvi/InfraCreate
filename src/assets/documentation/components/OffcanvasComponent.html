@@ -68,14 +68,16 @@
 </p>
 
 
-
-
     <p class="comment">
-        <h3>Implements</h3>
+        <h3>Description</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+        <p>Componente utilizzata per il rendering degli offcanvas a contenuto generico.
+Supporta operazioni di full-screen e mid-screen con posizioni: destra, sinistra, sotto, sopra</p>
+
     </p>
+
+
 
 
 <section>
@@ -134,18 +136,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#_show" >_show</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#closeIconClass" >closeIconClass</a>
                             </li>
                             <li>
-                                <a href="#hasMultipleTag" >hasMultipleTag</a>
-                            </li>
-                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#toOpenIconClass" >toOpenIconClass</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#toReduceIconClass" >toReduceIconClass</a>
                             </li>
                         </ul>
@@ -162,9 +165,6 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#closeOffcanvas" >closeOffcanvas</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
                                 <a href="#reduce" >reduce</a>
@@ -252,12 +252,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:76</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Constructor componente OffcavanvasComponent</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -308,9 +310,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:43</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile in input che rappresente un titolo alternativo (se presente).</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -329,9 +337,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:54</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile in input che rappresenta il Blob da visualizzare come contenuto nell&#39;offcanvas</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -355,9 +369,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:71</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile che rappresenta lo stato di visualizzazione full-screen / mid-screen</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -376,9 +396,20 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:64</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile che indica la posizione dell&#39;offcanvas.
+Ci sono quattro possibilità:
+ @type {&quot;end&quot;} dx
+ @type {&quot;start&quot;} sx
+ @type {&quot;top&quot;} sopra
+ @type {&quot;bottom&quot;} sotto</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -397,9 +428,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:25</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile (set) input che rappresenta lo stato dell&#39;hide-or-show dell&#39;offcanvas
+Quando esegue l&#39;update del valore show. Lo emette anche in output.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -418,9 +456,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:38</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile in input che rappresenta il titolo.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -439,9 +483,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:48</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile in input, messo, se presente, al posto del titolo.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -463,7 +513,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:32</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -496,51 +546,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:91</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:39</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamata per la chiusura dell&#39;offcanvas
+See {show}</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -570,14 +586,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:100</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>funzione richiamata per lo stato full/mid-screen dell&#39;offcanvas
+See {isfull}</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -599,6 +618,7 @@
                 <td class="col-md-4">
                     <a name="_show"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>_show</b></span>
                         <a href="#_show"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -612,10 +632,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:19</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile di appoggio per lo stato &quot;hide-or-show&quot; dell&#39;offcanvas.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -625,6 +651,7 @@
                 <td class="col-md-4">
                     <a name="closeIconClass"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>closeIconClass</b></span>
                         <a href="#closeIconClass"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -643,38 +670,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:34</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="hasMultipleTag"></a>
-                    <span class="name">
-                        <span ><b>hasMultipleTag</b></span>
-                        <a href="#hasMultipleTag"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -687,6 +683,7 @@
                 <td class="col-md-4">
                     <a name="toOpenIconClass"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>toOpenIconClass</b></span>
                         <a href="#toOpenIconClass"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -705,7 +702,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -718,6 +715,7 @@
                 <td class="col-md-4">
                     <a name="toReduceIconClass"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>toReduceIconClass</b></span>
                         <a href="#toReduceIconClass"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -736,7 +734,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -765,7 +763,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:29</a></div>
                                 </td>
                             </tr>
 
@@ -776,11 +774,14 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/offcanvas/offcanvas.component.ts:25</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Variabile (set) input che rappresenta lo stato dell&#39;hide-or-show dell&#39;offcanvas
+Quando esegue l&#39;update del valore show. Lo emette anche in output.</p>
+</div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -823,17 +824,29 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectorRef, Component, EventEmitter, Input, Output, TemplateRef } from &#x27;@angular/core&#x27;;
 
+
+/**
+ * Componente utilizzata per il rendering degli offcanvas a contenuto generico.
+ * Supporta operazioni di full-screen e mid-screen con posizioni: destra, sinistra, sotto, sopra 
+ */
 @Component({
   selector: &#x27;app-offcanvas&#x27;,
   templateUrl: &#x27;./offcanvas.component.html&#x27;,
   styleUrls: [&#x27;./offcanvas.component.sass&#x27;],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OffcanvasComponent implements OnInit{
+export class OffcanvasComponent {
 
-  _show: boolean;  
+  /**
+   * Variabile di appoggio per lo stato &quot;hide-or-show&quot; dell&#x27;offcanvas.
+   */
+  protected _show: boolean;
+  /**
+   * Variabile (set) input che rappresenta lo stato dell&#x27;hide-or-show dell&#x27;offcanvas
+   * Quando esegue l&#x27;update del valore show. Lo emette anche in output.
+   */
   @Input()
   set show(val: boolean) {
     this.showChange.emit(val);
@@ -843,30 +856,73 @@ export class OffcanvasComponent implements OnInit{
     return this._show;
   }
   @Output() showChange: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter&lt;boolean&gt;();
-  
+
+  /**
+   * Variabile in input che rappresenta il titolo.
+   * @type {string}
+   */
   @Input() title: string;
+  /**
+   * Variabile in input che rappresente un titolo alternativo (se presente).
+   * @type {string}
+   */
   @Input() alt_title?: string;
+  /**
+   * Variabile in input, messo, se presente, al posto del titolo.
+   * @type {TemplateRef}
+   */
   @Input() title_template?: TemplateRef&lt;any&gt;;
+
+  /**
+   * Variabile in input che rappresenta il Blob da visualizzare come contenuto nell&#x27;offcanvas
+   * @type {TemplateRef}
+   */
   @Input() element: TemplateRef&lt;any&gt;;
+
+  /**
+   * Variabile che indica la posizione dell&#x27;offcanvas.
+   * Ci sono quattro possibilità:
+   *  @type {&quot;end&quot;} dx
+   *  @type {&quot;start&quot;} sx
+   *  @type {&quot;top&quot;} sopra
+   *  @type {&quot;bottom&quot;} sotto
+   */
   @Input() position: &quot;end&quot; | &quot;start&quot; | &quot;top&quot; | &quot;bottom&quot;;
 
-  hasMultipleTag: boolean &#x3D; true;
-
-
+  /**
+   * Variabile che rappresenta lo stato di visualizzazione full-screen / mid-screen
+   * @type {boolean}
+   * @default {false}
+   */
   @Input() isfull?: boolean &#x3D; false;
-  toReduceIconClass: string &#x3D; &quot;bi bi-box-arrow-in-down-right&quot;;
-  toOpenIconClass: string &#x3D; &quot;bi bi-square&quot;;
-  closeIconClass: string &#x3D; &quot;bi bi-x-lg&quot;;
+  
+  // variabili classe icone
+  protected toReduceIconClass: string &#x3D; &quot;bi bi-box-arrow-in-down-right&quot;;
+  protected toOpenIconClass: string &#x3D; &quot;bi bi-square&quot;;
+  protected closeIconClass: string &#x3D; &quot;bi bi-x-lg&quot;;
 
 
+  /**
+   * Constructor componente OffcavanvasComponent
+   * @param cdr 
+   */
   constructor(private cdr: ChangeDetectorRef) {
   }
-  ngOnInit(): void {
-  }
-  closeOffcanvas(){
-    this.show&#x3D;false;
+
+
+  /**
+   * Funzione richiamata per la chiusura dell&#x27;offcanvas
+   * @see {show}
+   */
+  closeOffcanvas() {
+    this.show &#x3D; false;
     this.cdr.detectChanges();
   }
+
+  /**
+   * funzione richiamata per lo stato full/mid-screen dell&#x27;offcanvas
+   * @see {isfull}
+   */
   reduce() {
     this.isfull &#x3D; !this.isfull;
     this.cdr.detectChanges();
@@ -889,9 +945,9 @@ export class OffcanvasComponent implements OnInit{
         &lt;h5 *ngIf&#x3D;&quot;!title &amp;&amp; alt_title&quot; class&#x3D;&quot;offcanvas-title my-offcanvas-title&quot; id&#x3D;&quot;offcanvasInfoLabel&quot;&gt;
             {{ alt_title }}
         &lt;/h5&gt;
+        
         &lt;ng-container *ngIf&#x3D;&quot;!title &amp;&amp; !alt_title &amp;&amp; title_template&quot; [ngTemplateOutlet]&#x3D;&quot;title_template&quot;&gt;
         &lt;/ng-container&gt;
-
 
         &lt;div class&#x3D;&quot;justifty-content-end&quot;&gt;
             &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot;&gt;
@@ -992,7 +1048,7 @@ cite
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="show" class="offcanvas show my-offcanvas" [ngClass]="\'offcanvas-\'+position"    [ngStyle]="{\'width\': (isfull?\'100\':\'50\')+\'%\'}" tabindex="-1" id="offcanvasInfo" data-bs-scroll="true"    data-bs-backdrop="false" aria-labelledby="offcanvasInfoLabel">    <!-- --------- HEADER --------- -->    <div class="offcanvas-header side-wrapper-opt">        <h5 *ngIf="title" class="offcanvas-title my-offcanvas-title" id="offcanvasInfoLabel">            {{ title }}        </h5>        <h5 *ngIf="!title && alt_title" class="offcanvas-title my-offcanvas-title" id="offcanvasInfoLabel">            {{ alt_title }}        </h5>        <ng-container *ngIf="!title && !alt_title && title_template" [ngTemplateOutlet]="title_template">        </ng-container>        <div class="justifty-content-end">            <div class="btn-group" role="group">                <button class="btn btn-outline-light w-auto btn-sm " data-toggle="tooltip" data-placement="top"                    title="resize" (click)="reduce()">                    <i [ngClass]="isfull?toReduceIconClass:toOpenIconClass"></i>                </button>                <button class="btn btn-outline-light w-auto btn-sm" data-bs-dismiss="offcanvas" type="button"                    aria-label="Close" data-toggle="tooltip" data-placement="top" title="remove"                    (click)="closeOffcanvas()"> <i [ngClass]="closeIconClass"></i>                </button>            </div>        </div>    </div>    <!-- --------- BODY --------- -->    <div class="offcanvas-body side-wrapper-opt my-offcanvas-body">        <!-- content -->        <ng-container *ngIf="element" [ngTemplateOutlet]="element"></ng-container>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="show" class="offcanvas show my-offcanvas" [ngClass]="\'offcanvas-\'+position"    [ngStyle]="{\'width\': (isfull?\'100\':\'50\')+\'%\'}" tabindex="-1" id="offcanvasInfo" data-bs-scroll="true"    data-bs-backdrop="false" aria-labelledby="offcanvasInfoLabel">    <!-- --------- HEADER --------- -->    <div class="offcanvas-header side-wrapper-opt">        <h5 *ngIf="title" class="offcanvas-title my-offcanvas-title" id="offcanvasInfoLabel">            {{ title }}        </h5>        <h5 *ngIf="!title && alt_title" class="offcanvas-title my-offcanvas-title" id="offcanvasInfoLabel">            {{ alt_title }}        </h5>                <ng-container *ngIf="!title && !alt_title && title_template" [ngTemplateOutlet]="title_template">        </ng-container>        <div class="justifty-content-end">            <div class="btn-group" role="group">                <button class="btn btn-outline-light w-auto btn-sm " data-toggle="tooltip" data-placement="top"                    title="resize" (click)="reduce()">                    <i [ngClass]="isfull?toReduceIconClass:toOpenIconClass"></i>                </button>                <button class="btn btn-outline-light w-auto btn-sm" data-bs-dismiss="offcanvas" type="button"                    aria-label="Close" data-toggle="tooltip" data-placement="top" title="remove"                    (click)="closeOffcanvas()"> <i [ngClass]="closeIconClass"></i>                </button>            </div>        </div>    </div>    <!-- --------- BODY --------- -->    <div class="offcanvas-body side-wrapper-opt my-offcanvas-body">        <!-- content -->        <ng-container *ngIf="element" [ngTemplateOutlet]="element"></ng-container>    </div></div></div>'
     var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComposerComponent', 'selector': 'app-composer'},{'name': 'ControlTemplate', 'selector': ''},{'name': 'DataInputComponent', 'selector': 'app-data-input'},{'name': 'DataInputV2Component', 'selector': 'app-data-input-v2'},{'name': 'DataItemComponent', 'selector': 'app-window-item'},{'name': 'DocsComponent', 'selector': 'app-docs'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HostComponent', 'selector': ''},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'MirroringModuleInstanceComponent', 'selector': ''},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarElementComponent', 'selector': 'app-navbar-element'},{'name': 'NetworkComponent', 'selector': ''},{'name': 'OffcanvasComponent', 'selector': 'app-offcanvas'},{'name': 'ReteModuleComposerComponent', 'selector': 'app-rete-module-composer'},{'name': 'ReteModuleVisualizerComponent', 'selector': 'app-rete-module-visualizer'},{'name': 'ReteTheaterComposerComponent', 'selector': 'app-rete-theater-composer'},{'name': 'ReteTheaterVisualizerComponent', 'selector': 'app-rete-theater-visualizer'},{'name': 'SubnetComponent', 'selector': ''},{'name': 'TabnavComponent', 'selector': 'app-tabnav'},{'name': 'TheaterInternalServiceModuleInstanceComponent', 'selector': ''},{'name': 'TheaterModuleInstanceComponent', 'selector': ''},{'name': 'UnderbarComponent', 'selector': 'app-underbar'},{'name': 'VisualizerComponent', 'selector': 'app-displayer'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'OffcanvasComponent'};

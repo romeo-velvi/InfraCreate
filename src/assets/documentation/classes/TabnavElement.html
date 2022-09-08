@@ -66,6 +66,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento utilizzato come input dalla componente TabnavComponent
+See {TabnavComponent}</p>
+
+            </p>
 
 
 
@@ -123,7 +131,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/app/components/tabnav/tabnavType.ts:4</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/components/tabnav/tabnavType.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -144,10 +152,18 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TemplateRef } from &quot;@angular/core&quot;;
 
+/**
+ * Elemento utilizzato come input dalla componente TabnavComponent
+ * @see {TabnavComponent}
+ */
 export class TabnavElement {
     element: TabnavItem[];
 }
 
+/**
+ * Elemento che rappresenta una singola tab.
+ * @see {TabnavComponent}
+ */
 export class TabnavItem {
     id: string;
     text: string;

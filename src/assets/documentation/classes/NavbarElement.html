@@ -66,6 +66,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento passato come parametro alla componente NavbarComponent</p>
+
+            </p>
 
 
 
@@ -134,7 +141,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/components/navbar/navbarType.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/components/navbar/navbarType.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -161,7 +168,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/components/navbar/navbarType.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/components/navbar/navbarType.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -188,7 +195,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/app/components/navbar/navbarType.ts:4</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/components/navbar/navbarType.ts:7</a></div>
                         </td>
                     </tr>
 
@@ -214,7 +221,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/components/navbar/navbarType.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/components/navbar/navbarType.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -235,6 +242,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TemplateRef } from &quot;@angular/core&quot;;
 
+/**
+ * Elemento passato come parametro alla componente NavbarComponent
+ */
 export class NavbarElement {
     template_title?: TemplateRef&lt;any&gt;;
     type: &quot;module&quot; | &quot;theater&quot;;
@@ -242,6 +252,9 @@ export class NavbarElement {
     element: NavbarItem[];
 }
 
+/**
+ * Oggetto che rappresenta un singolo elemento della Navbar
+ */
 export class NavbarItem{
     id: string;
     text: string;
@@ -249,6 +262,9 @@ export class NavbarItem{
     template?: TemplateRef&lt;any&gt;;
 }
 
+/**
+ * Rappresenta le opzioni per il tag &lt;a&gt;
+ */
 export class Aoption {
     attr_key: string;
     attr_val: string;

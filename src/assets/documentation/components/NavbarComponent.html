@@ -68,13 +68,19 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente che genera una navbar a contenuto variabile.</p>
+
+    </p>
 
 
     <p class="comment">
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
                     <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
     </p>
 
@@ -139,9 +145,6 @@
                                 <a href="#ngAfterViewInit" >ngAfterViewInit</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
                                 <a href="#select_item" >select_item</a>
                             </li>
                         </ul>
@@ -198,10 +201,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/navbar/navbar.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/navbar/navbar.component.ts:27</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Costruttore componente NavbarComonent</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -224,9 +233,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/navbar/navbar.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/navbar/navbar.component.ts:19</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile passata in input che fornisce le caratterisiche della navbar
+See {NavbarElement}</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -245,9 +261,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/navbar/navbar.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/navbar/navbar.component.ts:23</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile passata in input che rappresenta il titolo della nav</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -269,9 +291,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/navbar/navbar.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/navbar/navbar.component.ts:27</a></div>
                             </td>
                         </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variabile di output che ritorna l&#39;evento del click di un elemento selezionato.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -302,51 +330,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/components/navbar/navbar.component.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/components/navbar/navbar.component.ts:39</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/app/components/navbar/navbar.component.ts:19</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamata non appena la navbar è visibile.
+Ha lo scopo di valorizzare gli attrubuti dei singoli elementi passati in input.</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -376,14 +370,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/app/components/navbar/navbar.component.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/app/components/navbar/navbar.component.ts:57</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che emette il valore di click su elemento appena è stato selezionato.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -431,27 +427,44 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterViewInit, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 import { NavbarElement } from &#x27;./navbarType&#x27;;
 
+
+/**
+ * Componente che genera una navbar a contenuto variabile.
+ */
 @Component({
   selector: &#x27;app-navbar&#x27;,
   templateUrl: &#x27;./navbar.component.html&#x27;,
   styleUrls: [&#x27;./navbar.component.sass&#x27;]
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
+export class NavbarComponent implements AfterViewInit {
 
+  /**
+   * Variabile passata in input che fornisce le caratterisiche della navbar
+   * @see {NavbarElement}
+   */
   @Input() element: NavbarElement;
+  /**
+   * Variabile passata in input che rappresenta il titolo della nav
+   */
   @Input() title: string;
+  /**
+   * Variabile di output che ritorna l&#x27;evento del click di un elemento selezionato.
+   */
   @Output() itemSelected &#x3D; new EventEmitter&lt;NavbarElement&gt;();
 
-
+  /**
+   * Costruttore componente NavbarComonent
+   */
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * Funzione richiamata non appena la navbar è visibile.
+   * Ha lo scopo di valorizzare gli attrubuti dei singoli elementi passati in input.
+   */
   ngAfterViewInit(): void {
     this.element.element.forEach(
       (el) &#x3D;&gt; {
@@ -466,6 +479,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     )
   }
 
+  /**
+   * Funzione che emette il valore di click su elemento appena è stato selezionato.
+   * @param val 
+   */
   select_item(val: NavbarElement) {
     this.itemSelected.emit(val);
   }

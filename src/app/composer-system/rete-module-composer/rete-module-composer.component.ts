@@ -15,7 +15,7 @@ import { FlavorApplication, ModuleApplication, ReteConnection } from 'src/app/se
 import { BehaviorSubject, from } from 'rxjs';
 import { ModuleNetworkInterfaceDTO } from 'src/app/services/modelsDTO/moduleDTO';
 import { EnumModuleType, EnumModuleTypeDescription, EnumNodeType, InterfacePortType, NodePortType, StaticValue } from 'src/app/models/appType';
-import { OnChangeV2 } from 'src/app/components/data-input-v2/dataInputTypeV2';
+import { DataInputReturnedV2 } from 'src/app/components/data-input-v2/dataInputTypeV2';
 import { ParseService } from 'src/app/services/application/parse/parse.service';
 import { ReteDisplayNodeDataMV, ReteDisplayModuleDataMV } from 'src/app/rete-settings/settings/displayData';
 import { ExportService } from 'src/app/services/application/export/export.service';
@@ -630,7 +630,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.editor.view.updateConnections({ node });
     this.cdr.detectChanges();
   }
-  updateNodeFlavour(val: OnChangeV2) {
+  updateNodeFlavour(val: DataInputReturnedV2) {
     let x: FlavorApplication = this.availableFlavor.getValue().find(f => f.flavorName === val.new_value);
     if (x) {
       this.nodeSelected.data.cpu = x.cpu;
@@ -678,7 +678,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.nodeSelected.addOutput(output);
     this.updateNode(this.nodeSelected);
   }
-  updatePortName(val: OnChangeV2, type: NodePortType) {
+  updatePortName(val: DataInputReturnedV2, type: NodePortType) {
     if (!val || !val.old_value || !val.new_value) return;
     let old_value = val.old_value;
     let new_value = val.new_value;
@@ -982,7 +982,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     (type === this.CONSUMER) ? this.consumerInterface.next(ifc) : this.producerInterface.next(ifc)
     this.cdr.detectChanges();
   }
-  updateInterfaceName(val: OnChangeV2, ifcName: string, type: InterfacePortType) {
+  updateInterfaceName(val: DataInputReturnedV2, ifcName: string, type: InterfacePortType) {
     if (!val || !val.new_value || !val.old_value) return;
     let ifcc: ModuleNetworkInterfaceDTO[] = this.consumerInterface.getValue() ? this.consumerInterface.getValue() : [];
     let ifcp: ModuleNetworkInterfaceDTO[] = this.producerInterface.getValue() ? this.producerInterface.getValue() : [];
@@ -1043,7 +1043,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.importList.next(imports);
     this.cdr.detectChanges();
   }
-  updateImport(val: OnChangeV2, imp: string) {
+  updateImport(val: DataInputReturnedV2, imp: string) {
     let impor: string[] = this.importList.getValue() ? this.importList.getValue() : [];
     var check = impor.findIndex(el => el === imp);
     if (check < 0) { alert("import does not exist"); return; }
@@ -1055,7 +1055,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
 
 
   // catch event to update node value
-  updateNetworkInterface(val: OnChangeV2) {
+  updateNetworkInterface(val: DataInputReturnedV2) {
     if (!val || !val.new_value) return;
     let netIF: ModuleNetworkInterfaceDTO;
     let ifcp: ModuleNetworkInterfaceDTO[] = this.producerInterface.getValue();
@@ -1085,7 +1085,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.cdr.detectChanges();
     val = null;
   }
-  updateNetworkName(val: OnChangeV2) {
+  updateNetworkName(val: DataInputReturnedV2) {
     if (!val) return;
     let netIF: ModuleNetworkInterfaceDTO;
     let ifcp: ModuleNetworkInterfaceDTO[] = this.producerInterface.getValue();
@@ -1102,15 +1102,15 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.updateNode(this.nodeSelected);
     this.cdr.detectChanges();
   }
-  updateHostName(val: OnChangeV2) {
+  updateHostName(val: DataInputReturnedV2) {
     this.nodeSelected.data.name = val.new_value;
     this.updateNode(this.nodeSelected);
   }
-  updateSubnetName(val: OnChangeV2) {
+  updateSubnetName(val: DataInputReturnedV2) {
     this.nodeSelected.data.name = val.new_value;
     this.updateNode(this.nodeSelected);
   }
-  updateNodeName(val: OnChangeV2, type: EnumNodeType) {
+  updateNodeName(val: DataInputReturnedV2, type: EnumNodeType) {
     if (
       !val || //non c'è change
       !val.new_value || // non c'è alcun valore

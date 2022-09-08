@@ -1,5 +1,7 @@
 TODO
 - controllare selection in modo tale che si aggiorni il defoult value al cambiamento anzichè uscire/rientrare
+- inserire tema default dark in cmpodoc -> https://stackoverflow.com/questions/68753712/how-to-disable-the-dark-mode-in-compodoc-for-angular
+- TabComponent fare simile a data-item per la gestione dei contenuti
 _________________________________________________________________________________________
 
 IMPLEMENTAZIONI FUTURE

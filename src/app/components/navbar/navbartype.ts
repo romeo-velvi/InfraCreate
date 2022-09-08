@@ -1,5 +1,8 @@
 import { TemplateRef } from "@angular/core";
 
+/**
+ * Elemento passato come parametro alla componente NavbarComponent
+ */
 export class NavbarElement {
     template_title?: TemplateRef<any>;
     type: "module" | "theater";
@@ -7,6 +10,9 @@ export class NavbarElement {
     element: NavbarItem[];
 }
 
+/**
+ * Oggetto che rappresenta un singolo elemento della Navbar
+ */
 export class NavbarItem{
     id: string;
     text: string;
@@ -14,6 +20,9 @@ export class NavbarItem{
     template?: TemplateRef<any>;
 }
 
+/**
+ * Rappresenta le opzioni per il tag <a>
+ */
 export class Aoption {
     attr_key: string;
     attr_val: string;

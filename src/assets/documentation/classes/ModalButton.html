@@ -66,6 +66,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento che indica il tipo di pulsante nel modal.
+Esso è usato anche come di ritorno dell&#39;evento &quot;button-clicked&quot;.
+See {ModalComponent}</p>
+
+            </p>
 
 
 
@@ -129,7 +138,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/modal/modalType.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/modal/modalType.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -155,7 +164,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/modal/modalType.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/components/modal/modalType.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -181,7 +190,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/modal/modalType.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/modal/modalType.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -202,6 +211,10 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TemplateRef } from &quot;@angular/core&quot;;
 
+/**
+ * Tipo di dato passato alla componente ModalComponent per l&#x27;elaborazione.
+ *  @see {ModalComponent}
+ */
 export class ModalItem {
     title: string;
     text_content?: string;
@@ -209,7 +222,11 @@ export class ModalItem {
     buttons: ModalButton[];
     backgroundColor?: string &#x3D; &quot;ffffff5e&quot;;
 }
-
+/**
+ * Elemento che indica il tipo di pulsante nel modal.
+ * Esso è usato anche come di ritorno dell&#x27;evento &quot;button-clicked&quot;.
+ * @see {ModalComponent}
+ */
 export class ModalButton {
     id: string;
     text: string;

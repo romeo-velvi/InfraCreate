@@ -66,6 +66,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento singolo per l&#39;underbar.
+Usato anche come ritorno.
+See {UnderbarComponent}</p>
+
+            </p>
 
 
 
@@ -135,7 +144,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/components/underbar/underbarType.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/underbar/underbarType.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -161,7 +170,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/components/underbar/underbarType.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/underbar/underbarType.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -188,7 +197,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/underbar/underbarType.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/underbar/underbarType.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -214,7 +223,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/components/underbar/underbarType.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/underbar/underbarType.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -234,11 +243,19 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TemplateRef } from &quot;@angular/core&quot;;
-
+/**
+ * Funzione usata come input per la componente UnderbarComponent.
+ * @see {UnderbarComponent}
+ */
 export class UnderbarElement {
     element: UnderbarItem[];
 }
 
+/**
+ * Elemento singolo per l&#x27;underbar.
+ * Usato anche come ritorno.
+ * @see {UnderbarComponent}
+ */
 export class UnderbarItem {
     id: string;
     type: &quot;separator&quot; | &quot;template&quot; | &quot;button&quot;;

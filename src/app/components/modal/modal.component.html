@@ -19,9 +19,6 @@
                 </ng-container>
             </div>
             <div *ngIf="element.buttons && element.buttons.length>0" class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closemodal()">
-                    Close
-                </button> -->
                 <ng-container *ngFor="let item of element.buttons">
                     <button [id]="item.id" type="button" class="btn" [ngClass]="'btn-'+item.type" (click)="clickButton(item)">
                         {{item.text}}

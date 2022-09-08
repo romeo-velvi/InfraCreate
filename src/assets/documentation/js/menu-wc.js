@@ -186,6 +186,36 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="components/ControlTemplate.html" data-type="entity-link" >ControlTemplate</a>
                             </li>
+                            <li class="link">
+                                <a href="components/DataInputComponent.html" data-type="entity-link" >DataInputComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/DataInputV2Component.html" data-type="entity-link" >DataInputV2Component</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/DataItemComponent.html" data-type="entity-link" >DataItemComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ModalComponent.html" data-type="entity-link" >ModalComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavbarComponent.html" data-type="entity-link" >NavbarComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/OffcanvasComponent.html" data-type="entity-link" >OffcanvasComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ReteModuleComposerComponent.html" data-type="entity-link" >ReteModuleComposerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ReteTheaterComposerComponent.html" data-type="entity-link" >ReteTheaterComposerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/TabnavComponent.html" data-type="entity-link" >TabnavComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/UnderbarComponent.html" data-type="entity-link" >UnderbarComponent</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="chapter">

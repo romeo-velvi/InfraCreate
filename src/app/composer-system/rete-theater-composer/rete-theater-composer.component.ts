@@ -16,7 +16,7 @@ import { AreaApplication, ModuleInstance, ReteConnection, SimpleModuleApplicatio
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
 import { SimpleAreaDTO } from 'src/app/services/modelsDTO/moduleDTO';
 import { BlueprintFileDTO, DeployInstanceDTO, EntityNameMappingFileDTO, TagCatalogueDTO, TheatreStatusDTO } from 'src/app/services/modelsDTO/theaterDTO';
-import { OnChangeV2 } from 'src/app/components/data-input-v2/dataInputTypeV2';
+import { DataInputReturnedV2 } from 'src/app/components/data-input-v2/dataInputTypeV2';
 import { ReteDisplayModuleInstanceTC, ReteDisplayModuleDataTC, ReteDisplayTheaterDataTC } from 'src/app/rete-settings/settings/displayData';
 import { ExportService } from 'src/app/services/application/export/export.service';
 import { ModalService } from 'src/app/services/application/modal/modal.service';
@@ -589,7 +589,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.areaList.next(areas);
     this.cdr.detectChanges();
   }
-  updateAreaDescription(val: OnChangeV2, areaName: string) {
+  updateAreaDescription(val: DataInputReturnedV2, areaName: string) {
     let areas: AreaApplication[] = this.areaList.getValue() ? this.areaList.getValue() : [];
     var actualIndexArea = areas.findIndex(el => el.name === areaName);
     if (actualIndexArea < 0) {
@@ -600,7 +600,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.areaList.next(areas);
     this.cdr.detectChanges();
   }
-  updateAreaName(val: OnChangeV2, areaName: string) {
+  updateAreaName(val: DataInputReturnedV2, areaName: string) {
     if (!val || !val.new_value || !val.old_value) return;
     let areas: AreaApplication[] = this.areaList.getValue() ? this.areaList.getValue() : [];
     let nameAlreadyExists: boolean = areas.findIndex(el => el.name === val.new_value) >= 0 ? true : false;
@@ -623,7 +623,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     })
     this.cdr.detectChanges();
   }
-  updateAreaColor(val: OnChangeV2, areaName: string) {
+  updateAreaColor(val: DataInputReturnedV2, areaName: string) {
     //TODO -> future implementation
   }
 
@@ -662,7 +662,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.importList.next(imports);
     this.cdr.detectChanges();
   }
-  updateImport(val: OnChangeV2, imp: string) {
+  updateImport(val: DataInputReturnedV2, imp: string) {
     let impor: string[] = this.importList.getValue() ? this.importList.getValue() : [];
     var check = impor.findIndex(el => el === imp);
     if (check < 0) { alert("import does not exist"); return; }
@@ -712,7 +712,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.tagList.next(tags);
     this.cdr.detectChanges();
   }
-  updateTag(val: OnChangeV2, imp: string) {
+  updateTag(val: DataInputReturnedV2, imp: string) {
     let tags: TagCatalogueDTO[] = this.tagList.getValue() ? this.tagList.getValue() : [];
     var check = tags.findIndex(el => el.name === imp);
     if (check < 0) { alert("import does not exist"); return; }
@@ -720,7 +720,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.tagList.next(tags);
     this.cdr.detectChanges();
   }
-  updateTagName(val: OnChangeV2, tagName: string) {
+  updateTagName(val: DataInputReturnedV2, tagName: string) {
     if (!val || !val.new_value || !val.old_value) return;
     let tags: TagCatalogueDTO[] = this.tagList.getValue() ? this.tagList.getValue() : [];
     let nameAlreadyExists: boolean = tags.findIndex(el => el.name === val.new_value) >= 0 ? true : false;
@@ -737,7 +737,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.tagList.next(tags);
     this.cdr.detectChanges();
   }
-  updateTagDescription(val: OnChangeV2, tagName: string) {
+  updateTagDescription(val: DataInputReturnedV2, tagName: string) {
     let tags: TagCatalogueDTO[] = this.tagList.getValue() ? this.tagList.getValue() : [];
     var actualIndexTag = tags.findIndex(el => el.name === tagName);
     if (actualIndexTag < 0) {
@@ -786,7 +786,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.editor.view.updateConnections({ node });
     this.cdr.detectChanges();
   }
-  updateModuleName(val: OnChangeV2) {
+  updateModuleName(val: DataInputReturnedV2) {
     if (
       !val || //non c'è change
       !val.new_value || // non c'è alcun valore
