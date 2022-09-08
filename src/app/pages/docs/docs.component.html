@@ -1,3 +1,14 @@
-<app-navbar-element></app-navbar-element>
-
-<div [innerHTML]="compodoc_index_html"></div>
+<div class="box">
+    <div class="rox header">
+        <app-navbar-element></app-navbar-element>
+    </div>
+    <div class="rox content">
+        <div style="overflow: visible;width: 100%; height:100%">
+            <iframe id="serviceFrameSend" [ngStyle]="{'visibility': IFRAMEvisibility}"
+                src="assets/documentation/index.html" frameborder="0" loading="eager"
+                (load)="IFRAMEvisibility='visible'"> </iframe>
+        </div>
+    </div>
+    <div class="rox footer">
+    </div>
+</div>

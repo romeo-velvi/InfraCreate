@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 
@@ -9,17 +10,19 @@ import { DomSanitizer} from '@angular/platform-browser';
 export class DocsComponent implements OnInit {
 
   compodoc_index_html: any;
+  IFRAMEvisibility: string = 'none';
 
   constructor(
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private http: HttpClient
   ) {
   }
 
   ngOnInit(): void {
-    fetch('/../documentation/index.html')
-    .then(res => res.text())
-    .then(data => {
-      this.compodoc_index_html = this.sanitizer.bypassSecurityTrustHtml(data);
+    const headers = new HttpHeaders().set('Content-Type', 'text/html');
+    this.http.get('assets/documentation/index.html', {headers, responseType: 'text'})
+    .subscribe(data => {
+      this.compodoc_index_html = this.sanitizer.bypassSecurityTrustHtml(data as string);
     })
   }
 
