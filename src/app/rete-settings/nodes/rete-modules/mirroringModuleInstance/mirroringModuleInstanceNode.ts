@@ -105,15 +105,15 @@ export class MirroringModuleInstanceNode extends Component implements AngularCom
   }
 
   worker(node: NodeData, inputs: WorkerInputs, outputs: WorkerOutputs) {
-    console.log("Worker - work", node, inputs, outputs);
+    console.warn("Worker - work", node, inputs, outputs);
   }
 
   created(node: Node) {
-    console.log('created', node);
+    console.warn('created', node);
   }
 
   destroyed(node: Node) {
-    console.log('destroyed', node);
+    console.warn('destroyed', node);
   }
 
 

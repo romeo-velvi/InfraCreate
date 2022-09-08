@@ -56,7 +56,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   displayNdata: { [field: string]: string[] }[];
   displayMdata: { [field: string]: string[] }[][];
   displayNodeData = (node: Node): { [field: string]: string[] }[] => { let x = ReteDisplayNodeDataMV(node); return x; }
-  displayModuleData = (module: ModuleApplication): { [field: string]: string[] }[][] => { let x = ReteDisplayModuleDataMV(module); console.log(x); return x; }
+  displayModuleData = (module: ModuleApplication): { [field: string]: string[] }[][] => { let x = ReteDisplayModuleDataMV(module); return x; }
 
 
   // node editor data
@@ -800,7 +800,6 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
         this.showMinimap();
         break;
       case "search":
-        // console.log("search");
         break;
       case "fromjson":
         this.loadJson();

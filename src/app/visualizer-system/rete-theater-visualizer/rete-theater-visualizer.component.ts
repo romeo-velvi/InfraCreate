@@ -212,7 +212,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
     });
 
     this.editor.on("nodecreate", (node) => {
-      // console.log(node);
+      // console.warn(node);
     });
 
     this.editor.on('zoom', ({ source }) => {
@@ -427,7 +427,6 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
         this.showMinimap();
         break;
       case "search":
-        // console.log("search");
         break;
       default:
         console.warn("problem with button pressed: ", val.id);
@@ -532,9 +531,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
         let connection: ReteConnection = value;
         try {
           if (nodes[connection["to"]] !== undefined && nodes[connection["from"]] !== undefined) {
-            // this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
             this.editor.connect(nodes[connection["to"]].outputs.get(connection["port_dst"]), nodes[connection["from"]].inputs.get(connection["port_src"]));
-            // console.log("try connection:",nodes[value["from"]].inputs.get(value["port_src"]), nodes[value["to"]].outputs.get(value["port_dst"]))
           }
         } catch (e) {
           console.warn(

@@ -834,7 +834,6 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
         this.showMinimap();
         break;
       case "search":
-        // console.log("search");
         break;
       case "fromjson":
         this.loadJson();
@@ -1018,9 +1017,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
         let connection: ReteConnection = value;
         try {
           if (nodes[connection["to"]] !== undefined && nodes[connection["from"]] !== undefined) {
-            // this.editor.connect(nodes[value["to"]].outputs.get(value["port_dst"]), nodes[value["from"]].inputs.get(value["port_src"]));
             this.editor.connect(nodes[connection["to"]].outputs.get(connection["port_dst"]), nodes[connection["from"]].inputs.get(connection["port_src"]));
-            // console.log("try connection:",nodes[value["from"]].inputs.get(value["port_src"]), nodes[value["to"]].outputs.get(value["port_dst"]))
           }
         } catch (e) {
           console.warn(

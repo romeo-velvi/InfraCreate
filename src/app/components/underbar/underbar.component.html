@@ -1,17 +1,14 @@
 <div class="row p-1 mg-1">
+    
     <div class="col-6 text-left d-flex">
 
         &nbsp;
 
         <ng-container *ngFor="let item of element" class="col-auto">
 
-            <!-- {{print("ii",item)}} -->
-
             <ng-container *ngIf="item.element.length > 1">
-
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <ng-container *ngFor="let el of item.element">
-                        <!-- {{print("ee",el)}} -->
                         <button *ngIf="el.type==='button'" type="button" class="btn btn-secondary"
                             (click)="itemClicked(el)" data-toggle="tooltip" data-placement="bottom" title={{el.button.tooltipText}}>
                             <i [ngClass]="el.button.iconClass"></i>
@@ -20,7 +17,6 @@
                         </ng-container>
                     </ng-container>
                 </div>
-
             </ng-container>
 
             <ng-container *ngIf=" item.element.length === 1 && item.element[0].type === 'button' ">
@@ -44,4 +40,5 @@
         <!-- <i class="bi bi-grip-vertical" style="margin-top: auto; margin-bottom: auto;"></i> -->
 
     </div>
+    
 </div>

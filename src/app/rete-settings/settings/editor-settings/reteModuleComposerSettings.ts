@@ -78,7 +78,6 @@ export class ReteModuleComposerSettings implements ReteEditor {
     }
 
     printjson() {
-        console.log(this.editor.toJSON());
         console.log(JSON.stringify(this.editor.toJSON()));
     }
 

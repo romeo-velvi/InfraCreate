@@ -39,8 +39,4 @@ export class UnderbarComponent implements OnInit {
     this.itemSelected.emit(event);
   }
 
-  print(s: string, item: any) {
-    console.log(s, item)
-  }
-
 }

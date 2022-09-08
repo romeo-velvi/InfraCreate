@@ -114,7 +114,6 @@ export class ReteTheaterVisualizerSettings implements ReteEditor {
   }
 
   printjson() {
-    console.log(this.editor.toJSON());
     console.log(JSON.stringify(this.editor.toJSON()));
   }
   getNodes(): Object[] {

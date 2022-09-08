@@ -49,7 +49,6 @@ export class ComposerComponent implements OnInit {
   ) {
     this.dataFromRouter = this.router.getCurrentNavigation().extras.state as DataRouteComposer
     if (this.dataFromRouter) {
-      console.log(this.dataFromRouter)
       this.name = this.dataFromRouter.name as string;
       this.description = this.dataFromRouter.description as string;
       this.author = this.dataFromRouter.author as string;

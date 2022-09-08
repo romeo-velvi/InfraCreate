@@ -177,7 +177,6 @@ export class HomeComponent implements OnInit {
       .catch((e) => {
         alert(e+"\n Make sure it ends with \" ."+this.type.toLowerCase()+".json \"")
       })
-    console.log("->", this.fileJSON);
   }
 
   onUpload() {

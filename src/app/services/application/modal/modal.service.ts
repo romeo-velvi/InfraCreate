@@ -51,7 +51,6 @@ export class ModalService {
   }
 
   setResponse(val: ModalButton){
-    console.log(val)
     if(!val) return 
     if(val.id==="yes"){
       this.value.next(true);
