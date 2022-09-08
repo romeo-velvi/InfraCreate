@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, Input, ChangeDetectionStrategy } from '@angular/core';
-import { UnderbarItem, UnderbarElement } from './underbartypes';
+import { UnderbarItem, UnderbarElement } from './underbarType';
 
 @Component({
   selector: 'app-underbar',

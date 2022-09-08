@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ModalItem } from './components/modal/modaltype';
+import { ModalItem } from './components/modal/modalType';
 import { ModalService } from './services/application/modal/modal.service';
 import { SpinnerService } from './services/application/spinner/spinner.service';
 

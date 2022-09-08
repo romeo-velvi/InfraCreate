@@ -1,3 +1,7 @@
+TODO
+- controllare selection in modo tale che si aggiorni il defoult value al cambiamento anzichè uscire/rientrare
+_________________________________________________________________________________________
+
 IMPLEMENTAZIONI FUTURE
 - instanziare nuove componenti per le istanze dei singoli offcavans
 - in base all'area contrassegnare i moduli ddi diveso colore
@@ -9,7 +13,6 @@ IMPLEMENTAZIONI FUTURE
 - controllare moduleExport
 - dato un nodo, selezionare tutta la rete/nodi ad esso collegata/i
     # inserire del codice nel nodo, che se softSelect è premuto, cambia colore sfondo
-
 _________________________________________________________________________________________
 
 NON NECESSARIO

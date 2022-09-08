@@ -7,6 +7,7 @@ import { VisualizerComponent } from './visualizer-system/visualizer/visualizer.c
 import { ComposerComponent } from './composer-system/composer/composer.component';
 import { AuthGuard } from './utility/app.guard';
 import { environment } from 'src/environments/environment';
+import { DocsComponent } from './pages/docs/docs.component';
 
 const routesGuard: Routes = [
   {
@@ -24,6 +25,10 @@ const routesGuard: Routes = [
   {
     path: "how-to-use",
     component: HowToUseComponent,
+  },
+  {
+    path: "documentation",
+    component: DocsComponent,
   },
   {
     path: "visualizer",
@@ -58,6 +63,10 @@ const routesSimple: Routes = [
   {
     path: "how-to-use",
     component: HowToUseComponent,
+  },
+  {
+    path: "documentation",
+    component: DocsComponent,
   },
   {
     path: "visualizer",

@@ -1,8 +1,8 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataInputElement, DataInputReturned } from 'src/app/components/data-input/datainputtype';
-import { ModalItem } from 'src/app/components/modal/modaltype';
+import { DataInputElement, DataInputReturned } from 'src/app/components/data-input/dataInputType';
+import { ModalItem } from 'src/app/components/modal/modalType';
 import { SubjectType, ComposerVisualizerType, DataRouteComposer, DataRouteVisualizer } from 'src/app/models/appType';
 import { FileService } from 'src/app/services/application/file/file.service';
 import { StorageService } from 'src/app/services/application/storage/storage.service';

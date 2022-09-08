@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy } from '@angular/compiler/src/compiler_facade_interface';
 import { ChangeDetectorRef, Component, Input, OnInit, Output } from '@angular/core';
-import { TabnavElement } from './tabnavtype';
+import { TabnavElement } from './tabnavType';
 
 @Component({
   selector: 'app-tabnav',

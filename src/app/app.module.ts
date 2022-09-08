@@ -54,11 +54,10 @@ import { UnderbarComponent } from './components/underbar/underbar.component';
 import { DataInputV2Component } from './components/data-input-v2/data-input-v2.component';
 import { TabnavComponent } from './components/tabnav/tabnav.component';
 import { ParseService } from './services/application/parse/parse.service';
-import { AccordionComponent } from './components/accordion/accordion.component';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { DataItemComponent } from './components/data-item/data-item.component';
 import { environment } from 'src/environments/environment';
-
+import { DocsComponent } from './pages/docs/docs.component';
 // import { ColorPickerModule } from 'ngx-color-picker';
 
 const keycloakService = new KeycloakService();
@@ -109,8 +108,8 @@ let providerInitKeycloak: Provider = (!environment.mocked)
     UnderbarComponent,
     DataInputV2Component,
     TabnavComponent,
-    AccordionComponent,
     DataItemComponent,
+    DocsComponent
   ],
   imports: [
     BrowserModule,

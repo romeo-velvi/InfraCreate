@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
-import { ModalButton, ModalItem } from 'src/app/components/modal/modaltype';
+import { ModalButton, ModalItem } from 'src/app/components/modal/modalType';
 
 
 

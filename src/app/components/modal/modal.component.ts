@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, TemplateRef } from '@angular/core';
 import { Output } from '@angular/core';
-import { ModalButton, ModalItem } from './modaltype';
+import { ModalButton, ModalItem } from './modalType';
 
 @Component({
   selector: 'app-modal',

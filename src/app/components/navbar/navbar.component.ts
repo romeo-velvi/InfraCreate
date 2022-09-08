@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NavbarElement } from './navbartype';
+import { NavbarElement } from './navbarType';
 
 @Component({
   selector: 'app-navbar',

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DataInputElement, DataInputReturned, SelectOption, SingleDataInputReturned } from '../data-input/datainputtype';
-import { OnChangeV2 } from './datainputv2type';
+import { DataInputElement, DataInputReturned, SelectOption, SingleDataInputReturned } from '../data-input/dataInputType';
+import { OnChangeV2 } from './dataInputTypeV2';
 
 
 @Component({

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataInputElement, DataInputReturned, SingleDataInputReturned } from './datainputtype';
+import { DataInputElement, DataInputReturned, SingleDataInputReturned } from './dataInputType';
+
 
 @Component({
   selector: 'app-data-input',
