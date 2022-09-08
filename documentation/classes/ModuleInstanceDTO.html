@@ -126,7 +126,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/services/modelsDTO/moduleDTO.ts:160</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/services/modelsDTO/moduleDTO.ts:163</a></div>
                         </td>
                     </tr>
 
@@ -152,7 +152,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/services/modelsDTO/moduleDTO.ts:161</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/services/modelsDTO/moduleDTO.ts:164</a></div>
                         </td>
                     </tr>
 
@@ -319,11 +319,14 @@ export class SimpleAreaDTO {
 }
 export class TheaterInstancePropertiesDTO {
     mode: string
-    tags: []
+    tags: TagTIP[]
     areas: SimpleAreaDTO[]
     author: string
     version: string | number
     description: string
+}
+export class TagTIP{
+    tag: string
 }
 export class ElementIntoTheaterDTO {  // goes into map in blueprint [name:string]: Module...
     properties: ModuleInstancePropertiesDTO | TheaterInstancePropertiesDTO

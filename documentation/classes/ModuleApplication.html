@@ -110,7 +110,7 @@ Can ereditate field from SimpleModuleRoot implementing some fields</p>
                                 <a href="#hosts" >hosts</a>
                             </li>
                             <li>
-                                <a href="#import" >import</a>
+                                <a href="#imports" >imports</a>
                             </li>
                             <li>
                                 <a href="#interfaces" >interfaces</a>
@@ -287,10 +287,10 @@ Can ereditate field from SimpleModuleRoot implementing some fields</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="import"></a>
+                    <a name="imports"></a>
                     <span class="name">
-                        <span ><b>import</b></span>
-                        <a href="#import"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>imports</b></span>
+                        <a href="#imports"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1410,7 +1410,7 @@ export interface CommonModule {
  * Can ereditate field from SimpleModuleRoot implementing some fields
  */
 export class ModuleApplication extends ModuleDTO implements CommonModule {
-    import: string[] // perchè nell&#x27;export yaml è previsto
+    imports: string[] // perchè nell&#x27;export yaml è previsto
     interfaces: ModuleNetworkInterfaceDTO[]
     hosts: HostModuleDTO[]
     host_number: number

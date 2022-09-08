@@ -23,6 +23,7 @@ import { ModalService } from 'src/app/services/application/modal/modal.service';
 import { take } from 'rxjs/operators';
 
 
+
 export class AreaColorDTO extends SimpleAreaDTO {
   color: string;
 }
@@ -204,7 +205,6 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private parseService: ParseService,
     private spinnerService: SpinnerService,
     private exportService: ExportService,
     private modalConfirmation: ModalService
@@ -249,6 +249,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     });
   }
 
+
   async ngOnInit() {
     this.spinnerService.setSpinner(true, "Loading theater composer")
     let stringdate = new Date;
@@ -292,11 +293,9 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
       this.moduleDD.push(value);
     });
     from(this.startApp())
-      .subscribe(
-        el => {
-          this.spinnerService.setSpinner(false);
-        }
-      );
+      .subscribe(el => {
+        this.spinnerService.setSpinner(false);
+      });
     this.cdr.detectChanges();
   }
 
@@ -363,7 +362,6 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     AreaPlugin.zoomAt(this.editor, this.editor.nodes);
 
   }
-
 
 
   ngAfterViewInit() {
@@ -899,6 +897,11 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     const { area, container } = this.editor.view; // read from Vue component data;
     area.translate(area.transform.x - 200, area.transform.y);
   }
+  displaceRight() {
+    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
+    const { area, container } = this.editor.view; // read from Vue component data;
+    area.translate(area.transform.x + 200, area.transform.y);
+  }
 
   // show/hide
   showDragDrop(b: boolean = undefined) {
@@ -971,7 +974,12 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     event.stopPropagation();
     event.preventDefault();
   }
-
+  async onElementDBclick(node: ModuleInstance) {
+    let for_rete = { ...node.rete }; // bisogna instanziare una nuova variabile per prevenire cambiamenti
+    this.elementDragged = await ModuleComponents[IndexModuleComponent[ModuleType1[node.type]]].createNode(for_rete)
+    this.elementDragged.position = [this.editor.view.area.mouse.x + 100, this.editor.view.area.mouse.y + 100];
+    this.editor.addNode(this.elementDragged)
+  }
 
   //other
   print(any: any) {

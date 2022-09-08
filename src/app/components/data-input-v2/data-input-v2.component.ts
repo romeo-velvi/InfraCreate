@@ -91,6 +91,7 @@ export class DataInputV2Component implements OnInit {
 
   getCheckbox(): DataInputElement {
     let die: DataInputElement = new DataInputElement;
+    console.log(this.checked);
     die.element = [
       {
         id: this.idForChanges ? this.idForChanges : this.title,
@@ -108,6 +109,7 @@ export class DataInputV2Component implements OnInit {
   }
 
   dataInputReturned(val: DataInputReturned) {
+    this.console.log("ee->",val);
     if (!val.isValid) {
       this.updateTime();
       return;

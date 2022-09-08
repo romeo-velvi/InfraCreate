@@ -1,10 +1,10 @@
-import { trigger, state, style, AUTO_STYLE, transition, animate } from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-window-item',
   templateUrl: './data-item.component.html',
   styleUrls: ['./data-item.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataItemComponent implements OnInit {
 
@@ -20,17 +20,19 @@ export class DataItemComponent implements OnInit {
   toOpenIconClass: string = "bi bi-square";
   closeIconClass: string = "bi bi-x-lg";
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
 
   reduce() {
     this.isfull = !this.isfull;
+    this.cdr.detectChanges();
   }
-
+  
   remove(){
     this.onRemove.emit(null);
+    this.cdr.detectChanges();
   }
 
 

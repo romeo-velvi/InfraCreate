@@ -324,8 +324,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:118</a></div>
                 </td>
             </tr>
 
@@ -402,8 +402,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:99</a></div>
                 </td>
             </tr>
 
@@ -955,9 +955,15 @@ export class VisualizerComponent implements OnInit {
       this.parseService.parseModuleForModuleVisualizer(this.id ? this.id : 1459)
     )
       .subscribe(el &#x3D;&gt; {
-        this.module &#x3D; el
-        this.spinnerService.setSpinner(false);
-        this.active &#x3D; true;
+        if (el) {
+          this.module &#x3D; el
+          this.spinnerService.setSpinner(false);
+          this.active &#x3D; true;
+        }
+        else {
+          this.spinnerService.setSpinner(false);
+          this.hasproblem &#x3D; true;
+        }
       });
   }
 
@@ -967,9 +973,15 @@ export class VisualizerComponent implements OnInit {
       this.parseService.parseTheaterForTheaterVisualizer(this.id ? this.id : 502)
     )
       .subscribe(el &#x3D;&gt; {
-        this.theater &#x3D; el
-        this.spinnerService.setSpinner(false);
-        this.active &#x3D; true;
+        if (el) {
+          this.theater &#x3D; el
+          this.spinnerService.setSpinner(false);
+          this.active &#x3D; true;
+        }
+        else {
+          this.spinnerService.setSpinner(false);
+          this.hasproblem &#x3D; true;
+        }
       });
   }
 

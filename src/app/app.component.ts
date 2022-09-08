@@ -48,9 +48,4 @@ export class AppComponent {
     this.modal.show.asObservable().subscribe(v => this.showmodal = v);
   }
 
-  print(...Params: any[]) {
-    console.log(Params);
-  }
-
-
 }

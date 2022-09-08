@@ -26,7 +26,7 @@
                     <select *ngIf="item.selection.length" [id]="item.id" class="form-select"
                         formControlName="{{item.id}}">
                         <option *ngFor="let opt of item.selection; let i=index" [selected]="i===item.selected_number"
-                            [attr.value]="opt.value">
+                            [attr.value]="opt.value" (click)="print(opt.value)">
                             {{opt.text}}
                         </option>
                     </select>
@@ -50,10 +50,10 @@
             width: 100%;
             justify-content: center;
             text-align: center;">
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <button type="submit" class="btn btn-primary w-75" [disabled]="dataForm.invalid">Save</button>
             </div>
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <button type="button" class="btn btn-danger w-75" (click)="exit()">Cancel</button>
                 <!-- <button type="button" class="btn btn-info w-100" (click)="print(dataForm)">aaa</button> -->
             </div>

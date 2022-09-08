@@ -434,15 +434,15 @@
 <ng-template #dragdrop_template>
     <div class="offcanvas-body side-wrapper-opt my-offcanvas-body">
         <div [id]="HOST" class="row div-data-item draggable" draggable="true" (drag)="onDrag($event, HOST)"
-            (dragend)="dropPreventDefault($event)">
+            (dragend)="dropPreventDefault($event)" (dblclick)="onElementDBclick(HOST)">
             <h5>HOST</h5>
         </div>
         <div [id]="SUBNET" class="row div-data-item draggable" draggable="true" (drag)="onDrag($event, SUBNET)"
-            (dragend)="dropPreventDefault($event)">
+            (dragend)="dropPreventDefault($event)" (dblclick)="onElementDBclick(SUBNET)">
             <h5>SUBNET</h5>
         </div>
         <div [id]="NETWORK" class="row div-data-item draggable" draggable="true" (drag)="onDrag($event, NETWORK)"
-            (dragend)="dropPreventDefault($event)">
+            (dragend)="dropPreventDefault($event)" (dblclick)="onElementDBclick(NETWORK)">
             <h5>NETWORK</h5>
         </div>
     </div>

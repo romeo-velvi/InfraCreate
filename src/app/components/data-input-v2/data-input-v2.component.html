@@ -7,7 +7,7 @@
     <ng-container *ngIf="isUpdateTime && die">
         <app-data-input *ngIf="formType.includes('text')" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
         <!-- Per scopi dinamici è preferibile per le selection essere rielaborate ogni cambiamento -->
-        <app-data-input *ngIf="formType === 'selection'" [element]="getSelection()" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
-        <app-data-input *ngIf="formType === 'checkbox'" [element]="getCheckbox()" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
+        <app-data-input *ngIf="formType === 'selection'" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
+        <app-data-input *ngIf="formType === 'checkbox'" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>
     </ng-container>
 </ng-container>

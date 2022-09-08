@@ -82,7 +82,7 @@ import { ComposerComponent } from &#x27;./composer-system/composer/composer.comp
 import { AuthGuard } from &#x27;./utility/app.guard&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
 
-const routes: Routes &#x3D; [
+const routesGuard: Routes &#x3D; [
   {
     path: &quot;&quot;,
     component: HomeComponent,
@@ -115,7 +115,8 @@ const routes: Routes &#x3D; [
     component: HomeComponent,
   },
 ];
-const routesMocked: Routes &#x3D; [
+
+const routesSimple: Routes &#x3D; [
   {
     path: &quot;&quot;,
     component: HomeComponent,
@@ -146,15 +147,10 @@ const routesMocked: Routes &#x3D; [
   },
 ];
 
-const routesSwitch &#x3D; (): Routes &#x3D;&gt; {
-  if (environment.mocked)
-    return routesMocked
-  else
-    return routes
-}
+let ROUTES: Routes &#x3D; environment.mocked ? routesSimple : routesGuard;
 
 @NgModule({
-  imports: [RouterModule.forRoot(routesSwitch())],
+  imports: [RouterModule.forRoot(ROUTES)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

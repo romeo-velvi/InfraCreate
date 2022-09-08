@@ -1,35 +1,26 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output, ChangeDetectionStrategy, Renderer2, OnInit, TemplateRef, ChangeDetectorRef, Host } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { NodeEditor, Node, Engine, Output as or, Input as ir, Connection, Socket } from 'rete';
+import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output, ChangeDetectionStrategy, OnInit, TemplateRef, ChangeDetectorRef } from '@angular/core';
+import { NodeEditor, Node, Engine, Output as or, Input as ir, Connection } from 'rete';
 import AreaPlugin from 'rete-area-plugin';
-
 import { Router } from '@angular/router';
-
 import { EmptyNodeInfo, IndexNodeComponent, NodeComponents } from 'src/app/rete-settings/nodes/rete-nodes/export-rete-nodes';
-
 import { _Socket } from '../../rete-settings/sockets/socket';
-
 import { ReteModuleComposerSettings } from '../../rete-settings/settings/editor-settings/reteModuleComposerSettings'
-
 import { NavbarItem, NavbarElement } from '../../components/navbar/navbartype';
 import { UnderbarItem, UnderbarElement } from '../../components/underbar/underbartypes';
 import { DataInputElement, DataInputReturned, SelectOption } from '../../components/data-input/datainputtype';
 import { ModalItem } from '../../components/modal/modaltype';
 import { TabnavElement } from '../../components/tabnav/tabnavtype';
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
-import { AreaApplication, FlavorApplication, ModuleApplication, NodeTopologyElement, ReteConnection } from 'src/app/services/modelsApplication/applicationModels';
-import { BehaviorSubject, from, Observable, ObservableInput, Subject } from 'rxjs';
-import { ModuleClassificationDTO, ModuleModeDTO, ModuleNetworkInterfaceDTO, TypesCatalogueDTO } from 'src/app/services/modelsDTO/moduleDTO';
+import { FlavorApplication, ModuleApplication, ReteConnection } from 'src/app/services/modelsApplication/applicationModels';
+import { BehaviorSubject, from } from 'rxjs';
+import { ModuleNetworkInterfaceDTO } from 'src/app/services/modelsDTO/moduleDTO';
 import { EnumModuleType, EnumModuleTypeDescription, EnumNodeType, InterfacePortType, NodePortType, StaticValue } from 'src/app/models/appType';
 import { OnChangeV2 } from 'src/app/components/data-input-v2/datainputv2type';
-import { HostModuleDTO } from 'src/app/services/modelsDTO/hostDTO';
 import { ParseService } from 'src/app/services/application/parse/parse.service';
 import { ReteDisplayNodeDataMV, ReteDisplayModuleDataMV } from 'src/app/rete-settings/settings/displayData';
-// import { EnumModuleType, EnumModuleTypeDescription, EnumNodeType } from 'src/app/rete-settings/models/reteModelType';
-import { ExportModule } from 'src/app/services/application/export/exportModule';
 import { ExportService } from 'src/app/services/application/export/export.service';
 import { ModalService } from 'src/app/services/application/modal/modal.service';
-import { map, tap, takeUntil, take, first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 
 
@@ -71,7 +62,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   // node editor data
   container = null;
   editor: NodeEditor = null;
-  components: any = NodeComponents; // array of child-type Componennts
+  components: any = NodeComponents;
   engine: Engine = null;
 
   // Variable
@@ -243,7 +234,6 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
     private router: Router,
     private spinnerService: SpinnerService,
-    private parseService: ParseService,
     private exportService: ExportService,
     private modalConfirmation: ModalService
   ) {
@@ -867,6 +857,11 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     const { area, container } = this.editor.view; // read from Vue component data;
     area.translate(area.transform.x - 200, area.transform.y);
   }
+  displaceRight() {
+    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
+    const { area, container } = this.editor.view; // read from Vue component data;
+    area.translate(area.transform.x + 200, area.transform.y);
+  }
 
 
   touchNode(node: Node) {
@@ -1194,6 +1189,13 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     document.getElementById(this.typeElementDreagged).classList.remove('grabbing');
     this.elementDragged.position = [this.editor.view.area.mouse.x + 200, this.editor.view.area.mouse.y + 100];
     this.editor.addNode(this.elementDragged)
+  }
+  async onElementDBclick(type: EnumNodeType) {
+    let for_rete = { ...EmptyNodeInfo[type] }; // bisogna instanziare una nuova variabile per prevenire cambiamenti
+    this.elementDragged = await NodeComponents[IndexNodeComponent[type]].createNode(for_rete)
+    this.typeElementDreagged = type;
+    this.elementDragged.position = [this.editor.view.area.mouse.x + 100, this.editor.view.area.mouse.y + 100];
+    this.editor.addNode(this.elementDragged);
   }
   dragPreventDefault(event: any) {
     event.preventDefault();

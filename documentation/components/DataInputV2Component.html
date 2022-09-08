@@ -549,8 +549,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/app/components/data-input-v2/data-input-v2.component.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/components/data-input-v2/data-input-v2.component.ts:111</a></div>
                 </td>
             </tr>
 
@@ -766,8 +766,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/app/components/data-input-v2/data-input-v2.component.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/components/data-input-v2/data-input-v2.component.ts:106</a></div>
                 </td>
             </tr>
 
@@ -1075,6 +1075,7 @@ export class DataInputV2Component implements OnInit {
 
   getCheckbox(): DataInputElement {
     let die: DataInputElement &#x3D; new DataInputElement;
+    console.log(this.checked);
     die.element &#x3D; [
       {
         id: this.idForChanges ? this.idForChanges : this.title,
@@ -1092,6 +1093,7 @@ export class DataInputV2Component implements OnInit {
   }
 
   dataInputReturned(val: DataInputReturned) {
+    this.console.log(&quot;ee-&gt;&quot;,val);
     if (!val.isValid) {
       this.updateTime();
       return;
@@ -1129,8 +1131,8 @@ export class DataInputV2Component implements OnInit {
     &lt;ng-container *ngIf&#x3D;&quot;isUpdateTime &amp;&amp; die&quot;&gt;
         &lt;app-data-input *ngIf&#x3D;&quot;formType.includes(&#x27;text&#x27;)&quot; [element]&#x3D;&quot;die&quot; (dataSubmitted)&#x3D;&quot;dataInputReturned($event)&quot;&gt;&lt;/app-data-input&gt;
         &lt;!-- Per scopi dinamici è preferibile per le selection essere rielaborate ogni cambiamento --&gt;
-        &lt;app-data-input *ngIf&#x3D;&quot;formType &#x3D;&#x3D;&#x3D; &#x27;selection&#x27;&quot; [element]&#x3D;&quot;getSelection()&quot; (dataSubmitted)&#x3D;&quot;dataInputReturned($event)&quot;&gt;&lt;/app-data-input&gt;
-        &lt;app-data-input *ngIf&#x3D;&quot;formType &#x3D;&#x3D;&#x3D; &#x27;checkbox&#x27;&quot; [element]&#x3D;&quot;getCheckbox()&quot; (dataSubmitted)&#x3D;&quot;dataInputReturned($event)&quot;&gt;&lt;/app-data-input&gt;
+        &lt;app-data-input *ngIf&#x3D;&quot;formType &#x3D;&#x3D;&#x3D; &#x27;selection&#x27;&quot; [element]&#x3D;&quot;die&quot; (dataSubmitted)&#x3D;&quot;dataInputReturned($event)&quot;&gt;&lt;/app-data-input&gt;
+        &lt;app-data-input *ngIf&#x3D;&quot;formType &#x3D;&#x3D;&#x3D; &#x27;checkbox&#x27;&quot; [element]&#x3D;&quot;die&quot; (dataSubmitted)&#x3D;&quot;dataInputReturned($event)&quot;&gt;&lt;/app-data-input&gt;
     &lt;/ng-container&gt;
 &lt;/ng-container&gt;
 </code></pre>
@@ -1182,7 +1184,7 @@ export class DataInputV2Component implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container>    <p class="title-element">{{title}}:</p>    <ng-container *ngIf="!isUpdateTime">        <h5 class="m-0"> {{value}} </h5>        <p class="btn-text-link" (click)="updateTime()">click to change</p>    </ng-container>    <ng-container *ngIf="isUpdateTime && die">        <app-data-input *ngIf="formType.includes(\'text\')" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>        <!-- Per scopi dinamici è preferibile per le selection essere rielaborate ogni cambiamento -->        <app-data-input *ngIf="formType === \'selection\'" [element]="getSelection()" (dataSubmitted)="dataInputReturned($event)"></app-data-input>        <app-data-input *ngIf="formType === \'checkbox\'" [element]="getCheckbox()" (dataSubmitted)="dataInputReturned($event)"></app-data-input>    </ng-container></ng-container></div>'
+        var COMPONENT_TEMPLATE = '<div><ng-container>    <p class="title-element">{{title}}:</p>    <ng-container *ngIf="!isUpdateTime">        <h5 class="m-0"> {{value}} </h5>        <p class="btn-text-link" (click)="updateTime()">click to change</p>    </ng-container>    <ng-container *ngIf="isUpdateTime && die">        <app-data-input *ngIf="formType.includes(\'text\')" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>        <!-- Per scopi dinamici è preferibile per le selection essere rielaborate ogni cambiamento -->        <app-data-input *ngIf="formType === \'selection\'" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>        <app-data-input *ngIf="formType === \'checkbox\'" [element]="die" (dataSubmitted)="dataInputReturned($event)"></app-data-input>    </ng-container></ng-container></div>'
     var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AccordionComponent', 'selector': 'app-accordion'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComposerComponent', 'selector': 'app-composer'},{'name': 'ControlTemplate', 'selector': ''},{'name': 'DataInputComponent', 'selector': 'app-data-input'},{'name': 'DataInputV2Component', 'selector': 'app-data-input-v2'},{'name': 'DataItemComponent', 'selector': 'app-window-item'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HostComponent', 'selector': ''},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'MirroringModuleInstanceComponent', 'selector': ''},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarElementComponent', 'selector': 'app-navbar-element'},{'name': 'NetworkComponent', 'selector': ''},{'name': 'OffcanvasComponent', 'selector': 'app-offcanvas'},{'name': 'ReteModuleComposerComponent', 'selector': 'app-rete-module-composer'},{'name': 'ReteModuleVisualizerComponent', 'selector': 'app-rete-module-visualizer'},{'name': 'ReteTheaterComposerComponent', 'selector': 'app-rete-theater-composer'},{'name': 'ReteTheaterVisualizerComponent', 'selector': 'app-rete-theater-visualizer'},{'name': 'SubnetComponent', 'selector': ''},{'name': 'TabnavComponent', 'selector': 'app-tabnav'},{'name': 'TheaterInternalServiceModuleInstanceComponent', 'selector': ''},{'name': 'TheaterModuleInstanceComponent', 'selector': ''},{'name': 'UnderbarComponent', 'selector': 'app-underbar'},{'name': 'VisualizerComponent', 'selector': 'app-displayer'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DataInputV2Component'};

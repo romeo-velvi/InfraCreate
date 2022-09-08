@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-offcanvas',
@@ -34,15 +34,17 @@ export class OffcanvasComponent implements OnInit{
   closeIconClass: string = "bi bi-x-lg";
 
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
   }
   ngOnInit(): void {
   }
   closeOffcanvas(){
     this.show=false;
+    this.cdr.detectChanges();
   }
   reduce() {
     this.isfull = !this.isfull;
+    this.cdr.detectChanges();
   }
 
 }

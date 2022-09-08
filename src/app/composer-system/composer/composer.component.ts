@@ -38,6 +38,7 @@ export class ComposerComponent implements OnInit {
   modulesDict: { [name: string]: ModuleInstance };
 
   // data into ss
+  hasFile: boolean = false;
   data: TheaterApplication | ModuleApplication;
 
   constructor(
@@ -48,13 +49,14 @@ export class ComposerComponent implements OnInit {
   ) {
     this.dataFromRouter = this.router.getCurrentNavigation().extras.state as DataRouteComposer
     if (this.dataFromRouter) {
+      console.log(this.dataFromRouter)
       this.name = this.dataFromRouter.name as string;
       this.description = this.dataFromRouter.description as string;
       this.author = this.dataFromRouter.author as string;
       this.type = this.dataFromRouter.type as SubjectType;
     }
-
-    if (!this.name && storageService.data) {
+    else if (!this.name && storageService.data) {
+      this.hasFile = true;
       this.data = storageService.data;
       storageService.data = undefined; // consumo l'elemento
     }
@@ -79,14 +81,16 @@ export class ComposerComponent implements OnInit {
 
   async initMODULE() {
     this.spinnerService.setSpinner(true, "Loading canvas element");
-    this.data = this.data as ModuleApplication;
-    // controllo un campo per vedere se è stato passato correttamente il file in json->ModuleApplication
-    try {
-      let t = this.data.topology.elements;
-    } catch {
-      this.hasproblem = true;
-      this.spinnerService.setSpinner(false);
-      return;
+    if (this.hasFile) {
+      this.data = this.data as ModuleApplication;
+      // controllo un campo per vedere se è stato passato correttamente il file in json->ModuleApplication
+      try {
+        let t = this.data.topology.elements;
+      } catch {
+        this.hasproblem = true;
+        this.spinnerService.setSpinner(false);
+        return;
+      }
     }
     from(
       this.parseService.parseFlavorForModuleComposer()
@@ -100,14 +104,16 @@ export class ComposerComponent implements OnInit {
 
   async initTHEATER() {
     this.spinnerService.setSpinner(true, "Getting Theater modules")
-    this.data = this.data as TheaterApplication;
-    // controllo un campo per vedere se è stato passato correttamente il file in json->TheaterApplication
-    try {
-      let t = this.data.topology.elements;
-    } catch {
-      this.spinnerService.setSpinner(false);
-      this.hasproblem = true;
-      return;
+    if (this.hasFile) {
+      this.data = this.data as TheaterApplication;
+      // controllo un campo per vedere se è stato passato correttamente il file in json->TheaterApplication
+      try {
+        let t = this.data.topology.elements;
+      } catch {
+        this.spinnerService.setSpinner(false);
+        this.hasproblem = true;
+        return;
+      }
     }
     from(
       this.parseService.parseModuleForTheaterComposer()

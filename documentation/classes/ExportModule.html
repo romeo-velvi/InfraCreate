@@ -672,7 +672,7 @@ export class ExportModule {
         let me: ModuleExport &#x3D; new ModuleExport();
         me.tosca_definitions_version &#x3D; ToscaDefinitionType.cloudify;
         me.description &#x3D; this.module.description;
-        me.imports &#x3D; this.module.import;
+        me.imports &#x3D; this.module.imports;
         // node_Tempates
         let nt: { [name: string]: ModuleSimpleData | NodeSimpleData | PortSimpleData | NetworkSimpleData | SubnetSimpleData } &#x3D; {};
         // inizia a prendere i nodi del modulo

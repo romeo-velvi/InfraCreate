@@ -639,7 +639,7 @@ export class PerseDataForModuleVisualizer {
         let h: HostModuleDTO[] &#x3D; await this.getMainModuleNodes(module);
         let i: ModuleNetworkInterfaceDTO[] &#x3D; await this.getMainModuleInterfaces(module);
         let moduleInfo2: ModuleApplication &#x3D; {
-            import: [],
+            imports: [],
             ...module,
             hosts: h,
             interfaces: i,

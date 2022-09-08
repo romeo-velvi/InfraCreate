@@ -84,7 +84,6 @@
 <!-- | -->
 <!-- V -->
 <ng-template #tab_module_instance>
-
     <!-- NAME -->
     <div class="row div-data-item">
         <app-data-input-v2 title="Name" directChange="function" [value]="nodeSelected.data['name']" formType="text"
@@ -105,20 +104,6 @@
         <app-data-input-v2 title="Area" [(value)]="nodeSelected.data['area']" formType="selection"
             [selectOption]="(areaSelection)" (onChange)="updateModule(nodeSelected)"></app-data-input-v2>
     </div>
-
-
-    <!-- <ng-container *ngFor="let field of displayMIdata|keyvalue : notSort">
-        <div class="div-data-item">
-            <div *ngFor="let x of field.value|keyvalue : notSort">
-                {{x.key}}
-                <ul class="list-group list">
-                    <li class="list-group-item list-item">
-                        {{x.value[0]}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </ng-container> -->
 </ng-template>
 <ng-template #tab_module_root>
     <app-tabnav *ngIf="nodeSelected && tabnavElementModule" [element]="tabnavElementModuleRoot"></app-tabnav>
@@ -359,7 +344,7 @@
 <ng-template #dragdrop_template>
     <div class="offcanvas-body side-wrapper-opt my-offcanvas-body">
         <div *ngFor="let mod of moduleDD" id="dragnode" class="row div-data-item draggable" draggable="true"
-            (drag)="onDrag($event, mod)" (dragend)="dropPreventDefault($event)">
+            (drag)="onDrag($event, mod)" (dragend)="dropPreventDefault($event)" (dblclick)="onElementDBclick(mod)">
             <h5>{{mod.properties.module}}</h5>
         </div>
     </div>
