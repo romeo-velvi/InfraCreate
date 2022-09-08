@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json -w -s",
+    "compodoc-html": "./node_modules/.bin/compodoc -p tsconfig.json -w -s -d ./src/app/documentation",
+    "compodoc-json": "./node_modules/.bin/compodoc -p tsconfig.json -w -s -e json",
     "onip": "ng serve --host 0.0.0.0"
   },
   "private": true,
