@@ -14,10 +14,6 @@
 <title>cluster_AppModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 5426,-230.8 5426,-32.8 8,-32.8"/>
 </g>
-<g id="clust30" class="cluster">
-<title>cluster_AppModule_exports</title>
-<polygon fill="none" stroke="black" points="2586,-170.8 2586,-222.8 3237,-222.8 3237,-170.8 2586,-170.8"/>
-</g>
 <g id="clust32" class="cluster">
 <title>cluster_AppModule_providers</title>
 <polygon fill="none" stroke="black" points="4818,-40.8 4818,-92.8 5418,-92.8 5418,-40.8 4818,-40.8"/>
@@ -26,13 +22,17 @@
 <title>cluster_AppModule_declarations</title>
 <polygon fill="none" stroke="black" points="266,-40.8 266,-92.8 4810,-92.8 4810,-40.8 266,-40.8"/>
 </g>
-<g id="clust31" class="cluster">
-<title>cluster_AppModule_bootstrap</title>
-<polygon fill="none" stroke="black" points="3245,-170.8 3245,-222.8 3369,-222.8 3369,-170.8 3245,-170.8"/>
-</g>
 <g id="clust29" class="cluster">
 <title>cluster_AppModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 258,-92.8 258,-40.8 16,-40.8"/>
+</g>
+<g id="clust30" class="cluster">
+<title>cluster_AppModule_exports</title>
+<polygon fill="none" stroke="black" points="2586,-170.8 2586,-222.8 3237,-222.8 3237,-170.8 2586,-170.8"/>
+</g>
+<g id="clust31" class="cluster">
+<title>cluster_AppModule_bootstrap</title>
+<polygon fill="none" stroke="black" points="3245,-170.8 3245,-222.8 3369,-222.8 3369,-170.8 3245,-170.8"/>
 </g>
 <!-- AboutUsComponent -->
 <g id="node1" class="node">

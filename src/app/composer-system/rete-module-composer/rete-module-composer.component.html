@@ -150,7 +150,7 @@
     </div>
     <div class="row div-data-item">
         <app-data-input-v2 title="DHCP" [(value)]="nodeSelected.data.isDhcp" formType="checkbox"
-            [checked]="nodeSelected.data.isDhcp" (onChange)="updateNode(nodeSelected)"></app-data-input-v2>
+            [(checked)]="nodeSelected.data.isDhcp" (onChange)="updateNode(nodeSelected)"></app-data-input-v2>
     </div>
 </ng-template>
 <ng-template #dataNetwork>

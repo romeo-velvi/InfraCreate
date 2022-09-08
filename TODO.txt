@@ -1,32 +1,23 @@
-VEDERE IN BASE ALL'AREA, CONTRASSEGNARE/INSERIRE I NODI CON DIVERSO COLORE
+IMPLEMENTAZIONI FUTURE
+- instanziare nuove componenti per le istanze dei singoli offcavans
+- in base all'area contrassegnare i moduli ddi diveso colore
+- aggiungere pulsate (+) per aggiungere porte in designer
+- tab_module_capabilities in module designer
+- aggiungere campo ricerca negli offcanvas
+- aggiungere i nuovi tipo di modulo(nodi)
+- mapping in theater offcanvas
+- controllare moduleExport
+- dato un nodo, selezionare tutta la rete/nodi ad esso collegata/i
+    # inserire del codice nel nodo, che se softSelect è premuto, cambia colore sfondo
 
-____________________________________________________________________________
+_________________________________________________________________________________________
 
-Prevedere di inserire il file JSON(theaterApplication) e ti genera automaticamente il file
+NON NECESSARIO
+- spiegare come aggiungere un nuovo nodo/modulo
+- ipotesi correttezza tramite validators (https://stackoverflow.com/questions/21740309/how-to-check-in-node-if-module-exists-and-if-exists-to-load)
+_________________________________________________________________________________________
 
-
--> not really necessaty
-SPIEGARE COME FARE AD AGGIUNGERE UN NUOVO NODO PER TEATRO E MODULO
-AGGIUNGERE VALIDATORS (https://stackoverflow.com/questions/21740309/how-to-check-in-node-if-module-exists-and-if-exists-to-load)
-per i tipo/quantità di export per i nodi in modo da essere validi.
-
-? CREARE DELLE COMPONENTI ALL'INTERNO DELLE COMP. VIS. E DES. CHE CONTENGONO GLI ELEMENTI DA VISUALIZZARE NEGLI OFFCANVAS
-
-? SELEZIONARE ANCHE I NODI AD ESSO COLLEGATO
-        // list.pop().data.softSelct=true // -> inserire del codice nel nodo, che se softSelect è premuto, cambia colore sfondo
-
-****CONTROLLARE CORENEZA NEL PARSING  ctrl+F -> @check 
-
-_______________________________________________________________
-
-IDEA
-    area theater -> color picker form input bootstrap
-    Aggiungere pulsante + per creare porte nei nodi
-    Aggiungere ricerca negli offcanvas /-> creare una componente a parte che prevede una lista di elemmenti che possano essere cancellati in base al ".include" del campo "search-text" dato
-
-____________________________________________________________________________
-
-CHIDERE: 
+QUESTIONS: 
 1) Nelle proprietà del modulo istanza appare version: questo è legata al modulo ROOT oppure all'istanza?
 specificare multiple o singole connessioni? 
     local_interface: acmemgmt
