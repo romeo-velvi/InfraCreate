@@ -11,7 +11,6 @@ import { DataInputElement, DataInputReturned, SelectOption } from '../../compone
 import { ModalItem } from '../../components/modal/modalType';
 import { TabnavElement } from '../../components/tabnav/tabnavType';
 import { BehaviorSubject, from } from 'rxjs';
-import { ParseService } from 'src/app/services/application/parse/parse.service';
 import { AreaApplication, ModuleInstance, ReteConnection, SimpleModuleApplication, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
 import { SimpleAreaDTO } from 'src/app/services/modelsDTO/moduleDTO';
@@ -23,123 +22,380 @@ import { ModalService } from 'src/app/services/application/modal/modal.service';
 import { take } from 'rxjs/operators';
 
 
-
+/**
+ * Elemento che serve alla componente ReteTheaterComposerComponent per l'aggiunta delle aree
+ * @see {ReteTheaterComposerComponent}
+ */
 export class AreaColorDTO extends SimpleAreaDTO {
   color: string;
 }
 
 
+/**
+ * Componente che contiene la logica e la gestione della parte di costruzione dei moduli.
+ * Si occupa dello scambio di informazioni e le interazioni tra le componenti che permettono il visual-designing dell'applicazione.
+ */
 @Component({
   selector: 'app-rete-theater-composer',
   templateUrl: './rete-theater-composer.component.html',
   styleUrls: ['./rete-theater-composer.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
 
   // input data
+  /**
+   * Variabile in input che rappresenta il nome da assegnare al teatro.
+   * @type {string}
+   */
   @Input() TheaterName: string;
+  /**
+   * Variabile in input che rappresenta la descrizione da assegnare al teatro.
+   * @type {string}
+   */
   @Input() TheaterDescription: string;
+  /**
+   * Variabile in input che rappresenta la versione da assegnare al teatro.
+   * @type {string}
+   * @type {number}
+   */
   @Input() TheaterVersion: string | number;
+  /**
+   * Variabile in input che rappresenta l'autore da assegnare al teatro.
+   * @type {string}
+   */
   @Input() TheaterAuthor: string;
+  /**
+   * Variabile in inpit che rappresenta un dizionario di moduli da usare nel drag&drop.
+   * @type {[name: string]: ModuleInstance}
+   */
   @Input() ModulesDict: { [name: string]: ModuleInstance };
 
-
-  //  Variable
+  /**
+   * Variabile che rappresenta sottoforma di variabili e attributi il teatro.
+   * Esso può essere già fornito (come import di un file) per eseguire manipolazioni.
+   * Oppure va creato e si valorizza nel corso del designing.
+   * @type {ModuleApplication}
+   */
   @Input() theater: TheaterApplication;
-  fromFile: boolean = false;
 
-  //module D&D
-  moduleDD: ModuleInstance[] = [];
+  /**
+   * Variabile che indica se bisogna creare un teatro da zero, oppure, istanziarlo a seguito di un import di un file.
+   * @type {boolean}
+   * @see {module}
+   * @see {ModuleType}
+   */
+  protected fromFile: boolean = false;
 
-  // for display
-  displayMdata: { [field: string]: string[] }[][];
-  displayTdata: { [field: string]: string[] }[][];
-  displayMIdata: { [field: string]: string[] }[];
-  displayModuleInstanceData = (node: Node): { [field: string]: string[] }[] => { let x = ReteDisplayModuleInstanceTC(node); return x; }
+  /**
+   * Variabile contenente una lista di elementi da inserire nel DOM per il drag&drop.
+   * @see {ModulesDict}
+   */
+  protected moduleDD: ModuleInstance[] = [];
+
+  /**
+   * Variabile che contiene l'insieme dei dati da visualizzare di un modulo.
+   * Per esattezza, contiene le informazini del modulo del suo tipo (e non la sua istanza -> dati nodo visualizzato nel canvas).
+   * @type { { [field: string]: string[] }[][] }
+   * @see {displayModuleData}
+   */
+  protected displayMdata: { [field: string]: string[] }[][];
+  /**
+   * Variabile funzione che produce l'insieme dei dati da visualizzare di un modulo.
+   * Per esattezza, ritorna le informazini del modulo del suo tipo (e non la sua istanza -> dati nodo visualizzato nel canvas).
+   * @see {displayMdata}
+   */
   displayModuleData = (module: SimpleModuleApplication): { [field: string]: string[] }[][] => { let x = ReteDisplayModuleDataTC(module); return x; }
-  displayTheaterData = (theater: TheaterApplication): { [field: string]: string[] }[][] => { let x = ReteDisplayTheaterDataTC(theater); return x; }
 
 
-  // node editor component
+  /**
+   * Variabile che indica l'elemento all'interno del DOM il canvas su cui verranno eseguite operazioni di costruzione e designing del teatro.
+   * @type {ElementRef}
+   */
   @ViewChild('theaterEditorComposer', { static: false }) el: ElementRef;
-  nodeSelected: Node;
-  moduleSelected: SimpleModuleApplication;
+  /**
+   * Variabile che rappresenta il nodo selezionato
+   * @type {Node}
+   */
+  protected nodeSelected: Node;
+  /**
+   * Variabile che rappresenta, similmente al nodo, anche il modulo di appartenenza del nodo selezionato
+   * @type {SimpleModuleApplication}
+   * @see {nodeSelected}
+   */
+  protected moduleSelected: SimpleModuleApplication;
 
-  // node editor data
-  container = null;
-  editor: NodeEditor = null;
-  components: any = ModuleComponents;
-  engine: Engine = null;
+  /**
+   * Variabile che rappresenta il container del canvas come NativeElement
+   * @see {el}
+   */
+  protected container = null;
+  /**
+   * Variabile che rappresenta l'insieme di operazioni e lo stato del canvas. 
+   * Viene associato al container per il reperimento dei dati.
+   * @type {NodeEditor}
+   * @see {container}
+   */
+  protected editor: NodeEditor = null;
+  /**
+   * Variabile che serve a produrre e renderizzare i singoli nodi.
+   * Contiene delle istanze dei singoli tipi come array.
+   * @type {[]}
+   */
+  protected components: any = ModuleComponents;
+  /**
+   * Variabile che rappresenta il motore e la logica tra le interazioni dei singoli nodi.
+   * @type {Engine}
+   */
+  protected engine: Engine = null;
 
-  // variabili per input-research
-  nodetofind: string = '';
-  ModuleNameList: string[] = [];
+  /**
+   * Variabile utilizzata per la sarch di un nodo presente sul canvas.
+   * @type {string}
+   * @see {NodeNameList}
+   */
+  protected nodetofind: string = '';
+  /**
+   * Variabile che serve ad immagazzinare i nomi dei nodi presenti sul canvas.
+   * @type {string[]}
+   */
+  protected ModuleNameList: string[] = [];
 
-  // for map bool
-  ismapvisible: boolean = true;
+  /**
+   * Variabile utilizzata per l'hide-or-show della minimappa
+   * @type {boolean}
+   */
+  protected ismapvisible: boolean = true;
 
-  // navbar data
-  navbarData: NavbarElement;
+  /**
+   * Variabile utilizzata per assegnare i valori alla Navbar.
+   * @type {NavbarElement}
+   */
+  protected navbarData: NavbarElement;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è la logica di visualizzazione dei download.
+   * @type {TemplateRef}
+   */
   @ViewChild('download') dropdown_download: TemplateRef<any>;
-  showbtn: boolean = false;
+  /**
+   * Variabile che indica l'hide-or-show della tendina di download
+   * @type {boolean}
+   * @default {false}
+   */
+  protected showbtn: boolean = false;
 
-  // underbar data
-  underbarData: UnderbarElement[] = [];
+
+  /**
+   * Variabile utilizzata per assegnare i valori all'underbar.
+   * @type {UnderbarElement}
+   */
+  protected underbarData: UnderbarElement[] = [];
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è segnato la logia del pulsante "mappa"
+   * @type {TemplateRef}
+   */
   @ViewChild('map_underbar') map_underbar: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è segnato la logia della sezione "search"
+   * @type {TemplateRef}
+   */
   @ViewChild('search_underbar') search_underbar: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è segnato la logia del pulsante "arrange"
+   * @type {TemplateRef}
+   */
   @ViewChild('arrange_underbar') arrange_underbar: TemplateRef<any>;
 
 
-  // offcanvas Module info
-  hideModuleInfo: boolean = false;
-  tabnavElementModule: TabnavElement;
-  //elem
+  /**
+   * Variabile utilizzata per l'hide-or-show dell'offcanvas dei singoli moduli.
+   * @type {boolean}
+   */
+  protected hideModuleInfo: boolean = false;
+  /**
+   * Variabile utilizzata per assegnare i valori per le tab principali dell'offcavanvas dei moduli.
+   * @type {TabnavElement}
+   */
+  protected tabnavElementModule: TabnavElement;
+
+
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le informazioni dell'istanza del moduli.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_module_instance') tab_module_instance?: TemplateRef<any>;
-  //-> nav data for module root
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le informazioni del tipo di modulo (modulo root) di un nodo-modulo.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_module_root') tab_module_root?: TemplateRef<any>;
-  tabnavElementModuleRoot: TabnavElement;
+  /**
+   * Variabile utilizzata per assegnare i valori per le tab principali dell'offcanvas del modulo.
+   * @type {TabnavElement}
+   */
+  protected tabnavElementModuleRoot: TabnavElement;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le informazioni base del modulo.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_module_basic') tab_module_basic?: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le interfacce del modulo.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_module_interfaces') tab_module_interfaces?: TemplateRef<any>;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante i counter del modulo.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_module_counter') tab_module_counter?: TemplateRef<any>;
-  ///-> nav for option
+
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante i counter del modulo.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_module_topology') tab_module_topology?: TemplateRef<any>;
-  tabnavIF: TabnavElement;
+  /**
+  * Variabile utilizzata per assegnare i valori per le tab secondaria "interfacce" dell'offcanvas del modulo.
+  * @type {TabnavElement}
+  */
+  protected tabnavIF: TabnavElement;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le interfacce consumer modulo.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_if_cons') tab_if_cons?: TemplateRef<any>;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante le interfacce producer modulo.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_if_prod') tab_if_prod?: TemplateRef<any>;
 
-
-  //// offcanvas theater info
-  hideTheaterInfo: boolean = false;
-  //-> nav data for nodes
-  tabnavElementTheater: TabnavElement;
+  /**
+   * Variabile che indica lo stato show-hide dell'offcanvas del teatro
+   * @type {boolean}
+   * @default {false}
+   */
+  protected hideTheaterInfo: boolean = false;
+  /**
+  * Variabile utilizzata per assegnare i valori per le tab del teatro.
+  * @type {TabnavElement}
+  */
+  protected tabnavElementTheater: TabnavElement;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante le informazioni base del teatro.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_theater_basic') tab_theater_basic?: TemplateRef<any>;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante le aree del teatro.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_theater_areas') tab_theater_areas?: TemplateRef<any>;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante gli import del teatro.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_theater_imports') tab_theater_imports?: TemplateRef<any>;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante la lista dei moduli da deployare del teatro.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_theater_deploy') tab_theater_deploy?: TemplateRef<any>;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante il mapping del modulo.
+  * @type {TemplateRef}
+  * @future implementation
+  */
   @ViewChild('tab_theater_map') tab_theater_map?: TemplateRef<any>;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante le informazioni dei tag del teatro.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_theater_tags') tab_theater_tags?: TemplateRef<any>;
 
 
-  // offcanvas Drag&Drop -> TODOGOOD
-  hidedragdrop: boolean = false;
+  /**
+   * Variabile per l'hide-or-show dell'offcanvas in cui è presente il drag&drop.
+   * @type {boolean}
+   */
+  protected hidedragdrop: boolean = false;
+  /**
+   * Variabile che fa riferimento ad un elemento a cui è eseguito il drag.
+   * @type  {Node}
+   */
+  protected elementDragged: Node;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In particolare questa ha lo scopo di contenere gli elementi su cui poter eseguire il drag&drop sul canvas.
+   * @type {TemplateRef}
+   */
   @ViewChild('dragdrop_template') dragdrop_template?: TemplateRef<any>;
 
-  //for modal
-  isModalActive: boolean = false;
-  dataModal: ModalItem;
-  // message
+  /**
+   * Variabile che gestisce l'hide-or-show della modale nella componente di creazione modulo.
+   * @type {boolean}
+   * @default {false}
+   */
+  protected isModalActive: boolean = false;
+  /**
+   * Variabile che serve per istanziare le opzioni della modale.
+   * @type {ModalItem}
+   * @see {ModalComponet}
+   */
+  protected dataModal: ModalItem;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In particolare questa ha lo scopo di contenere un messaggio da potr, su richiesta, essere visualizzato dalla modale.
+   * @type {TemplateRef}
+   */
   @ViewChild('data_message') data_message?: TemplateRef<any>;
-  modalMessage: string = "";
+  /**
+   * Variabile che indica una stringa di messaggio da poter essere visionata nella modale.
+   * @type {string}
+   * @see {data_message}
+   */
+  protected modalMessage: string = "";
 
 
-  //areas
-  areaList: BehaviorSubject<AreaApplication[]> = new BehaviorSubject<AreaApplication[]>(null);
-  areaSelection: SelectOption[] = [];
-  // area form
+  /**
+   * Variabile che ha lo scopo di salvare gli import del teatro.
+   * @type {BehaviorSubject}
+   */
+  protected areaList: BehaviorSubject<AreaApplication[]> = new BehaviorSubject<AreaApplication[]>(null);
+  /**
+   * Variabile di appoggio per la selezione delle aree dei moduli.
+   * @type {SelectOption}
+   * @see {availableFlavor}
+   */
+  protected areaSelection: SelectOption[] = [];
+  /**
+ * Variabile che ha come riferimento un tag nel DOM di tipo templato.
+ * In particolare consente la visualiazzione degli input per aggiungere un area.
+ * @type {TemplateRef}
+ * @see {availableFlavor}
+ */
   @ViewChild('data_input_area') data_input_area?: TemplateRef<any>;
-  formAreaElement: DataInputElement = {
+  /**
+   * Variabile che contiene gli elementi del form da visualizzare quando si inserisce l'area.
+   * @type {DataInputElement}
+   * @see {data_input_area}
+   */
+  protected formAreaElement: DataInputElement = {
     element: [
       {
         id: "name",
@@ -162,11 +418,24 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     ]
   };
 
-  //imports
-  importList: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(null);
-  // import form
+  /**
+   * Variabile che ha lo scopo di salvare gli import del teatro.
+   * @type {BehaviorSubject}
+   */
+  protected importList: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(null);
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato.
+   * Contiene le informazini da mostrare nella modale per l'inserimento di un nuovo import.
+   * @type {TemplateRef}
+   * @see {modal}
+   */
   @ViewChild('data_input_import') data_input_import?: TemplateRef<any>;
-  formImportElement: DataInputElement = {
+  /**
+  * Variabile che indica cosa visualizzare nella modale, per l'aggiunta di un import.
+  * @type {DataInputElement}
+  * @see {data_input_import}
+  */
+  protected formImportElement: DataInputElement = {
     element: [
       {
         id: "import",
@@ -177,11 +446,24 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     ]
   };
 
-  //tags
-  tagList: BehaviorSubject<TagCatalogueDTO[]> = new BehaviorSubject<TagCatalogueDTO[]>(null);
-  // tag form
+  /**
+   * Variabile che ha lo scopo di salvare i tag del teatro.
+   * @type {BehaviorSubject}
+   */
+  protected tagList: BehaviorSubject<TagCatalogueDTO[]> = new BehaviorSubject<TagCatalogueDTO[]>(null);
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato.
+   * Contiene le informazini da mostrare nella modale per l'inserimento di un nuovo tag.
+   * @type {TemplateRef}
+   * @see {modal}
+   */
   @ViewChild('data_input_tag') data_input_tag?: TemplateRef<any>;
-  formTagElement: DataInputElement = {
+  /**
+    * Variabile che indica cosa visualizzare nella modale, per l'aggiunta di un import.
+    * @type {DataInputElement}
+    * @see {data_input_import}
+    */
+  protected formTagElement: DataInputElement = {
     element: [
       {
         id: "name",
@@ -199,9 +481,27 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   };
 
   //deployment sequence
-  deploymentList: BehaviorSubject<DeployInstanceDTO[]> = new BehaviorSubject<DeployInstanceDTO[]>(null);
+  protected deploymentList: BehaviorSubject<DeployInstanceDTO[]> = new BehaviorSubject<DeployInstanceDTO[]>(null);
 
 
+
+
+
+
+
+
+
+
+
+  /**
+   * Costruttore di ReteTheaterComponser.
+   * Vengono inserite le subscribe ai subject per gestire gli eventi di modifiche delle varie strutture.
+   *@param cdr 
+   * @param router 
+   * @param spinnerService 
+   * @param exportService 
+   * @param modalConfirmation 
+   */
   constructor(
     private cdr: ChangeDetectorRef,
     private router: Router,
@@ -250,6 +550,16 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
+  /**
+   * Funzione richiamata all'inizializzazione della componente.
+   * Si occupa di eseguire controlli per l'inizializzazione del teatro (nuovo o da import file).
+   * Si occupa anche di valorizzare i moduli per il drag&drop dati in ingresso.
+   * Si avvale di operazioni di spinner-loading.
+   * Avvia la funzione di start quando ha terminato le precedenti operazioni.
+   * @see {startApp}
+   */
   async ngOnInit() {
     this.spinnerService.setSpinner(true, "Loading theater composer")
     let stringdate = new Date;
@@ -300,6 +610,15 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
+  /**
+   * Funzone che si occupa dell'inizializzazione dell'editor e container.
+   * Prende le configurazioni dell'editor per i plugin da utilizzare ed eventi da captare.
+   * Nel caso si ha un importing da un file del teatro, provvede ad inizializzare i valori dei nodi(moduli).
+   * @see {ReteTheaterComposerSettings} 
+   * @see {initModuleFromFile}
+   */
   async startApp() {
 
     this.container = this.el.nativeElement;
@@ -336,10 +655,10 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     });
 
     this.editor.on("nodecreate", (node) => {
-      this.addDepSeq(node);
+      this.nodeCreate(node);
     });
     this.editor.on("noderemove", (node) => {
-      this.removeDepSeq(node);
+      this.nodeRemove(node);
     });
 
     this.editor.on('zoom', ({ source }) => {
@@ -364,6 +683,18 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
+  // init bar
+
+  /**
+   * Funzione richiamata subito dopo l'inizializzazione della componente
+   * Si occupa di inizializzare le variabili per la navbar, le tab e l'underbar.
+   * @see {initNavbar}
+   * @see {initUnderbar}
+   * @see {initTabTheaterNavs}
+   * @see {initTabModuleNavs}
+   */
   ngAfterViewInit() {
     this.initNavbar();
     this.initUnderbar();
@@ -483,7 +814,18 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     }
   }
 
-  //// NAV FUNC
+
+
+
+  //// navbar operation
+
+  /**
+   * Funzione che si occupa di gestire gli eventi si selection-item della navbar.
+   * @param val 
+   * @see {NavbarItem}
+   * @see {showhideModuleInfo}
+   * @see {goHome}
+   */
   navItemSelected(val: NavbarItem) {
     switch (val.id) {
       case "info":
@@ -499,32 +841,47 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
         break;
     }
   }
-  touchNode(node: Node) {
-    this.nodeSelected = node;
-    this.moduleSelected = this.ModulesDict[node.data.module as string].moduleInfo;
-    this.displayMdata = this.displayModuleData(this.moduleSelected);
-    this.displayMIdata = this.displayModuleInstanceData(node);
-    this.cdr.detectChanges();
-  }
+  /**
+   * Funzione che ha lo scopo di switchare il valore di visualizzazione dell'offcanvas del modulo.
+   * @see {hideModuleInfo}
+   */
   showhideModuleInfo(node: Node) {
     this.touchNode(node);
     this.hideModuleInfo = !this.hideModuleInfo;
     this.displaceLeft();
     this.cdr.detectChanges();
   }
+  /**
+   * Funzione che ha lo scopo di switchare il valore di visualizzazione dell'offcanvas del teatro.
+   * @see {hideTheaterInfo}
+   */
   showhideTheaterInfo() {
     this.hideTheaterInfo = !this.hideTheaterInfo;
   }
+  /**
+   * Funzione che permette il download dello YAML - TOSCA
+   * @see {exportService}
+   */
   downloadYAMLfunction() {
     this.spinnerService.setSpinner(true, "Downloading file");
     this.exportService.exportTheaterToYAML(this.theater, this.editor.toJSON());
     this.spinnerService.setSpinner(false);
   }
+  /**
+   * Funzione che permette il download dello JSON - APPLICATION
+   * @see {exportService}
+   */
   downloadJSONfunction() {
     this.spinnerService.setSpinner(true, "Downloading file");
     this.exportService.exportTheaterToJSON(this.theater, this.editor.toJSON());
     this.spinnerService.setSpinner(false);
   }
+  /**
+   * Funzione che come scopo ritornare alla home.
+   * Ritorna se vi è stat conferma dalla modale.
+   * @see {modalConfirmation}
+   * @see {router}
+   */
   goHome() {
     this.modalConfirmation.showConfirmationModal(("Do you really want go back home loseing all data ?"))
       .pipe(take(2)) // perchè il primo valore di reset è a null..
@@ -538,10 +895,275 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
+  //// underbar operation
+
+  /**
+   * Funzione che si occupa di gestire gli eventi si selection-item dell'underbar.
+   * @param val
+   * @see {UnderbarItem}
+   * @see {showDragDrop}
+   * @see {undoEditor}
+   * @see {redoEditor}
+   * @see {makezoom}
+   * @see {displayAllNodes}
+   * @see {showMinimap}
+   * @see {loadJson}
+   */
+  underbarElementSelected(val: UnderbarItem) {
+    switch (val.id) {
+      case "sidebar":
+        this.showDragDrop();
+        break;
+      case "undo":
+        this.undoEditor();
+        break;
+      case "redo":
+        this.redoEditor();
+        break;
+      case "zoomin":
+        this.makezoom(0.1);
+        break;
+      case "zoomout":
+        this.makezoom(-0.1);
+        break;
+      case "showall":
+        this.displayAllNodes();
+        break;
+      case "showmap":
+        this.showMinimap();
+        break;
+      case "search":
+        break;
+      case "fromjson":
+        this.loadJson();
+        break;
+      default:
+        console.warn("problem with button pressed: ", val.id);
+        break;
+    }
+  }
+  /**
+   * Esegue l'undo di un'operazione nell'editor
+   */
+  undoEditor() {
+    this.editor.trigger("undo");
+  }
+  /**
+   * Esegue il redo di un'operazione nell'editor
+   */
+  redoEditor() {
+    this.editor.trigger("redo");
+  }
+  /**
+   * Esegue operazione di zoom-in / zoom-out in base al valore passato come parametro
+   * @param k 
+   * @example
+   * Se K>0 zoom-in se K<0 zoom-out 
+   */
+  makezoom(k: number) {
+    // k is declarend in (click) ad +- 0.1
+    const { area, container } = this.editor.view; // read from Vue component data;
+    const rect = area.el.getBoundingClientRect();
+    const ox = (rect.left - container.clientWidth / 2) * k;
+    const oy = (rect.top - container.clientHeight / 2) * k;
+    area.zoom(area.transform.k + k, ox, oy, 'wheel');
+  }
+  /**
+   * Funzione che permette di visualizzare tutti i moduli posizionati all'interno del canvas
+   */
+  displayAllNodes() {
+    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+  }
+  /**
+   * Permette di caricare degli elementi all'interno del canvas. Se si posseggono i valori di un editor
+   */
+  loadJson() {
+    let json = prompt("Insert json");
+    json
+      ? this.editor.fromJSON(JSON.parse(json))
+      : false;
+  }
+  /**
+   * Funzione che permette, una volta inserito un nodo. 
+   * Se presente sul canvas, di selezionarlo ed eseguire uno zoom sullo stesso.
+   * @param nodeToFind 
+   */
+  findElement(result: string) {
+    this.nodetofind = result;
+
+    let elementfound = this.editor.nodes.find(n => n.data.name === this.nodetofind)
+    let elementpick = new Array(elementfound); // deve necessariamente trovarsi in un array...
+
+    AreaPlugin.zoomAt(this.editor, elementpick);
+    this.editor.selectNode(elementpick[0]);
+  }
+  /**
+   * Funzione che permette, con buona approssimazione di sistemare i nodi in una struttura organizzata.
+   */
+  async arrangeNodes() {
+    this.editor.nodes.forEach(
+      async node => {
+        await node.update()
+        this.editor.trigger("arrange", { node: node });
+      }
+    );
+  }
+  /**
+   * Funzione che esegue lo switch della variabile di conrollo dell'hide-or-show dell'offcanvas del drag&drop
+   * @see {hidedragdrop}
+   */
+  showDragDrop(b: boolean = undefined) {
+    if (b === undefined)
+      this.hidedragdrop = !this.hidedragdrop;
+    else
+      this.hidedragdrop = b;
+  }
+  /**
+   * Funzione che ha come scopo l'hide-or-show della mappa.
+   * @see {ismapvisible}
+   */
+  showMinimap() {
+    var z = document.getElementsByClassName("minimap")[0];
+    z.removeAttribute("style");
+    if (this.ismapvisible) {
+      z.setAttribute("style", "visibility: hidden;");
+    }
+    else {
+      z.setAttribute("style", "visibility: visible;");
+    }
+    this.ismapvisible = !this.ismapvisible
+  }
+
+
+
+
+  // canvas node operation
+
+  /**
+   * Funzione che seleziona il modulo passato come argomento.
+   * @param node 
+   */
+  touchNode(node: Node) {
+    this.nodeSelected = node;
+    this.moduleSelected = this.ModulesDict[node.data.module as string].moduleInfo;
+    this.displayMdata = this.displayModuleData(this.moduleSelected);
+    this.cdr.detectChanges();
+  }
+  /**
+   * Funzione che serve ad aggiornare il nome degli elementi nella ricerca.
+   * @see {NodeNameList}
+   */
+  updateNameList() {
+    this.ModuleNameList = [];
+    this.editor.nodes.forEach(
+      (el) => {
+        this.ModuleNameList.push(el.data.name as string);
+      }
+    )
+  }
+  /**
+   * Funzione che posiziona un modulo selezionato alla sinistra
+   */
+  displaceLeft() {
+    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
+    const { area, container } = this.editor.view; // read from Vue component data;
+    area.translate(area.transform.x - 200, area.transform.y);
+  }
+  /**
+   * Funzone che posiziona un modulo selezionato sulla destra
+   */
+  displaceRight() {
+    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
+    const { area, container } = this.editor.view; // read from Vue component data;
+    area.translate(area.transform.x + 200, area.transform.y);
+  }
+  /**
+   * Funzione richiamata appena l'editor triggera l'evento di creazione modulo.
+   * Viene aggiornato la deployment sequence.
+   * @param node 
+   * @see {deploymentSequence}
+   */
+  nodeCreate(node: Node) {
+    this.addDepSeq(node);
+  }
+  /**
+   * Funzione richiamata appena l'editor triggera l'evento di cancellazione modulo.
+   * Viene aggiornato la deployment sequence.
+   * @param node 
+   * @see {deploymentSequence}
+   */
+  nodeRemove(node: Node) {
+    this.removeDepSeq(node);
+  }
+
+
+
+
+  // catch event to update node value
+
+  /**
+   * Funzione che esegue l'update di un modulo e le relative connessioni.
+   * @param node 
+   */
+  updateModule(node: Node) {
+    node.update();
+    this.editor.view.updateConnections({ node });
+    this.cdr.detectChanges();
+  }
+  /**
+   * Funzione richiamata quando si esegue l'update di un nome di un modulo. Si occupa di:
+   * - Controlla se il nuovo nome è unico.
+   * - Aggiornare la deployment sequence con i nuovi dati.
+   * @param val 
+   * @param type 
+   */
+  updateModuleName(val: DataInputReturnedV2) {
+    if (
+      !val || //non c'è change
+      !val.new_value || // non c'è alcun valore
+      !val.old_value || // non c'è alcun valore
+      val.new_value === this.nodeSelected.data.name // stiamo cambiando informazioni con offcanvas aperto
+    ) return;
+    let nameAlreadyTaken: boolean = false;
+    this.editor.nodes.forEach(n => {
+      if (n.data.name === val.new_value || n.data.name === val.new_value) {
+        this.openModalWithMessage("A problem occurred while updating node name", "This name has already been taken");
+        nameAlreadyTaken = true;
+        return;
+      }
+    });
+    if (nameAlreadyTaken) return;
+    this.nodeSelected.data.name = val.new_value;
+    this.nodeSelected.data.name = val.new_value;
+    this.updateDepSeqName(val.old_value, val.new_value);
+    this.updateModule(this.nodeSelected);
+  }
+
+
+
+
   // area func
+  /**
+   * Funzione che viene richiamata quando si vuole creare un'area.
+   * Mostra la modali di input, in base al tipo passato come argomento.
+   * @param type 
+   * @see {openModalWithTemplate}
+   */
   addArea() {
     this.openModalWithTemplate("Insert Area", this.data_input_area);
   }
+  /**
+   * Funzione che esegue la rimozione di un'interfaccia se si è confermata l'interzione attraverso la modale.
+   * Canella il riferimento dell'interfaccia nelle apposite strutture. 
+   * Rimuove il riferimento della stessa all'interno nei nodi a cui era associata.
+   * @param ifcName 
+   * @param type 
+   * @see {producerInterface}
+   * @see {consumerInterface}
+   * @see {openModalWithMessage}
+   */
   removeArea(areaName: string) {
     this.modalConfirmation.showConfirmationModal(("Do you want remove area \"" + areaName + "\" ?"))
       .pipe(take(2)) // perchè il primo valore di reset è a null..
@@ -565,6 +1187,15 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
         }
       )
   }
+  /**
+   * Funzione che ha lo scopo di validazione dell'area.
+   * Controlla che gli attributi della nuova area siano uniche.
+   * Se il controllo va a buon fine, li aggiunge all'apposita strutture. 
+   * @param val 
+   * @param type  
+   * @see {openModalWithMessage}
+   * @see {areaList}
+   */
   validateArea(val: DataInputReturned) {
     this.closeModal();
     if (!val || !val.isValid || !val.element) return;
@@ -589,17 +1220,18 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.areaList.next(areas);
     this.cdr.detectChanges();
   }
-  updateAreaDescription(val: DataInputReturnedV2, areaName: string) {
-    let areas: AreaApplication[] = this.areaList.getValue() ? this.areaList.getValue() : [];
-    var actualIndexArea = areas.findIndex(el => el.name === areaName);
-    if (actualIndexArea < 0) {
-      this.openModalWithMessage("A problem occurred while updating area", "Can't find selected area");
-      return;
-    }
-    areas[actualIndexArea].description = val.new_value;
-    this.areaList.next(areas);
-    this.cdr.detectChanges();
-  }
+  /**
+   * Funzione che si occupa dell'update del nome di un'area. Si occupa di:
+   * - Controllare che il nuovo nome sia unico.
+   * - Aggiornare le areaa.
+   * - Aggiornare il riferimento da un modulo ad esso associato, se presente. 
+   * @param val 
+   * @param ifcName 
+   * @param type 
+   * @see {consumerInterface}
+   * @see {producerInterface}
+   * @see {openModalWithMessage}
+   */
   updateAreaName(val: DataInputReturnedV2, areaName: string) {
     if (!val || !val.new_value || !val.old_value) return;
     let areas: AreaApplication[] = this.areaList.getValue() ? this.areaList.getValue() : [];
@@ -626,11 +1258,36 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   updateAreaColor(val: DataInputReturnedV2, areaName: string) {
     //TODO -> future implementation
   }
+  updateAreaDescription(val: DataInputReturnedV2, areaName: string) {
+    let areas: AreaApplication[] = this.areaList.getValue() ? this.areaList.getValue() : [];
+    var actualIndexArea = areas.findIndex(el => el.name === areaName);
+    if (actualIndexArea < 0) {
+      this.openModalWithMessage("A problem occurred while updating area", "Can't find selected area");
+      return;
+    }
+    areas[actualIndexArea].description = val.new_value;
+    this.areaList.next(areas);
+    this.cdr.detectChanges();
+  }
+
+
 
   // import func
+
+  /**
+   * Funzione richiamata al momento dell'aggiunta di un import.
+   * Mostra la modale contenente i dati di input.
+   * @see {openModalWithTemplate}
+   */
   addImport() {
     this.openModalWithTemplate("Insert Import", this.data_input_import);
   }
+  /**
+   * Funzione richiamata quando si sta cercando di eliminare un import, una volta confermata l'intenzione attraverso la modale.
+   * Aggiorna degli import.
+   * @param importName 
+   * @see {modalConfirmation}
+   */
   removeImport(importName: string) {
     this.modalConfirmation.showConfirmationModal(("Do you want remove import \n" + importName + "\n ?"))
       .pipe(take(2)) // perchè il primo valore di reset è a null..
@@ -647,6 +1304,12 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
         }
       )
   }
+  /**
+   * Funzione richiamata per la validazione di una nuova interfaccia. 
+   * Controlla che non ci siano import simili e la aggiunge alla lista degli import
+   * @param val 
+   * @see {openModalWithMessage}
+   */
   validateImport(val: DataInputReturned) {
     this.closeModal();
     if (!val || !val.isValid || !val.element) return;
@@ -662,6 +1325,11 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.importList.next(imports);
     this.cdr.detectChanges();
   }
+  /**
+   * Funzine che viene richiamata all'aggiornamento di un import.
+   * @param val 
+   * @param imp  
+   */
   updateImport(val: DataInputReturnedV2, imp: string) {
     let impor: string[] = this.importList.getValue() ? this.importList.getValue() : [];
     var check = impor.findIndex(el => el === imp);
@@ -671,7 +1339,11 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.cdr.detectChanges();
   }
 
+
+
+
   // tags func
+
   addTag() {
     this.openModalWithTemplate("Insert tag", this.data_input_tag);
   }
@@ -750,7 +1422,10 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
   // deploy seq func
+
   addDepSeq(node: Node) {
     this.touchNode(node);
     let dep: DeployInstanceDTO[] = this.deploymentList.getValue() ? this.deploymentList.getValue() : [];
@@ -780,154 +1455,31 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.cdr.detectChanges();
   }
 
-  //// updateing node
-  updateModule(node: Node) {
-    node.update();
-    this.editor.view.updateConnections({ node });
-    this.cdr.detectChanges();
-  }
-  updateModuleName(val: DataInputReturnedV2) {
-    if (
-      !val || //non c'è change
-      !val.new_value || // non c'è alcun valore
-      !val.old_value || // non c'è alcun valore
-      val.new_value === this.nodeSelected.data.name // stiamo cambiando informazioni con offcanvas aperto
-    ) return;
-    let nameAlreadyTaken: boolean = false;
-    this.editor.nodes.forEach(n => {
-      if (n.data.name === val.new_value || n.data.name === val.new_value) {
-        this.openModalWithMessage("A problem occurred while updating node name", "This name has already been taken");
-        nameAlreadyTaken = true;
-        return;
-      }
-    });
-    if (nameAlreadyTaken) return;
-    this.nodeSelected.data.name = val.new_value;
-    this.nodeSelected.data.name = val.new_value;
-    this.updateDepSeqName(val.old_value, val.new_value);
-    this.updateModule(this.nodeSelected);
-  }
 
 
-  //// operation underbar
-  underbarElementSelected(val: UnderbarItem) {
-    switch (val.id) {
-      case "sidebar":
-        this.showDragDrop();
-        break;
-      case "undo":
-        this.undoEditor();
-        break;
-      case "redo":
-        this.redoEditor();
-        break;
-      case "zoomin":
-        this.makezoom(0.1);
-        break;
-      case "zoomout":
-        this.makezoom(-0.1);
-        break;
-      case "showall":
-        this.displayAllNodes();
-        break;
-      case "showmap":
-        this.showMinimap();
-        break;
-      case "search":
-        break;
-      case "fromjson":
-        this.loadJson();
-        break;
-      default:
-        console.warn("problem with button pressed: ", val.id);
-        break;
-    }
-  }
-  undoEditor() {
-    this.editor.trigger("undo");
-  }
-  redoEditor() {
-    this.editor.trigger("redo");
-  }
-  makezoom(k: number) {
-    // k is declarend in (click) ad +- 0.1
-    const { area, container } = this.editor.view; // read from Vue component data;
-    const rect = area.el.getBoundingClientRect();
-    const ox = (rect.left - container.clientWidth / 2) * k;
-    const oy = (rect.top - container.clientHeight / 2) * k;
-    area.zoom(area.transform.k + k, ox, oy, 'wheel');
-  }
-  displayAllNodes() {
-    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
-  }
-  loadJson() {
-    let json = prompt("Insert json");
-    json
-      ? this.editor.fromJSON(JSON.parse(json))
-      : false;
-  }
-  findElement(result: string) {
-    this.nodetofind = result;
 
-    let elementfound = this.editor.nodes.find(n => n.data.name === this.nodetofind)
-    let elementpick = new Array(elementfound); // deve necessariamente trovarsi in un array...
+  // modal func
 
-    AreaPlugin.zoomAt(this.editor, elementpick);
-    this.editor.selectNode(elementpick[0]);
-  }
-  updateNameList() {
-    this.ModuleNameList = [];
-    this.editor.nodes.forEach(
-      (el) => {
-        this.ModuleNameList.push(el.data.name as string);
-      }
-    )
-  }
-  async arrangeNodes() {
-    this.editor.nodes.forEach(
-      async node => {
-        await node.update()
-        this.editor.trigger("arrange", { node: node });
-      }
-    );
-  }
-  displaceLeft() {
-    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
-    const { area, container } = this.editor.view; // read from Vue component data;
-    area.translate(area.transform.x - 200, area.transform.y);
-  }
-  displaceRight() {
-    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
-    const { area, container } = this.editor.view; // read from Vue component data;
-    area.translate(area.transform.x + 200, area.transform.y);
-  }
-
-  // show/hide
-  showDragDrop(b: boolean = undefined) {
-    if (b === undefined)
-      this.hidedragdrop = !this.hidedragdrop;
-    else
-      this.hidedragdrop = b;
-  }
-  showMinimap() {
-    var z = document.getElementsByClassName("minimap")[0];
-    z.removeAttribute("style");
-    if (this.ismapvisible) {
-      z.setAttribute("style", "visibility: hidden;");
-    }
-    else {
-      z.setAttribute("style", "visibility: visible;");
-    }
-    this.ismapvisible = !this.ismapvisible
-  }
-
-  // modal
+  /**
+   * Funzione che si occupa di settare a true la variabile di show modal
+   * @see {isModalActive}
+   */
   showModal() {
     this.isModalActive = true;
   }
+  /**
+   * Funzione che si occupa di settare a false la variabile di show modal .
+   * @see {isModalActive}
+   */
   closeModal() {
     this.isModalActive = false;
   }
+  /**
+   * Funzione che si occupa di mostrare la modale contenente un oggetto Template passato come argomento
+   * @param title 
+   * @param template 
+   * @see {showModal}
+   */
   openModalWithTemplate(title: string, template: TemplateRef<any>) {
     this.dataModal = {
       title: title,
@@ -938,6 +1490,12 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.showModal();
     this.cdr.detectChanges();
   }
+  /**
+   * Funzione che si occupa di mostrare la modale contenente un messaggio passato come argomento
+   * @param title 
+   * @param message 
+   * @see {showModal}
+   */
   openModalWithMessage(title: string, message: string) {
     this.modalMessage = message;
     this.dataModal = {
@@ -953,14 +1511,28 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
   //// drag
-  elementDragged: Node;
+
+  /**
+   * Funzione che viene richiamata quando è eseguito il drag di un modulo dall'offcanvas.
+   * Salva gli elementi selezionati per il drag.
+   * @param event 
+   * @param type 
+   * @see {elementDragged}
+   */
   async onDrag(event: any, node: ModuleInstance) {
     event.preventDefault();
     document.getElementById('dragnode').classList.add('grabbing');
     let for_rete = { ...node.rete }; // bisogna instanziare una nuova variabile per prevenire cambiamenti
     this.elementDragged = await ModuleComponents[IndexModuleComponent[ModuleType1[node.type]]].createNode(for_rete)
   }
+  /**
+   * Funzione richiamata al drop dell'elemento sul canvas di lavoro.
+   * Crea un modulo un una posizione approssimativa nel canvas dove il mouse si è fermato.
+   * @see {elementDragged}
+   */
   async onDrop() {
     document.getElementById('dragnode').classList.remove('grabbing');
     this.elementDragged.position = [this.editor.view.area.mouse.x + 200, this.editor.view.area.mouse.y + 100];
@@ -973,6 +1545,12 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     event.stopPropagation();
     event.preventDefault();
   }
+  /**
+   * Funzione richiamata al doppio-click di un elemento nell'offcanvas del drag&drop. 
+   * Crea un modulo nell'offcanvas aventi i valori dell'elemento selezionato.
+   * @param type 
+   * @see {elementDragged}
+   */
   async onElementDBclick(node: ModuleInstance) {
     let for_rete = { ...node.rete }; // bisogna instanziare una nuova variabile per prevenire cambiamenti
     this.elementDragged = await ModuleComponents[IndexModuleComponent[ModuleType1[node.type]]].createNode(for_rete)
@@ -980,12 +1558,19 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.editor.addNode(this.elementDragged)
   }
 
-  //other
-  print(any: any) {
-    console.log(any);
-  }
 
 
+
+  /**
+   * Funzione richiamata quando si ha il caso in cui si è importato un teatro. Essa si occupa di:
+   * - Creazione, connessione e sistemazione dei moduli salvati nel modulo importato.
+   * - Prende informazioni sulle aree, import, deloyment e tags e le inserisce.
+   * @see {module}
+   * @see {arrangeNodes}
+   * @see {consumerInterface}
+   * @see {producerInterface}
+   * @see {importList}
+   */
   public async initTheaterFromFile() {
 
     var nodes = [];

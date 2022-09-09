@@ -6,9 +6,11 @@ import { ParseService } from 'src/app/services/application/parse/parse.service';
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
 import { StorageService } from 'src/app/services/application/storage/storage.service';
 import { FlavorApplication, ModuleApplication, ModuleInstance, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
-import { environment } from 'src/environments/environment';
 
 
+/**
+ * Componente che ha come scopo di switchare l'ambiente di costruzione moduli e teatri in base ai dati passati.
+ */
 @Component({
   selector: 'app-composer',
   templateUrl: './composer.component.html',
@@ -16,31 +18,70 @@ import { environment } from 'src/environments/environment';
 })
 export class ComposerComponent implements OnInit {
 
-  // router var
-  dataFromRouter: DataRouteComposer;
-  // passed var  
-  name: string;
-  description: string;
-  author: string;
-  type: SubjectType;
-  // type var
-  MODULE = SubjectType.MODULE;
-  THEATER = SubjectType.THEATER;
+  /**
+   * Variabile che ha come scopo prendere i dati passati come url-parameters
+   * @type {DataRouteComposer} 
+   */
+  protected dataFromRouter: DataRouteComposer;
+  // variabili istanziate come valori proveniente dalla dataFormRouter
+  protected name: string;
+  protected description: string;
+  protected author: string;
+  protected type: SubjectType;
+  // variabili che indicano i tipi - moduli e teatro
+  protected MODULE = SubjectType.MODULE;
+  protected THEATER = SubjectType.THEATER;
 
-  //check var
-  hasproblem: boolean = false;
-  active: boolean = false;
+  /**
+   * Variabile che viene valorizzata a true se si è verificato un errore.
+   * @type {boolean}
+   * @default false
+   */
+  protected hasproblem: boolean = false;
 
-  //data pass module
-  flavor: FlavorApplication[] = [];
+  /**
+   * Variabile che indica lo stato di reperimento dei dati prima di visualizzare le componenti di costruzione
+   * @type  {boolean}
+   * @default false
+   */
+  protected active: boolean = false;
 
-  //data pass theater
-  modulesDict: { [name: string]: ModuleInstance };
+  /**
+   * Variabile che viene valorizzata con i flavor reperiti per poter essere utilizzata dalla componente di costruzione del moduli
+   * @type {FlavorApplication}
+   * @see {ReteModuleComposer}
+   */
+  protected flavor: FlavorApplication[] = [];
 
-  // data into ss
-  hasFile: boolean = false;
-  data: TheaterApplication | ModuleApplication;
+  /**
+   * Variabile che viene valorizzata come dizionario di moduli utilizzata dalla componente di costruzione del teatro.
+   * @type { [name: string]: ModuleInstance }
+   * @see {ReteTheaterComposer}
+   */
+  protected modulesDict: { [name: string]: ModuleInstance };
 
+  /**
+   * Variabile che viene valorizzata nel momento in cui si presenta il caso di design da un file preso in input
+   * @type {boolean} 
+   */
+  protected hasFile: boolean = false;
+
+  /**
+   * Variabile che indica il tipo di dato, preso di ritorno da un file
+   * @type {TheaterApplication}
+   * @type {ModuleApplication}
+   */
+  protected data: TheaterApplication | ModuleApplication;
+
+
+  /**
+   * Costruttore della componente ComposerComponent.
+   * Si occupa di prendere i dati di route url e valorizzare le rispettive variabili e se sono presenti i dati di un file.
+   * @param router 
+   * @param parseService 
+   * @param spinnerService 
+   * @param storageService 
+   */
   constructor(
     private router: Router,
     private parseService: ParseService,
@@ -54,10 +95,10 @@ export class ComposerComponent implements OnInit {
       this.author = this.dataFromRouter.author as string;
       this.type = this.dataFromRouter.type as SubjectType;
     }
-    else if (!this.name && storageService.data) {
+    else if (!this.name && this.storageService.data) {
       this.hasFile = true;
-      this.data = storageService.data;
-      storageService.data = undefined; // consumo l'elemento
+      this.data = this.storageService.data;
+      this.storageService.data = undefined; // consumo l'elemento
     }
     else {
       this.hasproblem = true;
@@ -65,6 +106,12 @@ export class ComposerComponent implements OnInit {
 
   }
 
+  /**
+   * Funzione richiamata all'inizializzazione della componente ComposerComponent.
+   * Richiama le funzioni adeguate in base al tipo di componente Modulo o Teatro scelto per il design.
+   * @see {initMODULE}
+   * @see {initTHEATER}
+   */
   ngOnInit() {
     if (this.type === this.MODULE) {
       this.initMODULE();
@@ -78,6 +125,14 @@ export class ComposerComponent implements OnInit {
 
   }
 
+
+  /**
+   * Funzione che esegue tutte le funzioni di inizializzazione, reperimento e filtraggio dati da poter essere passati alla componente di ModuleComposer.
+   * Esegue anche le attività di spinner-loading.
+   * @see {ReteModuleComposer}
+   * @see {SpinnerService}
+   * @see {parseService}
+   */
   async initMODULE() {
     this.spinnerService.setSpinner(true, "Loading canvas element");
     if (this.hasFile) {
@@ -101,6 +156,13 @@ export class ComposerComponent implements OnInit {
       });
   }
 
+  /**
+   * Funzione che esegue tutte le funzioni di inizializzazione, reperimento e filtraggio dati da poter essere passati alla componente di ModuleComposer.
+   * Esegue anche le attività di spinner-loading.
+   * @see {ReteModuleComposer}
+   * @see {SpinnerService}
+   * @see {parseService}
+   */
   async initTHEATER() {
     this.spinnerService.setSpinner(true, "Getting Theater modules")
     if (this.hasFile) {
@@ -126,6 +188,9 @@ export class ComposerComponent implements OnInit {
       )
   }
 
+  /**
+   * Funzione che esegue una redirezione alla pagine home
+   */
   public gohome() {
     this.router.navigate(['/home']);
   }

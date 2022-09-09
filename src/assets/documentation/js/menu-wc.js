@@ -184,6 +184,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
+                                <a href="components/ComposerComponent.html" data-type="entity-link" >ComposerComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ControlTemplate.html" data-type="entity-link" >ControlTemplate</a>
                             </li>
                             <li class="link">

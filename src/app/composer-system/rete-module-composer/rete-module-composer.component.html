@@ -12,7 +12,8 @@
         aria-haspopup="true" aria-expanded="false" (click)="showbtn=!showbtn">
         Download
     </a>
-    <div class="dropdown-menu" aria-labelledby="dd"  [ngStyle]="{'display': (showbtn?'block':'none')}" (click)="showbtn=!showbtn">
+    <div class="dropdown-menu" aria-labelledby="dd" [ngStyle]="{'display': (showbtn?'block':'none')}"
+        (click)="showbtn=!showbtn">
         <a class="dropdown-item" href="javascript:void(0)" (click)="downloadYAMLfunction()">YAML</a>
         <a class="dropdown-item" href="javascript:void(0)" (click)="downloadJSONfunction()">JSON</a>
     </div>
@@ -56,7 +57,7 @@
     <!-- -------NODE EDITOR------- -->
     <div class="row wrapper padding-div-node-editor">
         <div class="col p-0 w-h-100">
-            <div #moduleEditorComponer class="node-editor w-h-100-important border-node-editor"
+            <div #moduleEditorComposer class="node-editor w-h-100-important border-node-editor"
                 (dragover)="dragPreventDefault($event)" (drop)="onDrop()">
             </div>
         </div>
@@ -179,8 +180,7 @@
         <button class="btn btn-primary w-100" (click)="addPortIn()"> <span class="h5">Add input port</span> &nbsp; <i
                 class="bi bi-plus-circle h5"></i> </button>
         <ng-container *ngFor="let item of nodeSelected.data.Input; let i = index">
-            <app-window-item *ngIf="item" [title]="item"
-                (onRemove)="removePortIn(item)">
+            <app-window-item *ngIf="item" [title]="item" (onRemove)="removePortIn(item)">
                 <app-data-input-v2 title="Port name" directChange="function" [value]="item" formType="text"
                     (onChange)="updatePortName($event,INPUT)" style="margin-top: 0.7em!important"></app-data-input-v2>
             </app-window-item>
@@ -195,8 +195,7 @@
         <button class="btn btn-primary w-100" (click)="addPortOut()"> <span class="h5">Add output port</span> &nbsp; <i
                 class="bi bi-plus-circle h5"></i> </button>
         <nc-container *ngFor="let item of nodeSelected.data.Output; let i = index">
-            <app-window-item *ngIf="item" [title]="item"
-                (onRemove)="removePortOut(item)">
+            <app-window-item *ngIf="item" [title]="item" (onRemove)="removePortOut(item)">
                 <app-data-input-v2 title="Port name" directChange="function" [value]="item" formType="text"
                     (onChange)="updatePortName($event,OUTPUT)" style="margin-top: 0.7em!important"></app-data-input-v2>
             </app-window-item>
@@ -230,28 +229,26 @@
 <ng-template #tab_module_basic>
     <!-- NAME -->
     <div class="row div-data-item">
-        <app-data-input-v2 title="Name" [(value)]="module.name" formType="text" (onChange)="print($event)">
+        <app-data-input-v2 title="Name" [(value)]="module.name" formType="text">
         </app-data-input-v2>
     </div>
     <!-- DESCRIPTION -->
     <div class="row div-data-item">
-        <app-data-input-v2 title="Description" [(value)]="module.description" formType="textarea"
-            (onChange)="print($event)"></app-data-input-v2>
+        <app-data-input-v2 title="Description" [(value)]="module.description" formType="textarea"></app-data-input-v2>
     </div>
     <!-- VERSION -->
     <div class="row div-data-item">
-        <app-data-input-v2 title="Version" [(value)]="module.version" formType="text" (onChange)="print($event)">
-        </app-data-input-v2>
+        <app-data-input-v2 title="Version" [(value)]="module.version" formType="text"></app-data-input-v2>
     </div>
     <!-- AUTHOR -->
     <div class="row div-data-item">
-        <app-data-input-v2 title="Author" [(value)]="module.author" formType="text" [selectOption]="(areaSelection)"
-            (onChange)="print($event)"></app-data-input-v2>
+        <app-data-input-v2 title="Author" [(value)]="module.author" formType="text" [selectOption]="(areaSelection)">
+        </app-data-input-v2>
     </div>
     <!-- TYPE -->
     <div class="row div-data-item">
         <app-data-input-v2 title="Module type" [(value)]="module.type" formType="selection"
-            [selectOption]="moduleTypeOption" (onChange)="print($event)">
+            [selectOption]="moduleTypeOption">
         </app-data-input-v2>
     </div>
     <!-- CREATION DATE -> Not editable -->
@@ -292,7 +289,8 @@
     <ng-container *ngFor="let ifc of (consumerInterface|async); let i = index">
         <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,CONSUMER)">
             <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName" formType="text"
-                (onChange)="updateInterfaceName($event,ifc.nodeName,CONSUMER)" style="margin-top: 0.7em!important;"></app-data-input-v2>
+                (onChange)="updateInterfaceName($event,ifc.nodeName,CONSUMER)" style="margin-top: 0.7em!important;">
+            </app-data-input-v2>
             <div *ngIf="ifc.network && ifc.network.name">
                 <h5 style="margin-top: 0.7em!important;"> Network associated: </h5>
                 <div class="row div-data-item">
@@ -311,7 +309,8 @@
     <ng-container *ngFor="let ifc of (producerInterface|async); let i = index">
         <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,PRODUCER)">
             <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName" formType="text"
-                (onChange)="updateInterfaceName($event,ifc.nodeName,PRODUCER)" style="margin-top: 0.7em!important"></app-data-input-v2>
+                (onChange)="updateInterfaceName($event,ifc.nodeName,PRODUCER)" style="margin-top: 0.7em!important">
+            </app-data-input-v2>
             <div *ngIf="ifc.network && ifc.network.name">
                 <h5 style="margin-top: 0.7em!important;"> Network associated: </h5>
                 <div class="row div-data-item">
@@ -329,7 +328,6 @@
 <ng-template #tab_module_counter>
     <!-- <h5>{{item.key}}</h5> -->
     <div *ngIf="counterList" class="row div-data-item">
-        {{print(counterList)}}
         <ul class="list-group list">
             <li class="list-group-item list-item">
                 {{"Host number"}}: {{counterList[HOST]?counterList[HOST]:0}}
@@ -409,10 +407,12 @@
             class="bi bi-plus-circle h5"></i> </button>
     <div *ngFor="let imp of (importList|async); let i = index">
         <div class="row div-data-item">
-            <app-data-input-v2 title="Import" [value]="imp" formType="text" (onChange)="updateImport($event,imp)" style="margin-top: 0.7em!important">
+            <app-data-input-v2 title="Import" [value]="imp" formType="text" (onChange)="updateImport($event,imp)"
+                style="margin-top: 0.7em!important">
             </app-data-input-v2>
             <div class="text-end">
-                <button class="btn btn-danger w-auto btn-sm" (click)="removeImport(imp)" style="margin-top:1em;margin-right:1em"> remove import </button>
+                <button class="btn btn-danger w-auto btn-sm" (click)="removeImport(imp)"
+                    style="margin-top:1em;margin-right:1em"> remove import </button>
             </div>
         </div>
     </div>

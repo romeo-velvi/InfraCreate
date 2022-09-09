@@ -25,9 +25,9 @@ export enum StaticValue{
     hostOS3 = "CentOS",
 }
 
-export enum VersionType {
-    FOUR = 4,
-    SIX = 6
+export enum IpVersionType {
+    FOUR = "4",
+    SIXSTEEN = "16"
 }
 
 export class DataRouteVisualizer{

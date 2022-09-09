@@ -12,7 +12,8 @@
         aria-haspopup="true" aria-expanded="false" (click)="showbtn=!showbtn">
         Download
     </a>
-    <div class="dropdown-menu" aria-labelledby="dd"  [ngStyle]="{'display': (showbtn?'block':'none')}" (click)="showbtn=!showbtn">
+    <div class="dropdown-menu" aria-labelledby="dd" [ngStyle]="{'display': (showbtn?'block':'none')}"
+        (click)="showbtn=!showbtn">
         <a class="dropdown-item" href="javascript:void(0)" (click)="downloadYAMLfunction()">YAML</a>
         <a class="dropdown-item" href="javascript:void(0)" (click)="downloadJSONfunction()">JSON</a>
     </div>
@@ -213,23 +214,22 @@
 <ng-template #tab_theater_basic>
     <!-- NAME -->
     <div class="row div-data-item">
-        <app-data-input-v2 title="Name" [(value)]="theater.name" formType="text" (onChange)="print($event)">
+        <app-data-input-v2 title="Name" [(value)]="theater.name" formType="text">
         </app-data-input-v2>
     </div>
     <!-- DESCRIPTION -->
     <div class="row div-data-item">
-        <app-data-input-v2 title="Description" [(value)]="theater.description" formType="textarea"
-            (onChange)="print($event)"></app-data-input-v2>
+        <app-data-input-v2 title="Description" [(value)]="theater.description" formType="textarea"></app-data-input-v2>
     </div>
     <!-- VERSION -->
     <div class="row div-data-item">
-        <app-data-input-v2 title="Version" [(value)]="theater.version" formType="text" (onChange)="print($event)">
+        <app-data-input-v2 title="Version" [(value)]="theater.version" formType="text">
         </app-data-input-v2>
     </div>
     <!-- AUTHOR -->
     <div class="row div-data-item">
-        <app-data-input-v2 title="Author" [(value)]="theater.author" formType="text" [selectOption]="(areaSelection)"
-            (onChange)="print($event)"></app-data-input-v2>
+        <app-data-input-v2 title="Author" [(value)]="theater.author" formType="text" [selectOption]="(areaSelection)">
+        </app-data-input-v2>
     </div>
     <!-- CREATION DATE -> Not editable -->
     <div class="row div-data-item">
