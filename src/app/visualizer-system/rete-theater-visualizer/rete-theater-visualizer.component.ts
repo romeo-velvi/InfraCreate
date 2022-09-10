@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output, ChangeDetectionStrategy, Renderer2, OnInit, TemplateRef, ChangeDetectorRef, NgZone } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NodeEditor, Node, Engine, Output as or, Input as ir } from 'rete';
 import AreaPlugin from 'rete-area-plugin';
 import { Router } from '@angular/router';
@@ -7,16 +7,17 @@ import { _Socket } from '../../rete-settings/sockets/socket';
 import { NavbarItem, NavbarElement } from '../../components/navbar/navbarType';
 import { UnderbarItem, UnderbarElement } from '../../components/underbar/underbarType';
 import { TabnavElement } from '../../components/tabnav/tabnavType';
-import { BehaviorSubject, from } from 'rxjs';
+import { from } from 'rxjs';
 import { ParseService } from 'src/app/services/application/parse/parse.service';
-import { SimpleModuleApplication, ModuleApplication, ReteConnection, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
+import { SimpleModuleApplication, ReteConnection, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
 import { ReteTheaterVisualizerSettings } from 'src/app/rete-settings/settings/editor-settings/reteTheaterVisualizerSettings';
-import { IndexModuleComponent, ModuleComponents, ModuleType1 } from 'src/app/rete-settings/nodes/rete-modules/export-rete-modules';
+import { IndexModuleComponent, ModuleComponents } from 'src/app/rete-settings/nodes/rete-modules/export-rete-modules';
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
 import { ReteDisplayModuleDataTV, ReteDisplayTheaterDataTV } from 'src/app/rete-settings/settings/displayData';
 import { AttachmentsService } from 'src/app/services/api/attachments.service';
 import { environment } from 'src/environments/environment';
 import { ExportService } from 'src/app/services/application/export/export.service';
+import { ModuleType1 } from 'src/app/models/appType';
 
 
 @Component({

@@ -1,7 +1,10 @@
 import { ModeTypeExport, ModuleTypeExport, NetworkTypeExport, NodeTypeExport, PortTypeExport, RelationshipsTypeExport, SubnetTypeExport, ToscaDefinitionType } from "./TypeExport"
 
 
-
+/**
+ * Classe utilizzata per l'export. 
+ * Contiene le informazioni generali per il modulo che devono esserci nello standard Tosca.
+ */
 export class ModuleExport {
     tosca_definitions_version: ToscaDefinitionType
     description: string

@@ -66,6 +66,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Classe utilizzata per indicare il tipo di modulo NetworkNode.
+See {reteBasicNodeInfo}</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -144,7 +152,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/network/networkNode.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/network/networkNode.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -170,7 +178,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/network/networkNode.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/network/networkNode.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -202,7 +210,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:11</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:15</a></code>
 </div>
                         </td>
                     </tr>
@@ -235,7 +243,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:9</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:8</a></code>
 </div>
                         </td>
                     </tr>
@@ -268,7 +276,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:11</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:10</a></code>
 </div>
                         </td>
                     </tr>
@@ -301,7 +309,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:10</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:9</a></code>
 </div>
                         </td>
                     </tr>
@@ -330,12 +338,22 @@ import { NodeData, WorkerInputs, WorkerOutputs } from &#x27;rete/types/core/data
 import {  reteBasicNodeInfo } from &#x27;../../reteBasic&#x27;;
 import { EnumNodeType, InterfacePortType } from &#x27;src/app/models/appType&#x27;;
 
+/**
+ * Classe utilizzata per indicare il tipo di modulo NetworkNode.
+ * @see {reteBasicNodeInfo}
+ */
 export class ReteNetworkInfo extends reteBasicNodeInfo {
   type: EnumNodeType.Network;
   externalInterfaceName: string;
   externalInterfaceType: InterfacePortType;
 }
 
+/**
+ * Funzione dichiarata in NetworkNode. 
+ * Essa ha lo scopo di generare una struttura dati empty.
+ * Viene utilizzata in per instanziare un nodo del tipo di ritorno indicato senza dati.
+ * @returns {ReteSubnetInfo}
+ */
 export function getEmptyNetworkInfo():ReteNetworkInfo {
   let x: ReteNetworkInfo &#x3D; {
     Input: [],
@@ -349,42 +367,55 @@ export function getEmptyNetworkInfo():ReteNetworkInfo {
 
 }
 
+
+/**
+ * Classe che rappresenta il nodo (rete-node) Network all&#x27;interno del canvas/editor di rete.
+ */
 export class NetworkNode extends Component implements AngularComponent {
 
   data: AngularComponentData;
 
+  /**
+   * Costruttore di NetworkNode
+   */
   constructor() {
     super(EnumNodeType.Network);
     this.data.render &#x3D; &#x27;angular&#x27;;
     this.data.component &#x3D; NetworkComponent;
   }
 
+  /**
+   * Funzione richiamata in fase di costruzione del nodo (rete-node).
+   * Controlla se bisogna instanziare il nodo oppure crearne uno nuovo:
+   * - In fase di design, il nodo non ha dati, per cui bisogna crearne uno nuovo.
+   * - In fase di visualizing, il nodo presenta dei dati, per cui va valorizzato il nodo.
+   * @param node 
+   */
   async builder(node: Node) {
-    if (Object.keys(node.data).length &#x3D;&#x3D;&#x3D; 0) // fase di design -&gt; esista ma è node.data &#x3D; {} | fase di visual data !&#x3D; {}
+    if (Object.keys(node.data).length &#x3D;&#x3D;&#x3D; 0)
       this.createNewNode(node)
     else
       this.valorizeNode(node)
   }
 
+  /**
+   * Funzione che ha come scopo creare un nodo (rete-node).
+   * In particolare gli assegna una struttura vuota.
+   * @param node 
+   */
   createNewNode(node: Node) {
     let t &#x3D; getEmptyNetworkInfo()
     node.data &#x3D; {
       ...node.data,
       ...t
     }
-    var i &#x3D; [&quot;subnet&quot;];
-    var il &#x3D; i.length;
-
-    for (let index &#x3D; 0; index &lt; il; index++) {
-      var key &#x3D; i[index]
-      var title &#x3D; i[index]
-      var socket &#x3D; _Socket;
-      var inp &#x3D; new Input(key, title, socket, false);
-      node.addInput(inp);
-    }
-
   }
 
+  /**
+   * Funzione che ha come scopo la valorizzazione del nodo (rete-node) con i dati in suo possesso.
+   * In quasta fase avviene anche la fase iniziale di instanziamento delle porte input/output.
+   * @param node 
+   */
   valorizeNode(node: Node) {
     var i: any &#x3D; node.data[&#x27;Input&#x27;];
     var o: any &#x3D; node.data[&#x27;Output&#x27;];
@@ -408,15 +439,30 @@ export class NetworkNode extends Component implements AngularComponent {
     }
   }
 
+
+  /**
+   * Funzione richiamta per eseguire operazioni che conivolgono computazioni dei nodi.
+   * Non sono necessari in questa versione.
+   * @param node 
+   * @param inputs 
+   * @param outputs 
+   */  
   worker(node: NodeData, inputs: WorkerInputs, outputs: WorkerOutputs) {
     console.log(&quot;Worker - work&quot;, node, inputs, outputs);
   }
 
-
+  /**
+   * Funzione richiamata una volta in nodo creato.
+   * @param node 
+   */
   created(node) {
     console.log(&#x27;created&#x27;, node);
   }
 
+  /**
+   * Funzione richiamata una volta in nodo cancellato.
+   * @param node 
+   */
   destroyed(node) {
     console.log(&#x27;destroyed&#x27;, node);
   }

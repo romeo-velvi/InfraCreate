@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef, Input, ChangeDetection
 import { NodeEditor, Node, Engine, Output as or, Input as ir } from 'rete';
 import AreaPlugin from 'rete-area-plugin';
 import { Router } from '@angular/router';
-import { IndexModuleComponent, ModuleComponents, ModuleType1 } from 'src/app/rete-settings/nodes/rete-modules/export-rete-modules';
+import { IndexModuleComponent, ModuleComponents } from 'src/app/rete-settings/nodes/rete-modules/export-rete-modules';
 import { _Socket } from '../../rete-settings/sockets/socket';
 import { ReteTheaterComposerSettings } from 'src/app/rete-settings/settings/editor-settings/reteTheaterComposerSettings';
 import { NavbarItem, NavbarElement } from '../../components/navbar/navbarType';
@@ -20,6 +20,7 @@ import { ReteDisplayModuleInstanceTC, ReteDisplayModuleDataTC, ReteDisplayTheate
 import { ExportService } from 'src/app/services/application/export/export.service';
 import { ModalService } from 'src/app/services/application/modal/modal.service';
 import { take } from 'rxjs/operators';
+import { ModuleType1 } from 'src/app/models/appType';
 
 
 /**

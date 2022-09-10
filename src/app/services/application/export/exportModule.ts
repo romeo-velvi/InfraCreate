@@ -1,22 +1,52 @@
-import { Node } from "rete";
 import { Data, InputData, NodeData, NodesData, OutputData } from "rete/types/core/data";
 import { EnumNodeType, InterfacePortType } from "src/app/models/appType";
-// import { EnumNodeType } from "src/app/rete-settings/models/reteModelType";
 import { ModuleApplication } from "../../modelsApplication/applicationModels";
 import { ModuleExport, ModuleSimpleData, NetworkSimpleData, NodeSimpleData, PortSimpleData, PropertiesMSD, PropertiesSSD, SubnetSimpleData, VirtualMachine, VirtualMachinePorts } from "../../modelsExport/moduleExport";
 import { ModeTypeExport, ModuleTypeExport, NetworkTypeExport, NodeTypeExport, PortTypeExport, RelationshipsTypeExport, SubnetTypeExport, ToscaDefinitionType } from "../../modelsExport/TypeExport";
 
+
+/**
+ * Classe che ha lo scopo di convertire il modulo nel formato YAML (standard TOSCA).
+ */
 export class ExportModule {
 
-    module: ModuleApplication
-    dataEditor: Data
-    virtualMachines: VirtualMachine[] = []; // usata per ottimizzare la parte di inserimento delle virtual machine nel ModuleSimpleData. (controllare nella parte dei nodi)
+    /**
+     * Variabile che ha lo scopo di memorizzare il modulo fornito al costruttore.
+     * @type {ModuleApplication}
+     */
+    protected module: ModuleApplication
+    /**
+     * Variabile che ha lo scopo di memorizzare i dati dell'editor fornito al costruttore.
+     * @type {Data}
+     */
+    protected dataEditor: Data
+    /**
+     * Variabile di supporto.
+     * Usata per ottimizzare la parte di inserimento delle virtual machine nel ModuleSimpleData. 
+     * @see {getHostExport}
+     */
+    protected virtualMachines: VirtualMachine[] = []; 
 
+    /**
+     * Costruttore classe ExportModule
+     * @param module 
+     * @param dataEditor 
+     */
     constructor(module: ModuleApplication, dataEditor: Data) {
         this.module = module;
         this.dataEditor = dataEditor;
     }
 
+    /**
+     * Funzione che si occupa del parsing del modulo in formato adattabile all'export dello YAML.
+     * 1) Inizia assegnando i valori alle variabili che possono essere semplicemente dedotte dal modulo fornito nel costruttore.
+     * 2) Prende i dati forniti dell'editor e itera su questi: in base al tipo richiama la funzione che restituisce il nodo parsed come oggetto YAML.
+     * @return {ModuleExport}
+     * @see {ModuleExport} 
+     * @see {getHostExport}
+     * @see {getSubnetExport}
+     * @see {getNetworkExport}
+     */
     convertModule(): ModuleExport {
         let me: ModuleExport = new ModuleExport();
         me.tosca_definitions_version = ToscaDefinitionType.cloudify;
@@ -28,7 +58,7 @@ export class ExportModule {
         for (let key in this.dataEditor.nodes) {
             let element: NodeData = this.dataEditor.nodes[key];
             if (element.data.type === EnumNodeType.Host) {
-                nt = Object.assign({}, nt, this.getNodeExport(element));
+                nt = Object.assign({}, nt, this.getHostExport(element));
             }
             else if (element.data.type === EnumNodeType.Subnet) {
                 nt = { ...nt, ...this.getSubnetExport(element) }
@@ -50,10 +80,22 @@ export class ExportModule {
     }
 
 
-    getNodeExport(node: NodeData): { [name: string]: NodeSimpleData | PortSimpleData } {
+
+    /**
+     * Funzione di parsing dell'host e delle porte.
+     * 1) Controlla le porte di output per le connessioni in uscita.
+     * 2) Itera sulle connessioni (porte i/o) e controlla le connessioni depends_on (subnet) e contained_in (network)
+     * @param node 
+     * @return { { [name: string]: NodeSimpleData | PortSimpleData }}
+     * @see {virtualMachines}
+     */
+    getHostExport(node: NodeData): { [name: string]: NodeSimpleData | PortSimpleData } {
 
         //serve al ModuleSimpleData
-        let MSDvm: VirtualMachine = { virtual_machine: node.data.name as unknown as string, ports: [] };
+        let MSDvm: VirtualMachine = { 
+            virtual_machine: node.data.name as unknown as string, 
+            ports: [] 
+        };
         let index: number = -1;
 
         // get node
@@ -126,6 +168,15 @@ export class ExportModule {
         return out;
     }
 
+
+
+    /**
+     * Funzione di parsing della subnet.
+     * 1) Valorizza i dati che sono direttamente reperibili dalle informazioni del nodo.
+     * 2) Controlla le porte di output (connesisoni) che si collegano con la network per le relazioni contained_in.
+     * @param subnet 
+     * @returns {{ [name: string]: SubnetSimpleData }}
+     */
     getSubnetExport(subnet: NodeData): { [name: string]: SubnetSimpleData } {
         // get subnet
         let singleSubnet: { [name: string]: SubnetSimpleData } = {}
@@ -156,6 +207,13 @@ export class ExportModule {
         return singleSubnet;
     }
 
+
+    /**
+     * Funzione di parsing del network.
+     * 1) Valorizza solamente i dati che sono direttamente reperibili dalle informazioni del nodo.
+     * @param subnet 
+     * @returns {{ [name: string]: NetworkSimpleData }}
+     */
     getNetworkExport(network: NodeData): { [name: string]: NetworkSimpleData } {
         // get subnet
         let singleNetwork: { [name: string]: NetworkSimpleData } = {}
@@ -172,6 +230,14 @@ export class ExportModule {
         return singleNetwork;
     }
 
+
+    /**
+     * Funzione di parsing del modulo. Creazione dell'elemento modulo nel node_template.
+     * 1) Valorizza i dati che sono direttamente reperibili dalle informazioni del Modulo.
+     * 2) Salva le virtual_machine @see {virtualMachines}
+     * 3) Inserimento delle interfacce consumer/provisor del modulo.
+     * @returns { [name: string]: ModuleSimpleData }
+     */
     getModuleExport(): { [name: string]: ModuleSimpleData } {
         let moduleExport: { [name: string]: ModuleSimpleData } = {}
         let moduleSimpleData: ModuleSimpleData = {
@@ -242,6 +308,11 @@ export class ExportModule {
         return moduleExport;
     }
 
+    /**
+     * Funzone che serve per trovare il nodo partendo dal nome all'interno dei dati del canvas.
+     * @param name 
+     * @returns {NodeData}
+     */
     findNode(name: string): NodeData {
         let n: NodeData = undefined
         for (let key in this.dataEditor.nodes) {

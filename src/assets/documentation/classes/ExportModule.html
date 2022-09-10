@@ -66,6 +66,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Classe che ha lo scopo di convertire il modulo nel formato YAML (standard TOSCA).</p>
+
+            </p>
 
 
 
@@ -83,12 +90,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#dataEditor" >dataEditor</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#module" >module</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#virtualMachines" >virtualMachines</a>
                             </li>
                         </ul>
@@ -110,13 +120,13 @@
                                 <a href="#findNode" >findNode</a>
                             </li>
                             <li>
+                                <a href="#getHostExport" >getHostExport</a>
+                            </li>
+                            <li>
                                 <a href="#getModuleExport" >getModuleExport</a>
                             </li>
                             <li>
                                 <a href="#getNetworkExport" >getNetworkExport</a>
-                            </li>
-                            <li>
-                                <a href="#getNodeExport" >getNodeExport</a>
                             </li>
                             <li>
                                 <a href="#getSubnetExport" >getSubnetExport</a>
@@ -144,12 +154,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/application/export/exportModule.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/application/export/exportModule.ts:28</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Costruttore classe ExportModule</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -205,6 +217,7 @@
                 <td class="col-md-4">
                     <a name="dataEditor"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>dataEditor</b></span>
                         <a href="#dataEditor"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -218,10 +231,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/services/application/export/exportModule.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/services/application/export/exportModule.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che ha lo scopo di memorizzare i dati dell&#39;editor fornito al costruttore.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -231,6 +250,7 @@
                 <td class="col-md-4">
                     <a name="module"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>module</b></span>
                         <a href="#module"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -244,10 +264,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/services/application/export/exportModule.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/application/export/exportModule.ts:17</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che ha lo scopo di memorizzare il modulo fornito al costruttore.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -257,6 +283,7 @@
                 <td class="col-md-4">
                     <a name="virtualMachines"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>virtualMachines</b></span>
                         <a href="#virtualMachines"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -275,10 +302,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/application/export/exportModule.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/application/export/exportModule.ts:28</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile di supporto.
+Usata per ottimizzare la parte di inserimento delle virtual machine nel ModuleSimpleData.
+See {getHostExport}</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -309,18 +344,33 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/services/application/export/exportModule.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/services/application/export/exportModule.ts:50</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che si occupa del parsing del modulo in formato adattabile all&#39;export dello YAML.</p>
+<ol>
+<li>Inizia assegnando i valori alle variabili che possono essere semplicemente dedotte dal modulo fornito nel costruttore.</li>
+<li>Prende i dati forniti dell&#39;editor e itera su questi: in base al tipo richiama la funzione che restituisce il nodo parsed come oggetto YAML.
+See {ModuleExport}
+See {getHostExport}
+See {getSubnetExport}
+See {getNetworkExport}</li>
+</ol>
+</div>
 
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../classes/ModuleExport.html" target="_self" >ModuleExport</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -346,14 +396,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="245"
-                            class="link-to-prism">src/app/services/application/export/exportModule.ts:245</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">src/app/services/application/export/exportModule.ts:316</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzone che serve per trovare il nodo partendo dal nome all&#39;interno dei dati del canvas.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -399,67 +451,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getModuleExport"></a>
+                    <a name="getHostExport"></a>
                     <span class="name">
-                        <span ><b>getModuleExport</b></span>
-                        <a href="#getModuleExport"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getHostExport</b></span>
+                        <a href="#getHostExport"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getModuleExport()</code>
+<code>getHostExport(node: NodeData)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/app/services/application/export/exportModule.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/app/services/application/export/exportModule.ts:92</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>literal type</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getNetworkExport"></a>
-                    <span class="name">
-                        <span ><b>getNetworkExport</b></span>
-                        <a href="#getNetworkExport"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getNetworkExport(network: NodeData)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="159"
-                            class="link-to-prism">src/app/services/application/export/exportModule.ts:159</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
+                    <div class="io-description"><p>Funzione di parsing dell&#39;host e delle porte.</p>
+<ol>
+<li>Controlla le porte di output per le connessioni in uscita.</li>
+<li>Itera sulle connessioni (porte i/o) e controlla le connessioni depends_on (subnet) e contained_in (network)
+See {virtualMachines}</li>
+</ol>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -474,7 +496,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>network</td>
+                                    <td>node</td>
                                     <td>
                                             <code>NodeData</code>
                                     </td>
@@ -505,30 +527,85 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getNodeExport"></a>
+                    <a name="getModuleExport"></a>
                     <span class="name">
-                        <span ><b>getNodeExport</b></span>
-                        <a href="#getNodeExport"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getModuleExport</b></span>
+                        <a href="#getModuleExport"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getNodeExport(node: NodeData)</code>
+<code>getModuleExport()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/app/services/application/export/exportModule.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="241"
+                            class="link-to-prism">src/app/services/application/export/exportModule.ts:241</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione di parsing del modulo. Creazione dell&#39;elemento modulo nel node_template.</p>
+<ol>
+<li>Valorizza i dati che sono direttamente reperibili dalle informazioni del Modulo.</li>
+<li>Salva le virtual_machine @see {virtualMachines}</li>
+<li>Inserimento delle interfacce consumer/provisor del modulo.</li>
+</ol>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>: ModuleSimpleData }</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getNetworkExport"></a>
+                    <span class="name">
+                        <span ><b>getNetworkExport</b></span>
+                        <a href="#getNetworkExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getNetworkExport(network: NodeData)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/app/services/application/export/exportModule.ts:217</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Funzione di parsing del network.</p>
+<ol>
+<li>Valorizza solamente i dati che sono direttamente reperibili dalle informazioni del nodo.</li>
+</ol>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -543,7 +620,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>node</td>
+                                    <td>network</td>
                                     <td>
                                             <code>NodeData</code>
                                     </td>
@@ -590,14 +667,20 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/app/services/application/export/exportModule.ts:129</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="180"
+                            class="link-to-prism">src/app/services/application/export/exportModule.ts:180</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione di parsing della subnet.</p>
+<ol>
+<li>Valorizza i dati che sono direttamente reperibili dalle informazioni del nodo.</li>
+<li>Controlla le porte di output (connesisoni) che si collegano con la network per le relazioni contained_in.</li>
+</ol>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -649,25 +732,55 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Node } from &quot;rete&quot;;
-import { Data, InputData, NodeData, NodesData, OutputData } from &quot;rete/types/core/data&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Data, InputData, NodeData, NodesData, OutputData } from &quot;rete/types/core/data&quot;;
 import { EnumNodeType, InterfacePortType } from &quot;src/app/models/appType&quot;;
-// import { EnumNodeType } from &quot;src/app/rete-settings/models/reteModelType&quot;;
 import { ModuleApplication } from &quot;../../modelsApplication/applicationModels&quot;;
 import { ModuleExport, ModuleSimpleData, NetworkSimpleData, NodeSimpleData, PortSimpleData, PropertiesMSD, PropertiesSSD, SubnetSimpleData, VirtualMachine, VirtualMachinePorts } from &quot;../../modelsExport/moduleExport&quot;;
 import { ModeTypeExport, ModuleTypeExport, NetworkTypeExport, NodeTypeExport, PortTypeExport, RelationshipsTypeExport, SubnetTypeExport, ToscaDefinitionType } from &quot;../../modelsExport/TypeExport&quot;;
 
+
+/**
+ * Classe che ha lo scopo di convertire il modulo nel formato YAML (standard TOSCA).
+ */
 export class ExportModule {
 
-    module: ModuleApplication
-    dataEditor: Data
-    virtualMachines: VirtualMachine[] &#x3D; []; // usata per ottimizzare la parte di inserimento delle virtual machine nel ModuleSimpleData. (controllare nella parte dei nodi)
+    /**
+     * Variabile che ha lo scopo di memorizzare il modulo fornito al costruttore.
+     * @type {ModuleApplication}
+     */
+    protected module: ModuleApplication
+    /**
+     * Variabile che ha lo scopo di memorizzare i dati dell&#x27;editor fornito al costruttore.
+     * @type {Data}
+     */
+    protected dataEditor: Data
+    /**
+     * Variabile di supporto.
+     * Usata per ottimizzare la parte di inserimento delle virtual machine nel ModuleSimpleData. 
+     * @see {getHostExport}
+     */
+    protected virtualMachines: VirtualMachine[] &#x3D; []; 
 
+    /**
+     * Costruttore classe ExportModule
+     * @param module 
+     * @param dataEditor 
+     */
     constructor(module: ModuleApplication, dataEditor: Data) {
         this.module &#x3D; module;
         this.dataEditor &#x3D; dataEditor;
     }
 
+    /**
+     * Funzione che si occupa del parsing del modulo in formato adattabile all&#x27;export dello YAML.
+     * 1) Inizia assegnando i valori alle variabili che possono essere semplicemente dedotte dal modulo fornito nel costruttore.
+     * 2) Prende i dati forniti dell&#x27;editor e itera su questi: in base al tipo richiama la funzione che restituisce il nodo parsed come oggetto YAML.
+     * @return {ModuleExport}
+     * @see {ModuleExport} 
+     * @see {getHostExport}
+     * @see {getSubnetExport}
+     * @see {getNetworkExport}
+     */
     convertModule(): ModuleExport {
         let me: ModuleExport &#x3D; new ModuleExport();
         me.tosca_definitions_version &#x3D; ToscaDefinitionType.cloudify;
@@ -679,7 +792,7 @@ export class ExportModule {
         for (let key in this.dataEditor.nodes) {
             let element: NodeData &#x3D; this.dataEditor.nodes[key];
             if (element.data.type &#x3D;&#x3D;&#x3D; EnumNodeType.Host) {
-                nt &#x3D; Object.assign({}, nt, this.getNodeExport(element));
+                nt &#x3D; Object.assign({}, nt, this.getHostExport(element));
             }
             else if (element.data.type &#x3D;&#x3D;&#x3D; EnumNodeType.Subnet) {
                 nt &#x3D; { ...nt, ...this.getSubnetExport(element) }
@@ -701,10 +814,22 @@ export class ExportModule {
     }
 
 
-    getNodeExport(node: NodeData): { [name: string]: NodeSimpleData | PortSimpleData } {
+
+    /**
+     * Funzione di parsing dell&#x27;host e delle porte.
+     * 1) Controlla le porte di output per le connessioni in uscita.
+     * 2) Itera sulle connessioni (porte i/o) e controlla le connessioni depends_on (subnet) e contained_in (network)
+     * @param node 
+     * @return { { [name: string]: NodeSimpleData | PortSimpleData }}
+     * @see {virtualMachines}
+     */
+    getHostExport(node: NodeData): { [name: string]: NodeSimpleData | PortSimpleData } {
 
         //serve al ModuleSimpleData
-        let MSDvm: VirtualMachine &#x3D; { virtual_machine: node.data.name as unknown as string, ports: [] };
+        let MSDvm: VirtualMachine &#x3D; { 
+            virtual_machine: node.data.name as unknown as string, 
+            ports: [] 
+        };
         let index: number &#x3D; -1;
 
         // get node
@@ -777,6 +902,15 @@ export class ExportModule {
         return out;
     }
 
+
+
+    /**
+     * Funzione di parsing della subnet.
+     * 1) Valorizza i dati che sono direttamente reperibili dalle informazioni del nodo.
+     * 2) Controlla le porte di output (connesisoni) che si collegano con la network per le relazioni contained_in.
+     * @param subnet 
+     * @returns {{ [name: string]: SubnetSimpleData }}
+     */
     getSubnetExport(subnet: NodeData): { [name: string]: SubnetSimpleData } {
         // get subnet
         let singleSubnet: { [name: string]: SubnetSimpleData } &#x3D; {}
@@ -807,6 +941,13 @@ export class ExportModule {
         return singleSubnet;
     }
 
+
+    /**
+     * Funzione di parsing del network.
+     * 1) Valorizza solamente i dati che sono direttamente reperibili dalle informazioni del nodo.
+     * @param subnet 
+     * @returns {{ [name: string]: NetworkSimpleData }}
+     */
     getNetworkExport(network: NodeData): { [name: string]: NetworkSimpleData } {
         // get subnet
         let singleNetwork: { [name: string]: NetworkSimpleData } &#x3D; {}
@@ -823,6 +964,14 @@ export class ExportModule {
         return singleNetwork;
     }
 
+
+    /**
+     * Funzione di parsing del modulo. Creazione dell&#x27;elemento modulo nel node_template.
+     * 1) Valorizza i dati che sono direttamente reperibili dalle informazioni del Modulo.
+     * 2) Salva le virtual_machine @see {virtualMachines}
+     * 3) Inserimento delle interfacce consumer/provisor del modulo.
+     * @returns { [name: string]: ModuleSimpleData }
+     */
     getModuleExport(): { [name: string]: ModuleSimpleData } {
         let moduleExport: { [name: string]: ModuleSimpleData } &#x3D; {}
         let moduleSimpleData: ModuleSimpleData &#x3D; {
@@ -893,6 +1042,11 @@ export class ExportModule {
         return moduleExport;
     }
 
+    /**
+     * Funzone che serve per trovare il nodo partendo dal nome all&#x27;interno dei dati del canvas.
+     * @param name 
+     * @returns {NodeData}
+     */
     findNode(name: string): NodeData {
         let n: NodeData &#x3D; undefined
         for (let key in this.dataEditor.nodes) {

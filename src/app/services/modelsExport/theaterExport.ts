@@ -1,6 +1,9 @@
-import { ModuleSimpleData, NodeSimpleData, PortSimpleData, NetworkSimpleData, SubnetSimpleData } from "./moduleExport"
 import { ModeTypeExport, ModuleTypeExport, TheaterTypeExport, ToscaDefinitionType } from "./TypeExport"
 
+/**
+ * Classe utilizzata per l'export. 
+ * Contiene le informazioni generali per il teatro che devono esserci nello standard Tosca.
+ */
 export class TheaterExport {
     tosca_definitions_version: ToscaDefinitionType
     description: string

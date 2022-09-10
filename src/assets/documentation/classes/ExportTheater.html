@@ -66,6 +66,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Classe che ha lo scopo di convertire il teatro nel formato YAML (standard TOSCA).</p>
+
+            </p>
 
 
 
@@ -132,12 +139,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/services/application/export/exportTheater.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/services/application/export/exportTheater.ts:19</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Costruttore classe ExportTheater</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -206,10 +215,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/services/application/export/exportTheater.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/services/application/export/exportTheater.ts:19</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che ha lo scopo di memorizzare i dati dell&#39;editor fornito al costruttore.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -232,10 +247,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/application/export/exportTheater.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/application/export/exportTheater.ts:14</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che ha lo scopo di memorizzare il teatro fornito al costruttore.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -266,18 +287,29 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/app/services/application/export/exportTheater.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/services/application/export/exportTheater.ts:37</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che si occupa del parsing del modulo in formato adattabile all&#39;export dello YAML.</p>
+<ol>
+<li>Inizia assegnando i valori alle variabili che possono essere semplicemente dedotte dal teatro fornito nel costruttore.</li>
+<li>Prende i dati forniti dell&#39;editor e itera su questi - restituisce il modulo parsed come oggetto YAML.</li>
+</ol>
+</div>
 
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../classes/TheaterExport.html" target="_self" >TheaterExport</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -303,14 +335,20 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/services/application/export/exportTheater.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/app/services/application/export/exportTheater.ts:62</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che prende in input un nodo-modulo e lo converte in un oggetto adattabile allo YAML (TOSCA).</p>
+<ol>
+<li>Inizia valorizzando i dati immediatamente disponibile dalle info del nodo.</li>
+<li>Itera sulle connessioni in ingresso del nodo e salva le varie associazioni.</li>
+</ol>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -372,17 +410,29 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app/services/application/export/exportTheater.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/services/application/export/exportTheater.ts:101</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione di parsing del teatro. Creazione dell&#39;elemento teatro nel node_template.</p>
+<ol>
+<li>Valorizza i dati che sono direttamente reperibili dalle informazioni del Modulo.</li>
+<li>Salva le informazioni delle aree e dei tag.</li>
+</ol>
+</div>
 
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>: TheaterSimpleData }</p>
 
                     </div>
                 </td>
@@ -404,16 +454,37 @@ import { TheaterApplication } from &quot;../../modelsApplication/applicationMode
 import { ModuleInstanceSimpleData, PropertiesMISD, TheaterExport, TheaterSimpleData } from &quot;../../modelsExport/theaterExport&quot;;
 import { ModeTypeExport, ModuleTypeExport, TheaterTypeExport, ToscaDefinitionType } from &quot;../../modelsExport/TypeExport&quot;;
 
+/**
+ * Classe che ha lo scopo di convertire il teatro nel formato YAML (standard TOSCA).
+ */
 export class ExportTheater {
-
+    /**
+     * Variabile che ha lo scopo di memorizzare il teatro fornito al costruttore.
+     * @type {TheaterApplication}
+     */
     theater: TheaterApplication
+    /**
+     * Variabile che ha lo scopo di memorizzare i dati dell&#x27;editor fornito al costruttore.
+     * @type {Data}
+     */
     dataEditor: Data
 
+    /**
+     * Costruttore classe ExportTheater
+     * @param theater 
+     * @param dataEditor 
+     */
     constructor(theater: TheaterApplication, dataEditor: Data) {
         this.theater &#x3D; theater;
         this.dataEditor &#x3D; dataEditor;
     }
 
+    /**
+     * Funzione che si occupa del parsing del modulo in formato adattabile all&#x27;export dello YAML.
+     * 1) Inizia assegnando i valori alle variabili che possono essere semplicemente dedotte dal teatro fornito nel costruttore.
+     * 2) Prende i dati forniti dell&#x27;editor e itera su questi - restituisce il modulo parsed come oggetto YAML.
+     * @returns {TheaterExport}
+     */
     convertTheater(): TheaterExport {
         let te: TheaterExport &#x3D; new TheaterExport();
         te.tosca_definitions_version &#x3D; ToscaDefinitionType.cloudify
@@ -430,10 +501,19 @@ export class ExportTheater {
         return te;
     }
 
+
+
+    /**
+     * Funzione che prende in input un nodo-modulo e lo converte in un oggetto adattabile allo YAML (TOSCA).
+     * 1) Inizia valorizzando i dati immediatamente disponibile dalle info del nodo.
+     * 2) Itera sulle connessioni in ingresso del nodo e salva le varie associazioni.
+     * @param module 
+     * @returns  {{ [name: string]: ModuleInstanceSimpleData }}
+     */
     getModuleInstanceExport(module: NodeData): { [name: string]: ModuleInstanceSimpleData } {
         let mi: { [name: string]: ModuleInstanceSimpleData } &#x3D; {};
         let moduleInstanceSimpleData: ModuleInstanceSimpleData &#x3D; {
-            type: ModuleTypeExport[module.data.type as unknown as string]?ModuleTypeExport[module.data.type as unknown as string]:ModuleTypeExport[0],
+            type: ModuleTypeExport[module.data.type as unknown as string] ? ModuleTypeExport[module.data.type as unknown as string] : ModuleTypeExport[0],
             properties: {
                 module: module.data.module as unknown as string,
                 version: module.data.version as unknown as string,
@@ -444,7 +524,6 @@ export class ExportTheater {
             }
         }
 
-        // TODO
         for (let key in module.inputs) {
             let consumerIF: InputData &#x3D; module.inputs[key];
             consumerIF.connections.forEach(c &#x3D;&gt; {
@@ -463,6 +542,13 @@ export class ExportTheater {
         return mi;
     }
 
+
+    /**
+     * Funzione di parsing del teatro. Creazione dell&#x27;elemento teatro nel node_template.
+     * 1) Valorizza i dati che sono direttamente reperibili dalle informazioni del Modulo.
+     * 3) Salva le informazioni delle aree e dei tag.
+     * @returns { [name: string]: TheaterSimpleData }
+     */
     getTheaterExport(): { [name: string]: TheaterSimpleData } {
         let ti: { [name: string]: TheaterSimpleData } &#x3D; {};
         let theaterSimpleData: TheaterSimpleData &#x3D; {
@@ -485,7 +571,7 @@ export class ExportTheater {
 
         this.theater.tags.forEach(t &#x3D;&gt; {
             theaterSimpleData.properties.tags.push(
-                { tag: t.name}
+                { tag: t.name }
             )
         });
 

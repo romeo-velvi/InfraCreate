@@ -66,6 +66,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Classe utilizzata per lo stato dello spinner.
+See {SpinnerService}</p>
+
+            </p>
 
 
 
@@ -126,7 +134,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -152,7 +160,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -175,28 +183,55 @@
 import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
 import { Observable, Subject } from &#x27;rxjs&#x27;;
 
+/**
+ * Classe utilizzata per lo stato dello spinner.
+ * @see {SpinnerService}
+ */
 class SpinnerData {
   show: boolean;
   text: string
 }
 
+/**
+ * Servizio di settaggio dello spinner (operazioni di loading).
+ * Questo serivizio è associato allo spinner situato nell&#x27;AppComponent.
+ * Questo servizio rende raggiungibile lo stesso dalle diverse componenti dell&#x27;applicazione. 
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class SpinnerService {
 
-  spinnerData: Subject&lt;SpinnerData&gt; &#x3D; new Subject&lt;SpinnerData&gt;();
+  /**
+   * Variabile che memorizza lo stato dello spinner.
+   * @type {Subject}
+   */
+  protected spinnerData: Subject&lt;SpinnerData&gt; &#x3D; new Subject&lt;SpinnerData&gt;();
 
-  constructor(private ss: NgxSpinnerService) { 
+  /**
+   * Costruttore dello SpinnerService
+   * Setta lo spinner come &quot;hide&quot;
+   * @param ss 
+   */
+  constructor(private ss: NgxSpinnerService) {
     this.setSpinner(false);
-   }
+  }
 
-   getSpinner(): Observable&lt;SpinnerData&gt;{
+  /**
+   * Funzione che ritorna l&#x27;observable dello stato dello spinner.
+   * @returns {Observable}
+   */
+  getSpinner(): Observable&lt;SpinnerData&gt; {
     return this.spinnerData.asObservable();
-   }
+  }
 
-  setSpinner(show:boolean, text: string &#x3D; &quot;Loading&quot;) {
-    this.spinnerData.next({show:show,text:text});
+  /**
+   * Funzone che setta lo stato dello spinner.
+   * @param show 
+   * @param text 
+   */
+  setSpinner(show: boolean, text: string &#x3D; &quot;Loading&quot;) {
+    this.spinnerData.next({ show: show, text: text });
     show
       ? this.ss.show()
       : this.ss.hide();

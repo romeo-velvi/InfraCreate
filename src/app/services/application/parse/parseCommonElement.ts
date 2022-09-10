@@ -1,8 +1,7 @@
-import { StaticValue, InterfacePortType } from "src/app/models/appType";
+import { StaticValue, InterfacePortType, ModuleType1, ModuleType2 } from "src/app/models/appType";
 import { getEmptyHostInfo, ReteHostInfo } from "src/app/rete-settings/nodes/rete-nodes/host/hostNode";
 import { ReteNetworkInfo, getEmptyNetworkInfo } from "src/app/rete-settings/nodes/rete-nodes/network/networkNode";
 import { getEmptySubnetInfo, ReteSubnetInfo } from "src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode";
-import { ModuleType1, ModuleType2 } from "src/app/rete-settings/nodes/rete-modules/export-rete-modules";
 import { ReteMirroringModuleInstanceInfo, getEmptyReteMirroringModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/mirroringModuleInstance/mirroringModuleInstanceNode";
 import { getEmptyReteTheaterInternalServiceModuleInstanceInfo, ReteTheaterInternalServiceModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/theaterInternalServiceModuleInstance/theaterInternalServiceModuleInstanceNode";
 import { getEmptyReteTheaterModuleInstanceInfo, ReteTheaterModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/theaterModuleInstance/theaterModuleInstanceNode";

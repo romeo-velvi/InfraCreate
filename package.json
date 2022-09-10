@@ -4,13 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-dev": "ng build --configuration=production",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compodoc-html": "./node_modules/.bin/compodoc -p tsconfig.json -w -s -d ./src/assets/documentation",
     "compodoc-json": "./node_modules/.bin/compodoc -p tsconfig.json -w -s -e json",
-    "onip": "ng serve --host 192.168.1.8"
+    "onip": "ng serve --host 192.168.1.6"
   },
   "private": true,
   "dependencies": {

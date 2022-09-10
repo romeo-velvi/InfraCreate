@@ -62,6 +62,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servizio di settaggio dello spinner (operazioni di loading).
+Questo serivizio è associato allo spinner situato nell&#39;AppComponent.
+Questo servizio rende raggiungibile lo stesso dalle diverse componenti dell&#39;applicazione.</p>
+
+            </p>
 
 
 
@@ -78,6 +87,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#spinnerData" >spinnerData</a>
                             </li>
                         </ul>
@@ -121,12 +131,15 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:28</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Costruttore dello SpinnerService
+Setta lo spinner come &quot;hide&quot;</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -184,18 +197,25 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:43</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che ritorna l&#39;observable dello stato dello spinner.</p>
+</div>
 
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../classes/SpinnerData.html" target="_self" >Observable&lt;SpinnerData&gt;</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -221,14 +241,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:52</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzone che setta lo stato dello spinner.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -300,6 +322,7 @@
                 <td class="col-md-4">
                     <a name="spinnerData"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>spinnerData</b></span>
                         <a href="#spinnerData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -318,10 +341,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/services/application/spinner/spinner.service.ts:28</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che memorizza lo stato dello spinner.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -335,28 +364,55 @@
 import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
 import { Observable, Subject } from &#x27;rxjs&#x27;;
 
+/**
+ * Classe utilizzata per lo stato dello spinner.
+ * @see {SpinnerService}
+ */
 class SpinnerData {
   show: boolean;
   text: string
 }
 
+/**
+ * Servizio di settaggio dello spinner (operazioni di loading).
+ * Questo serivizio è associato allo spinner situato nell&#x27;AppComponent.
+ * Questo servizio rende raggiungibile lo stesso dalle diverse componenti dell&#x27;applicazione. 
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class SpinnerService {
 
-  spinnerData: Subject&lt;SpinnerData&gt; &#x3D; new Subject&lt;SpinnerData&gt;();
+  /**
+   * Variabile che memorizza lo stato dello spinner.
+   * @type {Subject}
+   */
+  protected spinnerData: Subject&lt;SpinnerData&gt; &#x3D; new Subject&lt;SpinnerData&gt;();
 
-  constructor(private ss: NgxSpinnerService) { 
+  /**
+   * Costruttore dello SpinnerService
+   * Setta lo spinner come &quot;hide&quot;
+   * @param ss 
+   */
+  constructor(private ss: NgxSpinnerService) {
     this.setSpinner(false);
-   }
+  }
 
-   getSpinner(): Observable&lt;SpinnerData&gt;{
+  /**
+   * Funzione che ritorna l&#x27;observable dello stato dello spinner.
+   * @returns {Observable}
+   */
+  getSpinner(): Observable&lt;SpinnerData&gt; {
     return this.spinnerData.asObservable();
-   }
+  }
 
-  setSpinner(show:boolean, text: string &#x3D; &quot;Loading&quot;) {
-    this.spinnerData.next({show:show,text:text});
+  /**
+   * Funzone che setta lo stato dello spinner.
+   * @param show 
+   * @param text 
+   */
+  setSpinner(show: boolean, text: string &#x3D; &quot;Loading&quot;) {
+    this.spinnerData.next({ show: show, text: text });
     show
       ? this.ss.show()
       : this.ss.hide();

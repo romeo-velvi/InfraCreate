@@ -12,13 +12,25 @@ import { _Socket } from '../../sockets/socket';
 import ReadonlyPlugin from 'rete-readonly-plugin';
 import HistoryPlugin from 'rete-history-plugin';
 
-export class ReteModuleVisualizerSettings  {
+
+/**
+ * Classe che ha lo scopo di eseguire i dovuti settaggi all'ambiente di rete.
+ * Questa riguarda la parte di ReteModuleVisualizer
+ */
+export class ReteModuleVisualizerSettings {
   container = null;
   editor: NodeEditor = null;
   components = null;
   engine: Engine = null;
   nodeSelected: any = {};
 
+  /**
+   * Costruttore di ReteModuleVisualizerSettings
+   * @param container 
+   * @param edito 
+   * @param components 
+   * @param engine 
+   */
   constructor(container: any, edito: NodeEditor, components: any, engine: Engine) {
     this.container = container;
     this.editor = edito;
@@ -26,6 +38,9 @@ export class ReteModuleVisualizerSettings  {
     this.engine = engine;
   }
 
+  /**
+   * Funzione che, una volta richiamata, setta l'editor i dovuti plugin.
+   */
   editorUSE() {
 
     this.editor.use(ConnectionPlugin);
@@ -40,11 +55,26 @@ export class ReteModuleVisualizerSettings  {
       searchBar: false,
       components: {},
       items: {
-        "Dump JSON": () => {
-          this.printjson();
+        "Undo": () => {
+          this.editor.trigger("undo");
         },
-        "Get nodes": () => {
-          this.getNodes();
+        "Redo": () => {
+          this.editor.trigger("redo");
+        },
+        "Show all nodes": () => {
+          AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+        },
+        "Editor": () => {
+          console.log(JSON.stringify(this.editor.toJSON()));
+        },
+        "Nodes": () => {
+          var x = this.editor.toJSON();
+          var z = [];
+          for (let key in x) {
+            let value = x[key];
+            z.push(value);
+          }
+          return z;
         }
       },
       allocate(component: any) {
@@ -70,6 +100,10 @@ export class ReteModuleVisualizerSettings  {
     })
   }
 
+  /**
+   * Funzione che, una volta richiamata, setta l'editor i dovuti plugin.
+   * Questa è richiamata quando si renderizza l'editor in modalità simple.
+   */
   editorUSE_simple() {
 
     this.editor.use(ConnectionPlugin);
@@ -78,14 +112,26 @@ export class ReteModuleVisualizerSettings  {
       searchBar: false,
       components: {},
       items: {
-        "Dump JSON": () => {
-          this.printjson();
+        "Undo": () => {
+          this.editor.trigger("undo");
         },
-        "Get nodes": () => {
-          this.getNodes();
+        "Redo": () => {
+          this.editor.trigger("redo");
         },
-        "Show all modules": () => {
-          this.showAllNodes();
+        "Show all nodes": () => {
+          AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+        },
+        "Editor": () => {
+          console.log(JSON.stringify(this.editor.toJSON()));
+        },
+        "Nodes": () => {
+          var x = this.editor.toJSON();
+          var z = [];
+          for (let key in x) {
+            let value = x[key];
+            z.push(value);
+          }
+          return z;
         }
       },
       allocate(component: any) {
@@ -110,19 +156,4 @@ export class ReteModuleVisualizerSettings  {
     })
   }
 
-  printjson() {
-    console.log(JSON.stringify(this.editor.toJSON()));
-  }
-  getNodes(): Object[] {
-    var x = this.editor.toJSON();
-    var z = [];
-    for (let key in x) {
-      let value = x[key];
-      z.push(value);
-    }
-    return z;
-  }
-  showAllNodes() {
-    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
-  }
 }

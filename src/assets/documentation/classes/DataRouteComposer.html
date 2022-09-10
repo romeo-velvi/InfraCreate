@@ -315,7 +315,7 @@ export enum EnumNodeType {
 /**
  * Enum per l&#x27;indicazione testuale descrittiva dei tipi di nodi nel modulo.
  */
-export enum EnumNodeTypeString {
+export enum EnumNodeTypeDescription {
     Host &#x3D; &quot;Nodo Host&quot;,
     Subnet &#x3D; &quot;Nodo Subnet&quot;,
     Network &#x3D; &quot;Nodo Network&quot;,
@@ -344,7 +344,66 @@ export enum EnumModuleTypeDescription {
     ExternalVirtualMachine &#x3D; &quot;External Virtual Machine&quot;, // TODO
     AutomaticSystem &#x3D; &quot;Automatic System&quot;, //TODO
     Border &#x3D; &quot;Border&quot;, //TODO
-}</code></pre>
+}
+
+
+// MODULES PROPERTIES
+
+
+/**
+ * Enum che restituisce delle proprietà, espresse in termini di variabili indicatrici dei moduli.
+ * Indica il tipo di un modulo e la sua rappresentazione. (api-restituzione moduli da teatro)
+ */
+ export enum ModuleTypeTheater {
+    TheaterModuleInstance &#x3D; &quot;sysman.creo.nodes.TheaterModuleInstance&quot;,
+    MirroringModuleInstance &#x3D; &quot;sysman.creo.nodes.MirroringModuleInstance&quot;,
+    TheaterInternalServiceModuleInstance &#x3D; &quot;sysman.creo.nodes.TheaterInternalServiceModuleInstance&quot;,
+    VirtualServerModuleInstance &#x3D; &quot;sysman.creo.nodes.VirtualServerModuleInstance&quot;, //TODO
+    ExternalVirtualMachine &#x3D; &quot;sysman.creo.nodes.ExternalVirtualMachine&quot;, //TODO
+    AutomaticSystem &#x3D; &quot;sysman.creo.nodes.AutomaticSystem&quot;, //TODO
+    Border &#x3D; &quot;sysman.creo.nodes.Border&quot;, //TODO
+}
+/**
+ * Rappresentazione inversa di @see {ModuleTypeTheater}
+ */
+ export enum ModuleType1 {
+    &quot;sysman.creo.nodes.TheaterModuleInstance&quot; &#x3D; &quot;TheaterModuleInstance&quot;, // SINONIMI -&gt; &quot;sysman.creo.nodes.TheatreModuleInstance&quot; &#x3D; &quot;TheaterModuleInstance&quot;,
+    &quot;sysman.creo.nodes.MirroringModuleInstance&quot; &#x3D; &quot;MirroringModuleInstance&quot;,
+    &quot;sysman.creo.nodes.TheaterInternalServiceModuleInstance&quot; &#x3D; &quot;TheaterInternalServiceModuleInstance&quot;,
+    &quot;sysman.creo.nodes.VirtualServerModuleInstance&quot; &#x3D; &quot;VirtualServerModuleInstance&quot;, //TODO
+    &quot;sysman.creo.nodes.ExternalVirtualMachine&quot; &#x3D; &quot;ExternalVirtualMachine&quot;, //TODO
+    &quot;sysman.creo.nodes.AutomaticSystem&quot; &#x3D; &quot;AutomaticSystem&quot;, //TODO
+    &quot;sysman.creo.nodes.Border&quot; &#x3D; &quot;Border&quot;, //TODO
+}
+
+
+/**
+ * Enum che restituisce delle proprietà, espresse in termini di variabili indicatrici dei moduli.
+ * Indica il tipo di un modulo e la sua altra indicazione in altri tipi di dati reperiti. (api-restituzione moduli da chiamata apposita)
+ */
+export enum ModuleTypeLink {
+    TheaterModuleInstance &#x3D; &quot;THEATER&quot;,
+    MirroringModuleInstance &#x3D; &quot;MIRRORING&quot;,
+    TheaterInternalServiceModuleInstance &#x3D; &quot;INTERNAL_THEATRE_SERVICE&quot;,
+    VirtualServerModuleInstance &#x3D; &quot;VIRTUAL_SERVER&quot;, // TODO
+    ExternalVirtualMachine &#x3D; &quot;EXTERNAL_VIRTUAL_MACHINE&quot;, // TODO
+    AutomaticSystem &#x3D; &quot;AUTOMATIC_SYSTEM&quot;, //TODO
+    Border &#x3D; &quot;BORDER&quot;, //TODO
+}
+/**
+ * Rappresentazione inversa di @see {ModuleTypeLink}
+ */
+export enum ModuleType2 {
+    &quot;THEATRE&quot; &#x3D; &quot;TheaterModuleInstance&quot;, //Attenzione, per qualche motivo qui la corretta è teatRE. SINONIMI -&gt; &quot;THEATRE&quot; &#x3D; &quot;TheaterModuleInstance&quot;,
+    &quot;MIRRORING&quot; &#x3D; &quot;MirroringModuleInstance&quot;,
+    &quot;INTERNAL_THEATRE_SERVICE&quot; &#x3D; &quot;TheaterInternalServiceModuleInstance&quot;,
+    &quot;VIRTUAL_SERVER&quot; &#x3D; &quot;VirtualServerModuleInstance&quot;, // TODO
+    &quot;EXTERNAL_VIRTUAL_MACHINE&quot; &#x3D; &quot;ExternalVirtualMachine&quot;, // TODO
+    &quot;AUTOMATIC_SYSTEM&quot; &#x3D; &quot;AutomaticSystem&quot;, // TODO
+    &quot;BORDER&quot; &#x3D; &quot;Border&quot;, // TODO
+}
+
+</code></pre>
     </div>
 </div>
 

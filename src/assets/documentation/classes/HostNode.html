@@ -66,6 +66,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Classe che rappresenta il nodo (rete-node) Host all&#39;interno del canvas/editor di rete.</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -151,10 +158,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:49</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Costruttore di HostNode</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -183,7 +196,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -219,14 +232,21 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:67</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamata in fase di costruzione del nodo (rete-node).
+Controlla se bisogna instanziare il nodo oppure crearne uno nuovo:</p>
+<ul>
+<li>In fase di design, il nodo non ha dati, per cui bisogna crearne uno nuovo.</li>
+<li>In fase di visualizing, il nodo presenta dei dati, per cui va valorizzato il nodo.</li>
+</ul>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -288,14 +308,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:132</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamata una volta in nodo creato.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -357,14 +379,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:80</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che ha come scopo creare un nodo (rete-node).
+In particolare gli assegna una struttura vuota.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -426,14 +451,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:140</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamata una volta in nodo cancellato.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -495,14 +522,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:94</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che ha come scopo la valorizzazione del nodo (rete-node) con i dati in suo possesso.
+In quasta fase avviene anche la fase iniziale di instanziamento delle porte input/output.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -564,14 +594,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/host/hostNode.ts:124</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamta per eseguire operazioni che conivolgono computazioni dei nodi.
+Non sono necessari in questa versione.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -655,9 +688,11 @@ import { HostComponent } from &#x27;../../../nodes/rete-nodes/host/host.componen
 import { NodeData, WorkerInputs, WorkerOutputs } from &#x27;rete/types/core/data&#x27;;
 import {  reteBasicNodeInfo } from &#x27;../../reteBasic&#x27;;
 import { EnumNodeType } from &#x27;src/app/models/appType&#x27;;
-// import { EnumNodeType } from &#x27;src/app/rete-settings/models/reteModelType&#x27;;
 
-
+/**
+ * Classe utilizzata per indicare il tipo di modulo HostNode.
+ * @see {reteBasicModuleInfo}
+ */
 export class ReteHostInfo extends reteBasicNodeInfo {
   os: string;
   flavorName: string;
@@ -667,6 +702,12 @@ export class ReteHostInfo extends reteBasicNodeInfo {
   type: EnumNodeType.Host
 }
 
+/**
+ * Funzione dichiarata in HostNode. 
+ * Essa ha lo scopo di generare una struttura dati empty.
+ * Viene utilizzata in per instanziare un nodo del tipo di ritorno indicato senza dati.
+ * @returns {ReteSubnetInfo}
+ */
 export function getEmptyHostInfo(): ReteHostInfo {
   let x: ReteHostInfo &#x3D; {
     os: &quot;&quot;,
@@ -682,45 +723,56 @@ export function getEmptyHostInfo(): ReteHostInfo {
   return x;
 }
 
-
+/**
+ * Classe che rappresenta il nodo (rete-node) Host all&#x27;interno del canvas/editor di rete.
+ */
 export class HostNode extends Component implements AngularComponent {
 
   data: AngularComponentData;
 
+    /**
+   * Costruttore di HostNode
+   */
   constructor() {
     super(EnumNodeType.Host);
     this.data.render &#x3D; &#x27;angular&#x27;;
     this.data.component &#x3D; HostComponent;
   }
 
+  /**
+   * Funzione richiamata in fase di costruzione del nodo (rete-node).
+   * Controlla se bisogna instanziare il nodo oppure crearne uno nuovo:
+   * - In fase di design, il nodo non ha dati, per cui bisogna crearne uno nuovo.
+   * - In fase di visualizing, il nodo presenta dei dati, per cui va valorizzato il nodo.
+   * @param node 
+   */
   async builder(node: Node) {
-    if (Object.keys(node.data).length &#x3D;&#x3D;&#x3D; 0) // fase di design -&gt; esista ma è node.data &#x3D; {} | fase di visual data !&#x3D; {}
+    if (Object.keys(node.data).length &#x3D;&#x3D;&#x3D; 0)
       this.createNewNode(node)
     else
       this.valorizeNode(node)
-    // const out1 &#x3D; new Output(&#x27;num&#x27;, &#x27;Number&#x27;, numSocket);
-    // node.addControl(new NumControl(this.editor, &#x27;num&#x27;)).addOutput(out1);
-    // node.addControl(new NumControl(this.editor, &#x27;Altro&#x27;));
   }
 
+
+  /**
+   * Funzione che ha come scopo creare un nodo (rete-node).
+   * In particolare gli assegna una struttura vuota.
+   * @param node 
+   */
   createNewNode(node: Node) {
     let t &#x3D; getEmptyHostInfo()
     node.data &#x3D; {
       ...node.data,
       ...t
     }
-    var o &#x3D; [&quot;port_out&quot;];
-    var ol &#x3D; o.length;
-
-    for (let index &#x3D; 0; index &lt; ol; index++) {
-      var key &#x3D; o[index]
-      var title &#x3D; o[index]
-      var socket &#x3D; _Socket;
-      var out &#x3D; new Output(key, title, socket, true);
-      node.addOutput(out);
-    }
   }
 
+
+  /**
+   * Funzione che ha come scopo la valorizzazione del nodo (rete-node) con i dati in suo possesso.
+   * In quasta fase avviene anche la fase iniziale di instanziamento delle porte input/output.
+   * @param node 
+   */
   valorizeNode(node: Node) {
     var i: any &#x3D; node.data[&#x27;Input&#x27;];
     var o: any &#x3D; node.data[&#x27;Output&#x27;];
@@ -744,14 +796,29 @@ export class HostNode extends Component implements AngularComponent {
     }
   }
 
+  /**
+   * Funzione richiamta per eseguire operazioni che conivolgono computazioni dei nodi.
+   * Non sono necessari in questa versione.
+   * @param node 
+   * @param inputs 
+   * @param outputs 
+   */
   worker(node: NodeData, inputs: WorkerInputs, outputs: WorkerOutputs) {
     console.log(&quot;Worker - work&quot;, node, inputs, outputs);
   }
 
+  /**
+   * Funzione richiamata una volta in nodo creato.
+   * @param node 
+   */  
   created(node: Node) {
     console.log(&#x27;created&#x27;, node);
   }
 
+  /**
+   * Funzione richiamata una volta in nodo cancellato.
+   * @param node 
+   */
   destroyed(node: Node) {
     console.log(&#x27;destroyed&#x27;, node);
   }

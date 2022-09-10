@@ -1,16 +1,14 @@
 
-import { TheaterService } from '../../api/theater.service';
 import { ModuleService } from '../../api/module.service';
-import { ModuleInstanceDTO, ModuleListDTO, ModuleNetworkInterfaceDTO, SimpleModuleDTO } from '../../modelsDTO/moduleDTO';
+import { ModuleInstanceDTO, ModuleNetworkInterfaceDTO, SimpleModuleDTO } from '../../modelsDTO/moduleDTO';
 import { SimpleModuleApplication, ModuleInstance, ReteConnection } from '../../modelsApplication/applicationModels';
 import { HostModuleDTO, HostPortModuleDTO } from '../../modelsDTO/hostDTO';
 import { SubnetDTO } from '../../modelsDTO/networkDTO';
 import { ReteHostInfo } from 'src/app/rete-settings/nodes/rete-nodes/host/hostNode';
 import { ReteNetworkInfo } from 'src/app/rete-settings/nodes/rete-nodes/network/networkNode';
 import { ReteSubnetInfo } from 'src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode';
-import { StaticValue } from 'src/app/models/appType';
+import { ModuleType2, StaticValue, ModuleTypeTheater } from 'src/app/models/appType';
 import { createHost, createSubnet, createNetwork, createModuleNode } from './parseCommonElement';
-import { ModuleType2, TheaterNodeTypeFromTheater } from 'src/app/rete-settings/nodes/rete-modules/export-rete-modules';
 
 export class PerseDataForTheaterComposer {
 
@@ -159,7 +157,7 @@ export class PerseDataForTheaterComposer {
                         sequence: '',
                         consumer_interfaces_link: []
                     },
-                    type: TheaterNodeTypeFromTheater[ModuleType2[value.type]],
+                    type: ModuleTypeTheater[ModuleType2[value.type]],
                 };
 
                 let ma: ModuleInstance = createModuleNode(undefined, mit, smr)

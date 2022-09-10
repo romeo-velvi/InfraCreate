@@ -9,7 +9,10 @@ import Vue from 'vue/dist/vue.esm';
 import { _Socket } from '../../sockets/socket';
 import HistoryPlugin from 'rete-history-plugin';
 
-
+/**
+ * Classe che ha lo scopo di eseguire i dovuti settaggi all'ambiente di rete.
+ * Questa riguarda la parte di ReteTheaterComposer
+ */
 export class ReteTheaterComposerSettings {
     public container = null;
     public editor: NodeEditor = null;
@@ -17,6 +20,14 @@ export class ReteTheaterComposerSettings {
     public engine: Engine = null;
     public nodeSelected: any = {};
 
+
+    /**
+     * Costruttore di ReteTheaterComposerSettings
+     * @param container 
+     * @param edito 
+     * @param components 
+     * @param engine 
+     */
     constructor(container: any, edito: NodeEditor, components: any, engine: Engine) {
         this.container = container;
         this.editor = edito;
@@ -24,6 +35,10 @@ export class ReteTheaterComposerSettings {
         this.engine = engine;
     }
 
+
+    /**
+     * Funzione che, una volta richiamata, setta l'editor i dovuti plugin.
+     */
     editorUSE() {
 
         this.editor.use(ConnectionPlugin);
@@ -38,11 +53,26 @@ export class ReteTheaterComposerSettings {
             searchBar: false,
             components: {},
             items: {
-                "Dump JSON": () => {
-                    this.printjson();
+                "Undo": () => {
+                    this.editor.trigger("undo");
                 },
-                "Get nodes": () => {
-                    this.getNodes();
+                "Redo": () => {
+                    this.editor.trigger("redo");
+                },
+                "Show all nodes": () => {
+                    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+                },
+                "Editor": () => {
+                    console.log(JSON.stringify(this.editor.toJSON()));
+                },
+                "Nodes": () => {
+                    var x = this.editor.toJSON();
+                    var z = [];
+                    for (let key in x) {
+                        let value = x[key];
+                        z.push(value);
+                    }
+                    return z;
                 }
             },
             allocate(component: any) {
@@ -66,20 +96,6 @@ export class ReteTheaterComposerSettings {
             depth: 0,
             vertical: false,
         })
-    }
-
-    printjson() {
-        console.log(JSON.stringify(this.editor.toJSON()));
-    }
-
-    getNodes(): Object[] {
-        var x = this.editor.toJSON();
-        var z = [];
-        for (let key in x) {
-            let value = x[key];
-            z.push(value);
-        }
-        return z;
     }
 
 }

@@ -66,6 +66,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento che rappresenta una struttura dati generale per le classi dei singoli nodi.</p>
+
+            </p>
 
 
 
@@ -133,7 +140,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/rete-settings/nodes/reteBasic.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/rete-settings/nodes/reteBasic.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -159,7 +166,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/rete-settings/nodes/reteBasic.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/rete-settings/nodes/reteBasic.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -185,7 +192,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/rete-settings/nodes/reteBasic.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/rete-settings/nodes/reteBasic.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -212,7 +219,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/rete-settings/nodes/reteBasic.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/rete-settings/nodes/reteBasic.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -234,6 +241,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EnumNodeType, EnumModuleType } from &quot;src/app/models/appType&quot;;
 import { ModuleInstancePropertiesDTO} from &quot;src/app/services/modelsDTO/moduleDTO&quot;;
 
+/**
+ * Elemento che rappresenta una struttura dati generale per le classi dei singoli nodi.
+ */
 export class reteBasicNodeInfo {
     Input: string[];
     Output: string[];
@@ -241,6 +251,11 @@ export class reteBasicNodeInfo {
     readonly type: EnumNodeType;
 }
 
+
+/**
+ * Elemento che rappresenta una struttura dati generale per le classi dei singoli moduli.
+ * @extends {reteBasicModuleInfo}
+ */
 export class reteBasicModuleInfo extends ModuleInstancePropertiesDTO { // may extends retemodulenodeinfo
     Input: string[];
     Output: string[];

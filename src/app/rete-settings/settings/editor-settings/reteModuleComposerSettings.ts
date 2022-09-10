@@ -12,6 +12,10 @@ import { _Socket } from '../../sockets/socket';
 import HistoryPlugin from 'rete-history-plugin';
 
 
+/**
+ * Classe che ha lo scopo di eseguire i dovuti settaggi all'ambiente di rete.
+ * Questa riguarda la parte di ReteModuleComposer
+ */
 export class ReteModuleComposerSettings {
     container = null;
     editor: NodeEditor = null;
@@ -19,6 +23,13 @@ export class ReteModuleComposerSettings {
     engine: Engine = null;
     nodeSelected: any = {};
 
+    /**
+     * Costruttore di ReteModuleComposerSettings
+     * @param container 
+     * @param edito 
+     * @param components 
+     * @param engine 
+     */
     constructor(container: any, edito: NodeEditor, components: any, engine: Engine) {
         this.container = container;
         this.editor = edito;
@@ -26,13 +37,10 @@ export class ReteModuleComposerSettings {
         this.engine = engine;
     }
 
-    editorUSE(dragdrop: HTMLElement) {
-
-        // this.editor.use(DockPlugin, {
-        //     container: dragdrop,
-        //     itemClass: "dock-item",
-        //     plugins: [AngularRenderPlugin],
-        // });
+    /**
+     * Funzione che, una volta richiamata, setta l'editor i dovuti plugin.
+     */
+    editorUSE() {
 
         this.editor.use(ConnectionPlugin);
 
@@ -46,19 +54,34 @@ export class ReteModuleComposerSettings {
             searchBar: false,
             components: {},
             items: {
-                "Dump JSON": () => {
-                    this.printjson();
+                "Undo": () => {
+                    this.editor.trigger("undo");
                 },
-                "Get nodes": () => {
-                    this.getNodes();
+                "Redo": () => {
+                    this.editor.trigger("redo");
+                },
+                "Show all nodes": () => {
+                    AreaPlugin.zoomAt(this.editor, this.editor.nodes);
+                },
+                "Editor": () => {
+                    console.log(JSON.stringify(this.editor.toJSON()));
+                },
+                "Nodes": () => {
+                    var x = this.editor.toJSON();
+                    var z = [];
+                    for (let key in x) {
+                        let value = x[key];
+                        z.push(value);
+                    }
+                    return z;
                 }
             },
             allocate(component: any) {
-                return null;
+                return ['Create nodes'];
             },
-            // rename(component) {
-            //   return component.name;
-            // }
+            rename(component: any) {
+                return component.name;
+            },
         });
 
         this.editor.use(AreaPlugin, {
@@ -76,17 +99,4 @@ export class ReteModuleComposerSettings {
         })
     }
 
-    printjson() {
-        console.log(JSON.stringify(this.editor.toJSON()));
-    }
-
-    getNodes(): Object[] {
-        var x = this.editor.toJSON();
-        var z = [];
-        for (let key in x) {
-            let value = x[key];
-            z.push(value);
-        }
-        return z;
-    }
 }

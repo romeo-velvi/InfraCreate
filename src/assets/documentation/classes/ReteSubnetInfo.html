@@ -66,6 +66,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Classe utilizzata per indicare il tipo di modulo SubnetNode.
+See {reteBasicModuleInfo}</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -147,7 +155,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -173,7 +181,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -205,7 +213,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:16</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:18</a></code>
 </div>
                         </td>
                     </tr>
@@ -232,7 +240,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -264,7 +272,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:9</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:8</a></code>
 </div>
                         </td>
                     </tr>
@@ -297,7 +305,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:11</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:10</a></code>
 </div>
                         </td>
                     </tr>
@@ -330,7 +338,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:10</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/reteBasicNodeInfo.html#source" target="_self" >reteBasicNodeInfo:9</a></code>
 </div>
                         </td>
                     </tr>
@@ -358,9 +366,11 @@ import { SubnetComponent } from &#x27;./subnet.component&#x27;;
 import { NodeData, WorkerInputs, WorkerOutputs } from &#x27;rete/types/core/data&#x27;;
 import {  reteBasicNodeInfo } from &#x27;../../reteBasic&#x27;;
 import { EnumNodeType } from &#x27;src/app/models/appType&#x27;;
-// import { EnumNodeType } from &#x27;src/app/rete-settings/models/reteModelType&#x27;;
 
-
+/**
+ * Classe utilizzata per indicare il tipo di modulo SubnetNode.
+ * @see {reteBasicModuleInfo}
+ */
 export class ReteSubnetInfo extends reteBasicNodeInfo {
   cidr: string;
   version: string | number;
@@ -368,6 +378,12 @@ export class ReteSubnetInfo extends reteBasicNodeInfo {
   type: EnumNodeType.Subnet;
 }
 
+/**
+ * Funzione dichiarata in SubnetNode. 
+ * Essa ha lo scopo di generare una struttura dati empty.
+ * Viene utilizzata in per instanziare un nodo del tipo di ritorno indicato senza dati.
+ * @returns {ReteSubnetInfo}
+ */
 export function getEmptySubnetInfo(): ReteSubnetInfo {
   let x: ReteSubnetInfo &#x3D; {
     cidr: &quot;&quot;,
@@ -382,51 +398,54 @@ export function getEmptySubnetInfo(): ReteSubnetInfo {
 }
 
 
-
+/**
+ * Classe che rappresenta il nodo (rete-node) Subnet all&#x27;interno del canvas/editor di rete.
+ */
 export class SubnetNode extends Component implements AngularComponent {
 
   data: AngularComponentData;
 
+  /**
+   * Costruttore di SubnetNode
+   */
   constructor() {
     super(EnumNodeType.Subnet);
     this.data.render &#x3D; &#x27;angular&#x27;;
     this.data.component &#x3D; SubnetComponent;
   }
 
+  /**
+   * Funzione richiamata in fase di costruzione del nodo (rete-node).
+   * Controlla se bisogna instanziare il nodo oppure crearne uno nuovo:
+   * - In fase di design, il nodo non ha dati, per cui bisogna crearne uno nuovo.
+   * - In fase di visualizing, il nodo presenta dei dati, per cui va valorizzato il nodo.
+   * @param node 
+   */
   async builder(node: Node) {
-    if (Object.keys(node.data).length &#x3D;&#x3D;&#x3D; 0) // fase di design -&gt; esista ma è node.data &#x3D; {} | fase di visual data !&#x3D; {}
+    if (Object.keys(node.data).length &#x3D;&#x3D;&#x3D; 0)
       this.createNewNode(node)
     else
       this.valorizeNode(node)
   }
 
+  /**
+   * Funzione che ha come scopo creare un nodo (rete-node).
+   * In particolare gli assegna una struttura vuota.
+   * @param node 
+   */
   createNewNode(node: Node) {
     let t &#x3D; getEmptySubnetInfo()
     node.data &#x3D; {
       ...node.data,
       ...t
     }
-    var i &#x3D; [&quot;host_in&quot;];
-    var o &#x3D; [&quot;contained_in&quot;];
-    var il &#x3D; i.length, ol &#x3D; o.length;
-
-    for (let index &#x3D; 0; index &lt; il; index++) {
-      var key &#x3D; i[index]
-      var title &#x3D; i[index]
-      var socket &#x3D; _Socket;
-      var inp &#x3D; new Input(key, title, socket, true);
-      node.addInput(inp);
-    }
-
-    for (let index &#x3D; 0; index &lt; ol; index++) {
-      var key &#x3D; o[index]
-      var title &#x3D; o[index]
-      var socket &#x3D; _Socket;
-      var out &#x3D; new Output(key, title, socket, true);
-      node.addOutput(out);
-    }
   }
 
+  /**
+   * Funzione che ha come scopo la valorizzazione del nodo (rete-node) con i dati in suo possesso.
+   * In quasta fase avviene anche la fase iniziale di instanziamento delle porte input/output.
+   * @param node 
+   */
   valorizeNode(node: Node) {
     var i: any &#x3D; node.data[&#x27;Input&#x27;];
     var o: any &#x3D; node.data[&#x27;Output&#x27;];
@@ -450,45 +469,35 @@ export class SubnetNode extends Component implements AngularComponent {
     }
   }
 
+  /**
+   * Funzione richiamta per eseguire operazioni che conivolgono computazioni dei nodi.
+   * Non sono necessari in questa versione.
+   * @param node 
+   * @param inputs 
+   * @param outputs 
+   */
   worker(node: NodeData, inputs: WorkerInputs, outputs: WorkerOutputs) {
     console.log(&quot;Worker - work&quot;, node, inputs, outputs);
   }
 
+  /**
+   * Funzione richiamata una volta in nodo creato.
+   * @param node 
+   */
   created(node) {
     console.log(&#x27;created&#x27;, node);
   }
 
+  /**
+   * Funzione richiamata una volta in nodo cancellato.
+   * @param node 
+   */
   destroyed(node) {
     console.log(&#x27;destroyed&#x27;, node);
   }
 
 
-}
-
-
-
-// import { Component, Output } from &#x27;rete&#x27;;
-// import { numSocket } from &#x27;../sockets&#x27;;
-// import { NumControl } from &#x27;../controls/number-control&#x27;;
-// import { MyNodeComponent2 } from &#x27;./node2/node.component&#x27;;
-
-// export class NumComponent extends Component {
-
-//   constructor() {
-//     super(&#x27;Number&#x27;);
-
-//   }
-
-//   builder(node) {
-//     const out1 &#x3D; new Output(&#x27;num&#x27;, &#x27;Number&#x27;, numSocket);
-//     return node.addControl(new NumControl(this.editor, &#x27;num&#x27;)).addOutput(out1);
-//   }
-
-//   worker(node, inputs, outputs) {
-//     outputs[&#x27;num&#x27;] &#x3D; node.data.num;
-//   }
-// }
-</code></pre>
+}</code></pre>
     </div>
 </div>
 

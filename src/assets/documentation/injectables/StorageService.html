@@ -62,6 +62,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service che si occupa dello storaging di dati condivisibili attraverso le componenti.</p>
+
+            </p>
 
 
 
@@ -119,7 +126,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/application/storage/storage.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/services/application/storage/storage.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -153,10 +160,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/application/storage/storage.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/application/storage/storage.service.ts:14</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che memorizza le informazioni da salvare</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -182,9 +195,16 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/application/storage/storage.service.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/services/application/storage/storage.service.ts:25</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Funzione che ritorna i dati memorizzati.</p>
+</div>
+
+                        </td>
+                    </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -193,11 +213,13 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/services/application/storage/storage.service.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/services/application/storage/storage.service.ts:19</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Funzione che consente di settare i dati.</p>
+</div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -242,17 +264,29 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
+/**
+ * Service che si occupa dello storaging di dati condivisibili attraverso le componenti.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class StorageService {
 
- private _data: any;
+  /**
+   * Variabile che memorizza le informazioni da salvare
+   */
+  private _data: any;
 
-  set data(data:any){
-    this._data&#x3D;data;
+  /**
+   * Funzione che consente di settare i dati.
+   */
+  set data(data: any) {
+    this._data &#x3D; data;
   }
-  get data(){
+  /**
+   * Funzione che ritorna i dati memorizzati.
+   */
+  get data() {
     return this._data;
   }
 

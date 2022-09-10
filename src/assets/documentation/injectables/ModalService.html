@@ -62,6 +62,19 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servizio di gestione modale.
+Questo servizio è direttamente collegato con le generiche componenti verso l&#39;AppComponent (principale).
+Nell&#39;AppComponent si trova una modale.
+Il che comporta la possibilità, attraverso questo servizio di poter essere attivata da tutte le componenti.
+Utilizzata quasi esclusivamente per delle conferma/cancellazione delle operazioni.
+Attenzione. Nella fase di show e scelta, essa ritorna 2 valori: Un valore null (da non considerare) e il secondo valore, la scelta dell&#39;utente.
+Per cui va utilizzata, nella subscribe, take(2). Per fare in modo di ricevere questi due valori e poi eseguire l&#39;unsibscribe</p>
+
+            </p>
 
 
 
@@ -78,12 +91,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#modalData" >modalData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#show" >show</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#value" >value</a>
                             </li>
                         </ul>
@@ -133,7 +149,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/services/application/modal/modal.service.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/services/application/modal/modal.service.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -166,18 +182,25 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/app/services/application/modal/modal.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/services/application/modal/modal.service.ts:66</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che ritorna lo stato della modale show/hide.</p>
+</div>
 
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -203,14 +226,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/services/application/modal/modal.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/services/application/modal/modal.service.ts:74</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che setta la modale in un determinato stato con un determinato messaggio.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -272,14 +297,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/app/services/application/modal/modal.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/services/application/modal/modal.service.ts:86</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che consente di settare il valore (conferma/non conferma) della modale.
+Quando si sceglie, in automatico avviene la chiusura.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -341,14 +369,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/app/services/application/modal/modal.service.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/services/application/modal/modal.service.ts:106</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che setta lo stato della modale. E la mostra.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -402,6 +432,7 @@
                 <td class="col-md-4">
                     <a name="modalData"></a>
                     <span class="name">
+                            <span class="modifier">Public</span>
                         <span ><b>modalData</b></span>
                         <a href="#modalData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -420,10 +451,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/services/application/modal/modal.service.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/services/application/modal/modal.service.ts:44</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che memorizza i dati della modale.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -433,6 +470,7 @@
                 <td class="col-md-4">
                     <a name="show"></a>
                     <span class="name">
+                            <span class="modifier">Public</span>
                         <span ><b>show</b></span>
                         <a href="#show"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -451,10 +489,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/services/application/modal/modal.service.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/services/application/modal/modal.service.ts:50</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che indica lo stato della modale hide/show.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -464,6 +508,7 @@
                 <td class="col-md-4">
                     <a name="value"></a>
                     <span class="name">
+                            <span class="modifier">Public</span>
                         <span ><b>value</b></span>
                         <a href="#value"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -482,10 +527,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/services/application/modal/modal.service.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/services/application/modal/modal.service.ts:56</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che indica lo stato della modale hide/show.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -496,11 +547,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
-import { Subject, Observable, BehaviorSubject } from &#x27;rxjs&#x27;;
+import { Observable, BehaviorSubject } from &#x27;rxjs&#x27;;
 import { ModalButton, ModalItem } from &#x27;src/app/components/modal/modalType&#x27;;
-
-
 
 
 
@@ -523,23 +571,54 @@ let modalItem: ModalItem &#x3D; {
 };
 
 
+/**
+ * Servizio di gestione modale.
+ * Questo servizio è direttamente collegato con le generiche componenti verso l&#x27;AppComponent (principale).
+ * Nell&#x27;AppComponent si trova una modale.
+ * Il che comporta la possibilità, attraverso questo servizio di poter essere attivata da tutte le componenti.
+ * Utilizzata quasi esclusivamente per delle conferma/cancellazione delle operazioni.
+ * Attenzione. Nella fase di show e scelta, essa ritorna 2 valori: Un valore null (da non considerare) e il secondo valore, la scelta dell&#x27;utente.
+ * Per cui va utilizzata, nella subscribe, take(2). Per fare in modo di ricevere questi due valori e poi eseguire l&#x27;unsibscribe
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class ModalService {
 
-  modalData: BehaviorSubject&lt;ModalItem&gt; &#x3D; new BehaviorSubject&lt;ModalItem&gt;(modalItem);
-  show: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
-  value: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
+  /**
+   * Variabile che memorizza i dati della modale.
+   * @type {BehaviorSubject}
+   */
+  public modalData: BehaviorSubject&lt;ModalItem&gt; &#x3D; new BehaviorSubject&lt;ModalItem&gt;(modalItem);
+  /**
+   * Variabile che indica lo stato della modale hide/show.
+   * @type {BehaviorSubject}
+   * @default {false}
+   */
+  public show: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
+  /**
+   * Variabile che indica lo stato della modale hide/show.
+   * @type {BehaviorSubject}
+   * @default {false}
+   */
+  public value: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
 
   constructor() {
     // this.setConfirmationModal(&quot;&quot;);
   }
 
+  /**
+   * Funzione che ritorna lo stato della modale show/hide.
+   * @returns {Observable}
+   */
   getModal(): Observable&lt;boolean&gt; {
     return this.value.asObservable();
   }
 
+  /**
+   * Funzione che setta la modale in un determinato stato con un determinato messaggio.
+   * @param text_content 
+   */
   setConfirmationModal(text_content: string) {
     this.value.next(null); //clear old resposnse first
     modalItem.text_content &#x3D; text_content;
@@ -547,6 +626,11 @@ export class ModalService {
     this.show.next(true);
   }
 
+  /**
+   * Funzione che consente di settare il valore (conferma/non conferma) della modale.
+   * Quando si sceglie, in automatico avviene la chiusura.
+   * @param val 
+   */
   setResponse(val: ModalButton){
     if(!val) return 
     if(val.id&#x3D;&#x3D;&#x3D;&quot;yes&quot;){
@@ -561,6 +645,12 @@ export class ModalService {
     this.show.next(false);
   }
 
+
+  /**
+   * Funzione che setta lo stato della modale. E la mostra.
+   * @param text_content 
+   * @returns {Observable}
+   */
   showConfirmationModal(text_content: string): Observable&lt;boolean&gt;{
     if (!text_content) return; 
     this.setConfirmationModal(text_content);

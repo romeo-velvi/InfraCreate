@@ -66,6 +66,16 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento che assegna le variabili a funzioni che restituiscono una struttura inizializzata vuota dei singoli nodi.
+See {getEmptyReteMirroringModuleInstanceInfo}
+See {getEmptyReteTheaterModuleInstanceInfo}
+See {getEmptyReteTheaterInternalServiceModuleInstanceInfo}</p>
+
+            </p>
 
 
 
@@ -138,7 +148,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/rete-settings/nodes/rete-modules/export-rete-modules.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/rete-settings/nodes/rete-modules/export-rete-modules.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -170,7 +180,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/rete-settings/nodes/rete-modules/export-rete-modules.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/rete-settings/nodes/rete-modules/export-rete-modules.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -202,7 +212,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/rete-settings/nodes/rete-modules/export-rete-modules.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/rete-settings/nodes/rete-modules/export-rete-modules.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -225,6 +235,10 @@
 import { getEmptyReteTheaterInternalServiceModuleInstanceInfo, ReteTheaterInternalServiceModuleInstanceInfo, TheaterInternalServiceModuleInstanceNode } from &quot;./theaterInternalServiceModuleInstance/theaterInternalServiceModuleInstanceNode&quot;;
 import { getEmptyReteTheaterModuleInstanceInfo, ReteTheaterModuleInstanceInfo, TheaterModuleInstanceNode } from &quot;./theaterModuleInstance/theaterModuleInstanceNode&quot;;
 
+/**
+ * Enum utilizzato per indicare l&#x27;indice di riferimento degli array contenenti le informazioni.
+ * @see {NodeComponents}
+ */
 export enum IndexModuleComponent {
     TheaterModuleInstance &#x3D; 0, //SINONIMO -&gt; TheatreModuleInstance &#x3D; 0, 
     MirroringModuleInstance &#x3D; 1,
@@ -235,57 +249,28 @@ export enum IndexModuleComponent {
     Border &#x3D; 1 //todo
 }
 
+
+/**
+ * Array utilizzato per assegnare i valori al component negli editor. 
+ * Usato per processare e creare i vari nodi (rete-node).
+ */
 export const ModuleComponents &#x3D; [
     new TheaterModuleInstanceNode(),
     new MirroringModuleInstanceNode(),
     new TheaterInternalServiceModuleInstanceNode()
 ];
 
+
+/**
+ * Elemento che assegna le variabili a funzioni che restituiscono una struttura inizializzata vuota dei singoli nodi.
+ * @see {getEmptyReteMirroringModuleInstanceInfo}
+ * @see {getEmptyReteTheaterModuleInstanceInfo}
+ * @see {getEmptyReteTheaterInternalServiceModuleInstanceInfo}
+ */
 export class EmptyModuleInfo {
     static MirroringModuleInstance: ReteMirroringModuleInstanceInfo &#x3D; getEmptyReteMirroringModuleInstanceInfo();
     static TheaterModuleInstance: ReteTheaterModuleInstanceInfo &#x3D; getEmptyReteTheaterModuleInstanceInfo();
     static TheaterInternalServiceModuleInstance: ReteTheaterInternalServiceModuleInstanceInfo &#x3D; getEmptyReteTheaterInternalServiceModuleInstanceInfo();
-}
-
-
-export enum TheaterNodeTypeFromTheater {
-    TheaterModuleInstance &#x3D; &quot;sysman.creo.nodes.TheaterModuleInstance&quot;,
-    MirroringModuleInstance &#x3D; &quot;sysman.creo.nodes.MirroringModuleInstance&quot;,
-    TheaterInternalServiceModuleInstance &#x3D; &quot;sysman.creo.nodes.TheaterInternalServiceModuleInstance&quot;,
-    VirtualServerModuleInstance &#x3D; &quot;sysman.creo.nodes.VirtualServerModuleInstance&quot;, //TODO
-    ExternalVirtualMachine &#x3D; &quot;sysman.creo.nodes.ExternalVirtualMachine&quot;, //TODO
-    AutomaticSystem &#x3D; &quot;sysman.creo.nodes.AutomaticSystem&quot;, //TODO
-    Border &#x3D; &quot;sysman.creo.nodes.Border&quot;, //TODO
-}
-
-export enum ModuleTypeLink {
-    TheaterModuleInstance &#x3D; &quot;THEATER&quot;,
-    MirroringModuleInstance &#x3D; &quot;MIRRORING&quot;,
-    TheaterInternalServiceModuleInstance &#x3D; &quot;INTERNAL_THEATRE_SERVICE&quot;,
-    VirtualServerModuleInstance &#x3D; &quot;VIRTUAL_SERVER&quot;, // TODO
-    ExternalVirtualMachine &#x3D; &quot;EXTERNAL_VIRTUAL_MACHINE&quot;, // TODO
-    AutomaticSystem &#x3D; &quot;AUTOMATIC_SYSTEM&quot;, //TODO
-    Border &#x3D; &quot;BORDER&quot;, //TODO
-}
-
-export enum ModuleType1 {
-    &quot;sysman.creo.nodes.TheaterModuleInstance&quot; &#x3D; &quot;TheaterModuleInstance&quot;, // SINONIMI -&gt; &quot;sysman.creo.nodes.TheatreModuleInstance&quot; &#x3D; &quot;TheaterModuleInstance&quot;,
-    &quot;sysman.creo.nodes.MirroringModuleInstance&quot; &#x3D; &quot;MirroringModuleInstance&quot;,
-    &quot;sysman.creo.nodes.TheaterInternalServiceModuleInstance&quot; &#x3D; &quot;TheaterInternalServiceModuleInstance&quot;,
-    &quot;sysman.creo.nodes.VirtualServerModuleInstance&quot; &#x3D; &quot;VirtualServerModuleInstance&quot;, //TODO
-    &quot;sysman.creo.nodes.ExternalVirtualMachine&quot; &#x3D; &quot;ExternalVirtualMachine&quot;, //TODO
-    &quot;sysman.creo.nodes.AutomaticSystem&quot; &#x3D; &quot;AutomaticSystem&quot;, //TODO
-    &quot;sysman.creo.nodes.Border&quot; &#x3D; &quot;Border&quot;, //TODO
-}
-
-export enum ModuleType2 {
-    &quot;THEATRE&quot; &#x3D; &quot;TheaterModuleInstance&quot;, //Attenzione, per qualche motivo qui la corretta è teatRE. SINONIMI -&gt; &quot;THEATRE&quot; &#x3D; &quot;TheaterModuleInstance&quot;,
-    &quot;MIRRORING&quot; &#x3D; &quot;MirroringModuleInstance&quot;,
-    &quot;INTERNAL_THEATRE_SERVICE&quot; &#x3D; &quot;TheaterInternalServiceModuleInstance&quot;,
-    &quot;VIRTUAL_SERVER&quot; &#x3D; &quot;VirtualServerModuleInstance&quot;, // TODO
-    &quot;EXTERNAL_VIRTUAL_MACHINE&quot; &#x3D; &quot;ExternalVirtualMachine&quot;, // TODO
-    &quot;AUTOMATIC_SYSTEM&quot; &#x3D; &quot;AutomaticSystem&quot;, // TODO
-    &quot;BORDER&quot; &#x3D; &quot;Border&quot;, // TODO
 }
 </code></pre>
     </div>

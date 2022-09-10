@@ -136,7 +136,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -202,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:29</a></div>
                 </td>
             </tr>
 
@@ -273,8 +273,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:37</a></div>
                 </td>
             </tr>
 
@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:66</a></div>
                 </td>
             </tr>
 
@@ -415,8 +415,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:52</a></div>
                 </td>
             </tr>
 
@@ -484,8 +484,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:80</a></div>
                 </td>
             </tr>
 
@@ -553,8 +553,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="148"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:148</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:146</a></div>
                 </td>
             </tr>
 
@@ -624,8 +624,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:18</a></div>
                 </td>
             </tr>
 
@@ -663,8 +663,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForTheaterComposer.ts:23</a></div>
                 </td>
             </tr>
 
@@ -690,18 +690,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { TheaterService } from &#x27;../../api/theater.service&#x27;;
-import { ModuleService } from &#x27;../../api/module.service&#x27;;
-import { ModuleInstanceDTO, ModuleListDTO, ModuleNetworkInterfaceDTO, SimpleModuleDTO } from &#x27;../../modelsDTO/moduleDTO&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ModuleService } from &#x27;../../api/module.service&#x27;;
+import { ModuleInstanceDTO, ModuleNetworkInterfaceDTO, SimpleModuleDTO } from &#x27;../../modelsDTO/moduleDTO&#x27;;
 import { SimpleModuleApplication, ModuleInstance, ReteConnection } from &#x27;../../modelsApplication/applicationModels&#x27;;
 import { HostModuleDTO, HostPortModuleDTO } from &#x27;../../modelsDTO/hostDTO&#x27;;
 import { SubnetDTO } from &#x27;../../modelsDTO/networkDTO&#x27;;
 import { ReteHostInfo } from &#x27;src/app/rete-settings/nodes/rete-nodes/host/hostNode&#x27;;
 import { ReteNetworkInfo } from &#x27;src/app/rete-settings/nodes/rete-nodes/network/networkNode&#x27;;
 import { ReteSubnetInfo } from &#x27;src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode&#x27;;
-import { StaticValue } from &#x27;src/app/models/appType&#x27;;
+import { ModuleType2, StaticValue, ModuleTypeTheater } from &#x27;src/app/models/appType&#x27;;
 import { createHost, createSubnet, createNetwork, createModuleNode } from &#x27;./parseCommonElement&#x27;;
-import { ModuleType2, TheaterNodeTypeFromTheater } from &#x27;src/app/rete-settings/nodes/rete-modules/export-rete-modules&#x27;;
 
 export class PerseDataForTheaterComposer {
 
@@ -850,7 +848,7 @@ export class PerseDataForTheaterComposer {
                         sequence: &#x27;&#x27;,
                         consumer_interfaces_link: []
                     },
-                    type: TheaterNodeTypeFromTheater[ModuleType2[value.type]],
+                    type: ModuleTypeTheater[ModuleType2[value.type]],
                 };
 
                 let ma: ModuleInstance &#x3D; createModuleNode(undefined, mit, smr)

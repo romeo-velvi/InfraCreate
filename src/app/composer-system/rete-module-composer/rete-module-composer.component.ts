@@ -135,8 +135,9 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   /**
    * Variabile utilizzata per l'hide-or-show della minimappa
    * @type {boolean}
+   * @default {true}
    */
-  protected ismapvisible: boolean;
+  protected ismapvisible: boolean = true;
 
   /**
    * Variabile utilizzata per assegnare i valori alla Navbar.
@@ -323,11 +324,6 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @type {boolean}
    */
   protected hidedragdrop: boolean = false;
-  /**
-   * Variabile di riferimento DOM che contiene gli elementi dinamici per drag&drop.
-   * @type {HTMLElement}
-   */
-  protected dragdrop: HTMLElement = null;
   /**
    * Variabile che fa riferimento ad un elemento a cui è eseguito il drag.
    * @type  {Node}
@@ -784,14 +780,12 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
 
     this.container = this.el.nativeElement;
 
-    this.dragdrop = document.getElementById('dragdrop');
-
     this.editor = new NodeEditor('InfraCreateEditor@0.2.0', this.container);
 
     this.engine = new Engine('InfraCreateEngine@0.2.0');
 
     var v = new ReteModuleComposerSettings(this.container, this.editor, this.components, this.engine);
-    v.editorUSE(this.dragdrop);
+    v.editorUSE();
 
     // START EDITOR ON
 
@@ -1475,6 +1469,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * Funzione che ha come scopo, una volta inseriti i dati della porta input di:
    * - Controllare che non ci sia altra porta che ha le stesse attribuzioni.
    * - Aggiornare il nodo selezionato con la porta inserita, sia nelle variabili globali del nodo, sia sul canvas.
+   * ps. multi input dipende dal tipo di nodo
    * @param val 
    * @see {openModalWithMessage}
    */
@@ -1490,7 +1485,12 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
       return;
     }
     (this.nodeSelected.data.Input as string[]).push(name);
-    let input = new ir(name, name, _Socket, true);
+    //check multi
+    let multi: boolean = 
+    (this.nodeSelected.data.type===this.SUBNET) 
+    ? true
+    : false;
+    let input = new ir(name, name, _Socket, multi);
     this.nodeSelected.addInput(input);
     this.updateNode(this.nodeSelected);
   }
@@ -1498,6 +1498,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * Funzione che ha come scopo, una volta inseriti i dati della porta output di:
    * - Controllare che non ci sia altra porta che ha le stesse attribuzioni.
    * - Aggiornare il nodo selezionato con la porta inserita, sia nelle variabili globali del nodo, sia sul canvas.
+   * ps. multi output dipende dal tipo di nodo
    * @param val 
    * @see {openModalWithMessage}
    */
@@ -1513,7 +1514,12 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
       return;
     }
     (this.nodeSelected.data.Output as string[]).push(name);
-    let output = new or(name, name, _Socket, true);
+    //check multi
+    let multi: boolean = 
+    (this.nodeSelected.data.type===this.HOST) 
+    ? true
+    : false;
+    let output = new or(name, name, _Socket, multi);
     this.nodeSelected.addOutput(output);
     this.updateNode(this.nodeSelected);
   }

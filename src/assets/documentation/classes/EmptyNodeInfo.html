@@ -66,6 +66,16 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento che assegna le variabili a funzioni che restituiscono una struttura inizializzata vuota dei singoli nodi.
+See {getEmptyHostInfo}
+See {getEmptySubnetInfo}
+See {getEmptyNetworkInfo}</p>
+
+            </p>
 
 
 
@@ -138,7 +148,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/export-rete-nodes.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/export-rete-nodes.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -170,7 +180,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/export-rete-nodes.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/export-rete-nodes.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -202,7 +212,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/export-rete-nodes.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/rete-settings/nodes/rete-nodes/export-rete-nodes.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -225,19 +235,32 @@
 import { getEmptyNetworkInfo, NetworkNode, ReteNetworkInfo } from &quot;./network/networkNode&quot;;
 import { getEmptySubnetInfo, ReteSubnetInfo, SubnetNode } from &quot;./subnet/subnetNode&quot;;
 
-
+/**
+ * Enum utilizzato per indicare l&#x27;indice di riferimento degli array contenenti le informazioni.
+ * @see {NodeComponents}
+ */
 export enum IndexNodeComponent {
     Host &#x3D; 0,
     Subnet &#x3D; 1,
     Network &#x3D; 2
 }
 
+/**
+ * Array utilizzato per assegnare i valori al component negli editor. 
+ * Usato per processare e creare i vari nodi (rete-node).
+ */
 export const NodeComponents &#x3D; [
     new HostNode(),
     new SubnetNode(),
     new NetworkNode()
 ];
 
+/**
+ * Elemento che assegna le variabili a funzioni che restituiscono una struttura inizializzata vuota dei singoli nodi.
+ * @see {getEmptyHostInfo}
+ * @see {getEmptySubnetInfo}
+ * @see {getEmptyNetworkInfo}
+ */
 export class EmptyNodeInfo {
     static Host: ReteHostInfo &#x3D; getEmptyHostInfo();
     static Subnet: ReteSubnetInfo &#x3D; getEmptySubnetInfo();

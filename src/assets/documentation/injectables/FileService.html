@@ -62,6 +62,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servizio di gestione di importing file da locale all&#39;app.</p>
+
+            </p>
 
 
 
@@ -123,7 +130,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/application/file/file.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/application/file/file.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -156,18 +163,25 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/services/application/file/file.service.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/app/services/application/file/file.service.ts:51</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione cha come scopo ritornare il file (sottoforma di oggetto parserizzato) captato dall&#39;input.</p>
+</div>
 
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>File</code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -195,14 +209,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/services/application/file/file.service.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/services/application/file/file.service.ts:25</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che viene richiamata per gestire l&#39;evento dell&#39;input una volta captato il file.
+Si occupa anche di parserizzare il file sottoforma di oggetto (json).</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -234,7 +251,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -270,10 +287,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/application/file/file.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/application/file/file.service.ts:15</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che ha come scopo il salvataggio di informazioni del file.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -285,16 +308,29 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
+/**
+ * Servizio di gestione di importing file da locale all&#x27;app.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class FileService {
 
+  /**
+   * Variabile che ha come scopo il salvataggio di informazioni del file.
+   * @type {File}
+   */
   private selectedFile: File;
 
   constructor() { }
 
-  async onFileSelected(event: any) {
+  /**
+   * Funzione che viene richiamata per gestire l&#x27;evento dell&#x27;input una volta captato il file.
+   * Si occupa anche di parserizzare il file sottoforma di oggetto (json).
+   * @param event 
+   * @return {Promise}
+   */
+  async onFileSelected(event: any): Promise&lt;any&gt; {
     this.selectedFile &#x3D; event.target.files[0];
     const fileReader &#x3D; new FileReader();
     fileReader.readAsText(this.selectedFile, &quot;UTF-8&quot;);
@@ -316,6 +352,10 @@ export class FileService {
     )
   }
 
+  /**
+   * Funzione cha come scopo ritornare il file (sottoforma di oggetto parserizzato) captato dall&#x27;input.
+   * @returns 
+   */
   getFile(): File{
     return this.selectedFile;
   }

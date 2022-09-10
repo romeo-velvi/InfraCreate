@@ -80,7 +80,7 @@ export enum EnumNodeType {
 /**
  * Enum per l'indicazione testuale descrittiva dei tipi di nodi nel modulo.
  */
-export enum EnumNodeTypeString {
+export enum EnumNodeTypeDescription {
     Host = "Nodo Host",
     Subnet = "Nodo Subnet",
     Network = "Nodo Network",
@@ -110,3 +110,61 @@ export enum EnumModuleTypeDescription {
     AutomaticSystem = "Automatic System", //TODO
     Border = "Border", //TODO
 }
+
+
+// MODULES PROPERTIES
+
+
+/**
+ * Enum che restituisce delle proprietà, espresse in termini di variabili indicatrici dei moduli.
+ * Indica il tipo di un modulo e la sua rappresentazione. (api-restituzione moduli da teatro)
+ */
+ export enum ModuleTypeTheater {
+    TheaterModuleInstance = "sysman.creo.nodes.TheaterModuleInstance",
+    MirroringModuleInstance = "sysman.creo.nodes.MirroringModuleInstance",
+    TheaterInternalServiceModuleInstance = "sysman.creo.nodes.TheaterInternalServiceModuleInstance",
+    VirtualServerModuleInstance = "sysman.creo.nodes.VirtualServerModuleInstance", //TODO
+    ExternalVirtualMachine = "sysman.creo.nodes.ExternalVirtualMachine", //TODO
+    AutomaticSystem = "sysman.creo.nodes.AutomaticSystem", //TODO
+    Border = "sysman.creo.nodes.Border", //TODO
+}
+/**
+ * Rappresentazione inversa di @see {ModuleTypeTheater}
+ */
+ export enum ModuleType1 {
+    "sysman.creo.nodes.TheaterModuleInstance" = "TheaterModuleInstance", // SINONIMI -> "sysman.creo.nodes.TheatreModuleInstance" = "TheaterModuleInstance",
+    "sysman.creo.nodes.MirroringModuleInstance" = "MirroringModuleInstance",
+    "sysman.creo.nodes.TheaterInternalServiceModuleInstance" = "TheaterInternalServiceModuleInstance",
+    "sysman.creo.nodes.VirtualServerModuleInstance" = "VirtualServerModuleInstance", //TODO
+    "sysman.creo.nodes.ExternalVirtualMachine" = "ExternalVirtualMachine", //TODO
+    "sysman.creo.nodes.AutomaticSystem" = "AutomaticSystem", //TODO
+    "sysman.creo.nodes.Border" = "Border", //TODO
+}
+
+
+/**
+ * Enum che restituisce delle proprietà, espresse in termini di variabili indicatrici dei moduli.
+ * Indica il tipo di un modulo e la sua altra indicazione in altri tipi di dati reperiti. (api-restituzione moduli da chiamata apposita)
+ */
+export enum ModuleTypeLink {
+    TheaterModuleInstance = "THEATER",
+    MirroringModuleInstance = "MIRRORING",
+    TheaterInternalServiceModuleInstance = "INTERNAL_THEATRE_SERVICE",
+    VirtualServerModuleInstance = "VIRTUAL_SERVER", // TODO
+    ExternalVirtualMachine = "EXTERNAL_VIRTUAL_MACHINE", // TODO
+    AutomaticSystem = "AUTOMATIC_SYSTEM", //TODO
+    Border = "BORDER", //TODO
+}
+/**
+ * Rappresentazione inversa di @see {ModuleTypeLink}
+ */
+export enum ModuleType2 {
+    "THEATRE" = "TheaterModuleInstance", //Attenzione, per qualche motivo qui la corretta è teatRE. SINONIMI -> "THEATRE" = "TheaterModuleInstance",
+    "MIRRORING" = "MirroringModuleInstance",
+    "INTERNAL_THEATRE_SERVICE" = "TheaterInternalServiceModuleInstance",
+    "VIRTUAL_SERVER" = "VirtualServerModuleInstance", // TODO
+    "EXTERNAL_VIRTUAL_MACHINE" = "ExternalVirtualMachine", // TODO
+    "AUTOMATIC_SYSTEM" = "AutomaticSystem", // TODO
+    "BORDER" = "Border", // TODO
+}
+
