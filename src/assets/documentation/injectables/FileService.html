@@ -85,7 +85,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Protected</span>
                                 <a href="#selectedFile" >selectedFile</a>
                             </li>
                         </ul>
@@ -273,7 +273,7 @@ Si occupa anche di parserizzare il file sottoforma di oggetto (json).</p>
                 <td class="col-md-4">
                     <a name="selectedFile"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
+                            <span class="modifier">Protected</span>
                         <span ><b>selectedFile</b></span>
                         <a href="#selectedFile"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -320,7 +320,7 @@ export class FileService {
    * Variabile che ha come scopo il salvataggio di informazioni del file.
    * @type {File}
    */
-  private selectedFile: File;
+  protected selectedFile: File;
 
   constructor() { }
 

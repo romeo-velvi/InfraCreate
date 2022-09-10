@@ -2045,7 +2045,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.producerInterface.next(prod_int);
 
     let imp: string[] = [];
-    if (this.module.imports.length > 0) {
+    if (this.module.imports && this.module.imports.length > 0) {
       this.module.imports.forEach(i => {
         imp.push(i);
       })

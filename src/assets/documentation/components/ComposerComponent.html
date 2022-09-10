@@ -350,8 +350,8 @@ Si occupa di prendere i dati di route url e valorizzare le rispettive variabili 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="194"
-                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:194</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:197</a></div>
                 </td>
             </tr>
 
@@ -391,8 +391,8 @@ Si occupa di prendere i dati di route url e valorizzare le rispettive variabili 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:139</a></div>
                 </td>
             </tr>
 
@@ -436,8 +436,8 @@ See {parseService}</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="166"
-                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:166</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="169"
+                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:169</a></div>
                 </td>
             </tr>
 
@@ -479,8 +479,8 @@ See {parseService}</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:117</a></div>
                 </td>
             </tr>
 
@@ -1016,6 +1016,7 @@ export class ComposerComponent implements OnInit {
     private spinnerService: SpinnerService,
     private storageService: StorageService
   ) {
+
     this.dataFromRouter &#x3D; this.router.getCurrentNavigation().extras.state as DataRouteComposer
     if (this.dataFromRouter) {
       this.name &#x3D; this.dataFromRouter.name as string;
@@ -1023,7 +1024,8 @@ export class ComposerComponent implements OnInit {
       this.author &#x3D; this.dataFromRouter.author as string;
       this.type &#x3D; this.dataFromRouter.type as SubjectType;
     }
-    else if (!this.name &amp;&amp; this.storageService.data) {
+    // se non è stato inizializzato il nome e ci sono dati nello storage
+    if (!this.name &amp;&amp; this.storageService.data) {
       this.hasFile &#x3D; true;
       this.data &#x3D; this.storageService.data;
       this.storageService.data &#x3D; undefined; // consumo l&#x27;elemento
@@ -1041,6 +1043,7 @@ export class ComposerComponent implements OnInit {
    * @see {initTHEATER}
    */
   ngOnInit() {
+
     if (this.type &#x3D;&#x3D;&#x3D; this.MODULE) {
       this.initMODULE();
     }

@@ -10065,7 +10065,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.producerInterface.next(prod_int);
 
     let imp: string[] &#x3D; [];
-    if (this.module.imports.length &gt; 0) {
+    if (this.module.imports &amp;&amp; this.module.imports.length &gt; 0) {
       this.module.imports.forEach(i &#x3D;&gt; {
         imp.push(i);
       })

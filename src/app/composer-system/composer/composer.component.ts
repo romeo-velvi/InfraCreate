@@ -88,6 +88,7 @@ export class ComposerComponent implements OnInit {
     private spinnerService: SpinnerService,
     private storageService: StorageService
   ) {
+
     this.dataFromRouter = this.router.getCurrentNavigation().extras.state as DataRouteComposer
     if (this.dataFromRouter) {
       this.name = this.dataFromRouter.name as string;
@@ -95,7 +96,8 @@ export class ComposerComponent implements OnInit {
       this.author = this.dataFromRouter.author as string;
       this.type = this.dataFromRouter.type as SubjectType;
     }
-    else if (!this.name && this.storageService.data) {
+    // se non è stato inizializzato il nome e ci sono dati nello storage
+    if (!this.name && this.storageService.data) {
       this.hasFile = true;
       this.data = this.storageService.data;
       this.storageService.data = undefined; // consumo l'elemento
@@ -113,6 +115,7 @@ export class ComposerComponent implements OnInit {
    * @see {initTHEATER}
    */
   ngOnInit() {
+
     if (this.type === this.MODULE) {
       this.initMODULE();
     }

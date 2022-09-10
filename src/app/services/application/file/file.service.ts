@@ -12,7 +12,7 @@ export class FileService {
    * Variabile che ha come scopo il salvataggio di informazioni del file.
    * @type {File}
    */
-  private selectedFile: File;
+  protected selectedFile: File;
 
   constructor() { }
 

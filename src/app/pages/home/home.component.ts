@@ -125,25 +125,6 @@ export class HomeComponent {
         type: "textarea",
         required: true
       },
-      // {
-      //   id:"select",
-      //   text:"select",
-      //   type:"selection",
-      //   selected_number:0,
-      //   selection: [
-      //     {text:"uno",value:"1"},
-      //     {text:"due",value:"2"},
-      //     {text:"tre",value:"3"},
-      //   ],
-      //   required: false
-      // },
-      // {
-      //   id: "check",
-      //   text: "check",
-      //   type: 'checkbox',
-      //   checked: false,
-      //   required: false
-      // },
     ]
   };
     /**
