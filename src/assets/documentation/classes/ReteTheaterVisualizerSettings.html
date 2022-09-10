@@ -595,12 +595,6 @@ export class ReteTheaterVisualizerSettings {
       searchBar: false,
       components: {},
       items: {
-        &quot;Undo&quot;: () &#x3D;&gt; {
-          this.editor.trigger(&quot;undo&quot;);
-        },
-        &quot;Redo&quot;: () &#x3D;&gt; {
-          this.editor.trigger(&quot;redo&quot;);
-        },
         &quot;Show all nodes&quot;: () &#x3D;&gt; {
           AreaPlugin.zoomAt(this.editor, this.editor.nodes);
         },

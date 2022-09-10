@@ -22,13 +22,13 @@
 <title>cluster_AppModule_imports</title>
 <polygon fill="none" stroke="black" points="624,-40.8 624,-92.8 866,-92.8 866,-40.8 624,-40.8"/>
 </g>
-<g id="clust29" class="cluster">
-<title>cluster_AppModule_exports</title>
-<polygon fill="none" stroke="black" points="2475,-170.8 2475,-222.8 3126,-222.8 3126,-170.8 2475,-170.8"/>
-</g>
 <g id="clust30" class="cluster">
 <title>cluster_AppModule_bootstrap</title>
 <polygon fill="none" stroke="black" points="3134,-170.8 3134,-222.8 3258,-222.8 3258,-170.8 3134,-170.8"/>
+</g>
+<g id="clust29" class="cluster">
+<title>cluster_AppModule_exports</title>
+<polygon fill="none" stroke="black" points="2475,-170.8 2475,-222.8 3126,-222.8 3126,-170.8 2475,-170.8"/>
 </g>
 <g id="clust31" class="cluster">
 <title>cluster_AppModule_providers</title>
