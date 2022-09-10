@@ -66,6 +66,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento che contiene le variabili da portare al router nel caso si tratti della costruzione.</p>
+
+            </p>
 
 
 
@@ -132,7 +139,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/models/appType.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/models/appType.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -158,7 +165,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/models/appType.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/models/appType.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -184,7 +191,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/models/appType.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/models/appType.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -210,7 +217,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/models/appType.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/models/appType.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -234,21 +241,33 @@
     THEATER  &#x3D; &quot;Theater&quot;
 }
 
+/**
+ * Enum per eseguire le operazioni in base al tipo
+ */
 export enum ComposerVisualizerType {
     COMPOSER &#x3D; &quot;Composer&quot;,
     VISUALIZER  &#x3D; &quot;Visualizer&quot;
 }
 
+/**
+ * Enum per indicare il tipo di interfaccia
+ */
 export enum InterfacePortType {
     CONSUMER &#x3D; &quot;CONSUMER&quot;,
     PRODUCER &#x3D; &quot;PRODUCER&quot;
 }
 
+/**
+ * Enum per indicare il tipo di porta
+ */
 export enum NodePortType{
     INPUT&#x3D;&quot;input&quot;,
     OUTPUT&#x3D;&quot;output&quot;
 }
 
+/**
+ * Enum per indicare il tipo di sistma operativo
+ */
 export enum StaticValue{
     SubnetOutput &#x3D; &quot;Link&quot;,
     hostOS1 &#x3D; &quot;Linux&quot;,
@@ -256,16 +275,27 @@ export enum StaticValue{
     hostOS3 &#x3D; &quot;CentOS&quot;,
 }
 
+/**
+ * Enum per indicare la versione dell&#x27;ip
+ */
 export enum IpVersionType {
     FOUR &#x3D; &quot;4&quot;,
     SIXSTEEN &#x3D; &quot;16&quot;
 }
 
+
+//// Router data
+
+/**
+ * Elemento che contiene le variabili da portare al router nel caso si tratti della visualizzazione.
+ */
 export class DataRouteVisualizer{
     id: number;
     type: SubjectType;
 }
-
+/**
+ * Elemento che contiene le variabili da portare al router nel caso si tratti della costruzione.
+ */
 export class DataRouteComposer{
     name: string;
     description: string;
@@ -274,20 +304,26 @@ export class DataRouteComposer{
 }
 
 
-
-
+/**
+ * Enum per indicare i tipi di nodi nel modulo.
+ */
 export enum EnumNodeType {
     Host &#x3D; &quot;Host&quot;,
     Subnet &#x3D; &quot;Subnet&quot;,
     Network &#x3D; &quot;Network&quot;,
 }
+/**
+ * Enum per l&#x27;indicazione testuale descrittiva dei tipi di nodi nel modulo.
+ */
 export enum EnumNodeTypeString {
     Host &#x3D; &quot;Nodo Host&quot;,
     Subnet &#x3D; &quot;Nodo Subnet&quot;,
     Network &#x3D; &quot;Nodo Network&quot;,
 }
 
-
+/**
+ * Enum per indicare i tipi di moduli nel teatro.
+ */
 export enum EnumModuleType {
     TheaterModuleInstance &#x3D; &quot;TheaterModuleInstance&quot;, // SINONIMI -&gt; TheatreModuleInstance &#x3D; &quot;TheatreModuleInstance&quot;,
     TheaterInternalServiceModuleInstance &#x3D; &quot;TheaterInternalServiceModuleInstance&quot;,
@@ -297,6 +333,9 @@ export enum EnumModuleType {
     AutomaticSystem &#x3D; &quot;AutomaticSystem&quot;, //TODO
     Border &#x3D; &quot;Border&quot;, //TODO
 }
+/**
+ * Enum per l&#x27;indicazione testuale descrittiva dei tipi di modulo nel teatro.
+ */
 export enum EnumModuleTypeDescription {
     TheaterModuleInstance &#x3D; &quot;Module&quot;, // SINONIMI -&gt; TheatreModuleInstance &#x3D; &quot;Module&quot;,
     TheaterInternalServiceModuleInstance &#x3D; &quot;Internal Service&quot;,

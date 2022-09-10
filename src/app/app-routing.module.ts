@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { HowToUseComponent } from './pages/how-to-use/how-to-use.component';
 import { VisualizerComponent } from './visualizer-system/visualizer/visualizer.component';
 import { ComposerComponent } from './composer-system/composer/composer.component';
@@ -17,10 +16,6 @@ const routesGuard: Routes = [
   {
     path: "home",
     component: HomeComponent,
-  },
-  {
-    path: "about-us",
-    component: AboutUsComponent,
   },
   {
     path: "how-to-use",
@@ -55,10 +50,6 @@ const routesSimple: Routes = [
   {
     path: "home",
     component: HomeComponent,
-  },
-  {
-    path: "about-us",
-    component: AboutUsComponent,
   },
   {
     path: "how-to-use",

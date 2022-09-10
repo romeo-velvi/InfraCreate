@@ -66,6 +66,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento indica il control da utilizzare dai vari tipi di nodi/moduli</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -149,7 +156,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/rete-settings/controls/control.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/rete-settings/controls/control.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -234,7 +241,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/rete-settings/controls/control.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/rete-settings/controls/control.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -261,7 +268,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/rete-settings/controls/control.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/rete-settings/controls/control.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -288,7 +295,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/rete-settings/controls/control.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/rete-settings/controls/control.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -314,7 +321,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/rete-settings/controls/control.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/rete-settings/controls/control.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -348,8 +355,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/rete-settings/controls/control.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/rete-settings/controls/control.ts:50</a></div>
                 </td>
             </tr>
 
@@ -417,8 +424,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/rete-settings/controls/control.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/rete-settings/controls/control.ts:55</a></div>
                 </td>
             </tr>
 
@@ -479,14 +486,17 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, Type } from &#x27;@angular/core&#x27;;
 import { Control, NodeEditor } from &#x27;rete&#x27;;
 import { AngularControl } from &#x27;rete-angular-render-plugin&#x27;;
-import { NodeStringDecoder } from &#x27;string_decoder&#x27;;
 
+
+/**
+ * Componente che si occpa del control per i nodi la libreria retejs
+ */
 @Component({
   templateUrl: &#x27;./control.html&#x27;,
   styleUrls:  [&#x27;./control.css&#x27;],
 })
-
 export class ControlTemplate {
+
   @Input() value!: number;
   @Input() readonly!: boolean;
   @Input() change!: Function;
@@ -497,6 +507,10 @@ export class ControlTemplate {
   }
 }
 
+
+/**
+ * Elemento indica il control da utilizzare dai vari tipi di nodi/moduli 
+ */
 export class _Control extends Control implements AngularControl {
   
   component: Type&lt;ControlTemplate&gt;

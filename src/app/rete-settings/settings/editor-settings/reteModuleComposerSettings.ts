@@ -10,10 +10,9 @@ import DockPlugin from 'rete-dock-plugin';
 import Vue from 'vue/dist/vue.esm';
 import { _Socket } from '../../sockets/socket';
 import HistoryPlugin from 'rete-history-plugin';
-import { ReteEditor } from "../SettingsDTO";
 
 
-export class ReteModuleComposerSettings implements ReteEditor {
+export class ReteModuleComposerSettings {
     container = null;
     editor: NodeEditor = null;
     components = null;

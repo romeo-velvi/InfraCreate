@@ -11,9 +11,8 @@ import Vue from 'vue/dist/vue.esm';
 import { _Socket } from '../../sockets/socket';
 import ReadonlyPlugin from 'rete-readonly-plugin';
 import HistoryPlugin from 'rete-history-plugin';
-import { ReteEditor } from "../SettingsDTO";
 
-export class ReteModuleVisualizerSettings implements ReteEditor {
+export class ReteModuleVisualizerSettings  {
   container = null;
   editor: NodeEditor = null;
   components = null;

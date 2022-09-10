@@ -1,9 +1,5 @@
-import { Node, Output as or, Input as ir } from "rete";
 import { EnumNodeType, EnumModuleType } from "src/app/models/appType";
-import { SimpleModuleApplication, ModuleApplication, TheaterApplication } from "src/app/services/modelsApplication/applicationModels";
-import { ModuleInstancePropertiesDTO, ModuleNetworkInterfaceDTO, StatisticItemDTO, TheaterInstancePropertiesDTO } from "src/app/services/modelsDTO/moduleDTO";
-import { DeployInstanceDTO, EntityNameMappingFileDTO, NameMappingDTO } from "src/app/services/modelsDTO/theaterDTO";
-// import { EnumModuleType, EnumNodeType } from "../models/reteModelType";
+import { ModuleInstancePropertiesDTO} from "src/app/services/modelsDTO/moduleDTO";
 
 export class reteBasicNodeInfo {
     Input: string[];

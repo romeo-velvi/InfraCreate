@@ -1,6 +1,5 @@
 import { Engine, NodeEditor, Node, Output as or, Input as ir } from "rete";
 import ConnectionPlugin from 'rete-connection-plugin';
-import ConnectionPathPlugin from 'rete-connection-path-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
 import { AngularRenderPlugin } from 'rete-angular-render-plugin';
 import AreaPlugin from 'rete-area-plugin';
@@ -9,10 +8,9 @@ import AutoArrangePlugin from 'rete-auto-arrange-plugin'
 import Vue from 'vue/dist/vue.esm';
 import { _Socket } from '../../sockets/socket';
 import HistoryPlugin from 'rete-history-plugin';
-import { ReteEditor } from "../SettingsDTO";
 
 
-export class ReteTheaterComposerSettings implements ReteEditor {
+export class ReteTheaterComposerSettings {
     public container = null;
     public editor: NodeEditor = null;
     public components = null;

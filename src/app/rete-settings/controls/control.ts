@@ -1,14 +1,17 @@
 import { Component, Input, Type } from '@angular/core';
 import { Control, NodeEditor } from 'rete';
 import { AngularControl } from 'rete-angular-render-plugin';
-import { NodeStringDecoder } from 'string_decoder';
 
+
+/**
+ * Componente che si occpa del control per i nodi la libreria retejs
+ */
 @Component({
   templateUrl: './control.html',
   styleUrls:  ['./control.css'],
 })
-
 export class ControlTemplate {
+
   @Input() value!: number;
   @Input() readonly!: boolean;
   @Input() change!: Function;
@@ -19,6 +22,10 @@ export class ControlTemplate {
   }
 }
 
+
+/**
+ * Elemento indica il control da utilizzare dai vari tipi di nodi/moduli 
+ */
 export class _Control extends Control implements AngularControl {
   
   component: Type<ControlTemplate>

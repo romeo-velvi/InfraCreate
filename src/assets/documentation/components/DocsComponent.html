@@ -68,6 +68,16 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente (pagina) che ha lo scopo di mostrare la documentazione generata da compodoc.</p>
+<ul>
+<li>Servita come html in un <iframe>.</li>
+</ul>
+
+    </p>
 
 
     <p class="comment">
@@ -134,9 +144,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#compodoc_index_html" >compodoc_index_html</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#IFRAMEvisibility" >IFRAMEvisibility</a>
                             </li>
                         </ul>
@@ -177,12 +189,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/pages/docs/docs.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/docs/docs.component.ts:25</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Costruttore componete DocsComponent</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -256,14 +270,18 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/app/pages/docs/docs.component.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/pages/docs/docs.component.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione richiamata all&#39;inizializzazione della componente.
+Prevede di eseguire la chiamata per reperire l&#39;html della documentazione.
+See {compodoc_index_html}</p>
+</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -285,6 +303,7 @@
                 <td class="col-md-4">
                     <a name="compodoc_index_html"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>compodoc_index_html</b></span>
                         <a href="#compodoc_index_html"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -298,10 +317,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/pages/docs/docs.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/docs/docs.component.ts:20</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che indica l&#39;html (sanitized) reperito dalla documentazione.
+See {DomSanitizer}</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -311,6 +337,7 @@
                 <td class="col-md-4">
                     <a name="IFRAMEvisibility"></a>
                     <span class="name">
+                            <span class="modifier">Protected</span>
                         <span ><b>IFRAMEvisibility</b></span>
                         <a href="#IFRAMEvisibility"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -329,10 +356,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/pages/docs/docs.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/docs/docs.component.ts:25</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che indica la visibilit o meno dell&#39;<iframe> rispettivamente: &quot;none&quot; &quot;block&quot;.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -346,6 +379,10 @@
 import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { DomSanitizer} from &#x27;@angular/platform-browser&#x27;;
 
+/**
+ * Componente (pagina) che ha lo scopo di mostrare la documentazione generata da compodoc.
+ * - Servita come html in un &lt;iframe&gt;.
+ */
 @Component({
   selector: &#x27;app-docs&#x27;,
   templateUrl: &#x27;./docs.component.html&#x27;,
@@ -353,15 +390,32 @@ import { DomSanitizer} from &#x27;@angular/platform-browser&#x27;;
 })
 export class DocsComponent implements OnInit {
 
-  compodoc_index_html: any;
-  IFRAMEvisibility: string &#x3D; &#x27;none&#x27;;
+  /**
+   * Variabile che indica l&#x27;html (sanitized) reperito dalla documentazione.
+   * @see {DomSanitizer}
+   */
+  protected compodoc_index_html: any;
+  /**
+   * Variabile che indica la visibilit o meno dell&#x27;&lt;iframe&gt; rispettivamente: &quot;none&quot; &quot;block&quot;.
+   * @type {string} -&gt; &quot;none&quot; | &quot;visible&quot;.
+  */
+  protected IFRAMEvisibility: string &#x3D; &#x27;none&#x27;;
 
+  /**
+   * Costruttore componete DocsComponent
+   * @param sanitizer 
+   * @param http 
+   */
   constructor(
     private sanitizer: DomSanitizer,
     private http: HttpClient
-  ) {
-  }
+  ) {}
 
+  /**
+   * Funzione richiamata all&#x27;inizializzazione della componente.
+   * Prevede di eseguire la chiamata per reperire l&#x27;html della documentazione.
+   * @see {compodoc_index_html}
+   */
   ngOnInit(): void {
     const headers &#x3D; new HttpHeaders().set(&#x27;Content-Type&#x27;, &#x27;text/html&#x27;);
     this.http.get(&#x27;assets/documentation/index.html&#x27;, {headers, responseType: &#x27;text&#x27;})
@@ -445,7 +499,7 @@ export class DocsComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="box">    <div class="rox header">        <app-navbar-element></app-navbar-element>    </div>    <div class="rox content">        <div style="overflow: visible;width: 100%; height:100%">            <iframe id="serviceFrameSend" [ngStyle]="{\'visibility\': IFRAMEvisibility}"                src="assets/documentation/index.html" frameborder="0" loading="eager"                (load)="IFRAMEvisibility=\'visible\'"> </iframe>        </div>    </div>    <div class="rox footer">    </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComposerComponent', 'selector': 'app-composer'},{'name': 'ControlTemplate', 'selector': ''},{'name': 'DataInputComponent', 'selector': 'app-data-input'},{'name': 'DataInputV2Component', 'selector': 'app-data-input-v2'},{'name': 'DataItemComponent', 'selector': 'app-window-item'},{'name': 'DocsComponent', 'selector': 'app-docs'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HostComponent', 'selector': ''},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'MirroringModuleInstanceComponent', 'selector': ''},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarElementComponent', 'selector': 'app-navbar-element'},{'name': 'NetworkComponent', 'selector': ''},{'name': 'OffcanvasComponent', 'selector': 'app-offcanvas'},{'name': 'ReteModuleComposerComponent', 'selector': 'app-rete-module-composer'},{'name': 'ReteModuleVisualizerComponent', 'selector': 'app-rete-module-visualizer'},{'name': 'ReteTheaterComposerComponent', 'selector': 'app-rete-theater-composer'},{'name': 'ReteTheaterVisualizerComponent', 'selector': 'app-rete-theater-visualizer'},{'name': 'SubnetComponent', 'selector': ''},{'name': 'TabnavComponent', 'selector': 'app-tabnav'},{'name': 'TheaterInternalServiceModuleInstanceComponent', 'selector': ''},{'name': 'TheaterModuleInstanceComponent', 'selector': ''},{'name': 'UnderbarComponent', 'selector': 'app-underbar'},{'name': 'VisualizerComponent', 'selector': 'app-displayer'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComposerComponent', 'selector': 'app-composer'},{'name': 'ControlTemplate', 'selector': ''},{'name': 'DataInputComponent', 'selector': 'app-data-input'},{'name': 'DataInputV2Component', 'selector': 'app-data-input-v2'},{'name': 'DataItemComponent', 'selector': 'app-window-item'},{'name': 'DocsComponent', 'selector': 'app-docs'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HostComponent', 'selector': ''},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'MirroringModuleInstanceComponent', 'selector': ''},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarElementComponent', 'selector': 'app-navbar-element'},{'name': 'NetworkComponent', 'selector': ''},{'name': 'OffcanvasComponent', 'selector': 'app-offcanvas'},{'name': 'ReteModuleComposerComponent', 'selector': 'app-rete-module-composer'},{'name': 'ReteModuleVisualizerComponent', 'selector': 'app-rete-module-visualizer'},{'name': 'ReteTheaterComposerComponent', 'selector': 'app-rete-theater-composer'},{'name': 'ReteTheaterVisualizerComponent', 'selector': 'app-rete-theater-visualizer'},{'name': 'SubnetComponent', 'selector': ''},{'name': 'TabnavComponent', 'selector': 'app-tabnav'},{'name': 'TheaterInternalServiceModuleInstanceComponent', 'selector': ''},{'name': 'TheaterModuleInstanceComponent', 'selector': ''},{'name': 'UnderbarComponent', 'selector': 'app-underbar'},{'name': 'VisualizerComponent', 'selector': 'app-displayer'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DocsComponent'};
 </script>

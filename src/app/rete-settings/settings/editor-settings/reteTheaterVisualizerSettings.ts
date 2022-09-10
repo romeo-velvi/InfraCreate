@@ -1,19 +1,15 @@
 import { Engine, NodeEditor, Node, Output as or, Input as ir } from "rete";
 import ConnectionPlugin from 'rete-connection-plugin';
-import ConnectionPathPlugin from 'rete-connection-path-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
 import { AngularRenderPlugin } from 'rete-angular-render-plugin';
 import AreaPlugin from 'rete-area-plugin';
 import MinimapPlugin from 'rete-minimap-plugin';
 import AutoArrangePlugin from 'rete-auto-arrange-plugin'
-import DockPlugin from 'rete-dock-plugin';
 import Vue from 'vue/dist/vue.esm';
 import { _Socket } from '../../sockets/socket';
-import ReadonlyPlugin from 'rete-readonly-plugin';
 import HistoryPlugin from 'rete-history-plugin';
-import { ReteEditor } from "../SettingsDTO";
 
-export class ReteTheaterVisualizerSettings implements ReteEditor {
+export class ReteTheaterVisualizerSettings {
   container = null;
   editor: NodeEditor = null;
   components = null;

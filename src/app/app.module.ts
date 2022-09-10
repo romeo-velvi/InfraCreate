@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HomeComponent } from './pages/home/home.component';
-import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { HowToUseComponent } from './pages/how-to-use/how-to-use.component';
 
 import { ReteModule } from 'rete-angular-render-plugin';
@@ -95,7 +94,6 @@ let providerInitKeycloak: Provider = (!environment.mocked)
 
     AppComponent,
     HomeComponent,
-    AboutUsComponent,
     HowToUseComponent,
     NavbarElementComponent,
 
