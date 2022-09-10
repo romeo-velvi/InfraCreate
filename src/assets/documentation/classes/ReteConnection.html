@@ -132,7 +132,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -158,7 +158,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -184,7 +184,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -210,7 +210,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -237,7 +237,7 @@ import { ReteTheaterInternalServiceModuleInstanceInfo } from &quot;src/app/rete-
 import { ReteTheaterModuleInstanceInfo } from &quot;src/app/rete-settings/nodes/rete-modules/theaterModuleInstance/theaterModuleInstanceNode&quot;;
 import { FlavorBasicInfo } from &quot;../modelsDTO/falvorDTO&quot;;
 import { HostModuleDTO } from &quot;../modelsDTO/hostDTO&quot;;
-import {  ModuleNetworkInterfaceDTO, ModuleInstancePropertiesDTO, SimpleModuleDTO, TheaterInstancePropertiesDTO, ModuleInstanceDTO, ModuleDTO, SimpleAreaDTO, AreaDTO } from &quot;../modelsDTO/moduleDTO&quot;;
+import { ModuleNetworkInterfaceDTO, ModuleInstancePropertiesDTO, SimpleModuleDTO, TheaterInstancePropertiesDTO, ModuleInstanceDTO, ModuleDTO, SimpleAreaDTO, AreaDTO } from &quot;../modelsDTO/moduleDTO&quot;;
 import { TheaterDTO } from &quot;../modelsDTO/theaterDTO&quot;;
 
 
@@ -250,10 +250,10 @@ export interface CommonModule {
     topology: NodeTopologyElement
 }
 
+
 /**
- * ModuleRoot -&gt; Parsed module take by exclusive api 
- * Implements CommonModule
- * Can ereditate field from SimpleModuleRoot implementing some fields
+ * Classe contenente gli attributi utilizzati per le operazioni che coinvolgono i moduli.
+ * ps. Questa struttura è prettamente utilizzata nella chiamata relativa al singolo modulo.
  */
 export class ModuleApplication extends ModuleDTO implements CommonModule {
     imports: string[] // perchè nell&#x27;export yaml è previsto
@@ -264,11 +264,10 @@ export class ModuleApplication extends ModuleDTO implements CommonModule {
     network_number: number
     topology: NodeTopologyElement
 }
-/** PER IMPLEMENTAZIONI FUTURE, PER COERENZA, PRENDERE DIRETTAMENTE I SINGOLI NODI DALLA CHIAMATA ESCLUSIVA E NON DA QUELLA CHE RESTITUISCE TUTTI I TEATRI */
+// PER IMPLEMENTAZIONI FUTURE, PER COERENZA, PRENDERE DIRETTAMENTE I SINGOLI NODI DALLA CHIAMATA ESCLUSIVA E NON DA QUELLA CHE RESTITUISCE TUTTI I TEATRI
 /**
- * SimpleModuleRoot -&gt; Parsed module from Theater
- * Implements CommonModule 
- * Can take value from ModuleRoot, but need to delete some
+ * Classe contenente gli attributi utilizzati per le operazioni che coinvolgono i moduli.
+ * ps. Questa struttura è prettamente utilizzata nella chiamata che prende tutti i moduli del teatro.
  */
 export class SimpleModuleApplication extends SimpleModuleDTO implements CommonModule {
     interfaces: ModuleNetworkInterfaceDTO[]
@@ -335,8 +334,12 @@ export class TheaterApplication extends TheaterDTO implements TheaterTopology {
 export class AreaApplication extends AreaDTO {
     color?: string;
 }
+export class AreaColorDTO extends SimpleAreaDTO {
+    color: string;
+}
 
-export class FlavorApplication extends FlavorBasicInfo{
+
+export class FlavorApplication extends FlavorBasicInfo {
     flavorName: string;
 }</code></pre>
     </div>

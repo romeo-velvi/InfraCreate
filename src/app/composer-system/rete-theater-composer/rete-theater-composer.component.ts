@@ -24,15 +24,6 @@ import { ModuleType1 } from 'src/app/models/appType';
 
 
 /**
- * Elemento che serve alla componente ReteTheaterComposerComponent per l'aggiunta delle aree
- * @see {ReteTheaterComposerComponent}
- */
-export class AreaColorDTO extends SimpleAreaDTO {
-  color: string;
-}
-
-
-/**
  * Componente che contiene la logica e la gestione della parte di costruzione dei moduli.
  * Si occupa dello scambio di informazioni e le interazioni tra le componenti che permettono il visual-designing dell'applicazione.
  */

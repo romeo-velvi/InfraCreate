@@ -1,3 +1,7 @@
+/**
+ * Entità che possiede le informazioni del modulo id 1461 sottofroma di ModuleApplication utilizzati dal ModuleVisualizer.
+ * Questi possono essere reperibili via API -> in questo caso sono mockati in locale
+ */
 export const Module1461 = {
     "import": [],
     "id": 1461,
@@ -2802,6 +2806,10 @@ export const Module1461 = {
     }
 }
 
+/**
+ * Entità che possiede le informazioni del modulo id 1459 sottofroma di ModuleApplication utilizzati dal ModuleVisualizer.
+ * Questi possono essere reperibili via API -> in questo caso sono mockati in locale
+ */
 export const Module1459 = {
     "import": [],
     "id": 1459,
@@ -18766,6 +18774,12 @@ export const Module1459 = {
     }
 }
 
+/**
+ * Funzione che ha lo scopo di ritornare i dati dei moduli salvati in locale.
+ * Si possono, per scopi dimostrativi scegliere due moduli con id 1461, 1459.
+ * @see {Module1461}
+ * @see {Module1459}
+ */
 export const MockedModule = async (module_id: string | number) => {
     await delay();
     if (module_id as string === "1461") {

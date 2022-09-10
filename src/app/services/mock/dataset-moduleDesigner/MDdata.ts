@@ -1,5 +1,10 @@
 import { FlavorApplication } from "../../modelsApplication/applicationModels";
 
+
+/**
+ * Entità che possiede i valori dei Flavor utilizzati dal ModuleComposer.
+ * Questi possono essere reperibili via API -> in questo caso sono mockati in locale
+ */
 export const AllFlavors: FlavorApplication[] = [
     {
         "flavorName": "ldo_small",
@@ -87,11 +92,16 @@ export const AllFlavors: FlavorApplication[] = [
     }
 ]
 
-
+/**
+ * Funzione che ritorna i flavor memorizzati (in locale)
+ * @returns {FlavorApplication[]}
+ * @see {AllFlavors}
+ */
 export const MockedAllFlavors = async ()=>{
     await delay();
     return AllFlavors;
 }
+
 
 let delay = async () => {
     return new Promise(resolve => setTimeout(resolve,1000));

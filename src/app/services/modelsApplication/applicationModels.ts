@@ -6,7 +6,7 @@ import { ReteTheaterInternalServiceModuleInstanceInfo } from "src/app/rete-setti
 import { ReteTheaterModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/theaterModuleInstance/theaterModuleInstanceNode";
 import { FlavorBasicInfo } from "../modelsDTO/falvorDTO";
 import { HostModuleDTO } from "../modelsDTO/hostDTO";
-import {  ModuleNetworkInterfaceDTO, ModuleInstancePropertiesDTO, SimpleModuleDTO, TheaterInstancePropertiesDTO, ModuleInstanceDTO, ModuleDTO, SimpleAreaDTO, AreaDTO } from "../modelsDTO/moduleDTO";
+import { ModuleNetworkInterfaceDTO, ModuleInstancePropertiesDTO, SimpleModuleDTO, TheaterInstancePropertiesDTO, ModuleInstanceDTO, ModuleDTO, SimpleAreaDTO, AreaDTO } from "../modelsDTO/moduleDTO";
 import { TheaterDTO } from "../modelsDTO/theaterDTO";
 
 
@@ -19,10 +19,10 @@ export interface CommonModule {
     topology: NodeTopologyElement
 }
 
+
 /**
- * ModuleRoot -> Parsed module take by exclusive api 
- * Implements CommonModule
- * Can ereditate field from SimpleModuleRoot implementing some fields
+ * Classe contenente gli attributi utilizzati per le operazioni che coinvolgono i moduli.
+ * ps. Questa struttura è prettamente utilizzata nella chiamata relativa al singolo modulo.
  */
 export class ModuleApplication extends ModuleDTO implements CommonModule {
     imports: string[] // perchè nell'export yaml è previsto
@@ -33,11 +33,10 @@ export class ModuleApplication extends ModuleDTO implements CommonModule {
     network_number: number
     topology: NodeTopologyElement
 }
-/** PER IMPLEMENTAZIONI FUTURE, PER COERENZA, PRENDERE DIRETTAMENTE I SINGOLI NODI DALLA CHIAMATA ESCLUSIVA E NON DA QUELLA CHE RESTITUISCE TUTTI I TEATRI */
+// PER IMPLEMENTAZIONI FUTURE, PER COERENZA, PRENDERE DIRETTAMENTE I SINGOLI NODI DALLA CHIAMATA ESCLUSIVA E NON DA QUELLA CHE RESTITUISCE TUTTI I TEATRI
 /**
- * SimpleModuleRoot -> Parsed module from Theater
- * Implements CommonModule 
- * Can take value from ModuleRoot, but need to delete some
+ * Classe contenente gli attributi utilizzati per le operazioni che coinvolgono i moduli.
+ * ps. Questa struttura è prettamente utilizzata nella chiamata che prende tutti i moduli del teatro.
  */
 export class SimpleModuleApplication extends SimpleModuleDTO implements CommonModule {
     interfaces: ModuleNetworkInterfaceDTO[]
@@ -104,7 +103,11 @@ export class TheaterApplication extends TheaterDTO implements TheaterTopology {
 export class AreaApplication extends AreaDTO {
     color?: string;
 }
+export class AreaColorDTO extends SimpleAreaDTO {
+    color: string;
+}
 
-export class FlavorApplication extends FlavorBasicInfo{
+
+export class FlavorApplication extends FlavorBasicInfo {
     flavorName: string;
 }
