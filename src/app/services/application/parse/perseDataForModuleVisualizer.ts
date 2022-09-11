@@ -10,22 +10,64 @@ import {  StaticValue } from 'src/app/models/appType';
 import { createHost, createSubnet, createNetwork } from './parseCommonElement';
 
 
+/**
+ * Elemento che ha lo scopo di eseguire il fetching ed il parsing dei dati per la costruzione del modulo.
+ */
 export class PerseDataForModuleVisualizer {
 
+
+    /**
+     * Costruttore della componente.
+     * @param moduleService 
+     */
     constructor(private moduleService: ModuleService) {
     }
+
+
+
+
+    /**
+     * Funzione che ritorna il modulo parserizzato per la visualizzazione.
+     * @param id 
+     * @returns {Promise<ModuleApplication> }
+     * @see {parseMainModule}
+     */
     async parseModuleForModuleVisualizer(id: string | number): Promise<ModuleApplication> {
         let moduleDTO: ModuleDTO;
         let module: ModuleApplication;
         [moduleDTO, module] = await this.parseMainModule(id);
         return module;
     }
+
+
+
+
+    /**
+     * Funzione che esegue il fetching e il parsing dei dati del modulo.
+     * Si procura anche i dati di dettaglio sui nodi e topologie.
+     * @param id 
+     * @returns {Promise<[ModuleDTO, ModuleApplication]>}
+     * @see {getModuleByID}
+     * @see {getMainModuleDetails}
+     * @see {getMainModuleTopology}
+     */
     async parseMainModule(id: string | number): Promise<[ModuleDTO, ModuleApplication]> {
         let module: ModuleDTO = await this.moduleService.getModuleByID(id);
         let parsedModule: ModuleApplication = await this.getMainModuleDetails(module)
         this.getMainModuleTopology(parsedModule);
         return [module, parsedModule];
     }
+
+
+
+
+    /**
+     * Funzione che prende i dati dei nodi e interfacce del modulo e le collega ad esso.
+     * @param module 
+     * @returns {Promise<ModuleApplication> }
+     * @see {getMainModuleNodes}
+     * @see {getMainModuleInterfaces}
+     */
     async getMainModuleDetails(module: ModuleDTO): Promise<ModuleApplication> {
         let h: HostModuleDTO[] = await this.getMainModuleNodes(module);
         let i: ModuleNetworkInterfaceDTO[] = await this.getMainModuleInterfaces(module);
@@ -41,6 +83,16 @@ export class PerseDataForModuleVisualizer {
         };
         return moduleInfo2;
     }
+
+
+
+
+    /**
+     * Funzione che segue il fetching degli host del modulo.
+     * @param module 
+     * @returns {Promise<HostModuleDTO[]>}
+     * @see {moduleService}
+     */
     async getMainModuleNodes(module: ModuleDTO): Promise<HostModuleDTO[]> {
         let h: HostModuleDTO[] = undefined;
         try {
@@ -50,6 +102,16 @@ export class PerseDataForModuleVisualizer {
         }
         return h;
     }
+
+
+
+
+    /**
+     * Funzione che segue il fetching delle intefracce del modulo.
+     * @param module 
+     * @returns {Promise<ModuleNetworkInterfaceDTO[]>}
+     * @see {moduleService}
+     */
     async getMainModuleInterfaces(module: ModuleDTO): Promise<ModuleNetworkInterfaceDTO[]> {
         let i: ModuleNetworkInterfaceDTO[] = [];
         try {
@@ -59,6 +121,18 @@ export class PerseDataForModuleVisualizer {
         }
         return i;
     }
+
+
+
+
+    /**
+     * Funzione che ha lo scopo di collegare, inizializzare e parserizzare i nodi del modulo e strutturare la topologia per la visualizzazione su canvas.
+     * Crea anche direttamente i nodi per il rendering dell'editor.
+     * @param moduleInfo 
+     * @see {createHost}
+     * @see {createSubnet}
+     * @see {createNetwork}
+     */
     getMainModuleTopology(moduleInfo: ModuleApplication) {
         var occourence: Map<string, string> = new Map<any, any>();
         var connections_list: ReteConnection[] = [];
@@ -122,5 +196,9 @@ export class PerseDataForModuleVisualizer {
         moduleInfo.subnet_number = sn;
         moduleInfo.network_number = nn;
     }
+
+
+
+
 
 }

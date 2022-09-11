@@ -10,22 +10,63 @@ import { ReteSubnetInfo } from 'src/app/rete-settings/nodes/rete-nodes/subnet/su
 import { ModuleType2, StaticValue, ModuleTypeTheater } from 'src/app/models/appType';
 import { createHost, createSubnet, createNetwork, createModuleNode } from './parseCommonElement';
 
+
+
+/**
+ * Elemento che ha lo scopo di eseguire il fetching ed il parsing dei dati per la costruzione del teatro.
+ */
 export class PerseDataForTheaterComposer {
 
+    /**
+     * Costruttore della componente
+     * @param moduleService 
+     */
     constructor(private moduleService: ModuleService) {
     }
 
+
+
+    /**
+     * Funzione che ritorna un dizionario di moduli utilizzati per la costruzione della topologia del teatro.
+     * Questa provvede anche l'instanziazione dei dati per il rendering dei moduli sul canvas.
+     * @returns {Promise<{ [name: string]: ModuleInstance }>}
+     * @see {parseModuleList}
+     * @see {initEmptyModuleInstance}
+     */
     async parseModuleForTheaterComposer(): Promise<{ [name: string]: ModuleInstance }> {
         let modules: { [name: string]: SimpleModuleApplication } = await this.parseModuleList();
         let moduleInstances: { [name: string]: ModuleInstance } = await this.initEmptyModuleInstance(modules);
         return moduleInstances
     }
+
+
+
+
+    /**
+     * Funzione che esegue il fetching di tutti i moduli disponibili.
+     * Questa funzione ritorna un dizionario degli stessi, annessa anche la topologia.
+     * @returns {Promise<{ [name: string]: SimpleModuleApplication }>}
+     * @see {moduleService}
+     * @see {getModuleDict}
+     * @see {getModulesTopology}
+     */
     async parseModuleList(): Promise<{ [name: string]: SimpleModuleApplication }> {
         let rowModules: SimpleModuleDTO[] = await this.moduleService.getAllModules();
         let modules: { [name: string]: SimpleModuleApplication } = await this.getModuleDict(rowModules)
         this.getModulesTopology(modules);
         return modules;
     }
+
+
+
+
+
+    /**
+     * Funzione che si occupa di convertire i moduli in un dizionario.
+     * Questa esegue anche le chiamate per reperire i dettagli dei singoli moduli.
+     * @param modules 
+     * @returns { Promise<{ [name: string]: SimpleModuleApplication }> }
+     */
     async getModuleDict(modules: SimpleModuleDTO[]): Promise<{ [name: string]: SimpleModuleApplication }> {
         let moduleDict: { [name: string]: SimpleModuleApplication } = {};
         let modulesApplication: SimpleModuleApplication[] = await this.getModulesDetails(modules);
@@ -34,6 +75,17 @@ export class PerseDataForTheaterComposer {
         });
         return moduleDict;
     }
+
+
+
+
+    /**
+     * Funzione che collega un modulo con i suoi dettagli (nodi e interfacce).
+     * @param modules  
+     * @returns {Promise<SimpleModuleApplication[]>}
+     * @see {getModulesNodes}
+     * @see {getModulesInterfaces}
+     */
     async getModulesDetails(modules: SimpleModuleDTO[]): Promise<SimpleModuleApplication[]> {
         let h: { [key: string]: HostModuleDTO[] } = await this.getModulesNodes(modules);
         let i: { [key: string]: ModuleNetworkInterfaceDTO[] } = await this.getModulesInterfaces(modules);
@@ -49,6 +101,16 @@ export class PerseDataForTheaterComposer {
         )
         return moduleInfo;
     }
+
+
+
+
+    /**
+     * Funzione che esegue il fetching dei dettagli sugli host dei singoli moduli.
+     * @param modules 
+     * @returns {Promise<{ [key: string]: HostModuleDTO[] }> }
+     * @see {moduleService}
+     */
     async getModulesNodes(modules: SimpleModuleDTO[]): Promise<{ [key: string]: HostModuleDTO[] }> {
         let h: { [key: string]: HostModuleDTO[] } = {};
         await Promise.all(
@@ -63,6 +125,16 @@ export class PerseDataForTheaterComposer {
         )
         return h;
     }
+
+
+
+
+    /**
+     * Funzione che esegue il fetching dei dettagli sulle interfacce dei singoli moduli.
+     * @param modules 
+     * @returns {Promise<{ [key: string]: ModuleNetworkInterfaceDTO[] }> }
+     * @see {moduleService}
+     */
     async getModulesInterfaces(modules: SimpleModuleDTO[]): Promise<{ [key: string]: ModuleNetworkInterfaceDTO[] }> {
         let i: { [key: string]: ModuleNetworkInterfaceDTO[] } = {};
         await Promise.all(
@@ -77,6 +149,18 @@ export class PerseDataForTheaterComposer {
         )
         return i;
     }
+
+
+
+
+    /**
+     * Funzione che struttura la topologia dei singoli moduli. 
+     * Essa instanzia anche i nodi per poterli inserire direttamente nel canvas.
+     * @param modulesInfo 
+     * @see {createHost}
+     * @see {createSubnet}
+     * @see {createNetwork}
+     */
     getModulesTopology(modulesInfo: { [name: string]: SimpleModuleApplication }) {
         Object.entries(modulesInfo).map(([key, value]) => {
             let moduleInfo: SimpleModuleApplication = value;
@@ -143,6 +227,16 @@ export class PerseDataForTheaterComposer {
             moduleInfo.network_number = nn;
         });
     }
+
+
+
+
+
+    /**
+     * Funzione che ha come scopo inizializzare i dati, valori e attributi per il teatro da usare nell'applicazione.
+     * @param modules 
+     * @returns 
+     */
     initEmptyModuleInstance(modules: { [name: string]: SimpleModuleApplication }): { [name: string]: ModuleInstance } {
         let x: { [name: string]: ModuleInstance } = {};
         Object.entries(modules).map(async ([key, value]) => {
@@ -167,6 +261,10 @@ export class PerseDataForTheaterComposer {
         });
         return x;
     }
+
+
+
+
 
 
 }
