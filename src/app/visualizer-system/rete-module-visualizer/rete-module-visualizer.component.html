@@ -1,6 +1,6 @@
 <div *ngIf="isSimple" class="container container-wrapper">
     <div class="row wrapper" style="padding: 3%;">
-        <div #nodeEditor class="node-editor rete-wrapper shadow"
+        <div #moduleVisualizerComponser class="node-editor rete-wrapper shadow"
             style="background: rgb(33, 37, 41); border-radius: 5%;"></div>
     </div>
 </div>
@@ -55,7 +55,7 @@
         <!-- -------NODE EDITOR------- -->
         <div class="row wrapper padding-div-node-editor">
             <div class="col p-0 w-h-100">
-                <div #nodeEditor class="node-editor w-h-100-important border-node-editor">
+                <div #moduleVisualizerComponser class="node-editor w-h-100-important border-node-editor">
                 </div>
             </div>
         </div>
@@ -95,12 +95,6 @@
                 </div>
             </div>
         </ng-container>
-        <!-- <div *ngFor="let item of nodeSelected.data | keyvalue : notSort">
-        <div *ngIf="item.key!=='Input' && item.key!=='Output'" class="div-data-item">
-            <app-data-input-v2 [title]="item.key" [(value)]="nodeSelected.data[item.key]" formType="text"
-                (onChange)="updateSelectedNode()"></app-data-input-v2>
-        </div>
-    </div> -->
     </ng-template>
 
     <ng-template #tab_node_ports>
@@ -163,19 +157,6 @@
     <ng-template #offcanvasElementModule class="search-input">
 
         <app-tabnav *ngIf="module && tabnavElementModule" [element]="tabnavElementModule"></app-tabnav>
-
-        <!-- <ng-container *ngFor="let field of displayMdata|keyvalue : notSort">
-        <div *ngFor="let x of field.value|keyvalue : notSort">
-            <div *ngIf="x.key.toLowerCase()!=='input' && x.key.toLowerCase()!=='output'" class="div-data-item">
-                <h5> {{x.key}} </h5>
-                <ul>
-                    <li *ngFor="let y of x.value">
-                        {{y}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </ng-container> -->
 
     </ng-template>
 

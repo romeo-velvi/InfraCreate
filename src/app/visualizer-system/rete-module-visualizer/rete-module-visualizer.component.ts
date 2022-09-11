@@ -1,5 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output, ChangeDetectionStrategy, Renderer2, OnInit, TemplateRef, ChangeDetectorRef, NgZone } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Component, AfterViewInit, ViewChild, ElementRef, Input, Output, ChangeDetectionStrategy, OnInit, TemplateRef, ChangeDetectorRef, NgZone } from '@angular/core';
 import { NodeEditor, Node, Engine, Output as or, Input as ir } from 'rete';
 import AreaPlugin from 'rete-area-plugin';
 import { Router } from '@angular/router';
@@ -8,7 +7,6 @@ import { NavbarItem, NavbarElement } from '../../components/navbar/navbarType';
 import { UnderbarItem, UnderbarElement } from '../../components/underbar/underbarType';
 import { TabnavElement } from '../../components/tabnav/tabnavType';
 import { from } from 'rxjs';
-import { ParseService } from 'src/app/services/application/parse/parse.service';
 import { SimpleModuleApplication, ModuleApplication, ReteConnection } from 'src/app/services/modelsApplication/applicationModels';
 import { IndexNodeComponent, NodeComponents } from 'src/app/rete-settings/nodes/rete-nodes/export-rete-nodes';
 import { ReteModuleVisualizerSettings } from 'src/app/rete-settings/settings/editor-settings/reteModuleVisualizerSettings';
@@ -28,79 +26,327 @@ import { ExportService } from 'src/app/services/application/export/export.servic
 
 export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
 
-  // input data
+  //// input var
+
+  /**
+   * Variabile che contiene gli attributi del modulo.
+   * @type {ModuleApplication}
+   */
   @Input() module: ModuleApplication;
+  /**
+   * Variabile che contiene gli attributi del modulo (simple).
+   * Questa è solitamente valorizzata con i dati portati dal teatro.
+   * Questa componente lavora solo con la variabile "module". 
+   * Per cui, se passata simpleModule, viene "castata" a module.
+   * @type {ModuleApplication}
+   * @see {module}
+   */
   @Input() simpleModule?: SimpleModuleApplication;
+  /**
+   * Variabile utilizzata per eseguire lo switch tra visualizzazione semplificata e non.
+   * @type {boolean}
+   * @default {true}
+   */
   @Input() isSimple: boolean = true;
-  // @Input() moduleID?: string | number;
-
-  //node editor component
-  @ViewChild('nodeEditor', { static: false }) el: ElementRef;
-  nodeSelected: Node;
-  displayNdata: { [field: string]: string[] }[];
-  displayMdata: { [field: string]: string[] }[][];
-  displayNodeData = (node: Node): { [field: string]: string[] }[] => { let x = ReteDisplayNodeDataMV(node); return x; }
-  displayModuleData = (module: ModuleApplication): { [field: string]: string[] }[][] => { let x = ReteDisplayModuleDataMV(module); return x; }
 
 
-  // node editor data
-  container = null;
-  editor: NodeEditor = null;
-  components: any = NodeComponents; // type ComponentRete[]
-  engine: Engine = null;
+  //// editor component
 
-  // variabili per input-research
-  nodetofind: string = '';
-  NodeNameList: string[] = [];
+  /**
+   * Variabile che indica l'elemento all'interno del DOM il canvas su cui verranno eseguite operazioni di costruzione e designing del modulo.
+   * @type {ElementRef}
+   */
+  @ViewChild('moduleVisualizerComponser', { static: false }) el: ElementRef;
+  /**
+ * Variabile che rappresenta il container del canvas come NativeElement
+ * @see {el}
+ */
+  protected container = null;
+  /**
+ * Variabile che rappresenta l'insieme di operazioni e lo stato del canvas. 
+ * Viene associato al container per il reperimento dei dati.
+ * @type {NodeEditor}
+ * @see {container}
+ */
+  protected editor: NodeEditor = null;
+  /**
+ * Variabile che serve a produrre e renderizzare i singoli nodi.
+ * Contiene delle istanze dei singoli tipi come array.
+ * @type {[]}
+ * @see {NodeComponents}
+ */
+  protected components: any = NodeComponents; // type ComponentRete[]
+  /**
+ * Variabile che rappresenta il motore e la logica tra le interazioni dei singoli nodi.
+ * @type {Engine}
+ */
+  protected engine: Engine = null;
 
-  // for map bool
-  ismapvisible: boolean = true;
 
-  // navbar data
-  navbarData: NavbarElement;
+  //// control var
 
-  // underbar data
-  underbarData: UnderbarElement[] = [];
+  /**
+   * Variabile che rappresenta il nodo selezionato
+   * @type {Node}
+   */
+  protected nodeSelected: Node;
+
+
+  //// display var
+
+  /**
+   * Variabile che ha lo scopo di salvare i dati per la visualizzazione degli attributi dei singoli nodi un canvas.
+   * @type {{ [field: string]: string[] }[]}
+   * @see {displayNodeData}
+   */
+  protected displayNdata: { [field: string]: string[] }[];
+  /**
+   * Variabile che ha lo scopo di salvare i dati per la visualizzazione degli attributi del modulo un canvas.
+   * @type {{ [field: string]: string[] }[][]}
+   * @see {displayNodeData}
+   */
+  protected displayMdata: { [field: string]: string[] }[][];
+  /**
+   * Variabile a cui è associata una funzione, che richiamata, restituisce i dati da mostrare dei singoli nodi.
+   * @param node 
+   * @returns {{ [field: string]: string[] }[]}
+   * @see {ReteDisplayNodeDataMV}
+   * @see {displayNdata}
+   */
+  protected displayNodeData = (node: Node): { [field: string]: string[] }[] => { let x = ReteDisplayNodeDataMV(node); return x; }
+  /**
+   * Variabile a cui è associata una funzione, che richiamata, restituisce i dati da mostrare del modulo.
+   * @param node 
+   * @returns {{ [field: string]: string[] }[]}
+   * @see {ReteDisplayNodeDataMV}
+   * @see {displayNdata}
+   */
+  protected displayModuleData = (module: ModuleApplication): { [field: string]: string[] }[][] => { let x = ReteDisplayModuleDataMV(module); return x; }
+
+
+  //// variabili per input-research
+
+  /**
+   * Variabile utilizzata per la sarch di un nodo presente sul canvas.
+   * @type {string}
+   * @see {NodeNameList}
+   */
+  protected nodetofind: string = '';
+  /**
+   * Variabile che serve ad immagazzinare i nomi dei nodi presenti sul canvas.
+   * @type {string[]}
+   */
+  protected NodeNameList: string[] = [];
+
+
+  //// navbar var
+
+  /**
+   * Variabile utilizzata per assegnare i valori alla Navbar.
+   * @type {NavbarElement}
+   */
+  protected navbarData: NavbarElement;
+
+
+  //// underbar var
+
+  /**
+   * Variabile utilizzata per assegnare i valori all'underbar.
+   * @type {UnderbarElement}
+   */
+  protected underbarData: UnderbarElement[] = [];
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è segnato la logia del pulsante "mappa"
+   * @type {TemplateRef}
+   */
   @ViewChild('map_underbar') map_underbar: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è segnato la logia della sezione "search"
+   * @type {TemplateRef}
+   */
   @ViewChild('search_underbar') search_underbar: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è segnato la logia del pulsante "arrange"
+   * @type {TemplateRef}
+   */
   @ViewChild('arrange_underbar') arrange_underbar: TemplateRef<any>;
+  /**
+   * Variabile utilizzata per l'hide-or-show della minimappa
+   * @type {boolean}
+   * @default {true}
+   */
+  protected ismapvisible: boolean = true;
 
-  //// offcanvas Node info
-  hideNodeInfo: boolean = false;
-  //-> nav data for nodes
-  tabnavElementNode: TabnavElement;
+
+  //// offcanvas node var
+
+  /**
+   * Variabile utilizzata per l'hide-or-show dell'offcanvas dei singoli nodi.
+   * @type {boolean}
+   */
+  protected hideNodeInfo: boolean = false;
+  /**
+   * Variabile utilizzata per assegnare i valori per le tab principali dell'offcavanvas dei nodi.
+   * @type {TabnavElement}
+   */
+  protected tabnavElementNode: TabnavElement;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante i dati base dei nodi.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_node_data') tab_node_data?: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le porte del nodi.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_node_ports') tab_node_ports?: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante la sezione "more" dei nodi.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_node_more') tab_node_more?: TemplateRef<any>;
   ///-> nav portas -> inside
-  tabnavPorts: TabnavElement;
+  /**
+   * Variabile utilizzata per assegnare i valori alla tab relative alle porte dei nodi.
+   * @type {TabnavElement}
+   * @see {tab_node_ports}
+   */
+  protected tabnavPorts: TabnavElement;
+  /**
+    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+    * In questo caso la tab riguardante le porte input dei nodi.
+    * @type {TemplateRef}
+    */
   @ViewChild('tab_port_in') tab_port_in?: TemplateRef<any>;
+  /**
+    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+    * In questo caso la tab riguardante le porte output dei nodi.
+    * @type {TemplateRef}
+    */
   @ViewChild('tab_port_out') tab_port_out?: TemplateRef<any>;
 
-  // offcanvas Module info
-  hideModuleInfo: boolean = false;
-  tabnavElementModule: TabnavElement;
+
+  //// offcanvas Module info
+  /**
+   * Variabile utilizzata per l'hide-or-show dell'offcanvas del modulo.
+   * @type {boolean}
+   */
+  protected hideModuleInfo: boolean = false;
+  /**
+   * Variabile utilizzata per l'hide-or-show dell'offcanvas dei singoli nodi.
+   * @type {boolean}
+   */
+  protected tabnavElementModule: TabnavElement;
   //-> nav data for basic tab
+  /**
+   * Variabile utilizzata per assegnare i valori per le tab principali dell'offcavanvas dei nodi.
+   * @type {TabnavElement}
+   */
   @ViewChild('tab_module_basic') tab_module_basic?: TemplateRef<any>;
+  /**
+    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+    * In questo caso la tab riguardante i counter del modulo.
+    * @type {TemplateRef}
+    */
   @ViewChild('tab_module_counter') tab_module_counter?: TemplateRef<any>;
+  /**
+    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+    * In questo caso la tab riguardante le capabilities del modulo.
+    * @type {TemplateRef}
+    */
   @ViewChild('tab_module_capabilities') tab_module_capabilities?: TemplateRef<any>;
+  /**
+    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+    * In questo caso la tab riguardante le statistiche del modulo.
+    * @type {TemplateRef}
+    */
   @ViewChild('tab_module_statistics') tab_module_statistics?: TemplateRef<any>;
   ///-> nav for option
-  tabnavOpt: TabnavElement;
+  /**
+    * Variabile utilizzata per assegnare i valori per le tab secondaria "option" dell'offcanvas del modulo.
+    * @type {TabnavElement}
+    */
+  protected tabnavOpt: TabnavElement;
+  /**
+    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+    * In questo caso la tab riguardante le opzioni i/o.
+    * @type {TemplateRef}
+    */
   @ViewChild('tab_module_more') tab_module_more?: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le opzioni input del modulo.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_in_opt') tab_in_opt?: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le opzioni input del modulo.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_out_opt') tab_out_opt?: TemplateRef<any>;
   ///-> nav for interfaces
-  tabnavIF: TabnavElement;
+  /**
+    * Variabile utilizzata per assegnare i valori per le tab secondaria "interfacce" dell'offcanvas del modulo.
+    * @type {TabnavElement}
+    */
+  protected tabnavIF: TabnavElement;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le interfacce del modulo.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_module_interfaces') tab_module_interfaces?: TemplateRef<any>;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+   * In questo caso la tab riguardante le interfacce consumer modulo.
+   * @type {TemplateRef}
+   */
   @ViewChild('tab_if_cons') tab_if_cons?: TemplateRef<any>;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante le interfacce producer modulo.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_if_prod') tab_if_prod?: TemplateRef<any>;
-  // => nav parameters
-  tabnavPAR: TabnavElement;
+  //-> nav parameters
+  /**
+    * Variabile utilizzata per assegnare i valori per le tab secondaria "parameteres" dell'offcanvas del modulo.
+    * @type {TabnavElement}
+    */
+  protected tabnavPAR: TabnavElement;
+  /**
+  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+  * In questo caso la tab riguardante i parametri secondari del moduli.
+  * @type {TemplateRef}
+  */
   @ViewChild('tab_module_parameters') tab_module_parameters?: TemplateRef<any>;
+  /**
+* Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+* In questo caso la tab riguardante i parametri anchor anchor del modulo.
+* @type {TemplateRef}
+*/
   @ViewChild('tab_anchor') tab_anchor?: TemplateRef<any>;
+  /**
+* Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+* In questo caso la tab riguardante i parametri fixed del modulo.
+* @type {TemplateRef}
+*/
   @ViewChild('tab_fixed') tab_fixed?: TemplateRef<any>;
+  /**
+* Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+* In questo caso la tab riguardante i parametri instanza del moduli.
+* @type {TemplateRef}
+*/
   @ViewChild('tab_instance') tab_instance?: TemplateRef<any>;
+  /**
+* Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+* In questo caso la tab riguardante i parametri strutturali del modulo.
+* @type {TemplateRef}
+*/
   @ViewChild('tab_structural') tab_structural?: TemplateRef<any>;
 
 
@@ -109,19 +355,34 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
 
 
 
+
+
+  /**
+   * Costruttore di ReteModuleVisualizer.
+   * @param cdr 
+   * @param router 
+   * @param spinnerService 
+   * @param attachmentsService 
+   * @param exportService 
+   */
   constructor(
-    private render: Renderer2,
-    private sanitizer: DomSanitizer,
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private parseService: ParseService,
-    private zone: NgZone,
     private spinnerService: SpinnerService,
     private attachmentsService: AttachmentsService,
     private exportService: ExportService
   ) {
   }
 
+
+
+  /**
+   * Funzione richiamata all'inizializzazione della componente.
+   * Si occupa di eseguire controlli per l'inizializzazione del modulo.
+   * Si avvale di operazioni di spinner-loading.
+   * Avvia la funzione di start quando ha terminato le precedenti operazioni.
+   * @see {startApp}
+   */
   async ngOnInit(): Promise<void> {
     this.spinnerService.setSpinner(true, "Loading theater elements");
     if (this.isSimple) {
@@ -157,6 +418,15 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
     }
   }
 
+
+
+
+  /**
+   * Funzone che si occupa dell'inizializzazione dell'editor, container e del drag&drop per la versione a visualizzazione semplificata.
+   * Prende le configurazioni dell'editor per i plugin da utilizzare ed eventi da captare.
+   * @see {ReteModuleVisualizerSettings} 
+   * @see {addNodes}
+   */
   async startSimpleApp(): Promise<void> {
 
     this.container = this.el.nativeElement;
@@ -209,6 +479,15 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
 
   }
 
+
+
+
+  /**
+   * Funzone che si occupa dell'inizializzazione dell'editor, container e del drag&drop.
+   * Prende le configurazioni dell'editor per i plugin da utilizzare ed eventi da captare.
+   * @see {ReteModuleComposerSettings} 
+   * @see {addNodes}
+   */
   async startApp(): Promise<void> {
 
     // this.module = await this.parseService.parseModuleForModuleVisualizer(1459);
@@ -290,7 +569,18 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
   // init func
+
+  /**
+   * Funzione richiamata subito dopo l'inizializzazione della componente
+   * Si occupa di inizializzare le variabili per la navbar, le tab e l'underbar.
+   * @see {initNavbar}
+   * @see {initUnderbar}
+   * @see {initTabModuleNavs}
+   * @see {initTabNodeNavs}
+   */
   ngAfterViewInit() {
     this.initNavbar();
     this.initUnderbar();
@@ -412,7 +702,17 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   }
 
 
-  //// NAV FUNC
+
+
+  //// navbar operation
+
+  /**
+   * Funzione che si occupa di gestire gli eventi di selection-item della navbar.
+   * @param val 
+   * @see {NavbarItem}
+   * @see {showhideModuleInfo}
+   * @see {goHome}
+   */
   navItemSelected(val: NavbarItem) {
     switch (val.id) {
       case "mod_info":
@@ -428,11 +728,10 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
         break;
     }
   }
-  showhideModuleInfo() {
-    this.displayMdata = this.displayModuleData(this.module);
-    this.hideModuleInfo = !this.hideModuleInfo;
-    this.cdr.detectChanges();
-  }
+  /**
+   * Funzione che ha lo scopo di switchare il valore di visualizzazione dell'offcanvas del modulo.
+   * @see {hideModuleInfo}
+   */
   showhideNodeInfo(node: Node) {
     this.nodeSelected = node;
     this.hideNodeInfo = !this.hideNodeInfo;
@@ -440,6 +739,12 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
     this.displaceLeft();
     this.cdr.detectChanges();
   }
+  /**
+   * Funzione che permette il download del modulo in:
+   * - JSON, se si volgiono utilzzare i dati mockati.
+   * - ZIP (tutti dati [yaml]), se siamo connessi al server.
+   * @see {exportService}
+   */
   async download() {
     this.spinnerService.setSpinner(true, "Creating module download");
     if (!environment.mocked) {
@@ -455,12 +760,39 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
       this.spinnerService.setSpinner(false);
     }
   }
+  /**
+   * Funzione che come scopo ritornare alla home.
+   * Ritorna se vi è stat conferma dalla modale.
+   * @see {modalConfirmation}
+   * @see {router}
+   */
   goHome() {
     this.router.navigateByUrl('/home');
   }
 
 
+  showhideModuleInfo() {
+    this.displayMdata = this.displayModuleData(this.module);
+    this.hideModuleInfo = !this.hideModuleInfo;
+    this.cdr.detectChanges();
+  }
+
+
+
+
   //// operation underbar
+
+  /**
+   * Funzione che si occupa di gestire gli eventi si selection-item dell'underbar.
+   * @param val
+   * @see {UnderbarItem}
+   * @see {showDragDrop}
+   * @see {undoEditor}
+   * @see {redoEditor}
+   * @see {makezoom}
+   * @see {displayAllNodes}
+   * @see {showMinimap}
+   */
   underbarElementSelected(val: UnderbarItem) {
     switch (val.id) {
       case "restore":
@@ -496,12 +828,24 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
         break;
     }
   }
+  /**
+   * Esegue l'undo di un'operazione nell'editor
+   */
   undoEditor() {
     this.editor.trigger("undo");
   }
+  /**
+   * Eseguie il redo di un'operazione nell'editor
+   */
   redoEditor() {
     this.editor.trigger("redo");
   }
+  /**
+   * Esegue operazione di zoom-in / zoom-out in base al valore passato come parametro
+   * @param k 
+   * @example
+   * Se K>0 zoom-in se K<0 zoom-out 
+   */
   makezoom(k: number) {
     // k is declarend in (click) ad +- 0.1
     const { area, container } = this.editor.view; // read from Vue component data;
@@ -510,11 +854,19 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
     const oy = (rect.top - container.clientHeight / 2) * k;
     area.zoom(area.transform.k + k, ox, oy, 'wheel');
   }
+  /**
+   * Funzione che permette di visualizzare tutti i nodi posizionati all'interno del canvas
+   */
   displayAllNodes() {
     AreaPlugin.zoomAt(this.editor, this.editor.nodes);
   }
-  findElement(result: string) {
-    this.nodetofind = result;
+  /**
+   * Funzione che permette, una volta inserito un nodo. 
+   * Se presente sul canvas, di selezionarlo ed eseguire uno zoom sullo stesso.
+   * @param nodeToFind 
+   */
+  findElement(nodeToFind: string) {
+    this.nodetofind = nodeToFind;
 
     let elementfound = this.editor.nodes.find(n => n.data.name === this.nodetofind)
     let elementpick = new Array(elementfound); // deve necessariamente trovarsi in un array...
@@ -522,6 +874,10 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
     AreaPlugin.zoomAt(this.editor, elementpick);
     this.editor.selectNode(elementpick[0]);
   }
+  /**
+   * Funzione che serve ad aggiornare il nome degli elementi nella ricerca.
+   * @see {NodeNameList}
+   */
   updateNameList() {
     this.NodeNameList = [];
     this.editor.nodes.forEach(
@@ -530,6 +886,9 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
       }
     )
   }
+  /**
+   * Funzione che permette, con buona approssimazione di sistemare i nodi in una struttura organizzata.
+   */
   async arrangeNodes() {
     this.editor.nodes.forEach(
       async node => {
@@ -538,11 +897,10 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
       }
     );
   }
-  displaceLeft() {
-    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
-    const { area, container } = this.editor.view; // read from Vue component data;
-    area.translate(area.transform.x - 200, area.transform.y);
-  }
+  /**
+   * Funzione che ha come scopo l'hide-or-show della mappa.
+   * @see {ismapvisible}
+   */
   showMinimap() {
     var z = document.getElementsByClassName("minimap")[0];
     z.removeAttribute("style");
@@ -555,15 +913,34 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
     this.ismapvisible = !this.ismapvisible
   }
 
+
+
+
   ////// node func
-  updateSelectedNode() {
-    this.nodeSelected.update();
+
+  /**
+   * Funzione che posiziona un nodo selezionato alla sinistra
+   */
+  displaceLeft() {
+    AreaPlugin.zoomAt(this.editor, this.editor.selected.list);
+    const { area, container } = this.editor.view; // read from Vue component data;
+    area.translate(area.transform.x - 200, area.transform.y);
   }
 
 
 
-  // add node function
-  public async addNodes(): Promise<void> {
+
+  /**
+   * Funzione richiamata quando si ha il caso in cui si è importato un modulo. 
+   * Essa si occupa della creazione, connessione e sistemazione dei nodi salvati nel modulo importato.
+   * Provvede anche l'inizializzazione delle variabile che hanno scopo di mostrare i dati del moduli (offcanvas).
+   * @see {module}
+   * @see {arrangeNodes}
+   * @see {consumerInterface}
+   * @see {producerInterface}
+   * @see {importList}
+   */
+   public async addNodes(): Promise<void> {
 
     var nodes = [];
 
@@ -614,16 +991,17 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   }
 
 
-  // async not parse
+
+
+  // angular opt
+
+  /**
+   * Questa funzione serve a non eseguire l'automatico sorting dei dati all'ng-for degli elementi (DOM).
+   * @returns 
+   */
   notSort() {
     return 0;
   }
-
-  print(...Params: any[]) {
-    console.log(Params);
-  }
-
-
 
 
 }

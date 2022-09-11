@@ -67,7 +67,7 @@ export class ComposerComponent implements OnInit {
   protected hasFile: boolean = false;
 
   /**
-   * Variabile che indica il tipo di dato, preso di ritorno da un file
+   * Variabile che memorizza il teatro o il modulo importato da un file
    * @type {TheaterApplication}
    * @type {ModuleApplication}
    */
@@ -75,8 +75,8 @@ export class ComposerComponent implements OnInit {
 
 
   /**
-   * Costruttore della componente ComposerComponent.
-   * Si occupa di prendere i dati di route url e valorizzare le rispettive variabili e se sono presenti i dati di un file.
+   * Costruttore di ComposerComponent.
+   * Si occupa di prendere i dati di route url e valorizzare le rispettive variabili.
    * @param router 
    * @param parseService 
    * @param spinnerService 
@@ -160,9 +160,9 @@ export class ComposerComponent implements OnInit {
   }
 
   /**
-   * Funzione che esegue tutte le funzioni di inizializzazione, reperimento e filtraggio dati da poter essere passati alla componente di ModuleComposer.
+   * Funzione che esegue tutte le funzioni di inizializzazione, reperimento e filtraggio dati da poter essere passati alla componente di TheaterComposer.
    * Esegue anche le attività di spinner-loading.
-   * @see {ReteModuleComposer}
+   * @see {ReteTheaterComposer}
    * @see {SpinnerService}
    * @see {parseService}
    */

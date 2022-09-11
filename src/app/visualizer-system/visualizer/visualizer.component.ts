@@ -1,12 +1,11 @@
 
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { DataRouteVisualizer, SubjectType } from 'src/app/models/appType';
 import { ParseService } from 'src/app/services/application/parse/parse.service';
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
 import { ModuleApplication, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
-import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -17,41 +16,60 @@ import { environment } from 'src/environments/environment';
 
 export class VisualizerComponent implements OnInit {
 
-  // data passed
+  /**
+   * Variabile che ha come scopo prendere i dati passati come url-parameters
+   * @type {DataRouteComposer} 
+   */
   dataFromRouter: DataRouteVisualizer;
-  id: string | number;
-  type: SubjectType;
-
-  // component var
-  fetcher: any;
-  parser: any;
-  parsed_modules: any;
-  parsed_theater: any;
-  // ACTUAL
-  parsedModule?: ModuleApplication;
-  parsedTheater?: TheaterApplication;
+  // variabili istanziate come valori proveniente dalla dataFormRouter
+  protected id: string | number;
+  protected type: SubjectType;
 
   // type var
-  MODULE = SubjectType.MODULE;
-  THEATER = SubjectType.THEATER;
+  protected MODULE = SubjectType.MODULE;
+  protected THEATER = SubjectType.THEATER;
 
 
-  //check var
-  hasproblem: boolean = false;
-  active: boolean = false;
+  /**
+   * Variabile che viene valorizzata a true se si è verificato un errore.
+   * @type {boolean}
+   * @default false
+   */
+  protected hasproblem: boolean = false;
 
-  //data pass module
-  module: ModuleApplication;
+  /**
+   * Variabile che indica lo stato di reperimento dei dati prima di visualizzare le componenti di costruzione
+   * @type  {boolean}
+   * @default false
+   */
+  protected active: boolean = false;
 
-  //data pass theater
-  theater: TheaterApplication;
+  /**
+   * Variabile che memorizza il modulo ricavato dal parser.
+   * @type {ModuleApplication}
+   * @see {parseService}
+   */
+  protected module: ModuleApplication;
 
+  /**
+   * Variabile che memorizza il modulo ricavato dal parser.
+   * @type {TheaterApplication}
+   * @see {parseService}
+   */
+  protected theater: TheaterApplication;
+
+  /**
+   * Costruttore di VisualizerComponent.
+   * Si occupa di prendere i dati di route url e valorizzare le rispettive variabili.
+   * @param router 
+   * @param parseService 
+   * @param spinnerService 
+   */
   constructor(
     private router: Router,
     private parseService: ParseService,
     private spinnerService: SpinnerService,
   ) {
-
     this.dataFromRouter = this.router.getCurrentNavigation().extras.state as DataRouteVisualizer
     if (this.dataFromRouter) {
       this.id = this.dataFromRouter.id;
@@ -63,8 +81,13 @@ export class VisualizerComponent implements OnInit {
 
   }
 
+  /**
+   * Funzione richiamata all'inizializzazione della componente.
+   * Richiama le funzioni adeguate in base al tipo di componente Modulo o Teatro scelto per la visualizzazione.
+   * @see {initMODULE}
+   * @see {initTHEATER}
+   */
   async ngOnInit() {
-
     if (this.type === this.MODULE) {
       this.initMODULE();
     }
@@ -77,7 +100,13 @@ export class VisualizerComponent implements OnInit {
   }
 
 
-
+  /**
+   * Funzione che esegue tutte le funzioni di inizializzazione, reperimento e filtraggio dati da poter essere passati alla componente di TheaterVisualizer.
+   * Esegue anche le attività di spinner-loading.
+   * @see {ReteModuleComposer}
+   * @see {SpinnerService}
+   * @see {parseService}
+   */
   async initMODULE() {
     this.spinnerService.setSpinner(true, "Loading module canvas");
     from(
@@ -96,6 +125,13 @@ export class VisualizerComponent implements OnInit {
       });
   }
 
+  /**
+   * Funzione che esegue tutte le funzioni di inizializzazione, reperimento e filtraggio dati da poter essere passati alla componente di TheaterVisualizer.
+   * Esegue anche le attività di spinner-loading.
+   * @see {ReteTheaterComposer}
+   * @see {SpinnerService}
+   * @see {parseService}
+   */
   async initTHEATER() {
     this.spinnerService.setSpinner(true, "Loading theater canvas");
     from(
@@ -114,7 +150,9 @@ export class VisualizerComponent implements OnInit {
       });
   }
 
-
+  /**
+   * Funzione che esegue una redirezione alla pagine home
+   */
   public gohome() {
     this.router.navigate(['/home']);
   }
