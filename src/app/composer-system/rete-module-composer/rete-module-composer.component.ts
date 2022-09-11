@@ -33,6 +33,9 @@ import { take } from 'rxjs/operators';
 })
 export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
 
+
+  //// input var
+
   /**
    * Variabile in input che rappresenta il nome da assegnare al modulo
    * @type {string}
@@ -64,36 +67,23 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @type {string}
    */
   @Input() ModuleType: EnumModuleType;
-
   /**
-   * Variabile che rappresenta sottoforma di variabili e attributi il modulo.
+   * Variabile che contiene gli attributi del modulo.
    * Esso può essere già fornito (come import di un file) per eseguire manipolazioni.
    * Oppure va creato e si valorizza nel corso del designing.
    * @type {ModuleApplication}
    */
   @Input() module: ModuleApplication;
 
-  /**
-   * Variabile che indica se bisogna creare un modulo da zero, oppure, istanziarlo a seguito di un import di un file.
-   * @type {boolean}
-   * @see {module}
-   * @see {ModuleType}
-   */
-  protected fromFile: boolean = false;
 
+
+  //// canvas var
 
   /**
    * Variabile che indica l'elemento all'interno del DOM il canvas su cui verranno eseguite operazioni di costruzione e designing del modulo.
    * @type {ElementRef}
    */
   @ViewChild('moduleEditorComposer', { static: true }) el: ElementRef;
-
-  /**
-   * Variabile che rappresenta il nodo selezionato
-   * @type {Node}
-   */
-  protected nodeSelected: Node;
-
   /**
    * Variabile che rappresenta il container del canvas come NativeElement
    * @see {el}
@@ -120,6 +110,24 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   protected engine: Engine = null;
 
 
+  //// control var
+
+  /**
+   * Variabile che rappresenta il nodo selezionato
+   * @type {Node}
+   */
+  protected nodeSelected: Node;
+  /**
+   * Variabile che indica se bisogna creare un modulo da zero, oppure, istanziarlo a seguito di un import di un file.
+   * @type {boolean}
+   * @see {module}
+   * @see {ModuleType}
+   */
+  protected fromFile: boolean = false;
+
+
+  //// input search var
+
   /**
    * Variabile utilizzata per la sarch di un nodo presente sul canvas.
    * @type {string}
@@ -132,12 +140,8 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    */
   protected NodeNameList: string[] = [];
 
-  /**
-   * Variabile utilizzata per l'hide-or-show della minimappa
-   * @type {boolean}
-   * @default {true}
-   */
-  protected ismapvisible: boolean = true;
+
+  //// navbar var
 
   /**
    * Variabile utilizzata per assegnare i valori alla Navbar.
@@ -156,6 +160,8 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    */
   protected showbtn: boolean = false;
 
+
+  //// underabar var
 
   /**
    * Variabile utilizzata per assegnare i valori all'underbar.
@@ -177,6 +183,15 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @type {TemplateRef}
    */
   @ViewChild('arrange_underbar') arrange_underbar: TemplateRef<any>;
+  /**
+   * Variabile utilizzata per l'hide-or-show della minimappa
+   * @type {boolean}
+   * @default {true}
+   */
+  protected ismapvisible: boolean = true;
+
+
+  //// offcanvas node var
 
   /**
    * Variabile utilizzata per l'hide-or-show dell'offcanvas dei singoli nodi.
@@ -206,7 +221,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @type {TemplateRef}
    */
   @ViewChild('tab_node_more') tab_node_more?: TemplateRef<any>;
-  // tab node port
+  ///-> tab node port
   /**
    * Variabile utilizzata per assegnare i valori alla tab relative alle porte dei nodi.
    * @type {TabnavElement}
@@ -214,18 +229,20 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    */
   protected tabnavPorts: TabnavElement;
   /**
-  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
-  * In questo caso la tab riguardante le porte input dei nodi.
-  * @type {TemplateRef}
-  */
+    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+    * In questo caso la tab riguardante le porte input dei nodi.
+    * @type {TemplateRef}
+    */
   @ViewChild('tab_port_in') tab_port_in?: TemplateRef<any>;
   /**
-  * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
-  * In questo caso la tab riguardante le porte output dei nodi.
-  * @type {TemplateRef}
-  */
+    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
+    * In questo caso la tab riguardante le porte output dei nodi.
+    * @type {TemplateRef}
+    */
   @ViewChild('tab_port_out') tab_port_out?: TemplateRef<any>;
 
+
+  //// offcanvas module var
 
   /**
    * Variabile utilizzata per l'hide-or-show dell'offcanvas del modulo.
@@ -237,7 +254,6 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @type {TabnavElement}
    */
   protected tabnavElementModule: TabnavElement;
-
   /**
    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
    * In questo caso la tab riguardante le informazioni base del modulo.
@@ -270,6 +286,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @type {TemplateRef}
    */
   @ViewChild('tab_theater_imports') tab_theater_imports?: TemplateRef<any>;
+  ///-> nav for option
   /**
   * Variabile utilizzata per assegnare i valori per le tab secondaria "option" dell'offcanvas del modulo.
   * @type {TabnavElement}
@@ -294,6 +311,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @type {TemplateRef}
    */
   @ViewChild('tab_out_opt') tab_out_opt?: TemplateRef<any>;
+  ///-> nav for if
   /**
   * Variabile utilizzata per assegnare i valori per le tab secondaria "interfacce" dell'offcanvas del modulo.
   * @type {TabnavElement}
@@ -319,6 +337,8 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   @ViewChild('tab_if_prod') tab_if_prod?: TemplateRef<any>;
 
 
+  //// d&d var
+
   /**
    * Variabile per l'hide-or-show dell'offcanvas in cui è presente il drag&drop.
    * @type {boolean}
@@ -334,6 +354,9 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @type {EnumModuleType}
    */
   typeElementDreagged: EnumNodeType;
+
+
+  //// modal var
 
   /**
    * Variabile che gestisce l'hide-or-show della modale nella componente di creazione modulo.
@@ -359,6 +382,9 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @see {data_message}
    */
   protected modalMessage: string = "";
+
+
+  //// counter var
 
   // counter index ->  0: host   1: subnet   2:network (IndexNodeComponent)
   /**
@@ -407,6 +433,9 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    */
   protected NETWORK = EnumNodeType.Network;
 
+
+  //// interface var
+
   // interface index ->   0: consumer   1: producer
   /**
    * Variabile che viene utilizzata per immagazzinare i dati relativi alle interfacce consumer.
@@ -438,7 +467,6 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @see {consumerInterface}
    */
   interfacesSelection = (): SelectOption[] => { return [...this.consumerSelection, ...this.producerSelection]; }
-
   /**
    * Variabile che ha come riferimento un tag nel DOM di tipo templato.
    * Contiene le informazini da mostrare nella modale per l'inserimento di una nuova interfaccia consumer.
@@ -479,6 +507,9 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
       }
     ]
   };
+
+
+  //// port var
 
   /**
    * Variabile che indica il nome di porta input.
@@ -522,7 +553,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   }
 
 
-  // flavor
+  //// flavor var
   /**
    * Variabile che ha lo scopo di salvare i Flavor assegnabili agli host.
    * @type {BehaviorSubject}
@@ -542,6 +573,9 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @see {availableFlavor}
    */
   @ViewChild('tab_module_flavor') tab_module_flavor?: TemplateRef<any>;
+
+
+  //// import var
 
   /**
    * Variabile che ha lo scopo di salvare gli import del modulo.
@@ -571,7 +605,8 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     ]
   };
 
-  ///// static section
+  //// static section
+
   /**
    * Variabile che contiene i tipi di os selezionabili dagli host.
    * @type {SelectOption}
@@ -1001,7 +1036,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
   //// navbar operation
 
   /**
-   * Funzione che si occupa di gestire gli eventi si selection-item della navbar.
+   * Funzione che si occupa di gestire gli eventi di selection-item della navbar.
    * @param val 
    * @see {NavbarItem}
    * @see {showhideModuleInfo}
@@ -1161,6 +1196,18 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.editor.selectNode(elementpick[0]);
   }
   /**
+   * Funzione che serve ad aggiornare il nome degli elementi nella ricerca.
+   * @see {NodeNameList}
+   */
+  updateNameList() {
+    this.NodeNameList = [];
+    this.editor.nodes.forEach(
+      (el) => {
+        this.NodeNameList.push(el.data.name as string);
+      }
+    )
+  }
+  /**
    * Funzione che permette, con buona approssimazione di sistemare i nodi in una struttura organizzata.
    */
   async arrangeNodes() {
@@ -1231,18 +1278,6 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.hideNodeInfo = !this.hideNodeInfo;
     this.displaceLeft();
     this.cdr.detectChanges();
-  }
-  /**
-   * Funzione che serve ad aggiornare il nome degli elementi nella ricerca.
-   * @see {NodeNameList}
-   */
-  updateNameList() {
-    this.NodeNameList = [];
-    this.editor.nodes.forEach(
-      (el) => {
-        this.NodeNameList.push(el.data.name as string);
-      }
-    )
   }
   /**
    * Funzione che posiziona un nodo selezionato alla sinistra
@@ -1486,10 +1521,10 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     }
     (this.nodeSelected.data.Input as string[]).push(name);
     //check multi
-    let multi: boolean = 
-    (this.nodeSelected.data.type===this.SUBNET) 
-    ? true
-    : false;
+    let multi: boolean =
+      (this.nodeSelected.data.type === this.SUBNET)
+        ? true
+        : false;
     let input = new ir(name, name, _Socket, multi);
     this.nodeSelected.addInput(input);
     this.updateNode(this.nodeSelected);
@@ -1515,10 +1550,10 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     }
     (this.nodeSelected.data.Output as string[]).push(name);
     //check multi
-    let multi: boolean = 
-    (this.nodeSelected.data.type===this.HOST) 
-    ? true
-    : false;
+    let multi: boolean =
+      (this.nodeSelected.data.type === this.HOST)
+        ? true
+        : false;
     let output = new or(name, name, _Socket, multi);
     this.nodeSelected.addOutput(output);
     this.updateNode(this.nodeSelected);
