@@ -5,13 +5,27 @@ import { FlavorDTO } from '../../modelsDTO/falvorDTO';
 
 
 export class PerseDataForModuleComposer {
+
+
+
+
+    
     constructor(private flavorService: FlavorService) {
     }
+
+
+
+
     async parseFlavorForModuleComposer(): Promise<FlavorApplication[]> {
         let flavorDTO: FlavorDTO[] = await this.flavorService.getAllFlavor();
         let flavorApplication: FlavorApplication[] = this.parseFlavor(flavorDTO);
         return flavorApplication;
     }
+
+
+
+
+
     parseFlavor(flavorDTO: FlavorDTO[]): FlavorApplication[] {
         let fa: FlavorApplication[] = []
         flavorDTO.forEach(f => {
