@@ -83,7 +83,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * Variabile che indica l'elemento all'interno del DOM il canvas su cui verranno eseguite operazioni di costruzione e designing del modulo.
    * @type {ElementRef}
    */
-  @ViewChild('moduleEditorComposer', { static: true }) el: ElementRef;
+  @ViewChild('moduleComposer', { static: true }) el: ElementRef;
   /**
    * Variabile che rappresenta il container del canvas come NativeElement
    * @see {el}

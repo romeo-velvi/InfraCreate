@@ -16,7 +16,10 @@ import { AttachmentsService } from 'src/app/services/api/attachments.service';
 import { environment } from 'src/environments/environment';
 import { ExportService } from 'src/app/services/application/export/export.service';
 
-
+/**
+ * Componente che contiene la logica per la visualizzione dei moduli.
+ * Si occupa dello scambio di informazioni e le interazioni tra le componenti che permettono il visual-designing dell'applicazione.
+ */
 @Component({
   selector: 'app-rete-module-visualizer',
   templateUrl: './rete-module-visualizer.component.html',
@@ -53,10 +56,10 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   //// editor component
 
   /**
-   * Variabile che indica l'elemento all'interno del DOM il canvas su cui verranno eseguite operazioni di costruzione e designing del modulo.
+   * Variabile che indica l'elemento all'interno del DOM il canvas su cui verranno eseguite operazioni di visualizzazione del modulo.
    * @type {ElementRef}
    */
-  @ViewChild('moduleVisualizerComponser', { static: false }) el: ElementRef;
+  @ViewChild('moduleVisualizer', { static: false }) el: ElementRef;
   /**
  * Variabile che rappresenta il container del canvas come NativeElement
  * @see {el}
@@ -116,7 +119,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   protected displayNodeData = (node: Node): { [field: string]: string[] }[] => { let x = ReteDisplayNodeDataMV(node); return x; }
   /**
    * Variabile a cui è associata una funzione, che richiamata, restituisce i dati da mostrare del modulo.
-   * @param node 
+   * @param module 
    * @returns {{ [field: string]: string[] }[]}
    * @see {ReteDisplayNodeDataMV}
    * @see {displayNdata}
@@ -230,6 +233,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
 
 
   //// offcanvas Module info
+
   /**
    * Variabile utilizzata per l'hide-or-show dell'offcanvas del modulo.
    * @type {boolean}
@@ -732,11 +736,9 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
    * Funzione che ha lo scopo di switchare il valore di visualizzazione dell'offcanvas del modulo.
    * @see {hideModuleInfo}
    */
-  showhideNodeInfo(node: Node) {
-    this.nodeSelected = node;
-    this.hideNodeInfo = !this.hideNodeInfo;
-    this.displayNdata = this.displayNodeData(node);
-    this.displaceLeft();
+   showhideModuleInfo() {
+    this.displayMdata = this.displayModuleData(this.module);
+    this.hideModuleInfo = !this.hideModuleInfo;
     this.cdr.detectChanges();
   }
   /**
@@ -762,8 +764,6 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   }
   /**
    * Funzione che come scopo ritornare alla home.
-   * Ritorna se vi è stat conferma dalla modale.
-   * @see {modalConfirmation}
    * @see {router}
    */
   goHome() {
@@ -771,9 +771,14 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   }
 
 
-  showhideModuleInfo() {
-    this.displayMdata = this.displayModuleData(this.module);
-    this.hideModuleInfo = !this.hideModuleInfo;
+  /**
+   * Funzione che ha lo scopo di switchare il valore di visualizzazione dell'offcanvas del nodo.
+   */
+   showhideNodeInfo(node: Node) {
+    this.nodeSelected = node;
+    this.hideNodeInfo = !this.hideNodeInfo;
+    this.displayNdata = this.displayNodeData(node);
+    this.displaceLeft();
     this.cdr.detectChanges();
   }
 

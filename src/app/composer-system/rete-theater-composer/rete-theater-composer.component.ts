@@ -62,7 +62,6 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    * @type {[name: string]: ModuleInstance}
    */
   @Input() ModulesDict: { [name: string]: ModuleInstance };
-
   /**
    * Variabile che rappresenta sottoforma di variabili e attributi il teatro.
    * Esso può essere già fornito (come import di un file) per eseguire manipolazioni.
@@ -70,6 +69,22 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    * @type {ModuleApplication}
    */
   @Input() theater: TheaterApplication;
+
+
+  //// selection var
+
+  /**
+   * Variabile che rappresenta il nodo selezionato
+   * @type {Node}
+  */
+  protected nodeSelected: Node;
+  /**
+   * Variabile che rappresenta, similmente al nodo, anche il modulo di appartenenza del nodo selezionato
+   * @type {SimpleModuleApplication}
+   * @see {nodeSelected}
+   */
+  protected moduleSelected: SimpleModuleApplication;
+
 
   /**
    * Variabile che indica se bisogna creare un teatro da zero, oppure, istanziarlo a seguito di un import di un file.
@@ -79,11 +94,8 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    */
   protected fromFile: boolean = false;
 
-  /**
-   * Variabile contenente una lista di elementi da inserire nel DOM per il drag&drop.
-   * @see {ModulesDict}
-   */
-  protected moduleDD: ModuleInstance[] = [];
+
+  //// display var
 
   /**
    * Variabile che contiene l'insieme dei dati da visualizzare di un modulo.
@@ -100,23 +112,13 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   displayModuleData = (module: SimpleModuleApplication): { [field: string]: string[] }[][] => { let x = ReteDisplayModuleDataTC(module); return x; }
 
 
+  //// canvas var
+
   /**
    * Variabile che indica l'elemento all'interno del DOM il canvas su cui verranno eseguite operazioni di costruzione e designing del teatro.
    * @type {ElementRef}
    */
-  @ViewChild('theaterEditorComposer', { static: false }) el: ElementRef;
-  /**
-   * Variabile che rappresenta il nodo selezionato
-   * @type {Node}
-   */
-  protected nodeSelected: Node;
-  /**
-   * Variabile che rappresenta, similmente al nodo, anche il modulo di appartenenza del nodo selezionato
-   * @type {SimpleModuleApplication}
-   * @see {nodeSelected}
-   */
-  protected moduleSelected: SimpleModuleApplication;
-
+  @ViewChild('theaterComposer', { static: false }) el: ElementRef;
   /**
    * Variabile che rappresenta il container del canvas come NativeElement
    * @see {el}
@@ -141,23 +143,23 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    */
   protected engine: Engine = null;
 
+
+  //// find var
+
   /**
-   * Variabile utilizzata per la sarch di un nodo presente sul canvas.
+   * Variabile utilizzata per la sarch di un modulo presente sul canvas.
    * @type {string}
    * @see {NodeNameList}
    */
   protected nodetofind: string = '';
   /**
-   * Variabile che serve ad immagazzinare i nomi dei nodi presenti sul canvas.
+   * Variabile che serve ad immagazzinare i nomi dei modui presenti sul canvas.
    * @type {string[]}
    */
   protected ModuleNameList: string[] = [];
 
-  /**
-   * Variabile utilizzata per l'hide-or-show della minimappa
-   * @type {boolean}
-   */
-  protected ismapvisible: boolean = true;
+
+  //// navbar data
 
   /**
    * Variabile utilizzata per assegnare i valori alla Navbar.
@@ -176,6 +178,8 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    */
   protected showbtn: boolean = false;
 
+
+  //// underbar var
 
   /**
    * Variabile utilizzata per assegnare i valori all'underbar.
@@ -197,7 +201,14 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    * @type {TemplateRef}
    */
   @ViewChild('arrange_underbar') arrange_underbar: TemplateRef<any>;
+  /**
+   * Variabile utilizzata per l'hide-or-show della minimappa
+   * @type {boolean}
+   */
+  protected ismapvisible: boolean = true;
 
+
+  //// offcanvas module var
 
   /**
    * Variabile utilizzata per l'hide-or-show dell'offcanvas dei singoli moduli.
@@ -209,8 +220,6 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    * @type {TabnavElement}
    */
   protected tabnavElementModule: TabnavElement;
-
-
   /**
    * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
    * In questo caso la tab riguardante le informazioni dell'istanza del moduli.
@@ -246,7 +255,6 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   * @type {TemplateRef}
   */
   @ViewChild('tab_module_counter') tab_module_counter?: TemplateRef<any>;
-
   /**
   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è il contenuto di una tab.
   * In questo caso la tab riguardante i counter del modulo.
@@ -270,6 +278,9 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   * @type {TemplateRef}
   */
   @ViewChild('tab_if_prod') tab_if_prod?: TemplateRef<any>;
+
+
+  //// offcanvas theater var
 
   /**
    * Variabile che indica lo stato show-hide dell'offcanvas del teatro
@@ -321,6 +332,13 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   @ViewChild('tab_theater_tags') tab_theater_tags?: TemplateRef<any>;
 
 
+  //// d&d var
+
+  /**
+   * Variabile contenente una lista di elementi da inserire nel DOM per il drag&drop.
+   * @see {ModulesDict}
+   */
+  protected moduleDD: ModuleInstance[] = [];
   /**
    * Variabile per l'hide-or-show dell'offcanvas in cui è presente il drag&drop.
    * @type {boolean}
@@ -337,6 +355,9 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    * @type {TemplateRef}
    */
   @ViewChild('dragdrop_template') dragdrop_template?: TemplateRef<any>;
+
+
+  //// modal var
 
   /**
    * Variabile che gestisce l'hide-or-show della modale nella componente di creazione modulo.
@@ -363,6 +384,8 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    */
   protected modalMessage: string = "";
 
+
+  //// area var
 
   /**
    * Variabile che ha lo scopo di salvare gli import del teatro.
@@ -410,6 +433,9 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     ]
   };
 
+
+  //// import var
+
   /**
    * Variabile che ha lo scopo di salvare gli import del teatro.
    * @type {BehaviorSubject}
@@ -437,6 +463,9 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
       }
     ]
   };
+
+
+  //// tag var
 
   /**
    * Variabile che ha lo scopo di salvare i tag del teatro.
@@ -472,7 +501,12 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     ]
   };
 
-  //deployment sequence
+  //// deployment var
+  /**
+   * Varibile che ha lo scopo di memorizzare e contenere le informazioni dei moduli presenti nel teatro.
+   * @type {BehaviorSubject}
+   * @see {DeployInstanceDTO}
+   */
   protected deploymentList: BehaviorSubject<DeployInstanceDTO[]> = new BehaviorSubject<DeployInstanceDTO[]>(null);
 
 
@@ -607,7 +641,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   /**
    * Funzone che si occupa dell'inizializzazione dell'editor e container.
    * Prende le configurazioni dell'editor per i plugin da utilizzare ed eventi da captare.
-   * Nel caso si ha un importing da un file del teatro, provvede ad inizializzare i valori dei nodi(moduli).
+   * Nel caso si ha un importing da un file del teatro, provvede ad inizializzare i valori dei moduli (rete-nodes).
    * @see {ReteTheaterComposerSettings} 
    * @see {initModuleFromFile}
    */
@@ -978,7 +1012,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
       : false;
   }
   /**
-   * Funzione che permette, una volta inserito un nodo. 
+   * Funzione che permette, una volta inserito un modulo. 
    * Se presente sul canvas, di selezionarlo ed eseguire uno zoom sullo stesso.
    * @param nodeToFind 
    */
@@ -992,7 +1026,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.editor.selectNode(elementpick[0]);
   }
   /**
-   * Funzione che permette, con buona approssimazione di sistemare i nodi in una struttura organizzata.
+   * Funzione che permette, con buona approssimazione di sistemare i moduli in una struttura organizzata.
    */
   async arrangeNodes() {
     this.editor.nodes.forEach(
@@ -1149,7 +1183,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   /**
    * Funzione che esegue la rimozione di un'interfaccia se si è confermata l'interzione attraverso la modale.
    * Canella il riferimento dell'interfaccia nelle apposite strutture. 
-   * Rimuove il riferimento della stessa all'interno nei nodi a cui era associata.
+   * Rimuove il riferimento della stessa all'interno nei moduli a cui era associata.
    * @param ifcName 
    * @param type 
    * @see {producerInterface}
