@@ -19,7 +19,7 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search"><input type="text" placeholder="Digita per avviare la ricerca"></div>            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -43,7 +43,7 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
+  <li>Classi</li>
   <li >TagTIP</li>
 </ol>
 
@@ -66,17 +66,24 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Descrizione</h3>
+            </p>
+            <p class="comment">
+                <p>Classe che contiene gli attributi che indicano un tag.</p>
+
+            </p>
 
 
 
 
             <section>
-    <h3 id="index">Index</h3>
+    <h3 id="index">Indice</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
+                        <h6><b>Proprietà</b></h6>
                     </td>
                 </tr>
                 <tr>
@@ -102,7 +109,7 @@
             <section>
     
     <h3 id="inputs">
-        Properties
+        Proprietà
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
@@ -117,13 +124,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Tipo : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/services/modelsDTO/moduleDTO.ts:156</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="211" class="link-to-prism">src/app/services/modelsDTO/moduleDTO.ts:211</a></div>
                         </td>
                     </tr>
 
@@ -146,7 +153,9 @@
 import { NetworkDTO } from &#x27;./networkDTO&#x27;;
 import { TheaterDTO } from &#x27;./theaterDTO&#x27;;
 
-
+/**
+ * Classe che contiene gli attributi che indicano l&#x27;insieme dei moduli ritornati dal teatro.
+ */
 export class ModuleListDTO {
     content: SimpleModuleDTO[]
     pageable: PageableDTO
@@ -161,7 +170,9 @@ export class ModuleListDTO {
     empty: boolean
 }
 
-
+/**
+ * Classe che contiene gli attributi che indica il catalogo del tipo.
+ */
 export class TypesCatalogueDTO {
     group: string
     id: string | number
@@ -169,6 +180,9 @@ export class TypesCatalogueDTO {
     value: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano la classificazione del modulo.
+ */
 export class ModuleClassificationDTO {
     blueprintType: string
     category: string
@@ -179,12 +193,18 @@ export class ModuleClassificationDTO {
     uuid: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano un parametro generico.
+ */
 export class GenericParameterDTO {
     type: string
     default: string
     description: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano i parametri di configurazione di un modulto.
+ */
 export class ConfigurationTemplateDTO {
     anchor_parameters: { [name: string]: GenericParameterDTO | string }
     instance_parameters: { [name: string]: GenericParameterDTO }
@@ -199,23 +219,36 @@ export class ConfigurationTemplateDTO {
     platform: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano la modalità di un modulo.
+ */
 export class ModuleModeDTO {
     code: string
     id: string | number
     name: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano lo stato di un modulo.
+ */
 export class ModuleStatusDTO {
     descriptionCode: string
     id: string | number
     name: string
 }
+
+/**
+ * Classe che contiene gli attributi che indicano le statitistiche di un modulo.
+ */
 export class StatisticItemDTO {
     error: string | number
     updated: string | number
     inserted: string | number
 }
 
+/**
+ * Classe che contiene gli attributi che indicano il modulo (simple - in dipendenza del teatro).
+ */
 export class SimpleModuleDTO {
     createdBy: string
     createdDate: string
@@ -233,6 +266,11 @@ export class SimpleModuleDTO {
     uuid: string
     version: string | number
 }
+
+/**
+ * Classe che contiene gli attributi che indicano il modulo (complex - ritorato da call appostita).
+ * @extends {SimpleModuleDTO}
+ */
 export class ModuleDTO extends SimpleModuleDTO {
     attachments: string[]
     author: string
@@ -250,6 +288,9 @@ export class ModuleDTO extends SimpleModuleDTO {
     tags: []
 }
 
+/**
+ * Classe che contiene gli attributi che indicano le interfacce esposte da un modulo.
+ */
 export class ModuleNetworkInterfaceDTO {
     id: string | number
     label: string
@@ -260,12 +301,18 @@ export class ModuleNetworkInterfaceDTO {
     uuid: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano le connessioni interfaccia-modulo.
+ */
 export class ConsumerInterfaceLinkDTO {
     local_interface: string
     module_instance: string
     remote_interface: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano le proprietà dell&#x27;istanza di un modulo all&#x27;interno del node_templates.
+ */
 export class ModuleInstancePropertiesDTO {
     area: string
     description: string
@@ -275,6 +322,10 @@ export class ModuleInstancePropertiesDTO {
     consumer_interfaces_link: ConsumerInterfaceLinkDTO[]
 }
 
+
+/**
+ * Classe che contiene gli attributi che indicano l&#x27;area di appartenenza di un modulo (complex).
+ */
 export class AreaDTO {
     id: string | number;
     uuid: string;
@@ -284,10 +335,17 @@ export class AreaDTO {
     deleted: boolean | string;
 }
 
+/**
+ * Classe che contiene gli attributi che indicano l&#x27;area di appartenenza di un modulo (simple).
+ */
 export class SimpleAreaDTO {
     area: string
     description: string
 }
+
+/**
+ * Classe che contiene gli attributi che indicano le proprietà dell&#x27;istanza di un teatro all&#x27;interno del node_templates.
+ */
 export class TheaterInstancePropertiesDTO {
     mode: string
     tags: TagTIP[]
@@ -296,17 +354,33 @@ export class TheaterInstancePropertiesDTO {
     version: string | number
     description: string
 }
+
+/**
+ * Classe che contiene gli attributi che indicano un tag.
+ */
 export class TagTIP{
     tag: string
 }
+
+/**
+ * Classe che contiene gli attributi che indicano in via generale le caratteristiche di un elemento che deve essere presente nel node_templates.
+ */
 export class ElementIntoTheaterDTO {  // goes into map in blueprint [name:string]: Module...
     properties: ModuleInstancePropertiesDTO | TheaterInstancePropertiesDTO
     type: string
 }
+
+
+/**
+ * Classe che contiene gli attributi che indicano le caratteristiche di un teatro presente nel node_templates.
+ */
 export class ModuleInstanceDTO {
     properties: ModuleInstancePropertiesDTO
     type: string
 }
+/**
+ * Classe che contiene gli attributi che indicano le caratteristiche di un modulo presente nel node_templates.
+ */
 export class TheaterInstanceDTO {
     properties: TheaterInstancePropertiesDTO
     type: string
@@ -324,11 +398,11 @@ export class TheaterInstanceDTO {
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> corrispondenza "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
-        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title">Nessun risultato corrispondente "<span class='search-query'></span>"</h1>
     </div>
 </div>
 </div>

@@ -19,7 +19,7 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search"><input type="text" placeholder="Digita per avviare la ricerca"></div>            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -43,7 +43,7 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
+  <li>Classi</li>
   <li >PerseDataForModuleComposer</li>
 </ol>
 
@@ -66,18 +66,25 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Descrizione</h3>
+            </p>
+            <p class="comment">
+                <p>Elemento che ha lo scopo di eseguire il fetching ed il parsing dei dati per la costruzione del modulo.</p>
+
+            </p>
 
 
 
 
             <section>
-    <h3 id="index">Index</h3>
+    <h3 id="index">Indice</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
 
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Metodi</b></h6>
                     </td>
                 </tr>
                 <tr>
@@ -103,7 +110,7 @@
 </section>
 
             <section>
-    <h3 id="constructor">Constructor</h3>
+    <h3 id="constructor">Costruttore</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -113,20 +120,22 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/services/application/parse/perseDataForModuleComposer.ts:7</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="9" class="link-to-prism">src/app/services/application/parse/perseDataForModuleComposer.ts:9</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Costrutture della componente-</p>
+</div>
                             <div>
-                                    <b>Parameters :</b>
+                                    <b>Parametri :</b>
                                     <table class="params">
                                         <thead>
                                             <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
+                                                <td>Nome</td>
+                                                    <td>Tipo</td>
+                                                <td>Opzionale</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -155,7 +164,7 @@
             <section>
     
     <h3 id="methods">
-        Methods
+        Metodi
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
@@ -177,24 +186,26 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForModuleComposer.ts:15</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="41"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForModuleComposer.ts:41</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che si occupa di eseguire il parsing dei flavor.</p>
+</div>
 
                     <div class="io-description">
-                        <b>Parameters :</b>
+                        <b>Parametri :</b>
                         
                         <table class="params">
                             <thead>
                                 <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
+                                    <td>Nome</td>
+                                    <td>Tipo</td>
+                                    <td>Opzionale</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -248,18 +259,27 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/app/services/application/parse/perseDataForModuleComposer.ts:10</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="27"
+                            class="link-to-prism">src/app/services/application/parse/perseDataForModuleComposer.ts:27</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che esegue il fetching ed il parsing dei dati flavor.
+See {flavorService}
+See {parseFlavor}</p>
+</div>
 
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../classes/FlavorApplication.html" target="_self" >Promise&lt;FlavorApplication[]&gt;</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -280,15 +300,41 @@ import { FlavorApplication } from &#x27;../../modelsApplication/applicationModel
 import { FlavorDTO } from &#x27;../../modelsDTO/falvorDTO&#x27;;
 
 
-
+/**
+ * Elemento che ha lo scopo di eseguire il fetching ed il parsing dei dati per la costruzione del modulo.
+ */
 export class PerseDataForModuleComposer {
+
+
+    /**
+     * Costrutture della componente-
+     * @param flavorService 
+     */
     constructor(private flavorService: FlavorService) {
     }
+
+
+
+    /**
+     * Funzione che esegue il fetching ed il parsing dei dati flavor.
+     * @returns {Promise&lt;FlavorApplication[]&gt;}
+     * @see {flavorService}
+     * @see {parseFlavor}
+     */
     async parseFlavorForModuleComposer(): Promise&lt;FlavorApplication[]&gt; {
         let flavorDTO: FlavorDTO[] &#x3D; await this.flavorService.getAllFlavor();
         let flavorApplication: FlavorApplication[] &#x3D; this.parseFlavor(flavorDTO);
         return flavorApplication;
     }
+
+
+
+
+    /**
+     * Funzione che si occupa di eseguire il parsing dei flavor.
+     * @param flavorDTO
+     * @returns { FlavorApplication[] }
+     */
     parseFlavor(flavorDTO: FlavorDTO[]): FlavorApplication[] {
         let fa: FlavorApplication[] &#x3D; []
         flavorDTO.forEach(f &#x3D;&gt; {
@@ -316,11 +362,11 @@ export class PerseDataForModuleComposer {
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> corrispondenza "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
-        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title">Nessun risultato corrispondente "<span class='search-query'></span>"</h1>
     </div>
 </div>
 </div>

@@ -19,7 +19,7 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search"><input type="text" placeholder="Digita per avviare la ricerca"></div>            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -43,7 +43,7 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
+  <li>Classi</li>
   <li >FlavorBasicInfo</li>
 </ol>
 
@@ -66,17 +66,24 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Descrizione</h3>
+            </p>
+            <p class="comment">
+                <p>Classe che contiene gli attributi generali che indicano il flavor.</p>
+
+            </p>
 
 
 
 
             <section>
-    <h3 id="index">Index</h3>
+    <h3 id="index">Indice</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
+                        <h6><b>Proprietà</b></h6>
                     </td>
                 </tr>
                 <tr>
@@ -108,7 +115,7 @@
             <section>
     
     <h3 id="inputs">
-        Properties
+        Proprietà
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
@@ -123,13 +130,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>number | string</code>
+                        <i>Tipo : </i>    <code>number | string</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="2" class="link-to-prism">src/app/services/modelsDTO/falvorDTO.ts:2</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="5" class="link-to-prism">src/app/services/modelsDTO/falvorDTO.ts:5</a></div>
                         </td>
                     </tr>
 
@@ -149,13 +156,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>number | string</code>
+                        <i>Tipo : </i>    <code>number | string</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/app/services/modelsDTO/falvorDTO.ts:3</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="6" class="link-to-prism">src/app/services/modelsDTO/falvorDTO.ts:6</a></div>
                         </td>
                     </tr>
 
@@ -175,13 +182,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>number | string</code>
+                        <i>Tipo : </i>    <code>number | string</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/app/services/modelsDTO/falvorDTO.ts:4</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="7" class="link-to-prism">src/app/services/modelsDTO/falvorDTO.ts:7</a></div>
                         </td>
                     </tr>
 
@@ -206,6 +213,9 @@
     ram: number | string;
 }
 
+/**
+ * Classe che contiene gli attributi che indicano l&#x27;environment virtualizzato del flavor.
+ */
 export class VirtualizationEnvironmentTypeDTO {
     description: string
     id: number
@@ -216,6 +226,11 @@ export class VirtualizationEnvironmentTypeDTO {
     uuid: string
 }
 
+
+/**
+ * Classe che contiene gli attributi che indicano i flavor utilizzabili.
+ * @extends {FlavorBasicInfo}
+ */
 export class FlavorDTO extends FlavorBasicInfo {
     name: string;
     detailJson: {};
@@ -237,11 +252,11 @@ export class FlavorDTO extends FlavorBasicInfo {
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> corrispondenza "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
-        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title">Nessun risultato corrispondente "<span class='search-query'></span>"</h1>
     </div>
 </div>
 </div>

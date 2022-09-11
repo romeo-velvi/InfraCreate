@@ -2,7 +2,9 @@ import { PageableDTO, SortDTO } from './elementDTO';
 import { NetworkDTO } from './networkDTO';
 import { TheaterDTO } from './theaterDTO';
 
-
+/**
+ * Classe che contiene gli attributi che indicano l'insieme dei moduli ritornati dal teatro.
+ */
 export class ModuleListDTO {
     content: SimpleModuleDTO[]
     pageable: PageableDTO
@@ -17,7 +19,9 @@ export class ModuleListDTO {
     empty: boolean
 }
 
-
+/**
+ * Classe che contiene gli attributi che indica il catalogo del tipo.
+ */
 export class TypesCatalogueDTO {
     group: string
     id: string | number
@@ -25,6 +29,9 @@ export class TypesCatalogueDTO {
     value: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano la classificazione del modulo.
+ */
 export class ModuleClassificationDTO {
     blueprintType: string
     category: string
@@ -35,12 +42,18 @@ export class ModuleClassificationDTO {
     uuid: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano un parametro generico.
+ */
 export class GenericParameterDTO {
     type: string
     default: string
     description: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano i parametri di configurazione di un modulto.
+ */
 export class ConfigurationTemplateDTO {
     anchor_parameters: { [name: string]: GenericParameterDTO | string }
     instance_parameters: { [name: string]: GenericParameterDTO }
@@ -55,23 +68,36 @@ export class ConfigurationTemplateDTO {
     platform: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano la modalità di un modulo.
+ */
 export class ModuleModeDTO {
     code: string
     id: string | number
     name: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano lo stato di un modulo.
+ */
 export class ModuleStatusDTO {
     descriptionCode: string
     id: string | number
     name: string
 }
+
+/**
+ * Classe che contiene gli attributi che indicano le statitistiche di un modulo.
+ */
 export class StatisticItemDTO {
     error: string | number
     updated: string | number
     inserted: string | number
 }
 
+/**
+ * Classe che contiene gli attributi che indicano il modulo (simple - in dipendenza del teatro).
+ */
 export class SimpleModuleDTO {
     createdBy: string
     createdDate: string
@@ -89,6 +115,11 @@ export class SimpleModuleDTO {
     uuid: string
     version: string | number
 }
+
+/**
+ * Classe che contiene gli attributi che indicano il modulo (complex - ritorato da call appostita).
+ * @extends {SimpleModuleDTO}
+ */
 export class ModuleDTO extends SimpleModuleDTO {
     attachments: string[]
     author: string
@@ -106,6 +137,9 @@ export class ModuleDTO extends SimpleModuleDTO {
     tags: []
 }
 
+/**
+ * Classe che contiene gli attributi che indicano le interfacce esposte da un modulo.
+ */
 export class ModuleNetworkInterfaceDTO {
     id: string | number
     label: string
@@ -116,12 +150,18 @@ export class ModuleNetworkInterfaceDTO {
     uuid: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano le connessioni interfaccia-modulo.
+ */
 export class ConsumerInterfaceLinkDTO {
     local_interface: string
     module_instance: string
     remote_interface: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano le proprietà dell'istanza di un modulo all'interno del node_templates.
+ */
 export class ModuleInstancePropertiesDTO {
     area: string
     description: string
@@ -131,6 +171,10 @@ export class ModuleInstancePropertiesDTO {
     consumer_interfaces_link: ConsumerInterfaceLinkDTO[]
 }
 
+
+/**
+ * Classe che contiene gli attributi che indicano l'area di appartenenza di un modulo (complex).
+ */
 export class AreaDTO {
     id: string | number;
     uuid: string;
@@ -140,10 +184,17 @@ export class AreaDTO {
     deleted: boolean | string;
 }
 
+/**
+ * Classe che contiene gli attributi che indicano l'area di appartenenza di un modulo (simple).
+ */
 export class SimpleAreaDTO {
     area: string
     description: string
 }
+
+/**
+ * Classe che contiene gli attributi che indicano le proprietà dell'istanza di un teatro all'interno del node_templates.
+ */
 export class TheaterInstancePropertiesDTO {
     mode: string
     tags: TagTIP[]
@@ -152,17 +203,33 @@ export class TheaterInstancePropertiesDTO {
     version: string | number
     description: string
 }
+
+/**
+ * Classe che contiene gli attributi che indicano un tag.
+ */
 export class TagTIP{
     tag: string
 }
+
+/**
+ * Classe che contiene gli attributi che indicano in via generale le caratteristiche di un elemento che deve essere presente nel node_templates.
+ */
 export class ElementIntoTheaterDTO {  // goes into map in blueprint [name:string]: Module...
     properties: ModuleInstancePropertiesDTO | TheaterInstancePropertiesDTO
     type: string
 }
+
+
+/**
+ * Classe che contiene gli attributi che indicano le caratteristiche di un teatro presente nel node_templates.
+ */
 export class ModuleInstanceDTO {
     properties: ModuleInstancePropertiesDTO
     type: string
 }
+/**
+ * Classe che contiene gli attributi che indicano le caratteristiche di un modulo presente nel node_templates.
+ */
 export class TheaterInstanceDTO {
     properties: TheaterInstancePropertiesDTO
     type: string

@@ -5,7 +5,9 @@ import { ModalItem } from './components/modal/modalType';
 import { ModalService } from './services/application/modal/modal.service';
 import { SpinnerService } from './services/application/spinner/spinner.service';
 
-
+/**
+ * Componente principale dell'applicazione.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,17 +16,34 @@ import { SpinnerService } from './services/application/spinner/spinner.service';
 export class AppComponent {
 
   // general
-  title = 'InfraCreate';
+  /**
+   * Variabile dedicata al titolo dell'applicazione
+   */
+  protected title = 'InfraCreate';
 
   // global spinner
-  spinner: Observable<any>;
-  showspinner: boolean = false;
-  textspinner: string = "";
+  /**
+   * Variabile utilizzata per captare lo stato dello spinner generale.
+   * Serve a farlo mostrare/nascondere all'occorrenza, indipendentemente dall'applicazione
+   */
+  protected spinner: Observable<any>;
+  protected showspinner: boolean = false;
+  protected textspinner: string = "";
 
-  //global modal
-  modalData: ModalItem;
-  showmodal: boolean;
+  /**
+   * Variabile utilizzata per la modale generale.
+   */
+  protected modalData: ModalItem;
+  protected showmodal: boolean;
 
+  /**
+   * Costruttore della componente principale dell'applicazione.
+   * Contiene i subscriber dello spinner e modale generale
+   * @param router 
+   * @param spinnerService 
+   * @param cdr 
+   * @param modal 
+   */
   constructor(
     public router: Router,
     public spinnerService: SpinnerService,

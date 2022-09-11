@@ -39,3 +39,5 @@ Perchè non vengono riportate nelle api
 2) VEDERE MODULI SESSIONE SE VANNO INSERITI O MENO (sdl_management)
 
 3) chiarezze su tosca: volume? mirroring? come dovrei rappresentare/prendere? 
+
+4) catalogo & tag dto ??

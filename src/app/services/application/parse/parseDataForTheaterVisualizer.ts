@@ -1,6 +1,6 @@
 import { TheaterService } from '../../api/theater.service';
 import { ModuleService } from '../../api/module.service';
-import { TheaterDTO, TheaterType } from '../../modelsDTO/theaterDTO';
+import { TheaterDTO } from '../../modelsDTO/theaterDTO';
 import { ElementIntoTheaterDTO, ModuleInstanceDTO, ModuleNetworkInterfaceDTO, SimpleModuleDTO, TheaterInstancePropertiesDTO } from '../../modelsDTO/moduleDTO';
 import { SimpleModuleApplication, ModuleInstance, TheaterApplication, ReteConnection } from '../../modelsApplication/applicationModels';
 import { HostModuleDTO, HostPortModuleDTO } from '../../modelsDTO/hostDTO';
@@ -8,7 +8,7 @@ import { SubnetDTO } from '../../modelsDTO/networkDTO';
 import { ReteHostInfo } from 'src/app/rete-settings/nodes/rete-nodes/host/hostNode';
 import { ReteNetworkInfo } from 'src/app/rete-settings/nodes/rete-nodes/network/networkNode';
 import { ReteSubnetInfo } from 'src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode';
-import { StaticValue } from 'src/app/models/appType';
+import { StaticValue, TheaterType } from 'src/app/models/appType';
 import { createHost, createSubnet, createNetwork, createModuleNode } from './parseCommonElement';
 
 
@@ -114,7 +114,7 @@ export class ParseDataForTheaterVisualizer {
         if (!rowTheater.blueprintFile.node_templates[rowTheater.name]) {
             Object.entries(rowTheater.blueprintFile.node_templates).map(([key, value]) => {
                 let moduleIntoTheater: ElementIntoTheaterDTO = value as ElementIntoTheaterDTO
-                if (moduleIntoTheater.type.toLowerCase().includes(TheaterType.toLowerCase())) {
+                if (moduleIntoTheater.type.toLowerCase().includes(TheaterType.theater.toLowerCase())) {
                     rowTheater.name = key;
                     return;
                 }

@@ -6,7 +6,12 @@ import { DeployInstanceDTO } from "src/app/services/modelsDTO/theaterDTO";
 
 
 
-//module visualizer
+/**
+ * Funzione che ritorna gli attributi da visualizzare dato un nodo.
+ * Usata nella componente di visualizzazione modulo.
+ * @param node 
+ * @returns {{ [field: string]: string[] }[]}
+ */
 export function ReteDisplayNodeDataMV(node: Node): { [field: string]: string[] }[] {
     let v: { [field: string]: string[] }[] = [];
     v["base"] = [
@@ -56,6 +61,13 @@ export function ReteDisplayNodeDataMV(node: Node): { [field: string]: string[] }
     }
     return v;
 }
+
+/**
+ * Funzione che ritorna gli attributi da visualizzare dato un modulo.
+ * Usata nella componente di visualizzazione modulo.
+ * @param module 
+ * @returns {{ [field: string]: string[] }[]}
+ */
 export function ReteDisplayModuleDataMV(module: ModuleApplication): { [field: string]: string[] }[][] {
     let v: { [field: string]: string[] }[][] = [];
     v["basic"] = [
@@ -176,7 +188,14 @@ export function ReteDisplayModuleDataMV(module: ModuleApplication): { [field: st
     return v;
 }
 
-//theater visualizer
+
+
+/**
+ * Funzione che ritorna gli attributi da visualizzare dato un modulo.
+ * Usata nella componente di visualizzazione teatro.
+ * @param node 
+ * @returns {{ [field: string]: string[] }[]}
+ */
 export function ReteDisplayModuleDataTV(module: SimpleModuleApplication): { [field: string]: string[] }[][] {
     let v: { [field: string]: string[] }[][] = [];
     v["basic"] = [
@@ -231,6 +250,13 @@ export function ReteDisplayModuleDataTV(module: SimpleModuleApplication): { [fie
 
     return v;
 }
+
+/**
+ * Funzione che ritorna gli attributi da visualizzare dato un teatro.
+ * Usata nella componente di visualizzazione teatro.
+ * @param theater 
+ * @returns {{ [field: string]: string[] }[]}
+ */
 export function ReteDisplayTheaterDataTV(theater: TheaterApplication) {
     let v: { [field: string]: string[] }[][] = [];
     v["basic"] = [
@@ -288,7 +314,14 @@ export function ReteDisplayTheaterDataTV(theater: TheaterApplication) {
     return v;
 }
 
+
 // non viene usato in questa versione, ma, per i valori -> [0]:valore [1]:text|textarea|selection
+/**
+ * Funzione che ritorna gli attributi da visualizzare dato un'instanza del modulo.
+ * Usata nella componente di costruzione teatro.
+ * @param node 
+ * @returns {{ [field: string]: string[] }[]}
+ */
 export function ReteDisplayModuleInstanceTC(node: Node): { [field: string]: string[] }[] {
     let v: { [field: string]: string[] }[] = [
         { ["area"]: [node.data.area, "selection"] as unknown as string[] },
@@ -298,6 +331,13 @@ export function ReteDisplayModuleInstanceTC(node: Node): { [field: string]: stri
     ]
     return v;
 }
+
+/**
+ * Funzione che ritorna gli attributi da visualizzare dato un modulo.
+ * Usata nella componente di costruzione teatro.
+ * @param module 
+ * @returns {{ [field: string]: string[] }[]}
+ */
 export function ReteDisplayModuleDataTC(module: SimpleModuleApplication): { [field: string]: string[] }[][] {
     let v: { [field: string]: string[] }[][] = [];
     v["basic"] = [
@@ -345,6 +385,13 @@ export function ReteDisplayModuleDataTC(module: SimpleModuleApplication): { [fie
 
     return v;
 }
+
+/**
+ * Funzione che ritorna gli attributi da visualizzare dato un teatro.
+ * Usata nella componente di creazione teatro.
+ * @param theater 
+ * @returns {{ [field: string]: string[] }[]}
+ */
 export function ReteDisplayTheaterDataTC(theater: TheaterApplication) {
     let v: { [field: string]: string[] }[][] = [];
     v["basic"] = [
@@ -395,7 +442,12 @@ export function ReteDisplayTheaterDataTC(theater: TheaterApplication) {
     return v;
 }
 
-
+/**
+ * Funzione che ritorna gli attributi da visualizzare dato un modulo.
+ * Usata nella componente di creazione modulo.
+ * @param module 
+ * @returns {{ [field: string]: string[] }[]}
+ */
 export function ReteDisplayModuleDataMC(module: ModuleApplication): { [field: string]: string[] }[][] {
     let v: { [field: string]: string[] }[][] = [];
     v["basic"] = [

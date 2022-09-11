@@ -1,5 +1,8 @@
 import { NetworkDTO, SubnetDTO } from "./networkDTO"
 
+/**
+ * Classe che contiene gli attributi che indicano le porte degli host.
+ */
 export class HostPortModuleDTO {
     id: string | number
     name: string
@@ -7,6 +10,9 @@ export class HostPortModuleDTO {
     subnets: SubnetDTO[]
 }
 
+/**
+ * Classe che contiene gli attributi che indicano gli host.
+ */
 export class HostModuleDTO {
     hasQuery: boolean
     id: string | number

@@ -3,7 +3,7 @@
  */
 export enum SubjectType {
     MODULE = "Module",
-    THEATER  = "Theater"
+    THEATER = "Theater"
 }
 
 /**
@@ -11,7 +11,7 @@ export enum SubjectType {
  */
 export enum ComposerVisualizerType {
     COMPOSER = "Composer",
-    VISUALIZER  = "Visualizer"
+    VISUALIZER = "Visualizer"
 }
 
 /**
@@ -25,15 +25,15 @@ export enum InterfacePortType {
 /**
  * Enum per indicare il tipo di porta
  */
-export enum NodePortType{
-    INPUT="input",
-    OUTPUT="output"
+export enum NodePortType {
+    INPUT = "input",
+    OUTPUT = "output"
 }
 
 /**
  * Enum per indicare il tipo di sistma operativo
  */
-export enum StaticValue{
+export enum StaticValue {
     SubnetOutput = "Link",
     hostOS1 = "Linux",
     hostOS2 = "Ubuntu",
@@ -54,14 +54,14 @@ export enum IpVersionType {
 /**
  * Elemento che contiene le variabili da portare al router nel caso si tratti della visualizzazione.
  */
-export class DataRouteVisualizer{
+export class DataRouteVisualizer {
     id: number;
     type: SubjectType;
 }
 /**
  * Elemento che contiene le variabili da portare al router nel caso si tratti della costruzione.
  */
-export class DataRouteComposer{
+export class DataRouteComposer {
     name: string;
     description: string;
     author: string;
@@ -119,7 +119,7 @@ export enum EnumModuleTypeDescription {
  * Enum che restituisce delle proprietà, espresse in termini di variabili indicatrici dei moduli.
  * Indica il tipo di un modulo e la sua rappresentazione. (api-restituzione moduli da teatro)
  */
- export enum ModuleTypeTheater {
+export enum ModuleTypeTheater {
     TheaterModuleInstance = "sysman.creo.nodes.TheaterModuleInstance",
     MirroringModuleInstance = "sysman.creo.nodes.MirroringModuleInstance",
     TheaterInternalServiceModuleInstance = "sysman.creo.nodes.TheaterInternalServiceModuleInstance",
@@ -131,7 +131,7 @@ export enum EnumModuleTypeDescription {
 /**
  * Rappresentazione inversa di @see {ModuleTypeTheater}
  */
- export enum ModuleType1 {
+export enum ModuleType1 {
     "sysman.creo.nodes.TheaterModuleInstance" = "TheaterModuleInstance", // SINONIMI -> "sysman.creo.nodes.TheatreModuleInstance" = "TheaterModuleInstance",
     "sysman.creo.nodes.MirroringModuleInstance" = "MirroringModuleInstance",
     "sysman.creo.nodes.TheaterInternalServiceModuleInstance" = "TheaterInternalServiceModuleInstance",
@@ -168,3 +168,10 @@ export enum ModuleType2 {
     "BORDER" = "Border", // TODO
 }
 
+
+/**
+ * Enum che restituisce il tipi (type) di un teatro (api-restituzione moduli da teatro)
+ */
+export enum TheaterType {
+    theater = "sysman.creo.nodes.Theater"
+}

@@ -27,7 +27,9 @@ import { TheaterModuleInstanceComponent } from './rete-settings/nodes/rete-modul
 import { VisualizerComponent } from './visualizer-system/visualizer/visualizer.component';
 import { ComposerComponent } from './composer-system/composer/composer.component';
 
-import { CommonModule, NgClass, NgStyle } from '@angular/common';
+import { CommonModule } from '@angular/common';
+
+import { ControlTemplate } from './rete-settings/controls/control'; 
 
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './utility/app.init';
@@ -107,7 +109,9 @@ let providerInitKeycloak: Provider = (!environment.mocked)
     DataInputV2Component,
     TabnavComponent,
     DataItemComponent,
-    DocsComponent
+    DocsComponent,
+
+    ControlTemplate
   ],
   imports: [
     BrowserModule,
