@@ -35,7 +35,11 @@ export const ModuleComponents = [
  * @see {getEmptyReteTheaterInternalServiceModuleInstanceInfo}
  */
 export class EmptyModuleInfo {
-    static MirroringModuleInstance: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo();
-    static TheaterModuleInstance: ReteTheaterModuleInstanceInfo = getEmptyReteTheaterModuleInstanceInfo();
-    static TheaterInternalServiceModuleInstance: ReteTheaterInternalServiceModuleInstanceInfo = getEmptyReteTheaterInternalServiceModuleInstanceInfo();
+    TheaterModuleInstance: ReteTheaterModuleInstanceInfo = getEmptyReteTheaterModuleInstanceInfo()
+    TheaterInternalServiceModuleInstance: ReteTheaterInternalServiceModuleInstanceInfo = getEmptyReteTheaterInternalServiceModuleInstanceInfo()
+    MirroringModuleInstance: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo()
+    VirtualServerModuleInstance: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo() // todo
+    ExternalVirtualMachine: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo() // todo
+    AutomaticSystem: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo() // todo
+    Border: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo() // todo
 }

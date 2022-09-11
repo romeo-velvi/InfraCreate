@@ -2,35 +2,33 @@ import { StaticValue, InterfacePortType, ModuleType1, ModuleType2 } from "src/ap
 import { getEmptyHostInfo, ReteHostInfo } from "src/app/rete-settings/nodes/rete-nodes/host/hostNode";
 import { ReteNetworkInfo, getEmptyNetworkInfo } from "src/app/rete-settings/nodes/rete-nodes/network/networkNode";
 import { getEmptySubnetInfo, ReteSubnetInfo } from "src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode";
-import { ReteMirroringModuleInstanceInfo, getEmptyReteMirroringModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/mirroringModuleInstance/mirroringModuleInstanceNode";
-import { getEmptyReteTheaterInternalServiceModuleInstanceInfo, ReteTheaterInternalServiceModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/theaterInternalServiceModuleInstance/theaterInternalServiceModuleInstanceNode";
-import { getEmptyReteTheaterModuleInstanceInfo, ReteTheaterModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/theaterModuleInstance/theaterModuleInstanceNode";
+import { ReteMirroringModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/mirroringModuleInstance/mirroringModuleInstanceNode";
+import { ReteTheaterInternalServiceModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/theaterInternalServiceModuleInstance/theaterInternalServiceModuleInstanceNode";
+import { ReteTheaterModuleInstanceInfo } from "src/app/rete-settings/nodes/rete-modules/theaterModuleInstance/theaterModuleInstanceNode";
 import { SimpleModuleApplication, ModuleInstance } from "../../modelsApplication/applicationModels";
 import { HostModuleDTO } from "../../modelsDTO/hostDTO";
 import { ModuleInstanceDTO, ModuleNetworkInterfaceDTO } from "../../modelsDTO/moduleDTO";
 import { SubnetDTO } from "../../modelsDTO/networkDTO";
+import { EmptyModuleInfo } from "src/app/rete-settings/nodes/rete-modules/export-rete-modules";
 
-export class ModuleNodeTypeToRete {
-    Host: ReteHostInfo = getEmptyHostInfo()
-    Subnet: ReteSubnetInfo = getEmptySubnetInfo()
-    Network: ReteNetworkInfo = getEmptyNetworkInfo()
-}
-export class TheaterNodeTypeToRete {
-    TheaterModuleInstance: ReteTheaterModuleInstanceInfo = getEmptyReteTheaterModuleInstanceInfo()
-    TheaterInternalServiceModuleInstance: ReteTheaterInternalServiceModuleInstanceInfo = getEmptyReteTheaterInternalServiceModuleInstanceInfo()
-    MirroringModuleInstance: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo()
-    VirtualServerModuleInstance: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo() // todo
-    ExternalVirtualMachine: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo() // todo
-    AutomaticSystem: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo() // todo
-    Border: ReteMirroringModuleInstanceInfo = getEmptyReteMirroringModuleInstanceInfo() // todo
-}
-
+/**
+ * Funzione che esegue il settaggio iniziale per i nodi host.
+ * @param name 
+ * @param hostDTO 
+ * @returns {ReteHostInfo}
+ */
 export function createHost(name: string, hostDTO: HostModuleDTO): ReteHostInfo {
     var x: ReteHostInfo = getEmptyHostInfo()
     x.os = StaticValue.hostOS1;
     x.name = name;
     return x;
 }
+/**
+ * Funzione che esegue il settaggio iniziale per i nodi subnet.
+ * @param name 
+ * @param subnetDTO 
+ * @returns {ReteSubnetInfo}
+ */
 export function createSubnet(name: string, subnetDTO: SubnetDTO): ReteSubnetInfo {
     var x: ReteSubnetInfo = getEmptySubnetInfo()
     x.cidr = subnetDTO.cidr;
@@ -40,6 +38,12 @@ export function createSubnet(name: string, subnetDTO: SubnetDTO): ReteSubnetInfo
     x.Input.push(StaticValue.SubnetOutput) // add (only one) port for input
     return x;
 }
+/**
+ * Funzione che esegue il settaggio iniziale per i nodi network.
+ * @param name 
+ * @param moduleInterfaceDTO 
+ * @returns {ReteNetworkInfo}
+ */
 export function createNetwork(name: string, moduleInterfaceDTO: ModuleNetworkInterfaceDTO[]): ReteNetworkInfo {
     var x: ReteNetworkInfo = getEmptyNetworkInfo()
     x.name = name;
@@ -54,10 +58,18 @@ export function createNetwork(name: string, moduleInterfaceDTO: ModuleNetworkInt
     x.externalInterfaceType = InterfacePortType[mifdto.type];
     return x;
 }
+/**
+ * Funzione che esegue il settaggio iniziale per i moduli del teatro.
+ * La funzione controlla prima di che tipo è il modulo, prima di eseguire le dovute assegnazioni. 
+ * @param name 
+ * @param moduleInstance 
+ * @param simpleModuleRoot
+ * @returns {ModuleInstance}
+ */
 export function createModuleNode(name: string, moduleInstance: ModuleInstanceDTO, simpleModuleRoot: SimpleModuleApplication): ModuleInstance {
     let rete: ReteTheaterModuleInstanceInfo | ReteTheaterInternalServiceModuleInstanceInfo | ReteMirroringModuleInstanceInfo;
     if (ModuleType1[moduleInstance.type]) {
-        rete = new TheaterNodeTypeToRete()[ModuleType1[moduleInstance.type]];
+        rete = new EmptyModuleInfo()[ModuleType1[moduleInstance.type]];
     }
     rete.name = name ? name : moduleInstance.properties.module + " instance";
     rete.module = moduleInstance.properties.module;

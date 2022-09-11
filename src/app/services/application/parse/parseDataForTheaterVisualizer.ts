@@ -1,24 +1,46 @@
 import { TheaterService } from '../../api/theater.service';
 import { ModuleService } from '../../api/module.service';
 import { TheaterDTO, TheaterType } from '../../modelsDTO/theaterDTO';
-import { ElementIntoTheaterDTO, ModuleInstanceDTO,  ModuleNetworkInterfaceDTO, SimpleModuleDTO, TheaterInstancePropertiesDTO  } from '../../modelsDTO/moduleDTO';
-import { SimpleModuleApplication, ModuleInstance, TheaterApplication,  ReteConnection   } from '../../modelsApplication/applicationModels';
+import { ElementIntoTheaterDTO, ModuleInstanceDTO, ModuleNetworkInterfaceDTO, SimpleModuleDTO, TheaterInstancePropertiesDTO } from '../../modelsDTO/moduleDTO';
+import { SimpleModuleApplication, ModuleInstance, TheaterApplication, ReteConnection } from '../../modelsApplication/applicationModels';
 import { HostModuleDTO, HostPortModuleDTO } from '../../modelsDTO/hostDTO';
 import { SubnetDTO } from '../../modelsDTO/networkDTO';
-import {  ReteHostInfo } from 'src/app/rete-settings/nodes/rete-nodes/host/hostNode';
+import { ReteHostInfo } from 'src/app/rete-settings/nodes/rete-nodes/host/hostNode';
 import { ReteNetworkInfo } from 'src/app/rete-settings/nodes/rete-nodes/network/networkNode';
 import { ReteSubnetInfo } from 'src/app/rete-settings/nodes/rete-nodes/subnet/subnetNode';
 import { StaticValue } from 'src/app/models/appType';
 import { createHost, createSubnet, createNetwork, createModuleNode } from './parseCommonElement';
 
+
+/**
+ * Elemento che ha lo scopo di eseguire il fetching ed il parsing dei dati per la visualizzazione del teatro.
+ */
 export class ParseDataForTheaterVisualizer {
 
+    /**
+     * Costruttore componente.
+     * @param theaterService 
+     * @param moduleService 
+     */
     constructor(
         private theaterService: TheaterService,
         private moduleService: ModuleService,
     ) {
     }
 
+
+
+
+    /**
+     * Funzione che viene richiamata per fornire il teatro pareserizzato.
+     * Questa funzione si avvale di tutte quei metodi che permettono di restituire e fixare un output adatto all'applicazione.
+     * @param id 
+     * @returns {Promise<TheaterApplication>}
+     * @see {parseTheater}
+     * @see {parseModulesFromTheater}
+     * @see {parseModuleInstance}
+     * @see {getModuleConnection}
+     */
     async parseTheaterForTheaterVisualizer(id: string | number): Promise<TheaterApplication> {
 
         var theaterDTO: TheaterDTO;
@@ -39,12 +61,33 @@ export class ParseDataForTheaterVisualizer {
 
         return theater;
     }
+
+
+
+
+    /**
+     * Funzione che ritorna i dati a seguito della fetch con il server.
+     * @param id 
+     * @returns {Promise<[TheaterDTO, TheaterApplication]>}
+     * @see {theaterService}
+     * @see {initTheaterAfterFetch}
+     */
     async parseTheater(id: string | number): Promise<[TheaterDTO, TheaterApplication]> {
         //normalizzazione & get theater
         var rowTheater: TheaterDTO = await this.theaterService.getTheaterInfoByID(id);
         let theater: TheaterApplication = await this.initTheaterAfterFetch(rowTheater);
         return [rowTheater, theater];
     }
+
+
+
+
+    /**
+     * Funzione che inizializza gli attributi del teatro per l'applicazione.
+     * @param rowTheater 
+     * @returns {TheaterApplication}
+     * @see {fixTheaterName}
+     */
     initTheaterAfterFetch(rowTheater: TheaterDTO): TheaterApplication {
         this.fixTheaterName(rowTheater);
         let theaterProperties: TheaterInstancePropertiesDTO = this.get_and_remove_theater_properties_from_blueprint(rowTheater);
@@ -57,6 +100,15 @@ export class ParseDataForTheaterVisualizer {
         };
         return theater;
     }
+
+
+
+
+
+    /**
+     * Funzione che ha come scopo la fix del nome del teatro nel caso diverga dalla sua rappresentazione nel node_templates.
+     * @param rowTheater 
+     */
     fixTheaterName(rowTheater: TheaterDTO) {
         // @check controllo incoerenza nome teatro con quello riporato in node_templates -> si preferisce quello proveniente dal blueprint
         if (!rowTheater.blueprintFile.node_templates[rowTheater.name]) {
@@ -70,6 +122,16 @@ export class ParseDataForTheaterVisualizer {
             console.warn("Theater name doesn't match");
         }
     }
+
+
+
+
+
+    /**
+     * Funzione che serve ad esportare le proprietà del modulo dalla parte dei node_templates all'oggetto generale.
+     * @param rowTheater 
+     * @returns {TheaterInstancePropertiesDTO}
+     */
     get_and_remove_theater_properties_from_blueprint(rowTheater: TheaterDTO): TheaterInstancePropertiesDTO {
         // esporta e rimuove le proprietà situate in node_modules
         let moduleIntoTheater: ElementIntoTheaterDTO = rowTheater.blueprintFile.node_templates[rowTheater.name];
@@ -77,6 +139,20 @@ export class ParseDataForTheaterVisualizer {
         delete rowTheater.blueprintFile.node_templates[rowTheater.name];
         return theaterProperties;
     }
+
+
+
+
+
+    /**
+     * Funzione che si occupa di eseguire il fetching dei moduli appartenenti al teatro e le ritorna come dizionario di modulo-oggetto.
+     * Si occupa anche di organizzare la topologia dei moduli del teatro.
+     * @param theaterUUID 
+     * @returns {Promise<{ [name: string]: SimpleModuleApplication }>}
+     * @see {theaterService}
+     * @see {getModuleDict}
+     * @see {getModulesTopology}
+     */
     async parseModulesFromTheater(theaterUUID: string | number): Promise<{ [name: string]: SimpleModuleApplication }> {
         //normalizzazione & get modules -> Assign Map
         let rowModules: SimpleModuleDTO[] = await this.theaterService.getTheaterModulesByUUID(theaterUUID);
@@ -84,6 +160,17 @@ export class ParseDataForTheaterVisualizer {
         this.getModulesTopology(modules);
         return modules;
     }
+
+
+
+
+
+    /**
+     * Funzione che prende in input i dati dei moduli del teatro e le ritorna parserizzati e sottoforma organizzata di dizionario.
+     * @param modules 
+     * @returns { Promise<{ [name: string]: SimpleModuleApplication }>}
+     * @see {getModulesDetails}
+     */
     async getModuleDict(modules: SimpleModuleDTO[]): Promise<{ [name: string]: SimpleModuleApplication }> {
         let moduleDict: { [name: string]: SimpleModuleApplication } = {};
         let modulesApplication: SimpleModuleApplication[] = await this.getModulesDetails(modules);
@@ -92,6 +179,93 @@ export class ParseDataForTheaterVisualizer {
         });
         return moduleDict;
     }
+
+
+
+
+    /**
+     * Funzione che prende i moduli reperiti dal server e li parserizza e "arricchisce" con le informazione dei nodi e interfacce.
+     * @param modules 
+     * @returns {Promise<SimpleModuleApplication[]>}
+     * @see {getModulesNodes}
+     * @see {getModulesInterfaces}
+     */
+    async getModulesDetails(modules: SimpleModuleDTO[]): Promise<SimpleModuleApplication[]> {
+        let h: { [key: string]: HostModuleDTO[] } = await this.getModulesNodes(modules);
+        let i: { [key: string]: ModuleNetworkInterfaceDTO[] } = await this.getModulesInterfaces(modules);
+        let moduleInfo: SimpleModuleApplication[] = [];
+        await Promise.all(
+            Object.entries(modules).map(async ([key, value]) => {
+                moduleInfo[key] = {
+                    ...value,
+                    hosts: h[key],
+                    interfaces: i[key],
+                }
+            })
+        )
+        return moduleInfo;
+    }
+
+
+
+
+
+    /**
+     * Funzione che esegue il fetch degli host di un modulo di un teatro.
+     * @param modules 
+     * @returns {Promise<{ [key: string]: HostModuleDTO[] }>}
+     * @see {moduleService}
+     */
+    async getModulesNodes(modules: SimpleModuleDTO[]): Promise<{ [key: string]: HostModuleDTO[] }> {
+        let h: { [key: string]: HostModuleDTO[] } = {};
+        await Promise.all(
+            Object.entries(modules).map(async ([key, value]) => {
+                let simpleModuleDTO: SimpleModuleDTO = value as SimpleModuleDTO;
+                try {
+                    h[key] = await this.moduleService.getModuleHostByTheaterUUID(simpleModuleDTO.uuid);
+                } catch (e) {
+                    console.error(e);
+                }
+            })
+        )
+        return h;
+    }
+
+
+
+
+
+    /**
+     * Funzione che esegue il fetch delle interfacce di un modulo di un teatro.
+     * @param modules 
+     * @returns {Promise<{ [key: string]: ModuleNetworkInterfaceDTO[] }>}
+     * @see {moduleService}
+     */
+    async getModulesInterfaces(modules: SimpleModuleDTO[]): Promise<{ [key: string]: ModuleNetworkInterfaceDTO[] }> {
+        let i: { [key: string]: ModuleNetworkInterfaceDTO[] } = {};
+        await Promise.all(
+            Object.entries(modules).map(async ([key, value]) => {
+                let simpleModuleDTO: SimpleModuleDTO = value as SimpleModuleDTO;
+                try {
+                    i[key] = await this.moduleService.getModuleInterfacesByModuleID(simpleModuleDTO.id);
+                } catch (e) {
+                    console.error(e);
+                }
+            })
+        )
+        return i;
+    }
+
+
+
+
+    /**
+     * Funzione che si occupa di collegare le istanze dei moduli del teatro con i dettagli dei singoli moduli (root).
+     * Questa funzione produce direttamente i dati del modulo (sottoforma di nodo) da poter essere inserito nel canvas.
+     * @param theater 
+     * @param modules 
+     * @returns {{ [name: string]: ModuleInstance }}
+     */
     parseModuleInstance(theater: TheaterApplication, modules: { [name: string]: SimpleModuleApplication }): { [name: string]: ModuleInstance } {
         var elements: { [name: string]: ModuleInstance } = {};
         Object.entries(theater.blueprintFile.node_templates).map(async ([key, value]) => {
@@ -112,49 +286,16 @@ export class ParseDataForTheaterVisualizer {
         });
         return elements;
     }
-    async getModulesDetails(modules: SimpleModuleDTO[]): Promise<SimpleModuleApplication[]> {
-        let h: { [key: string]: HostModuleDTO[] } = await this.getModulesNodes(modules);
-        let i: { [key: string]: ModuleNetworkInterfaceDTO[] } = await this.getModulesInterfaces(modules);
-        let moduleInfo: SimpleModuleApplication[] = [];
-        await Promise.all(
-            Object.entries(modules).map(async ([key, value]) => {
-                moduleInfo[key] = {
-                    ...value,
-                    hosts: h[key],
-                    interfaces: i[key],
-                }
-            })
-        )
-        return moduleInfo;
-    }
-    async getModulesNodes(modules: SimpleModuleDTO[]): Promise<{ [key: string]: HostModuleDTO[] }> {
-        let h: { [key: string]: HostModuleDTO[] } = {};
-        await Promise.all(
-            Object.entries(modules).map(async ([key, value]) => {
-                let simpleModuleDTO: SimpleModuleDTO = value as SimpleModuleDTO;
-                try {
-                    h[key] = await this.moduleService.getModuleHostByTheaterUUID(simpleModuleDTO.uuid);
-                } catch (e) {
-                    console.error(e);
-                }
-            })
-        )
-        return h;
-    }
-    async getModulesInterfaces(modules: SimpleModuleDTO[]): Promise<{ [key: string]: ModuleNetworkInterfaceDTO[] }> {
-        let i: { [key: string]: ModuleNetworkInterfaceDTO[] } = {};
-        await Promise.all(
-            Object.entries(modules).map(async ([key, value]) => {
-                let simpleModuleDTO: SimpleModuleDTO = value as SimpleModuleDTO;
-                try {
-                    i[key] = await this.moduleService.getModuleInterfacesByModuleID(simpleModuleDTO.id);
-                } catch (e) {
-                    console.error(e);
-                }
-            })
-        )
-        return i;
-    }
+
+
+
+
+
+    /**
+     * Funzione che ha lo scopo di valorizzare le connessioni dei moduli
+     * @param theater 
+     * @returns {ReteConnection[]}
+     */
     getModuleConnection(theater: TheaterApplication): ReteConnection[] {
         var connections_list: ReteConnection[] = [];
         Object.entries(theater.blueprintFile.node_templates).map(([key, value]) => {
@@ -175,6 +316,18 @@ export class ParseDataForTheaterVisualizer {
         });
         return connections_list;
     }
+
+
+
+
+    /**
+     * Funzione che ha lo scopo di controllare ed inserire la topologia dei nodi di ogni moduli del teatro.
+     * Questa funzione inizializza già i nodi da poter essere inseriti nel canvas.
+     * @param modulesInfo 
+     * @see {createHost}
+     * @see {createSubnet}
+     * @see {createNetwork}
+     */
     getModulesTopology(modulesInfo: { [name: string]: SimpleModuleApplication }) {
         Object.entries(modulesInfo).map(([key, value]) => {
             let moduleInfo: SimpleModuleApplication = value;
@@ -241,5 +394,10 @@ export class ParseDataForTheaterVisualizer {
             moduleInfo.network_number = nn;
         });
     }
+
+
+
+
+
 }
 
