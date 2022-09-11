@@ -102,7 +102,8 @@ export class ComposerComponent implements OnInit {
       this.data = this.storageService.data;
       this.storageService.data = undefined; // consumo l'elemento
     }
-    else {
+    
+    if(!this.name && !this.data){
       this.hasproblem = true;
     }
 
