@@ -32,6 +32,8 @@ export class ModuleApplication extends ModuleDTO implements CommonModule {
     subnet_number: number
     network_number: number
     topology: NodeTopologyElement
+    // serve per validare il json risultante dal parsing del theaterApplication
+    validateObject?: string = "module";
 }
 // PER IMPLEMENTAZIONI FUTURE, PER COERENZA, PRENDERE DIRETTAMENTE I SINGOLI NODI DALLA CHIAMATA ESCLUSIVA E NON DA QUELLA CHE RESTITUISCE TUTTI I TEATRI
 /**
@@ -98,6 +100,8 @@ export class TheaterApplication extends TheaterDTO implements TheaterTopology {
     // other data
     properties: TheaterInstancePropertiesDTO;
     topology: TheaterTopology;
+    // serve per validare il json risultante dal parsing del theaterApplication
+    validateObject?: string = "theater";
 }
 
 export class AreaApplication extends AreaDTO {

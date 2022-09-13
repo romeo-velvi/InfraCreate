@@ -141,14 +141,6 @@ export class ComposerComponent implements OnInit {
     this.spinnerService.setSpinner(true, "Loading canvas element");
     if (this.hasFile) {
       this.data = this.data as ModuleApplication;
-      // controllo un campo per vedere se è stato passato correttamente il file in json->ModuleApplication
-      try {
-        let t = this.data.topology.elements;
-      } catch {
-        this.hasproblem = true;
-        this.spinnerService.setSpinner(false);
-        return;
-      }
     }
     from(
       this.parseService.parseFlavorForModuleComposer()
@@ -171,14 +163,6 @@ export class ComposerComponent implements OnInit {
     this.spinnerService.setSpinner(true, "Getting Theater modules")
     if (this.hasFile) {
       this.data = this.data as TheaterApplication;
-      // controllo un campo per vedere se è stato passato correttamente il file in json->TheaterApplication
-      try {
-        let t = this.data.topology.elements;
-      } catch {
-        this.spinnerService.setSpinner(false);
-        this.hasproblem = true;
-        return;
-      }
     }
     from(
       this.parseService.parseModuleForTheaterComposer()

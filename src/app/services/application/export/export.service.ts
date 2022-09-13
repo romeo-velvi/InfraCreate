@@ -4,9 +4,9 @@ import { ModuleApplication, TheaterApplication } from '../../modelsApplication/a
 import { ModuleExport } from '../../modelsExport/moduleExport';
 import { ExportModule } from './exportModule';
 import { ExportTheater } from './exportTheater';
-import { stringify as YAMLstringfy } from "json-to-pretty-yaml"
 import { TheaterExport } from '../../modelsExport/theaterExport';
 import { SubjectType } from 'src/app/models/appType';
+import { exportToYaml, exportToJson } from './exportTo';
 
 /**
  * Servizio di eport del canvas/editor sottoforma di file (scaricabile)
@@ -42,7 +42,7 @@ export class ExportService {
    */
   exportModuleToYAML(module: ModuleApplication, editor: Data) {
     let data: ModuleExport = new ExportModule(module, editor).convertModule();
-    return this.exportToYaml(module.name, data);
+    return exportToYaml(module.name, data);
   }
 
   /**
@@ -52,7 +52,7 @@ export class ExportService {
    * @see {exportToJson} 
    */
   exportModuleToJSON(module: ModuleApplication, editor: Data) {
-    return this.exportToJson(module.name+this.moduleType, module);
+    return exportToJson(module.name+this.moduleType, module);
   }
 
 
@@ -65,7 +65,7 @@ export class ExportService {
    */
   exportTheaterToYAML(theater: TheaterApplication, editor: Data) {
     let data: TheaterExport = new ExportTheater(theater, editor).convertTheater();
-    return this.exportToYaml(theater.name, data);
+    return exportToYaml(theater.name, data);
   }
 
   /**
@@ -75,51 +75,7 @@ export class ExportService {
    * @see {exportToJson} 
    */
   exportTheaterToJSON(theater: TheaterApplication, editor: Data) {
-    return this.exportToJson(theater.name+this.theaterType, theater);
+    return exportToJson(theater.name+this.theaterType, theater);
   }
-
-  /**
-   * Funzione che si occupa del download effettivo in un formato yaml.
-   * @param fn 
-   * @param objectData 
-   */
-  exportToYaml(fn: string, objectData: any) {
-    const data = YAMLstringfy(objectData);
-    let filename = fn + ".yaml";
-    let contentType = "application/json;charset=utf-8;";
-    var blob = new Blob([decodeURIComponent(encodeURI(data))], { type: contentType });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.classList.add('d-none');
-    a.href = url;
-    a.download = filename;
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
-  }
-
-  /**
-   * Funzione che si occupa del download effettivo in un formato json.
-   * @param fn 
-   * @param objectData 
-   */
-  exportToJson(fn: string, objectData: any) {
-    const data = JSON.stringify(objectData);
-    let filename = fn + ".json";
-    let contentType = "application/json;charset=utf-8;";
-    var blob = new Blob([decodeURIComponent(encodeURI(data))], { type: contentType });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.classList.add('d-none');
-    a.href = url;
-    a.download = filename;
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
-  }
-
-
 
 }

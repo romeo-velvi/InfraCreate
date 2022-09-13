@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { SubjectType } from 'src/app/models/appType';
+import { ModuleApplication, TheaterApplication } from '../../modelsApplication/applicationModels';
 
 /**
  * Servizio di gestione di importing file da locale all'app.
@@ -7,6 +9,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FileService {
+
+  /**
+ * Variabile che indica l'estensione aggiuntiva al nome e tipo del file
+ * @example 
+ * Se si dovesse scaricare l'application (json) di un teatro, essa sarebbe: nomeTeatro.theater.json 
+ */
+  protected theaterType = "." + SubjectType.THEATER.toLowerCase() + ".json";
+  /**
+ * Variabile che indica l'estensione aggiuntiva al nome e tipo del file
+ * @example 
+ * Se si dovesse scaricare l'application (json) di un modulo, essa sarebbe: nomeMosulo.module.json 
+ */
+  protected moduleType = "." + SubjectType.MODULE.toLowerCase() + ".json";
+
 
   /**
    * Variabile che ha come scopo il salvataggio di informazioni del file.
@@ -29,9 +45,11 @@ export class FileService {
     return new Promise((resolve, reject) => {
       fileReader.onload = async () => {
         try {
-          if(this.selectedFile.type!=="application/json")
-            reject("The file selected is not supproted.")
-          resolve(JSON.parse(fileReader.result as string));
+          var data = JSON.parse(fileReader.result as string)
+          if (this.isFileValid(this.selectedFile, data))
+            resolve(data)
+          else
+            reject("The file selected is not valid")
         }
         catch (e) {
           reject(e);
@@ -48,8 +66,34 @@ export class FileService {
    * Funzione cha come scopo ritornare il file (sottoforma di oggetto parserizzato) captato dall'input.
    * @returns 
    */
-  getFile(): File{
+  getFile(): File {
     return this.selectedFile;
   }
+
+  /**
+   * Funzione che ha lo scopo di controllare se il file è accettabile dall'applicazione o meno.
+   * @param file 
+   * @param data 
+   * @returns {boolean}
+   */
+  isFileValid(file: File, data: any): boolean {
+    if (file.type !== "application/json")
+      return false
+    if (file.name.includes(this.theaterType)) {
+      if ((data as TheaterApplication).validateObject === "theater")
+        return true
+      else
+        return false
+    }
+    else if (file.name.includes(this.moduleType)) {
+      if ((data as ModuleApplication).validateObject === "module")
+        return true
+      else
+        return false
+    }
+    else
+      return false
+  }
+
 
 }

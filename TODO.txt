@@ -2,9 +2,10 @@ TODO
 - controllare selection in modo tale che si aggiorni il defoult value al cambiamento anzichè uscire/rientrare
 - inserire tema default dark in cmpodoc -> https://stackoverflow.com/questions/68753712/how-to-disable-the-dark-mode-in-compodoc-for-angular
 - TabComponent fare simile a data-item per la gestione dei contenuti
-- Inserire dati nel TheaterApplicatio & ModuleApplication per la verifica di validità nel composer
 - In composer, gestire la creazione delle porte come la creazione delle interfacce
 - Creare Service per gestire i tipi di nodi
++ Ridurre dimensioni offcanvas.
++ dove c'è modificare app-data-item (se non erro porte) per la modifica.
 _________________________________________________________________________________________
 
 IMPLEMENTAZIONI FUTURE
