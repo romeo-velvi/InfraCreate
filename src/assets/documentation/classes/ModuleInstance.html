@@ -147,7 +147,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="84" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:84</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="86" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -173,7 +173,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="81" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:81</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="83" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -199,7 +199,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="82" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:82</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="84" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -231,7 +231,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in         <code><a href="../classes/ModuleInstanceDTO.html#source" target="_self" >ModuleInstanceDTO:163</a></code>
+                                <div class="io-line">Definito in         <code><a href="../classes/ModuleInstanceDTO.html#source" target="_self" >ModuleInstanceDTO:227</a></code>
 </div>
                         </td>
                     </tr>
@@ -264,7 +264,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in         <code><a href="../classes/ModuleInstanceDTO.html#source" target="_self" >ModuleInstanceDTO:164</a></code>
+                                <div class="io-line">Definito in         <code><a href="../classes/ModuleInstanceDTO.html#source" target="_self" >ModuleInstanceDTO:228</a></code>
 </div>
                         </td>
                     </tr>
@@ -318,6 +318,8 @@ export class ModuleApplication extends ModuleDTO implements CommonModule {
     subnet_number: number
     network_number: number
     topology: NodeTopologyElement
+    // serve per validare il json risultante dal parsing del theaterApplication
+    validateObject?: string &#x3D; &quot;module&quot;;
 }
 // PER IMPLEMENTAZIONI FUTURE, PER COERENZA, PRENDERE DIRETTAMENTE I SINGOLI NODI DALLA CHIAMATA ESCLUSIVA E NON DA QUELLA CHE RESTITUISCE TUTTI I TEATRI
 /**
@@ -384,6 +386,8 @@ export class TheaterApplication extends TheaterDTO implements TheaterTopology {
     // other data
     properties: TheaterInstancePropertiesDTO;
     topology: TheaterTopology;
+    // serve per validare il json risultante dal parsing del theaterApplication
+    validateObject?: string &#x3D; &quot;theater&quot;;
 }
 
 export class AreaApplication extends AreaDTO {

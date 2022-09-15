@@ -350,8 +350,8 @@ Si occupa di prendere i dati di route url e valorizzare le rispettive variabili.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Definito in <a href="" data-line="198"
-                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:198</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="182"
+                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:182</a></div>
                 </td>
             </tr>
 
@@ -436,8 +436,8 @@ See {parseService}</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Definito in <a href="" data-line="170"
-                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:170</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="162"
+                            class="link-to-prism">src/app/composer-system/composer/composer.component.ts:162</a></div>
                 </td>
             </tr>
 
@@ -1069,14 +1069,6 @@ export class ComposerComponent implements OnInit {
     this.spinnerService.setSpinner(true, &quot;Loading canvas element&quot;);
     if (this.hasFile) {
       this.data &#x3D; this.data as ModuleApplication;
-      // controllo un campo per vedere se è stato passato correttamente il file in json-&gt;ModuleApplication
-      try {
-        let t &#x3D; this.data.topology.elements;
-      } catch {
-        this.hasproblem &#x3D; true;
-        this.spinnerService.setSpinner(false);
-        return;
-      }
     }
     from(
       this.parseService.parseFlavorForModuleComposer()
@@ -1099,14 +1091,6 @@ export class ComposerComponent implements OnInit {
     this.spinnerService.setSpinner(true, &quot;Getting Theater modules&quot;)
     if (this.hasFile) {
       this.data &#x3D; this.data as TheaterApplication;
-      // controllo un campo per vedere se è stato passato correttamente il file in json-&gt;TheaterApplication
-      try {
-        let t &#x3D; this.data.topology.elements;
-      } catch {
-        this.spinnerService.setSpinner(false);
-        this.hasproblem &#x3D; true;
-        return;
-      }
     }
     from(
       this.parseService.parseModuleForTheaterComposer()

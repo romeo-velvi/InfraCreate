@@ -132,7 +132,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="71" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:71</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="73" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -158,7 +158,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="70" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:70</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="72" class="link-to-prism">src/app/services/modelsApplication/applicationModels.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -211,6 +211,8 @@ export class ModuleApplication extends ModuleDTO implements CommonModule {
     subnet_number: number
     network_number: number
     topology: NodeTopologyElement
+    // serve per validare il json risultante dal parsing del theaterApplication
+    validateObject?: string &#x3D; &quot;module&quot;;
 }
 // PER IMPLEMENTAZIONI FUTURE, PER COERENZA, PRENDERE DIRETTAMENTE I SINGOLI NODI DALLA CHIAMATA ESCLUSIVA E NON DA QUELLA CHE RESTITUISCE TUTTI I TEATRI
 /**
@@ -277,6 +279,8 @@ export class TheaterApplication extends TheaterDTO implements TheaterTopology {
     // other data
     properties: TheaterInstancePropertiesDTO;
     topology: TheaterTopology;
+    // serve per validare il json risultante dal parsing del theaterApplication
+    validateObject?: string &#x3D; &quot;theater&quot;;
 }
 
 export class AreaApplication extends AreaDTO {

@@ -13,18 +13,18 @@
                 <!-- text -->
                 <ng-container *ngIf="item.type === 'text'">
                     <input [id]="item.id" type="text" class="form-control" formControlName="{{item.id}}"
-                        [placeholder]="item.placeholder?item.placeholder:''" [attr.aria-label]="item.text">
-                </ng-container>
+                        [placeholder]="item.placeholder?item.placeholder:''" [attr.aria-label]="item.text" [ngClass]="{'is-invalid':item.required&&dataForm.get(item.id).value===''&&dataForm.get(item.id).dirty}">
+                    </ng-container>
                 <!-- text-area -->
                 <ng-container *ngIf="item.type === 'textarea'">
                     <textarea [id]="item.id" class="form-control" [attr.aria-label]="item.id"
                         formControlName="{{item.id}}" [placeholder]="item.placeholder?item.placeholder:''"
-                        maxlength="5000"></textarea>
+                        maxlength="5000" [ngClass]="{'is-invalid':item.required&&dataForm.get(item.id).value===''&&dataForm.get(item.id).dirty}"></textarea>
                 </ng-container>
                 <!-- selection -->
                 <ng-container *ngIf="item.type === 'selection'">
                     <select *ngIf="item.selection.length" [id]="item.id" class="form-select"
-                        formControlName="{{item.id}}">
+                        formControlName="{{item.id}}" [ngClass]="{'is-invalid':item.required&&dataForm.get(item.id).value===''&&dataForm.get(item.id).dirty}">
                         <option *ngFor="let opt of item.selection; let i=index" [selected]="i===item.selected_number"
                             [attr.value]="opt.value">
                             {{opt.text}}
@@ -51,7 +51,7 @@
             justify-content: center;
             text-align: center;">
             <div class="col-md-6 col-sm-12">
-                <button type="submit" class="btn btn-primary w-75" [disabled]="dataForm.invalid">Save</button>
+                <button type="submit" class="btn btn-primary w-75" [disabled]="dataForm.invalid">Submit</button>
             </div>
             <div class="col-md-6 col-sm-12">
                 <button type="button" class="btn btn-danger w-75" (click)="exit()">Cancel</button>

@@ -143,6 +143,16 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
    * @type {NavbarElement}
    */
   protected navbarData: NavbarElement;
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è la logica di visualizzazione dei download.
+   * @type {TemplateRef}
+   */
+  @ViewChild('download') dropdown_download: TemplateRef<any>;
+  /**
+   * Variabile referece allo stato mocked dell'environment
+   * @see {environment}
+   */
+  protected isMocked: boolean = environment.mocked;
 
 
   //// underbar var
@@ -493,7 +503,11 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
       type: "theater",
       element: [
         { text: "Theater info", id: 'info' },
-        { text: "Download", id: 'download' },
+        {
+          text: "Download",
+          id: "DD",
+          template: this.dropdown_download,
+        },
         { text: "Home", id: 'home' },
       ]
     }
@@ -599,7 +613,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
         this.showhideTheaterInfo();
         break;
       case "download":
-        this.download();
+        this.downloadYAMLfunction();
         break;
       case "home":
         this.goHome();
@@ -623,21 +637,32 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
    * - ZIP (tutti dati [yaml]), se siamo connessi al server.
    * @see {exportService}
    */
-  async download() {
+  async downloadZIPfunction() {
     this.spinnerService.setSpinner(true, "Creating theater download");
-    if (!environment.mocked) {
-      (await this.attachmentsService.getTheaterAttachment(this.theater.id))
-        .subscribe(
-          () => {
-            this.spinnerService.setSpinner(false);
-          }
-        )
-    }
-    else {
-      //CHANGE TO YAML
-      this.exportService.exportTheaterToJSON(this.theater, this.editor.toJSON());
-      this.spinnerService.setSpinner(false);
-    }
+    (await this.attachmentsService.getTheaterAttachment(this.theater.id))
+      .subscribe(
+        () => {
+          this.spinnerService.setSpinner(false);
+        }
+      )
+  }
+  /**
+   * Funzione che permette il download dello YAML - TOSCA
+   * @see {exportService}
+   */
+  downloadYAMLfunction() {
+    this.spinnerService.setSpinner(true, "Downloading file");
+    this.exportService.exportTheaterToYAML(this.theater, this.editor.toJSON());
+    this.spinnerService.setSpinner(false);
+  }
+  /**
+   * Funzione che permette il download dello JSON - APPLICATION
+   * @see {exportService}
+   */
+  downloadJSONfunction() {
+    this.spinnerService.setSpinner(true, "Downloading file");
+    this.exportService.exportTheaterToJSON(this.theater, this.editor.toJSON());
+    this.spinnerService.setSpinner(false);
   }
   /**
    * Funzione che come scopo ritornare alla home.

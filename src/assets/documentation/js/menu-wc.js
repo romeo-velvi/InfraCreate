@@ -73,6 +73,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="components/ComposerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ComposerComponent</a>
                                             </li>
                                             <li class="link">
+                                                <a href="components/ControlTemplate.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ControlTemplate</a>
+                                            </li>
+                                            <li class="link">
                                                 <a href="components/DataInputComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DataInputComponent</a>
                                             </li>
                                             <li class="link">
@@ -181,82 +184,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
-                                <a href="components/AppComponent.html" data-type="entity-link" >AppComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/ComposerComponent.html" data-type="entity-link" >ComposerComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/ControlTemplate.html" data-type="entity-link" >ControlTemplate</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/DataInputComponent.html" data-type="entity-link" >DataInputComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/DataInputV2Component.html" data-type="entity-link" >DataInputV2Component</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/DataItemComponent.html" data-type="entity-link" >DataItemComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/DocsComponent.html" data-type="entity-link" >DocsComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/HomeComponent.html" data-type="entity-link" >HomeComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/HostComponent.html" data-type="entity-link" >HostComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/HowToUseComponent.html" data-type="entity-link" >HowToUseComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/MirroringModuleInstanceComponent.html" data-type="entity-link" >MirroringModuleInstanceComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/ModalComponent.html" data-type="entity-link" >ModalComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/NavbarComponent.html" data-type="entity-link" >NavbarComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/NavbarElementComponent.html" data-type="entity-link" >NavbarElementComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/NetworkComponent.html" data-type="entity-link" >NetworkComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/OffcanvasComponent.html" data-type="entity-link" >OffcanvasComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/ReteModuleComposerComponent.html" data-type="entity-link" >ReteModuleComposerComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/ReteModuleVisualizerComponent.html" data-type="entity-link" >ReteModuleVisualizerComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/ReteTheaterComposerComponent.html" data-type="entity-link" >ReteTheaterComposerComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/ReteTheaterVisualizerComponent.html" data-type="entity-link" >ReteTheaterVisualizerComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/SubnetComponent.html" data-type="entity-link" >SubnetComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/TabnavComponent.html" data-type="entity-link" >TabnavComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/TheaterInternalServiceModuleInstanceComponent.html" data-type="entity-link" >TheaterInternalServiceModuleInstanceComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/TheaterModuleInstanceComponent.html" data-type="entity-link" >TheaterModuleInstanceComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/UnderbarComponent.html" data-type="entity-link" >UnderbarComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/VisualizerComponent.html" data-type="entity-link" >VisualizerComponent</a>
                             </li>
                         </ul>
                     </li>

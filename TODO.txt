@@ -4,8 +4,6 @@ TODO
 - TabComponent fare simile a data-item per la gestione dei contenuti
 - In composer, gestire la creazione delle porte come la creazione delle interfacce
 - Creare Service per gestire i tipi di nodi
-+ Ridurre dimensioni offcanvas.
-+ dove c'è modificare app-data-item (se non erro porte) per la modifica.
 _________________________________________________________________________________________
 
 IMPLEMENTAZIONI FUTURE

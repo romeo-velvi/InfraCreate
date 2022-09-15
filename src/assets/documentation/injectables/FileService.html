@@ -86,7 +86,15 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#moduleType" >moduleType</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#selectedFile" >selectedFile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#theaterType" >theaterType</a>
                             </li>
                         </ul>
                     </td>
@@ -102,6 +110,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#getFile" >getFile</a>
+                            </li>
+                            <li>
+                                <a href="#isFileValid" >isFileValid</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -130,7 +141,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="15" class="link-to-prism">src/app/services/application/file/file.service.ts:15</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="31" class="link-to-prism">src/app/services/application/file/file.service.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -163,8 +174,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Definito in <a href="" data-line="51"
-                            class="link-to-prism">src/app/services/application/file/file.service.ts:51</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="69"
+                            class="link-to-prism">src/app/services/application/file/file.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -178,6 +189,89 @@
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>File</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFileValid"></a>
+                    <span class="name">
+                        <span ><b>isFileValid</b></span>
+                        <a href="#isFileValid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isFileValid(file: File, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Definito in <a href="" data-line="79"
+                            class="link-to-prism">src/app/services/application/file/file.service.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Funzione che ha lo scopo di controllare se il file è accettabile dall&#39;applicazione o meno.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parametri :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Nome</td>
+                                    <td>Tipo</td>
+                                    <td>Opzionale</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>file</td>
+                                    <td>
+                                            <code>File</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </div>
                     <div class="io-description">
@@ -209,8 +303,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Definito in <a href="" data-line="25"
-                            class="link-to-prism">src/app/services/application/file/file.service.ts:25</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="41"
+                            class="link-to-prism">src/app/services/application/file/file.service.ts:41</a></div>
                 </td>
             </tr>
 
@@ -271,6 +365,38 @@ Si occupa anche di parserizzare il file sottoforma di oggetto (json).</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="moduleType"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>moduleType</b></span>
+                        <a href="#moduleType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Valore predefinito : </i><code>&quot;.&quot; + SubjectType.MODULE.toLowerCase() + &quot;.json&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Definito in <a href="" data-line="24" class="link-to-prism">src/app/services/application/file/file.service.ts:24</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che indica l&#39;estensione aggiuntiva al nome e tipo del file</p>
+<div><pre class="line-numbers"><code class="language-html">Se si dovesse scaricare l&#39;application (json) di un modulo, essa sarebbe: nomeMosulo.module.json</code></pre></div></div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="selectedFile"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -287,7 +413,7 @@ Si occupa anche di parserizzare il file sottoforma di oggetto (json).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="15" class="link-to-prism">src/app/services/application/file/file.service.ts:15</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="31" class="link-to-prism">src/app/services/application/file/file.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -300,6 +426,38 @@ Si occupa anche di parserizzare il file sottoforma di oggetto (json).</p>
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="theaterType"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>theaterType</b></span>
+                        <a href="#theaterType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Valore predefinito : </i><code>&quot;.&quot; + SubjectType.THEATER.toLowerCase() + &quot;.json&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Definito in <a href="" data-line="18" class="link-to-prism">src/app/services/application/file/file.service.ts:18</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che indica l&#39;estensione aggiuntiva al nome e tipo del file</p>
+<div><pre class="line-numbers"><code class="language-html">Se si dovesse scaricare l&#39;application (json) di un teatro, essa sarebbe: nomeTeatro.theater.json</code></pre></div></div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -307,6 +465,8 @@ Si occupa anche di parserizzare il file sottoforma di oggetto (json).</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { SubjectType } from &#x27;src/app/models/appType&#x27;;
+import { ModuleApplication, TheaterApplication } from &#x27;../../modelsApplication/applicationModels&#x27;;
 
 /**
  * Servizio di gestione di importing file da locale all&#x27;app.
@@ -315,6 +475,20 @@ Si occupa anche di parserizzare il file sottoforma di oggetto (json).</p>
   providedIn: &#x27;root&#x27;
 })
 export class FileService {
+
+  /**
+ * Variabile che indica l&#x27;estensione aggiuntiva al nome e tipo del file
+ * @example 
+ * Se si dovesse scaricare l&#x27;application (json) di un teatro, essa sarebbe: nomeTeatro.theater.json 
+ */
+  protected theaterType &#x3D; &quot;.&quot; + SubjectType.THEATER.toLowerCase() + &quot;.json&quot;;
+  /**
+ * Variabile che indica l&#x27;estensione aggiuntiva al nome e tipo del file
+ * @example 
+ * Se si dovesse scaricare l&#x27;application (json) di un modulo, essa sarebbe: nomeMosulo.module.json 
+ */
+  protected moduleType &#x3D; &quot;.&quot; + SubjectType.MODULE.toLowerCase() + &quot;.json&quot;;
+
 
   /**
    * Variabile che ha come scopo il salvataggio di informazioni del file.
@@ -337,9 +511,11 @@ export class FileService {
     return new Promise((resolve, reject) &#x3D;&gt; {
       fileReader.onload &#x3D; async () &#x3D;&gt; {
         try {
-          if(this.selectedFile.type!&#x3D;&#x3D;&quot;application/json&quot;)
-            reject(&quot;The file selected is not supproted.&quot;)
-          resolve(JSON.parse(fileReader.result as string));
+          var data &#x3D; JSON.parse(fileReader.result as string)
+          if (this.isFileValid(this.selectedFile, data))
+            resolve(data)
+          else
+            reject(&quot;The file selected is not valid&quot;)
         }
         catch (e) {
           reject(e);
@@ -356,9 +532,35 @@ export class FileService {
    * Funzione cha come scopo ritornare il file (sottoforma di oggetto parserizzato) captato dall&#x27;input.
    * @returns 
    */
-  getFile(): File{
+  getFile(): File {
     return this.selectedFile;
   }
+
+  /**
+   * Funzione che ha lo scopo di controllare se il file è accettabile dall&#x27;applicazione o meno.
+   * @param file 
+   * @param data 
+   * @returns {boolean}
+   */
+  isFileValid(file: File, data: any): boolean {
+    if (file.type !&#x3D;&#x3D; &quot;application/json&quot;)
+      return false
+    if (file.name.includes(this.theaterType)) {
+      if ((data as TheaterApplication).validateObject &#x3D;&#x3D;&#x3D; &quot;theater&quot;)
+        return true
+      else
+        return false
+    }
+    else if (file.name.includes(this.moduleType)) {
+      if ((data as ModuleApplication).validateObject &#x3D;&#x3D;&#x3D; &quot;module&quot;)
+        return true
+      else
+        return false
+    }
+    else
+      return false
+  }
+
 
 }
 </code></pre>

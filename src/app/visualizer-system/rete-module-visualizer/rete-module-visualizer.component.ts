@@ -149,7 +149,16 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
    * @type {NavbarElement}
    */
   protected navbarData: NavbarElement;
-
+  /**
+   * Variabile che ha come riferimento un tag nel DOM di tipo templato nella quale vi è la logica di visualizzazione dei download.
+   * @type {TemplateRef}
+   */
+  @ViewChild('download') dropdown_download: TemplateRef<any>;
+  /**
+   * Variabile referece allo stato mocked dell'environment
+   * @see {environment}
+   */
+  protected isMocked: boolean = environment.mocked;
 
   //// underbar var
 
@@ -597,7 +606,11 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
       type: "module",
       element: [
         { text: "Module info", id: 'mod_info' },
-        { text: "Download", id: 'download' },
+        {
+          text: "Download",
+          id: "DD",
+          template: this.dropdown_download,
+        },
         { text: "Home", id: 'home' },
       ]
     }
@@ -723,7 +736,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
         this.showhideModuleInfo();
         break;
       case "download":
-        this.download();
+        this.downloadJSONfunction();
         break;
       case "home":
         this.goHome();
@@ -736,7 +749,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
    * Funzione che ha lo scopo di switchare il valore di visualizzazione dell'offcanvas del modulo.
    * @see {hideModuleInfo}
    */
-   showhideModuleInfo() {
+  showhideModuleInfo() {
     this.displayMdata = this.displayModuleData(this.module);
     this.hideModuleInfo = !this.hideModuleInfo;
     this.cdr.detectChanges();
@@ -747,20 +760,32 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
    * - ZIP (tutti dati [yaml]), se siamo connessi al server.
    * @see {exportService}
    */
-  async download() {
+  async downloadZIPfunction() {
     this.spinnerService.setSpinner(true, "Creating module download");
-    if (!environment.mocked) {
-      (await this.attachmentsService.getModuleAttachment(this.module.id, this.module.attachments[0]))
-        .subscribe(
-          () => {
-            this.spinnerService.setSpinner(false);
-          }
-        )
-    }
-    else {
-      this.exportService.exportModuleToJSON(this.module, this.editor.toJSON());
-      this.spinnerService.setSpinner(false);
-    }
+    (await this.attachmentsService.getModuleAttachment(this.module.id, this.module.attachments[0]))
+      .subscribe(
+        () => {
+          this.spinnerService.setSpinner(false);
+        }
+      )
+  }
+  /**
+   * Funzione che permette il download dello YAML - TOSCA
+   * @see {exportService}
+   */
+  downloadYAMLfunction() {
+    this.spinnerService.setSpinner(true, "Downloading file");
+    this.exportService.exportModuleToYAML(this.module, this.editor.toJSON());
+    this.spinnerService.setSpinner(false);
+  }
+  /**
+   * Funzione che permette il download dello JSON - APPLICATION
+   * @see {exportService}
+   */
+  downloadJSONfunction() {
+    this.spinnerService.setSpinner(true, "Downloading file");
+    this.exportService.exportModuleToJSON(this.module, this.editor.toJSON());
+    this.spinnerService.setSpinner(false);
   }
   /**
    * Funzione che come scopo ritornare alla home.
@@ -774,7 +799,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
   /**
    * Funzione che ha lo scopo di switchare il valore di visualizzazione dell'offcanvas del nodo.
    */
-   showhideNodeInfo(node: Node) {
+  showhideNodeInfo(node: Node) {
     this.nodeSelected = node;
     this.hideNodeInfo = !this.hideNodeInfo;
     this.displayNdata = this.displayNodeData(node);
@@ -945,7 +970,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
    * @see {producerInterface}
    * @see {importList}
    */
-   public async addNodes(): Promise<void> {
+  public async addNodes(): Promise<void> {
 
     var nodes = [];
 

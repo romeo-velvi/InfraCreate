@@ -66,6 +66,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Descrizione</h3>
+            </p>
+            <p class="comment">
+                <p>Classe che contiene gli attributi che indicano le proprietà del teatro.</p>
+
+            </p>
 
 
 
@@ -138,7 +145,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="24" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:24</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="29" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -164,7 +171,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="22" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:22</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="27" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -190,7 +197,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="20" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:20</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="25" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -216,7 +223,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="21" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:21</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="26" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -242,7 +249,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="23" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:23</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="28" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -268,7 +275,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="19" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:19</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="24" class="link-to-prism">src/app/services/modelsExport/theaterExport.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -299,11 +306,16 @@ export class TheaterExport {
     imports: string[]
     node_templates: { [name: string]: TheaterSimpleData | ModuleInstanceSimpleData }
 }
-
+/**
+ * Classe che contiene gli attributi che indicano il teatro all&#x27;interno dei node_templates.
+ */
 export class TheaterSimpleData {
     type: TheaterTypeExport
     properties: PropertiesTSD
 }
+/**
+ * Classe che contiene gli attributi che indicano le proprietà del teatro.
+ */
 export class PropertiesTSD {
     version: string | number
     description: string
@@ -312,18 +324,32 @@ export class PropertiesTSD {
     tags: TagsExport[]
     areas: AreaExport[]
 }
+/**
+ * Classe che contiene gli attributi che indicano i tag nelle proprietà del teatro.
+ * @see {PropertiesTSD}
+ */
 export class TagsExport {
     tag: string
 }
+/**
+ * Classe che contiene gli attributi che indicano le aree nelle proprietà del teatr.
+ * @see {PropertiesTSD}
+ */
 export class AreaExport {
     area: string
     description: string
 }
 
+/**
+ * Classe che contiene gli attributi che indicano il modulo all&#x27;interno dei node_modules.
+ */
 export class ModuleInstanceSimpleData {
     type: ModuleTypeExport
     properties: PropertiesMISD
 }
+/**
+ * Classe che contiene gli attributi che indicano le propeitò del modulo all&#x27;interno dei node_templates.
+ */
 export class PropertiesMISD{
     module: string
     version: string | number
@@ -332,11 +358,17 @@ export class PropertiesMISD{
     sources?: SourceExport[]
     consumer_interface_link: ConsumerInterfaceLinkExport[]
 }
+/**
+ * Classe che contiene gli attributi che indicano le porte di ingresso del modulo all&#x27;interno dei node_templates.
+ */
 export class SourceExport{
     module_instance: string
     host:string
     interfaces: string[]
 }
+/**
+ * Classe che contiene gli attributi che indicano i collegamenti e relazioni intramodulo con le varie interfacce.
+ */
 export class ConsumerInterfaceLinkExport{
     local_interface: string
     module_interface:string

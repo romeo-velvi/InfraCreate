@@ -15,6 +15,18 @@
     <app-navbar *ngIf="navbarData" [title]="theater?theater.name:'@'" [element]="navbarData"
         (itemSelected)="navItemSelected($event)">
     </app-navbar>
+    <ng-template #download>
+        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="dd" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" (click)="showbtn=!showbtn">
+            Download
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dd" [ngStyle]="{'display': (showbtn?'block':'none')}"
+            (click)="showbtn=!showbtn">
+            <a class="dropdown-item" href="javascript:void(0)" (click)="downloadYAMLfunction()">YAML</a>
+            <a class="dropdown-item" href="javascript:void(0)" (click)="downloadJSONfunction()">JSON</a>
+            <a *ngIf="!isMocked" class="dropdown-item" href="javascript:void(0)" (click)="downloadZIPfunction()">ZIP</a>
+        </div>
+    </ng-template>
 
     <!----------------------------------------------------------------------------->
     <!----------------------------------------------------------------------------->
