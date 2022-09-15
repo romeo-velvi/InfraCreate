@@ -50,10 +50,34 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "aot": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "creo": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.cr.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "aot": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -72,6 +96,9 @@
           "configurations": {
             "production": {
               "browserTarget": "InfraCreate:build:production"
+            },
+            "creo":{
+              "browserTarget": "InfraCreate:build:creo"
             }
           }
         },
@@ -120,6 +147,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "InfraCreate:serve:production"
+            },
+            "creo": {
+              "devServerTarget": "InfraCreate:serve:creo"
             }
           }
         }
