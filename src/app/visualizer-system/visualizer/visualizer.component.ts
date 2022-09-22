@@ -5,9 +5,12 @@ import { from } from 'rxjs';
 import { DataRouteVisualizer, SubjectType } from 'src/app/models/appType';
 import { ParseService } from 'src/app/services/application/parse/parse.service';
 import { SpinnerService } from 'src/app/services/application/spinner/spinner.service';
+import { StorageService } from 'src/app/services/application/storage/storage.service';
 import { ModuleApplication, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
 
-
+/**
+ * Componente che ha come scopo di esegure tutte le preelaborazioni e switchare l'ambiente di visualizzazione moduli e teatri in base ai dati passati.
+ */
 @Component({
   selector: 'app-displayer',
   templateUrl: './visualizer.component.html',
@@ -59,6 +62,20 @@ export class VisualizerComponent implements OnInit {
   protected theater: TheaterApplication;
 
   /**
+   * Variabile che viene valorizzata nel momento in cui si presenta il caso di design da un file preso in input
+   * @type {boolean} 
+   */
+  protected hasFile: boolean = false;
+
+  /**
+   * Variabile che memorizza il teatro o il modulo importato da un file
+   * @type {TheaterApplication}
+   * @type {ModuleApplication}
+   */
+  protected data: TheaterApplication | ModuleApplication;
+
+
+  /**
    * Costruttore di VisualizerComponent.
    * Si occupa di prendere i dati di route url e valorizzare le rispettive variabili.
    * @param router 
@@ -69,13 +86,23 @@ export class VisualizerComponent implements OnInit {
     private router: Router,
     private parseService: ParseService,
     private spinnerService: SpinnerService,
+    private storageService: StorageService
   ) {
     this.dataFromRouter = this.router.getCurrentNavigation().extras.state as DataRouteVisualizer
+    console.log(this.dataFromRouter)
     if (this.dataFromRouter) {
       this.id = this.dataFromRouter.id;
       this.type = this.dataFromRouter.type;
     }
-    else {
+
+    // se non è stato inizializzato il nome e ci sono dati nello storage
+    if (!this.id && this.storageService.data) {
+      this.hasFile = true;
+      this.data = this.storageService.data;
+      this.storageService.data = undefined; // consumo l'elemento
+    }
+
+    if (!this.id && !this.data) {
       this.hasproblem = true;
     }
 
@@ -109,20 +136,28 @@ export class VisualizerComponent implements OnInit {
    */
   async initMODULE() {
     this.spinnerService.setSpinner(true, "Loading module canvas");
-    from(
-      this.parseService.parseModuleForModuleVisualizer(this.id ? this.id : 1459)
-    )
-      .subscribe(el => {
-        if (el) {
-          this.module = el
-          this.spinnerService.setSpinner(false);
-          this.active = true;
-        }
-        else {
-          this.spinnerService.setSpinner(false);
-          this.hasproblem = true;
-        }
-      });
+    if (this.hasFile) {
+      this.data = this.data as ModuleApplication;
+      this.module = this.data;
+      this.active = true;
+      this.spinnerService.setSpinner(false);
+    }
+    else {
+      from(
+        this.parseService.parseModuleForModuleVisualizer(this.id ? this.id : 1459)
+      )
+        .subscribe(el => {
+          if (el) {
+            this.module = el
+            this.spinnerService.setSpinner(false);
+            this.active = true;
+          }
+          else {
+            this.spinnerService.setSpinner(false);
+            this.hasproblem = true;
+          }
+        });
+    }
   }
 
   /**
@@ -134,6 +169,13 @@ export class VisualizerComponent implements OnInit {
    */
   async initTHEATER() {
     this.spinnerService.setSpinner(true, "Loading theater canvas");
+    if (this.hasFile) {
+      this.data = this.data as TheaterApplication;
+      this.theater = this.data;
+      this.active = true;
+      this.spinnerService.setSpinner(false);
+    }
+    else{
     from(
       this.parseService.parseTheaterForTheaterVisualizer(this.id ? this.id : 502)
     )
@@ -148,6 +190,7 @@ export class VisualizerComponent implements OnInit {
           this.hasproblem = true;
         }
       });
+    }
   }
 
   /**

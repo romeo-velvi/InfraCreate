@@ -4,6 +4,7 @@ TODO
 - TabComponent fare simile a data-item per la gestione dei contenuti
 - In composer, gestire la creazione delle porte come la creazione delle interfacce
 - Creare Service per gestire i tipi di nodi
++ inserire nel download services anche parte degli zip
 _________________________________________________________________________________________
 
 IMPLEMENTAZIONI FUTURE

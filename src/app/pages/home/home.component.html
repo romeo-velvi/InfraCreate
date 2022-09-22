@@ -72,11 +72,11 @@
                 </div>
             </div>
         </div>
-        <div class="accordion-item" *ngIf="branch===COMPOSER">
+        <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseUpload" aria-expanded="false" aria-controls="collapseUpload">
-                    Design {{type}} from file
+                    {{branch===COMPOSER?"Design ":"Visualize "}}{{type}} from file
                 </button>
             </h2>
             <div id="collapseUpload" class="accordion-collapse collapse" aria-labelledby="headingTwo"
