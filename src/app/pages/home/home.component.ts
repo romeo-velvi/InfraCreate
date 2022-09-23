@@ -287,7 +287,7 @@ export class HomeComponent {
    * @see {fileJSON}
    */
   async onFileSelected(event: any) {
-    await this.fileService.onFileSelected(event)
+    await this.fileService.onFileSelected(event,this.type)
       .then((v) => {
         this.fileJSON = v; this.fileLoaded = true;
       })

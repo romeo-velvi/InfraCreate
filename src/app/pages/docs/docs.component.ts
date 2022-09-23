@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 
 /**
- * Componente (pagina) che ha lo scopo di mostrare la documentazione generata da compodoc.
+ * Componente (pagina) che ha lo scopo di mostrare la documentazione stilizzata con compodoc.
  * - Servita come html in un <iframe>.
  */
 @Component({

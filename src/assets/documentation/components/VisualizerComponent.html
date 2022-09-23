@@ -68,6 +68,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Descrizione</h3>
+    </p>
+    <p class="comment">
+        <p>Componente che ha come scopo di esegure tutte le preelaborazioni e switchare l&#39;ambiente di visualizzazione moduli e teatri in base ai dati passati.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -138,7 +145,15 @@
                                 <a href="#active" >active</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
                                 <a href="#dataFromRouter" >dataFromRouter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#hasFile" >hasFile</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -214,12 +229,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, parseService: <a href="../injectables/ParseService.html" target="_self">ParseService</a>, spinnerService: <a href="../injectables/SpinnerService.html" target="_self">SpinnerService</a>)</code>
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, parseService: <a href="../injectables/ParseService.html" target="_self">ParseService</a>, spinnerService: <a href="../injectables/SpinnerService.html" target="_self">SpinnerService</a>, storageService: <a href="../injectables/StorageService.html" target="_self">StorageService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="59" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:59</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="75" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -275,6 +290,18 @@ Si occupa di prendere i dati di route url e valorizzare le rispettive variabili.
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>storageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -315,8 +342,8 @@ Si occupa di prendere i dati di route url e valorizzare le rispettive variabili.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Definito in <a href="" data-line="156"
-                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:156</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="199"
+                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:199</a></div>
                 </td>
             </tr>
 
@@ -356,8 +383,8 @@ Si occupa di prendere i dati di route url e valorizzare le rispettive variabili.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Definito in <a href="" data-line="110"
-                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:110</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="137"
+                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:137</a></div>
                 </td>
             </tr>
 
@@ -401,8 +428,8 @@ See {parseService}</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Definito in <a href="" data-line="135"
-                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:135</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="170"
+                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:170</a></div>
                 </td>
             </tr>
 
@@ -446,8 +473,8 @@ See {parseService}</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Definito in <a href="" data-line="90"
-                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:90</a></div>
+                    <div class="io-line">Definito in <a href="" data-line="117"
+                            class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:117</a></div>
                 </td>
             </tr>
 
@@ -499,13 +526,46 @@ See {initTHEATER}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="45" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:45</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="48" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:48</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Variabile che indica lo stato di reperimento dei dati prima di visualizzare le componenti di costruzione</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Tipo : </i>    <code>TheaterApplication | ModuleApplication</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Definito in <a href="" data-line="75" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che memorizza il teatro o il modulo importato da un file</p>
 </div>
                 </td>
             </tr>
@@ -531,13 +591,51 @@ See {initTHEATER}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="23" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:23</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="26" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:26</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Variabile che ha come scopo prendere i dati passati come url-parameters</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasFile"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>hasFile</b></span>
+                        <a href="#hasFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Tipo : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Valore predefinito : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Definito in <a href="" data-line="68" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variabile che viene valorizzata nel momento in cui si presenta il caso di design da un file preso in input</p>
 </div>
                 </td>
             </tr>
@@ -569,7 +667,7 @@ See {initTHEATER}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="38" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:38</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="41" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -602,7 +700,7 @@ See {initTHEATER}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="25" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:25</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="28" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -629,7 +727,7 @@ See {initTHEATER}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="52" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:52</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="55" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -662,7 +760,7 @@ See {parseService}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="29" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:29</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="32" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -689,7 +787,7 @@ See {parseService}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="59" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:59</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="62" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -722,7 +820,7 @@ See {parseService}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="30" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:30</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="33" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -749,7 +847,7 @@ See {parseService}</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Definito in <a href="" data-line="26" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:26</a></div>
+                                <div class="io-line">Definito in <a href="" data-line="29" class="link-to-prism">src/app/visualizer-system/visualizer/visualizer.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -768,9 +866,12 @@ import { from } from &#x27;rxjs&#x27;;
 import { DataRouteVisualizer, SubjectType } from &#x27;src/app/models/appType&#x27;;
 import { ParseService } from &#x27;src/app/services/application/parse/parse.service&#x27;;
 import { SpinnerService } from &#x27;src/app/services/application/spinner/spinner.service&#x27;;
+import { StorageService } from &#x27;src/app/services/application/storage/storage.service&#x27;;
 import { ModuleApplication, TheaterApplication } from &#x27;src/app/services/modelsApplication/applicationModels&#x27;;
 
-
+/**
+ * Componente che ha come scopo di esegure tutte le preelaborazioni e switchare l&#x27;ambiente di visualizzazione moduli e teatri in base ai dati passati.
+ */
 @Component({
   selector: &#x27;app-displayer&#x27;,
   templateUrl: &#x27;./visualizer.component.html&#x27;,
@@ -822,6 +923,20 @@ export class VisualizerComponent implements OnInit {
   protected theater: TheaterApplication;
 
   /**
+   * Variabile che viene valorizzata nel momento in cui si presenta il caso di design da un file preso in input
+   * @type {boolean} 
+   */
+  protected hasFile: boolean &#x3D; false;
+
+  /**
+   * Variabile che memorizza il teatro o il modulo importato da un file
+   * @type {TheaterApplication}
+   * @type {ModuleApplication}
+   */
+  protected data: TheaterApplication | ModuleApplication;
+
+
+  /**
    * Costruttore di VisualizerComponent.
    * Si occupa di prendere i dati di route url e valorizzare le rispettive variabili.
    * @param router 
@@ -832,13 +947,23 @@ export class VisualizerComponent implements OnInit {
     private router: Router,
     private parseService: ParseService,
     private spinnerService: SpinnerService,
+    private storageService: StorageService
   ) {
     this.dataFromRouter &#x3D; this.router.getCurrentNavigation().extras.state as DataRouteVisualizer
+    console.log(this.dataFromRouter)
     if (this.dataFromRouter) {
       this.id &#x3D; this.dataFromRouter.id;
       this.type &#x3D; this.dataFromRouter.type;
     }
-    else {
+
+    // se non è stato inizializzato il nome e ci sono dati nello storage
+    if (!this.id &amp;&amp; this.storageService.data) {
+      this.hasFile &#x3D; true;
+      this.data &#x3D; this.storageService.data;
+      this.storageService.data &#x3D; undefined; // consumo l&#x27;elemento
+    }
+
+    if (!this.id &amp;&amp; !this.data) {
       this.hasproblem &#x3D; true;
     }
 
@@ -872,20 +997,28 @@ export class VisualizerComponent implements OnInit {
    */
   async initMODULE() {
     this.spinnerService.setSpinner(true, &quot;Loading module canvas&quot;);
-    from(
-      this.parseService.parseModuleForModuleVisualizer(this.id ? this.id : 1459)
-    )
-      .subscribe(el &#x3D;&gt; {
-        if (el) {
-          this.module &#x3D; el
-          this.spinnerService.setSpinner(false);
-          this.active &#x3D; true;
-        }
-        else {
-          this.spinnerService.setSpinner(false);
-          this.hasproblem &#x3D; true;
-        }
-      });
+    if (this.hasFile) {
+      this.data &#x3D; this.data as ModuleApplication;
+      this.module &#x3D; this.data;
+      this.active &#x3D; true;
+      this.spinnerService.setSpinner(false);
+    }
+    else {
+      from(
+        this.parseService.parseModuleForModuleVisualizer(this.id ? this.id : 1459)
+      )
+        .subscribe(el &#x3D;&gt; {
+          if (el) {
+            this.module &#x3D; el
+            this.spinnerService.setSpinner(false);
+            this.active &#x3D; true;
+          }
+          else {
+            this.spinnerService.setSpinner(false);
+            this.hasproblem &#x3D; true;
+          }
+        });
+    }
   }
 
   /**
@@ -897,6 +1030,13 @@ export class VisualizerComponent implements OnInit {
    */
   async initTHEATER() {
     this.spinnerService.setSpinner(true, &quot;Loading theater canvas&quot;);
+    if (this.hasFile) {
+      this.data &#x3D; this.data as TheaterApplication;
+      this.theater &#x3D; this.data;
+      this.active &#x3D; true;
+      this.spinnerService.setSpinner(false);
+    }
+    else{
     from(
       this.parseService.parseTheaterForTheaterVisualizer(this.id ? this.id : 502)
     )
@@ -911,6 +1051,7 @@ export class VisualizerComponent implements OnInit {
           this.hasproblem &#x3D; true;
         }
       });
+    }
   }
 
   /**
@@ -929,7 +1070,10 @@ export class VisualizerComponent implements OnInit {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- module visualizer --&gt;
 &lt;!-- [moduleID]&#x3D;&quot;id&quot;  --&gt;
-&lt;app-rete-module-visualizer *ngIf&#x3D;&quot;type&#x3D;&#x3D;&#x3D;MODULE &amp;&amp; active&quot; class&#x3D;&quot;oh-imp&quot; [module]&#x3D;&quot;module&quot; [isSimple]&#x3D;&quot;false&quot;&gt;
+&lt;app-rete-module-visualizer 
+*ngIf&#x3D;&quot;type&#x3D;&#x3D;&#x3D;MODULE &amp;&amp; active&quot; class&#x3D;&quot;oh-imp&quot; 
+[module]&#x3D;&quot;module&quot; 
+[isSimple]&#x3D;&quot;false&quot;&gt;
 &lt;/app-rete-module-visualizer&gt;
 
 

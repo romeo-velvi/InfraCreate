@@ -3,7 +3,13 @@
  * Questi possono essere reperibili via API -> in questo caso sono mockati in locale
  */
 export const Module1461 = {
-    "import": [],
+    "imports": [
+"http://www.getcloudify.org/spec/cloudify/5.0.5/types.yaml",
+"plugin:cloudify-openstack-plugin?version=2.14.17",
+"plugin:cloudify-utilities-plugin",
+"plugin:cloudify-ansible-plugin?version=2.8.2",
+"plugin:sysman-creo-plugin?version=1.0"
+    ],
     "id": 1461,
     "createdDate": "2022-02-15T15:55:58.172+00:00",
     "lastModifiedDate": "2022-02-15T15:57:31.833+00:00",
@@ -17,7 +23,7 @@ export const Module1461 = {
     "uuid": "a78aebbd-0cb7-4d8d-8e7f-948eae237217",
     "name": "SOC_1",
     "version": "1.0",
-    "description": "",
+    "description": "QCRI - SOC Module\n",
     "configurationTemplate": {
         "anchor_parameters": {
             "nst_image": "98857e0b-5962-4bdd-8d65-9529196d7b15",
@@ -2812,7 +2818,13 @@ export const Module1461 = {
  * Questi possono essere reperibili via API -> in questo caso sono mockati in locale
  */
 export const Module1459 = {
-    "import": [],
+    "imports": [
+"http://www.getcloudify.org/spec/cloudify/5.0.5/types.yaml",
+"plugin:cloudify-openstack-plugin?version=2.14.17",
+"plugin:cloudify-utilities-plugin",
+"plugin:cloudify-ansible-plugin?version=2.8.2",
+"plugin:sysman-creo-plugin?version=1.0"
+    ],
     "id": 1459,
     "createdDate": "2022-02-15T15:51:07.972+00:00",
     "lastModifiedDate": "2022-02-15T15:52:34.463+00:00",
@@ -2826,7 +2838,7 @@ export const Module1459 = {
     "uuid": "b5d04773-c9ba-4b14-93ec-17309d7c0798",
     "name": "CoreNet_1",
     "version": "1.0",
-    "description": "",
+    "description": "QCRI - CoreNet Module\n",
     "configurationTemplate": {
         "anchor_parameters": {
             "nst_image": "98857e0b-5962-4bdd-8d65-9529196d7b15",

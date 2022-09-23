@@ -9,7 +9,7 @@ import { SubjectType } from 'src/app/models/appType';
 import { exportToYaml, exportToJson } from './exportTo';
 
 /**
- * Servizio di eport del canvas/editor sottoforma di file (scaricabile)
+ * Servizio di export del canvas/editor sottoforma di file (scaricabile)
  * - Prevede l'export del teatro e modulo sottoforma di JSON (da poter utilizzare nell'applicazione).
  * - Prevede l'export del teatro e modulo sottoforma di YAML (standard tosca).
  */

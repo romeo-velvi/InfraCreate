@@ -909,7 +909,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    * @see {router}
    */
   goHome() {
-    this.modalConfirmation.showConfirmationModal(("Do you really want go back home loseing all data ?"))
+    this.modalConfirmation.showConfirmationModal(("Do you really want go back home losing all data ?"))
       .pipe(take(2)) // perchè il primo valore di reset è a null..
       .subscribe(
         v => {

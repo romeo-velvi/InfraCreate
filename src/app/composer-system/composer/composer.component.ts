@@ -9,7 +9,7 @@ import { FlavorApplication, ModuleApplication, ModuleInstance, TheaterApplicatio
 
 
 /**
- * Componente che ha come scopo di switchare l'ambiente di costruzione moduli e teatri in base ai dati passati.
+ * Componente che ha come scopo di esegure tutte le preelaborazioni e switchare l'ambiente di designing moduli e teatri in base ai dati passati.
  */
 @Component({
   selector: 'app-composer',

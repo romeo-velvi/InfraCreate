@@ -211,7 +211,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>isFileValid(file: File, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>isFileValid(file: File, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, filefor: <a href="../undefineds/SubjectType.html" target="_self">SubjectType</a>)</code>
                 </td>
             </tr>
 
@@ -265,6 +265,18 @@
 
 
                                 </tr>
+                                <tr>
+                                    <td>filefor</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#SubjectType" target="_self" >SubjectType</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -296,7 +308,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>onFileSelected(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <code>onFileSelected(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, filefor: <a href="../undefineds/SubjectType.html" target="_self">SubjectType</a>)</code>
                 </td>
             </tr>
 
@@ -331,6 +343,18 @@ Si occupa anche di parserizzare il file sottoforma di oggetto (json).</p>
                                     <td>event</td>
                                     <td>
                                                 <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filefor</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#SubjectType" target="_self" >SubjectType</a></code>
                                     </td>
 
                                     <td>
@@ -504,7 +528,7 @@ export class FileService {
    * @param event 
    * @return {Promise}
    */
-  async onFileSelected(event: any): Promise&lt;any&gt; {
+  async onFileSelected(event: any, filefor:SubjectType): Promise&lt;any&gt; {
     this.selectedFile &#x3D; event.target.files[0];
     const fileReader &#x3D; new FileReader();
     fileReader.readAsText(this.selectedFile, &quot;UTF-8&quot;);
@@ -512,7 +536,7 @@ export class FileService {
       fileReader.onload &#x3D; async () &#x3D;&gt; {
         try {
           var data &#x3D; JSON.parse(fileReader.result as string)
-          if (this.isFileValid(this.selectedFile, data))
+          if (this.isFileValid(this.selectedFile, data, filefor))
             resolve(data)
           else
             reject(&quot;The file selected is not valid&quot;)
@@ -542,16 +566,16 @@ export class FileService {
    * @param data 
    * @returns {boolean}
    */
-  isFileValid(file: File, data: any): boolean {
+  isFileValid(file: File, data: any, filefor: SubjectType): boolean {
     if (file.type !&#x3D;&#x3D; &quot;application/json&quot;)
       return false
-    if (file.name.includes(this.theaterType)) {
+    if (file.name.includes(this.theaterType) &amp;&amp; filefor &#x3D;&#x3D;&#x3D; SubjectType.THEATER) {
       if ((data as TheaterApplication).validateObject &#x3D;&#x3D;&#x3D; &quot;theater&quot;)
         return true
       else
         return false
     }
-    else if (file.name.includes(this.moduleType)) {
+    else if (file.name.includes(this.moduleType)  &amp;&amp; filefor &#x3D;&#x3D;&#x3D; SubjectType.MODULE) {
       if ((data as ModuleApplication).validateObject &#x3D;&#x3D;&#x3D; &quot;module&quot;)
         return true
       else

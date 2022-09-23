@@ -36,6 +36,8 @@ export class PerseDataForModuleVisualizer {
         let moduleDTO: ModuleDTO;
         let module: ModuleApplication;
         [moduleDTO, module] = await this.parseMainModule(id);
+        // @check descrizione assente 
+        module.description ? module.description : module.configurationTemplate.description ? module.configurationTemplate.description : "No available description";
         return module;
     }
 

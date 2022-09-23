@@ -9109,7 +9109,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @see {router}
    */
   goHome() {
-    this.modalConfirmation.showConfirmationModal(&quot;Do you want really go back home loseing your data?&quot;)
+    this.modalConfirmation.showConfirmationModal(&quot;Do you want really go back home losing your data?&quot;)
       .pipe(take(2)) // perchè il primo valore di reset è a null..
       .subscribe(
         v &#x3D;&gt; {

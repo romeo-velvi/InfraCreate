@@ -163,7 +163,7 @@
     <!----------------------------------------------------------------------------->
     <!----------------------------------------------------------------------------->
 
-    <app-offcanvas *ngIf="module" [(show)]="hideModuleInfo" [element]="offcanvasElementModule" title="Module info"
+    <app-offcanvas *ngIf="module" [(show)]="hideModuleInfo" [element]="offcanvasElementModule" [title]="module.name"
         position="start"></app-offcanvas>
 
     <ng-template #offcanvasElementModule class="search-input">

@@ -241,7 +241,7 @@ export class ExportModule {
     getModuleExport(): { [name: string]: ModuleSimpleData } {
         let moduleExport: { [name: string]: ModuleSimpleData } = {}
         let moduleSimpleData: ModuleSimpleData = {
-            type: ModuleTypeExport[this.module.type]?ModuleTypeExport[this.module.type]:ModuleTypeExport[0],
+            type: ModuleTypeExport[this.module.type]?ModuleTypeExport[this.module.type]:"sysman.creo.nodes.TheaterModule",
             properties: {
                 mode: ModeTypeExport.managed,
                 description: this.module.description,
