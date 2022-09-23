@@ -24,7 +24,7 @@ ________________________________________________________________________________
 NON NECESSARIO
 - spiegare come aggiungere un nuovo nodo/modulo
 - ipotesi correttezza tramite validators (https://stackoverflow.com/questions/21740309/how-to-check-in-node-if-module-exists-and-if-exists-to-load)
-_________________________________________________________________________________________
+__________________ _______________________________________________________________________
 
 QUESTIONS: 
 1) Nelle proprietà del modulo istanza appare version: questo è legata al modulo ROOT oppure all'istanza?
