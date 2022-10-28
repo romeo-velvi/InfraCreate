@@ -59,6 +59,7 @@ import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { DataItemComponent } from './components/data-item/data-item.component';
 import { environment } from 'src/environments/environment';
 import { DocsComponent } from './pages/docs/docs.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 // import { ColorPickerModule } from 'ngx-color-picker';
 
 const keycloakService = new KeycloakService();
@@ -134,7 +135,8 @@ let providerInitKeycloak: Provider = (!environment.mocked)
     BrowserAnimationsModule,
 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: true, registrationStrategy: 'registerImmediately' }),
   ],
   providers: [
     providerInitKeycloak,

@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-pwa": "ng serve --configuration=pwa --ssl=true",
     "start-creo": "ng serve --configuration=creo",
     "build": "ng build",
     "test": "ng test",
@@ -24,6 +25,7 @@
     "@angular/platform-browser": "~9.1.12",
     "@angular/platform-browser-dynamic": "~9.1.12",
     "@angular/router": "~9.1.12",
+    "@angular/service-worker": "~9.1.12",
     "@compodoc/compodoc": "^1.1.19",
     "@popperjs/core": "^2.10.2",
     "ajv": "^6.12.6",

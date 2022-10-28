@@ -8,5 +8,26 @@ if (environment.production) {
   enableProdMode();
 }
 
+// platformBrowserDynamic().bootstrapModule(AppModule)
+//   .catch(err => console.error(err));
+
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  .then(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/ngsw-worker.js', {
+          updateViaCache: 'none'
+        })
+        .then(
+          (registration) => {
+            console.log('Service worker registration succeeded:', registration);
+            registration.update();
+          }
+          , 
+          (error) => {
+            console.error(`Service worker registration failed: ${error}`);
+          }
+        )
+    }
+  })
+  .catch(err => console.log(err));
