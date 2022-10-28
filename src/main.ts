@@ -11,6 +11,7 @@ if (environment.production) {
 // platformBrowserDynamic().bootstrapModule(AppModule)
 //   .catch(err => console.error(err));
 
+/** CONTROLLA SE è CARICATO IL SW per la PWA */
 platformBrowserDynamic().bootstrapModule(AppModule)
   .then(() => {
     if ('serviceWorker' in navigator) {
