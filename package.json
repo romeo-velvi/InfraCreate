@@ -4,7 +4,6 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-pwa": "ng serve --configuration=pwa --ssl=true",
     "start-creo": "ng serve --configuration=creo",
     "build": "ng build",
     "test": "ng test",
