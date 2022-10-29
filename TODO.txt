@@ -6,6 +6,7 @@ TODO
 - Creare Service per gestire i tipi di nodi
 + inserire nel download services anche parte degli zip
 + controllare sezione import nella visualizzazione. ci vuole? (dato che non scendon queste info dalle api)
++ Fix reload module_visualizer
 _________________________________________________________________________________________
 
 IMPLEMENTAZIONI FUTURE
