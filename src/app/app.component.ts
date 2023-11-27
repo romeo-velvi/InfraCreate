@@ -1,9 +1,18 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ModalItem } from './components/modal/modalType';
 import { ModalService } from './services/application/modal/modal.service';
 import { SpinnerService } from './services/application/spinner/spinner.service';
+import { ModalItem } from './components/modal/modalType';
+
+declare module 'rete/types/events' {
+  interface EventsTypes {
+    arrange: void;
+    showcontextmenu: { e: MouseEvent, node: Node };
+    undo: void;
+    redo: void;
+  }
+}
 
 /**
  * Componente principale dell'applicazione.
