@@ -5,13 +5,25 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 nvm version 12.16.1 
 for update/install 12.20.
 
-## Aggiunta e modifiche elementi in libreria
-aggiungere ad event.d.ts <node_modules\rete\types\events.d.ts> : 
-    - arrange: void;
-    - showcontextmenu: { e: MouseEvent, node: Node };
-    - undo: void;
-    - redo: void;
-installare minimap-plugin versione 0.3.0
+## Nel caso ci siano problemi:
+Inserire in app.component.ts prima delle dichiarazioni di tutto
+```
+declare module 'rete/types/events' {
+  interface EventsTypes {
+    arrange: void;
+    showcontextmenu: { e: MouseEvent, node: Node };
+    undo: void;
+    redo: void;
+  }
+}
+```
+eseguire `npm i rete-minimap-plugin@0.3.0`
+
+## TEST SETTINGS
+Per entrare in modalità:
+    - (De)commentare `initializeKeycloak` in utility.app.init.ts 
+    - (De)Commentare gli auth guard per
+    - assegnare `mocked=false` in environment.ts
 
 ## Development server
 
