@@ -279,6 +279,23 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
   */
   @ViewChild('tab_if_prod') tab_if_prod?: TemplateRef<any>;
 
+  /**
+   * Variabile che indica se l'offcanvas dei moduli è full screen
+   */
+  _isFullScreen: boolean = false;
+  timetorealoadMap: boolean = true;
+  get isFullScreen(): boolean {
+    return this._isFullScreen;
+  }
+  set isFullScreen(b: boolean) {
+    this._isFullScreen = b;
+    this.timetorealoadMap = false;
+    setTimeout(() => {
+      this.timetorealoadMap = true;
+      this.cdr.detectChanges();
+    }, 100);
+  };
+
 
   //// offcanvas theater var
 
@@ -668,6 +685,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.editor.on('rendernode', ({ el, node }) => {
       el.addEventListener('dblclick', () => {
         // this.zone.run(() => {
+        this.isFullScreen = false;
         this.showhideModuleInfo(node);
         // })
       });
@@ -898,6 +916,8 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
    * @see {exportService}
    */
   downloadJSONfunction() {
+    this.theater.validateObject = "theater";
+    console.log(this.theater, this.editor);
     this.spinnerService.setSpinner(true, "Downloading file");
     this.exportService.exportTheaterToJSON(this.theater, this.editor.toJSON());
     this.spinnerService.setSpinner(false);
@@ -1075,6 +1095,7 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
     this.nodeSelected = node;
     this.moduleSelected = this.ModulesDict[node.data.module as string].moduleInfo;
     this.displayMdata = this.displayModuleData(this.moduleSelected);
+    this.isFullScreen = false;
     this.cdr.detectChanges();
   }
   /**
@@ -1462,15 +1483,21 @@ export class ReteTheaterComposerComponent implements OnInit, AfterViewInit {
       moduleUUID: this.moduleSelected.uuid,
     }
     dep.push(v);
+    node.data.sequence = dep.length;
+    console.log("dcdkvmdkvmfskv->",node.data);
     this.deploymentList.next(dep);
     this.cdr.detectChanges();
   }
   removeDepSeq(node: Node) {
     let dep: DeployInstanceDTO[] = this.deploymentList.getValue() ? this.deploymentList.getValue() : [];
     let index = dep.findIndex(d => d.moduleInstanceName === node.data.name);
+    for (let i = index; i < this.editor.nodes.length; i++) {
+      this.editor.nodes[i].data.sequence = (this.editor.nodes[i].data.sequence as number)-1;
+    }
     dep.splice(index, 1);
     this.deploymentList.next(dep);
     this.cdr.detectChanges();
+    console.log(this.deploymentList, this.editor.nodes);
   }
   updateDepSeqName(oldNodeName: string, newNodeName: string) {
     let dep: DeployInstanceDTO[] = this.deploymentList.getValue() ? this.deploymentList.getValue() : [];

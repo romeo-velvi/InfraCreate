@@ -38,7 +38,7 @@ export class FileService {
    * @param event 
    * @return {Promise}
    */
-  async onFileSelected(event: any, filefor:SubjectType): Promise<any> {
+  async onFileSelected(event: any, filefor: SubjectType): Promise<any> {
     this.selectedFile = event.target.files[0];
     const fileReader = new FileReader();
     fileReader.readAsText(this.selectedFile, "UTF-8");
@@ -49,7 +49,7 @@ export class FileService {
           if (this.isFileValid(this.selectedFile, data, filefor))
             resolve(data)
           else
-            reject("The file selected is not valid")
+            reject("The file selected is not valid.")
         }
         catch (e) {
           reject(e);
@@ -85,7 +85,7 @@ export class FileService {
       else
         return false
     }
-    else if (file.name.includes(this.moduleType)  && filefor === SubjectType.MODULE) {
+    else if (file.name.includes(this.moduleType) && filefor === SubjectType.MODULE) {
       if ((data as ModuleApplication).validateObject === "module")
         return true
       else

@@ -81,7 +81,7 @@
     <!----------------------------------------------------------------------------->
 
     <app-offcanvas *ngIf="nodeSelected && moduleSelected" [(show)]="hideModuleInfo" [element]="offcanvasElementModule"
-        [title]="(moduleSelected.name?moduleSelected.name:'Module')+' info'" position="end">
+        [(isfull)]="isFullScreen" [title]="(moduleSelected.name?moduleSelected.name:'Module')+' info'" position="end">
     </app-offcanvas>
     <!-- | -->
     <!-- V -->
@@ -91,39 +91,52 @@
     </ng-template>
 
     <ng-template #tab_module_basic>
-        <ng-container *ngFor="let field of displayMdata['basic']|keyvalue : notSort">
-            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
-                <div *ngIf="item.key" class="row div-data-item">
-                    <h5> {{item.key}} </h5>
-                    <ul class="list-group list">
-                        <li *ngFor="let x of item.value" class="list-group-item list-item">
-                            {{x}}
-                        </li>
-                    </ul>
-                </div>
-            </ng-container>
-        </ng-container>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <ng-container *ngFor="let field of displayMdata['basic']|keyvalue : notSort">
+                    <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                        <div *ngIf="item.key" class="row div-data-item">
+                            <h5> {{item.key}} </h5>
+                            <ul class="list-group list">
+                                <li *ngFor="let x of item.value" class="list-group-item list-item">
+                                    {{x}}
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
     </ng-template>
 
     <ng-template #tab_module_counter>
-        <ng-container *ngFor="let field of displayMdata['counter']|keyvalue : notSort">
-            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
-                <div class="row div-data-item">
-                    <h5>{{item.key}}</h5>
-                    <ul class="list-group list">
-                        <li class="list-group-item list-item">
-                            {{item.value}}
-                        </li>
-                    </ul>
-                </div>
-            </ng-container>
-        </ng-container>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <ng-container *ngFor="let field of displayMdata['counter']|keyvalue : notSort">
+                    <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                        <div class="row div-data-item">
+                            <h5>{{item.key}}</h5>
+                            <ul class="list-group list">
+                                <li class="list-group-item list-item">
+                                    {{item.value}}
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
     </ng-template>
 
     <ng-template #tab_module_topology>
-        <div class="wrapper-module-topology">
-            <app-rete-module-visualizer *ngIf="moduleSelected" [isSimple]="true" [simpleModule]="moduleSelected">
-            </app-rete-module-visualizer>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'100%':'100%'">
+                <div *ngIf="moduleSelected" class="wrapper-module-topology">
+                    <app-rete-module-visualizer *ngIf="timetorealoadMap" [isSimple]="true"
+                        [simpleModule]="moduleSelected">
+                    </app-rete-module-visualizer>
+                </div>
+            </div>
         </div>
     </ng-template>
 
@@ -133,39 +146,49 @@
     <!-- | -->
     <!-- V -->
     <ng-template #tab_if_cons>
-        <ng-container *ngIf="displayMdata['interfaces']['consumer_if'].length>0">
-            <ng-container *ngFor="let item of displayMdata['interfaces']['consumer_if']|keyvalue : notSort">
-                <ng-container *ngFor="let field of item.value|keyvalue : notSort" class="row div-data-item">
-                    <app-window-item [title]="field.key" [onlyResize]="true">
-                        <ul class="list-group list">
-                            <li *ngFor="let x of field.value|keyvalue : notSort" class="list-group-item list-item">
-                                {{x.key}}<br>{{x.value}}
-                            </li>
-                        </ul>
-                    </app-window-item>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <ng-container *ngIf="displayMdata['interfaces']['consumer_if'].length>0">
+                    <ng-container *ngFor="let item of displayMdata['interfaces']['consumer_if']|keyvalue : notSort">
+                        <ng-container *ngFor="let field of item.value|keyvalue : notSort" class="row div-data-item">
+                            <app-window-item [title]="field.key" [onlyResize]="true">
+                                <ul class="list-group list">
+                                    <li *ngFor="let x of field.value|keyvalue : notSort"
+                                        class="list-group-item list-item">
+                                        {{x.key}}<br>{{x.value}}
+                                    </li>
+                                </ul>
+                            </app-window-item>
+                        </ng-container>
+                    </ng-container>
                 </ng-container>
-            </ng-container>
-        </ng-container>
-        <div *ngIf="displayMdata['interfaces']['consumer_if'].length<=0" class="div-data-item">
-            <h5> This module doesn't have consumer interface </h5>
+                <div *ngIf="displayMdata['interfaces']['consumer_if'].length<=0" class="div-data-item">
+                    <h5> This module doesn't have consumer interface </h5>
+                </div>
+            </div>
         </div>
     </ng-template>
     <ng-template #tab_if_prod>
-        <ng-container *ngIf="displayMdata['interfaces']['producer_if'].length>0">
-            <ng-container *ngFor="let item of displayMdata['interfaces']['producer_if']|keyvalue : notSort">
-                <ng-container *ngFor="let field of item.value|keyvalue : notSort" class="row div-data-item">
-                    <app-window-item [title]="field.key" [onlyResize]="true">
-                        <ul class="list-group list">
-                            <li *ngFor="let x of field.value|keyvalue : notSort" class="list-group-item list-item">
-                                {{x.key}}<br>{{x.value}}
-                            </li>
-                        </ul>
-                    </app-window-item>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <ng-container *ngIf="displayMdata['interfaces']['producer_if'].length>0">
+                    <ng-container *ngFor="let item of displayMdata['interfaces']['producer_if']|keyvalue : notSort">
+                        <ng-container *ngFor="let field of item.value|keyvalue : notSort" class="row div-data-item">
+                            <app-window-item [title]="field.key" [onlyResize]="true">
+                                <ul class="list-group list">
+                                    <li *ngFor="let x of field.value|keyvalue : notSort"
+                                        class="list-group-item list-item">
+                                        {{x.key}}<br>{{x.value}}
+                                    </li>
+                                </ul>
+                            </app-window-item>
+                        </ng-container>
+                    </ng-container>
                 </ng-container>
-            </ng-container>
-        </ng-container>
-        <div *ngIf="displayMdata['interfaces']['producer_if'].length<=0" class="div-data-item">
-            <h5> This module doesn't have producer interface </h5>
+                <div *ngIf="displayMdata['interfaces']['producer_if'].length<=0" class="div-data-item">
+                    <h5> This module doesn't have producer interface </h5>
+                </div>
+            </div>
         </div>
     </ng-template>
 
@@ -175,7 +198,7 @@
     <!------------------------OFFCANVAS THEATER------------------------------------>
     <!----------------------------------------------------------------------------->
     <!----------------------------------------------------------------------------->
-    <app-offcanvas *ngIf="theater" [(show)]="hideTheaterInfo" [element]="offcanvasElementTheater" [title]="theater.name"
+    <app-offcanvas *ngIf="theater" [(show)]="hideTheaterInfo" [(isfull)]="isFullScreen" [element]="offcanvasElementTheater" [title]="theater.name"
         alt_title="Theater info" position="start">
     </app-offcanvas>
 
@@ -190,95 +213,119 @@
     <!-- V -->
 
     <ng-template #tab_theater_basic>
-        <ng-container *ngFor="let field of displayTdata['basic']|keyvalue : notSort">
-            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
-                <div *ngIf="item.key" class="row div-data-item">
-                    <h5> {{item.key}} </h5>
-                    <ul class="list-group list">
-                        <li *ngFor="let x of item.value" class="list-group-item list-item">
-                            {{x}}
-                        </li>
-                    </ul>
-                </div>
-            </ng-container>
-        </ng-container>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <ng-container *ngFor="let field of displayTdata['basic']|keyvalue : notSort">
+                    <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                        <div *ngIf="item.key" class="row div-data-item">
+                            <h5> {{item.key}} </h5>
+                            <ul class="list-group list">
+                                <li *ngFor="let x of item.value" class="list-group-item list-item">
+                                    {{x}}
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
     </ng-template>
 
 
     <ng-template #tab_theater_areas>
-        <ng-container *ngFor="let field of displayTdata['areas']|keyvalue : notSort">
-            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
-                <app-window-item [title]="item.key" [onlyResize]="true">
-                    <ul class="list-group list">
-                        <li *ngFor="let x of item.value" class="list-group-item list-item">
-                            {{x}}
-                        </li>
-                    </ul>
-                </app-window-item>
-            </ng-container>
-        </ng-container>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <ng-container *ngFor="let field of displayTdata['areas']|keyvalue : notSort">
+                    <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                        <app-window-item [title]="item.key" [onlyResize]="true">
+                            <ul class="list-group list">
+                                <li *ngFor="let x of item.value" class="list-group-item list-item">
+                                    {{x}}
+                                </li>
+                            </ul>
+                        </app-window-item>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
     </ng-template>
 
     <ng-template #tab_theater_tags>
-        <div *ngIf="displayTdata['tags'].length<=0" class="div-data-item">
-            <h5> No tags found </h5>
-        </div>
-        <ng-container *ngIf="displayTdata['tags'].length>0">
-            <ng-container *ngFor="let field of displayTdata['tags']|keyvalue : notSort">
-                <ng-container *ngFor="let item of field.value | keyvalue : notSort">
-                    <app-window-item [title]="item.key" [onlyResize]="true">
-                        <ul class="list-group list">
-                            <li *ngFor="let x of item.value" class="list-group-item list-item">
-                                {{x}}
-                            </li>
-                        </ul>
-                    </app-window-item>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <div *ngIf="displayTdata['tags'].length<=0" class="div-data-item">
+                    <h5> No tags found </h5>
+                </div>
+                <ng-container *ngIf="displayTdata['tags'].length>0">
+                    <ng-container *ngFor="let field of displayTdata['tags']|keyvalue : notSort">
+                        <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                            <app-window-item [title]="item.key" [onlyResize]="true">
+                                <ul class="list-group list">
+                                    <li *ngFor="let x of item.value" class="list-group-item list-item">
+                                        {{x}}
+                                    </li>
+                                </ul>
+                            </app-window-item>
+                        </ng-container>
+                    </ng-container>
                 </ng-container>
-            </ng-container>
-        </ng-container>
+            </div>
+        </div>
     </ng-template>
 
     <ng-template #tab_theater_imports>
-        <ng-container *ngFor="let field of displayTdata['imports']|keyvalue : notSort">
-            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
-                <div *ngIf="item.key" class="row div-data-item">
-                    <h5> {{item.key}} </h5>
-                    <ul class="list-group list">
-                        <li *ngFor="let x of item.value" class="list-group-item list-item">
-                            {{x}}
-                        </li>
-                    </ul>
-                </div>
-            </ng-container>
-        </ng-container>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <ng-container *ngFor="let field of displayTdata['imports']|keyvalue : notSort">
+                    <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                        <div *ngIf="item.key" class="row div-data-item">
+                            <h5> {{item.key}} </h5>
+                            <ul class="list-group list">
+                                <li *ngFor="let x of item.value" class="list-group-item list-item">
+                                    {{x}}
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
     </ng-template>
 
     <ng-template #tab_theater_deploy>
-        <div class="row div-data-item">
-            <ul class="list-group list">
-                <ng-container *ngFor="let field of displayTdata['deploymentSequence']|keyvalue : notSort">
-                    <ng-container *ngFor="let item of field.value | keyvalue : notSort">
-                        <li class="list-group-item list-item">
-                            {{item.key}}: {{item.value}}
-                        </li>
-                    </ng-container>
-                </ng-container>
-            </ul>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <div class="row div-data-item">
+                    <ul class="list-group list">
+                        <ng-container *ngFor="let field of displayTdata['deploymentSequence']|keyvalue : notSort">
+                            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                                <li class="list-group-item list-item">
+                                    {{item.key}}: {{item.value}}
+                                </li>
+                            </ng-container>
+                        </ng-container>
+                    </ul>
+                </div>
+            </div>
         </div>
     </ng-template>
 
     <ng-template #tab_theater_map>
-        <ng-container *ngFor="let field of displayTdata['mapping']|keyvalue">
-            <ng-container *ngFor="let item of field.value | keyvalue : notSort">
-                <app-window-item [title]="item.key" [onlyResize]="true">
-                    <ul class="list-group list">
-                        <li *ngFor="let x of item.value | keyvalue : notSort" class="list-group-item list-item">
-                            {{x.key.toUpperCase()}}: <br> {{x.value}}
-                        </li>
-                    </ul>
-                </app-window-item>
-            </ng-container>
-        </ng-container>
+        <div class="w-100 d-flex justify-content-center">
+            <div [style.width]="(isFullScreen)?'40%':'100%'">
+                <ng-container *ngFor="let field of displayTdata['mapping']|keyvalue">
+                    <ng-container *ngFor="let item of field.value | keyvalue : notSort">
+                        <app-window-item [title]="item.key" [onlyResize]="true">
+                            <ul class="list-group list">
+                                <li *ngFor="let x of item.value | keyvalue : notSort" class="list-group-item list-item">
+                                    {{x.key.toUpperCase()}}: <br> {{x.value}}
+                                </li>
+                            </ul>
+                        </app-window-item>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
     </ng-template>
 
 

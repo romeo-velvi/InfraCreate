@@ -15,5 +15,5 @@ export class TabnavElement {
 export class TabnavItem {
     id: string;
     text: string;
-    template: TemplateRef<any>
+    template: TemplateRef<any>;
 }

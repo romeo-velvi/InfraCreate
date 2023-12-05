@@ -74,7 +74,7 @@
 <!------------------------OFFCANVAS NODE--------------------------------------->
 <!----------------------------------------------------------------------------->
 <!----------------------------------------------------------------------------->
-<app-offcanvas *ngIf="nodeSelected" [(show)]="hideNodeInfo" [element]="offcanvasElementNode"
+<app-offcanvas *ngIf="nodeSelected" [(show)]="hideNodeInfo" [(isfull)]="isFullScreen" [element]="offcanvasElementNode"
     [title]="nodeSelected.data?.name" [alt_title]="nodeSelected.data?.type+' node'" position="end"></app-offcanvas>
 
 <!-- | -->
@@ -88,10 +88,14 @@
 <!-- V -->
 
 <ng-template #tab_node_data>
-    <div *ngIf="nodeSelected.data">
-        <ng-container *ngIf="nodeSelected.data.type===HOST" [ngTemplateOutlet]="dataHost"></ng-container>
-        <ng-container *ngIf="nodeSelected.data.type===SUBNET" [ngTemplateOutlet]="dataSubnet"></ng-container>
-        <ng-container *ngIf="nodeSelected.data.type===NETWORK" [ngTemplateOutlet]="dataNetwork"></ng-container>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <div *ngIf="nodeSelected.data">
+                <ng-container *ngIf="nodeSelected.data.type===HOST" [ngTemplateOutlet]="dataHost"></ng-container>
+                <ng-container *ngIf="nodeSelected.data.type===SUBNET" [ngTemplateOutlet]="dataSubnet"></ng-container>
+                <ng-container *ngIf="nodeSelected.data.type===NETWORK" [ngTemplateOutlet]="dataNetwork"></ng-container>
+            </div>
+        </div>
     </div>
 </ng-template>
 <!-- | -->
@@ -176,39 +180,53 @@
 <!-- | -->
 <!-- V -->
 <ng-template #tab_port_in>
-    <nc-container *ngIf="nodeSelected && nodeSelected.data.type!==HOST">
-        <button class="btn btn-primary w-100" (click)="addPortIn()"> <span class="h5">Add input port</span> &nbsp; <i
-                class="bi bi-plus-circle h5"></i> </button>
-        <ng-container *ngFor="let item of nodeSelected.data.Input; let i = index">
-            <app-window-item *ngIf="item" [title]="item" (onRemove)="removePortIn(item)">
-                <app-data-input-v2 title="Port name" directChange="function" [value]="item" formType="text"
-                    (onChange)="updatePortName($event,INPUT)" style="margin-top: 0.7em!important"></app-data-input-v2>
-            </app-window-item>
-        </ng-container>
-    </nc-container>
-    <div *ngIf="nodeSelected.data.Input.length<=0 || nodeSelected.data.type===HOST" class="row div-data-item">
-        <h5>This node doesn't have input port</h5>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <nc-container *ngIf="nodeSelected && nodeSelected.data.type!==HOST">
+                <button class="btn btn-primary w-100 button-on-top" (click)="addPortIn()"> <span class="h5">Add input port</span>
+                    &nbsp; <i class="bi bi-plus-circle h5"></i> </button>
+                <ng-container *ngFor="let item of nodeSelected.data.Input; let i = index">
+                    <app-window-item *ngIf="item" [title]="item" (onRemove)="removePortIn(item)">
+                        <app-data-input-v2 title="Port name" directChange="function" [value]="item" formType="text"
+                            (onChange)="updatePortName($event,INPUT)"
+                            style="margin-top: 0.7em!important"></app-data-input-v2>
+                    </app-window-item>
+                </ng-container>
+            </nc-container>
+            <div *ngIf="nodeSelected.data.Input.length<=0 || nodeSelected.data.type===HOST" class="row div-data-item">
+                <h5>This node doesn't have input port</h5>
+            </div>
+        </div>
     </div>
 </ng-template>
 <ng-template #tab_port_out>
-    <nc-container *ngIf="nodeSelected && nodeSelected.data.type!==NETWORK">
-        <button class="btn btn-primary w-100" (click)="addPortOut()"> <span class="h5">Add output port</span> &nbsp; <i
-                class="bi bi-plus-circle h5"></i> </button>
-        <nc-container *ngFor="let item of nodeSelected.data.Output; let i = index">
-            <app-window-item *ngIf="item" [title]="item" (onRemove)="removePortOut(item)">
-                <app-data-input-v2 title="Port name" directChange="function" [value]="item" formType="text"
-                    (onChange)="updatePortName($event,OUTPUT)" style="margin-top: 0.7em!important"></app-data-input-v2>
-            </app-window-item>
-        </nc-container>
-    </nc-container>
-    <div *ngIf="!nodeSelected || nodeSelected.data.type===NETWORK" class="row div-data-item">
-        <h5>This node doesn't have output port</h5>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <nc-container *ngIf="nodeSelected && nodeSelected.data.type!==NETWORK">
+                <button class="btn btn-primary w-100 button-on-top" (click)="addPortOut()"> <span class="h5">Add output port</span>
+                    &nbsp; <i class="bi bi-plus-circle h5"></i> </button>
+                <nc-container *ngFor="let item of nodeSelected.data.Output; let i = index">
+                    <app-window-item *ngIf="item" [title]="item" (onRemove)="removePortOut(item)">
+                        <app-data-input-v2 title="Port name" directChange="function" [value]="item" formType="text"
+                            (onChange)="updatePortName($event,OUTPUT)"
+                            style="margin-top: 0.7em!important"></app-data-input-v2>
+                    </app-window-item>
+                </nc-container>
+            </nc-container>
+            <div *ngIf="!nodeSelected || nodeSelected.data.type===NETWORK" class="row div-data-item">
+                <h5>This node doesn't have output port</h5>
+            </div>
+        </div>
     </div>
 </ng-template>
 
 <ng-template #tab_node_more>
-    <div class="row div-data-item">
-        <h5>This node doesn't have more info</h5>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <div class="row div-data-item">
+                <h5>This node doesn't have more info</h5>
+            </div>
+        </div>
     </div>
 </ng-template>
 
@@ -219,7 +237,7 @@
 <!----------------------------------------------------------------------------->
 <!----------------------------------------------------------------------------->
 
-<app-offcanvas *ngIf="module" [(show)]="hideModuleInfo" [element]="offcanvasElementModule"
+<app-offcanvas *ngIf="module" [(show)]="hideModuleInfo" [(isfull)]="isFullScreen" [element]="offcanvasElementModule"
     [title]="this.module?this.module.name?this.module.name+' info':'Module info':'Module info'" position="start">
 </app-offcanvas>
 
@@ -229,56 +247,66 @@
 <!-- | -->
 <!-- V -->
 <ng-template #tab_module_basic>
-    <!-- NAME -->
-    <div class="row div-data-item">
-        <app-data-input-v2 title="Name" [(value)]="module.name" formType="text">
-        </app-data-input-v2>
-    </div>
-    <!-- DESCRIPTION -->
-    <div class="row div-data-item">
-        <app-data-input-v2 title="Description" [(value)]="module.description" formType="textarea"></app-data-input-v2>
-    </div>
-    <!-- VERSION -->
-    <div class="row div-data-item">
-        <app-data-input-v2 title="Version" [(value)]="module.version" formType="text"></app-data-input-v2>
-    </div>
-    <!-- AUTHOR -->
-    <div class="row div-data-item">
-        <app-data-input-v2 title="Author" [(value)]="module.author" formType="text" [selectOption]="(areaSelection)">
-        </app-data-input-v2>
-    </div>
-    <!-- TYPE -->
-    <div class="row div-data-item">
-        <app-data-input-v2 title="Module type" [(value)]="module.type" formType="selection"
-            [selectOption]="moduleTypeOption">
-        </app-data-input-v2>
-    </div>
-    <!-- CREATION DATE -> Not editable -->
-    <div class="row div-data-item">
-        <h5> Creation date </h5>
-        <ul class="list-group list">
-            <li class="list-group-item list-item">
-                {{module.createdDate}}
-            </li>
-        </ul>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <!-- NAME -->
+            <div class="row div-data-item">
+                <app-data-input-v2 title="Name" [(value)]="module.name" formType="text">
+                </app-data-input-v2>
+            </div>
+            <!-- DESCRIPTION -->
+            <div class="row div-data-item">
+                <app-data-input-v2 title="Description" [(value)]="module.description"
+                    formType="textarea"></app-data-input-v2>
+            </div>
+            <!-- VERSION -->
+            <div class="row div-data-item">
+                <app-data-input-v2 title="Version" [(value)]="module.version" formType="text"></app-data-input-v2>
+            </div>
+            <!-- AUTHOR -->
+            <div class="row div-data-item">
+                <app-data-input-v2 title="Author" [(value)]="module.author" formType="text"
+                    [selectOption]="(areaSelection)">
+                </app-data-input-v2>
+            </div>
+            <!-- TYPE -->
+            <div class="row div-data-item">
+                <app-data-input-v2 title="Module type" [(value)]="module.type" formType="selection"
+                    [selectOption]="moduleTypeOption">
+                </app-data-input-v2>
+            </div>
+            <!-- CREATION DATE - Not editable -->
+            <div class="row div-data-item">
+                <h5> Creation date </h5>
+                <ul class="list-group list">
+                    <li class="list-group-item list-item">
+                        {{module.createdDate}}
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </ng-template>
 <ng-template #tab_module_flavor>
-    <ng-container *ngFor="let f of (availableFlavor|async)">
-        <app-window-item [title]="f.flavorName" [onlyResize]="true">
-            <ul class="list-group list">
-                <li class="list-group-item list-item">
-                    DISK (MB): {{f.disk}}
-                </li>
-                <li class="list-group-item list-item">
-                    RAM (MB): {{f.ram}}
-                </li>
-                <li class="list-group-item list-item">
-                    CPU (#): {{f.cpu}}
-                </li>
-            </ul>
-        </app-window-item>
-    </ng-container>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <ng-container *ngFor="let f of (availableFlavor|async)">
+                <app-window-item [title]="f.flavorName" [onlyResize]="true">
+                    <ul class="list-group list">
+                        <li class="list-group-item list-item">
+                            DISK (MB): {{f.disk}}
+                        </li>
+                        <li class="list-group-item list-item">
+                            RAM (MB): {{f.ram}}
+                        </li>
+                        <li class="list-group-item list-item">
+                            CPU (#): {{f.cpu}}
+                        </li>
+                    </ul>
+                </app-window-item>
+            </ng-container>
+        </div>
+    </div>
 </ng-template>
 <ng-template #tab_module_interfaces>
     <app-tabnav *ngIf="tabnavIF" [element]="tabnavIF"></app-tabnav>
@@ -286,61 +314,98 @@
 <!-- | -->
 <!-- V -->
 <ng-template #tab_if_cons>
-    <button class="btn btn-primary w-100" (click)="addInterface(CONSUMER)"> <span class="h5">Add consumer
-            interface</span> &nbsp; <i class="bi bi-plus-circle h5"></i> </button>
-    <ng-container *ngFor="let ifc of (consumerInterface|async); let i = index">
-        <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,CONSUMER)">
-            <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName" formType="text"
-                (onChange)="updateInterfaceName($event,ifc.nodeName,CONSUMER)" style="margin-top: 0.7em!important;">
-            </app-data-input-v2>
-            <div *ngIf="ifc.network && ifc.network.name">
-                <h5 style="margin-top: 0.7em!important;"> Network associated: </h5>
-                <div class="row div-data-item">
-                    {{ifc.network.name}}
-                </div>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <button class="btn btn-primary w-100 button-on-top" (click)="addInterface(CONSUMER)"> <span class="h5">Add consumer
+                    interface</span> &nbsp; <i class="bi bi-plus-circle h5"></i> </button>
+            <ng-container *ngFor="let ifc of (consumerInterface|async); let i = index">
+                <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,CONSUMER)">
+                    <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName"
+                        formType="text" (onChange)="updateInterfaceName($event,ifc.nodeName,CONSUMER)"
+                        style="margin-top: 0.7em!important;">
+                    </app-data-input-v2>
+                    <div *ngIf="ifc.network && ifc.network.name">
+                        <h5 style="margin-top: 0.7em!important;"> Network associated: </h5>
+                        <div class="row div-data-item">
+                            {{ifc.network.name}}
+                        </div>
+                    </div>
+                </app-window-item>
+            </ng-container>
+            <div *ngIf="(consumerInterface|async)?.length<=0" class="row div-data-item">
+                <h5> No Consumer interface found </h5>
             </div>
-        </app-window-item>
-    </ng-container>
-    <div *ngIf="(consumerInterface|async)?.length<=0" class="row div-data-item">
-        <h5> No Consumer interface found </h5>
+        </div>
     </div>
 </ng-template>
 <ng-template #tab_if_prod>
-    <button class="btn btn-primary w-100" (click)="addInterface(PRODUCER)"> <span class="h5">Add producer
-            interface</span> &nbsp; <i class="bi bi-plus-circle h5"></i> </button>
-    <ng-container *ngFor="let ifc of (producerInterface|async); let i = index">
-        <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,PRODUCER)">
-            <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName" formType="text"
-                (onChange)="updateInterfaceName($event,ifc.nodeName,PRODUCER)" style="margin-top: 0.7em!important">
-            </app-data-input-v2>
-            <div *ngIf="ifc.network && ifc.network.name">
-                <h5 style="margin-top: 0.7em!important;"> Network associated: </h5>
-                <div class="row div-data-item">
-                    {{ifc.network.name}}
-                </div>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <button class="btn btn-primary w-100 button-on-top" (click)="addInterface(PRODUCER)"> <span class="h5">Add producer
+                    interface</span> &nbsp; <i class="bi bi-plus-circle h5"></i> </button>
+            <ng-container *ngFor="let ifc of (producerInterface|async); let i = index">
+                <app-window-item [title]="ifc.nodeName" (onRemove)="removeInterface(ifc.nodeName,PRODUCER)">
+                    <app-data-input-v2 title="Interface Name" directChange="function" [value]="ifc.nodeName"
+                        formType="text" (onChange)="updateInterfaceName($event,ifc.nodeName,PRODUCER)"
+                        style="margin-top: 0.7em!important">
+                    </app-data-input-v2>
+                    <div *ngIf="ifc.network && ifc.network.name">
+                        <h5 style="margin-top: 0.7em!important;"> Network associated: </h5>
+                        <div class="row div-data-item">
+                            {{ifc.network.name}}
+                        </div>
+                    </div>
+                </app-window-item>
+            </ng-container>
+            <div *ngIf="(producerInterface|async)?.length<=0" class="row div-data-item">
+                <h5> No Producer interface found </h5>
             </div>
-        </app-window-item>
-    </ng-container>
-    <div *ngIf="(producerInterface|async)?.length<=0" class="row div-data-item">
-        <h5> No Producer interface found </h5>
+        </div>
     </div>
 </ng-template>
 
 
 <ng-template #tab_module_counter>
-    <!-- <h5>{{item.key}}</h5> -->
-    <div *ngIf="counterList" class="row div-data-item">
-        <ul class="list-group list">
-            <li class="list-group-item list-item">
-                {{"Host number"}}: {{counterList[HOST]?counterList[HOST]:0}}
-            </li>
-            <li class="list-group-item list-item">
-                {{"Subnet number"}}: {{counterList[SUBNET]?counterList[SUBNET]:0}}
-            </li>
-            <li class="list-group-item list-item">
-                {{"Network number"}}: {{counterList[NETWORK]?counterList[NETWORK]:0}}
-            </li>
-        </ul>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <!-- <h5>{{item.key}}</h5> -->
+            <div *ngIf="counterList" class="row div-data-item">
+                <ul class="list-group list">
+                    <li class="list-group-item list-item">
+                        {{"Host number"}}: {{counterList[HOST]?counterList[HOST]:0}}
+                    </li>
+                    <li class="list-group-item list-item">
+                        {{"Subnet number"}}: {{counterList[SUBNET]?counterList[SUBNET]:0}}
+                    </li>
+                    <li class="list-group-item list-item">
+                        {{"Network number"}}: {{counterList[NETWORK]?counterList[NETWORK]:0}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #tab_theater_imports>
+    <div class="w-100 d-flex justify-content-center">
+        <div [style.width]="(isFullScreen)?'40%':'100%'">
+            <button class="btn btn-primary w-100 button-on-top" (click)="addImport()"> <span class="h5">Add import</span> &nbsp; <i
+                    class="bi bi-plus-circle h5"></i> </button>
+            <div *ngFor="let imp of (importList|async); let i = index">
+                <div class="row div-data-item">
+                    <app-data-input-v2 title="Import" [value]="imp" formType="text"
+                        (onChange)="updateImport($event,imp)" style="margin-top: 0.7em!important">
+                    </app-data-input-v2>
+                    <div class="text-end">
+                        <button class="btn btn-danger w-auto btn-sm" (click)="removeImport(imp)"
+                            style="margin-top:1em;margin-right:1em"> remove import </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!(importList|async)" class="row div-data-item">
+                <h5 class="text-center">No import found</h5>
+            </div>
+        </div>
     </div>
 </ng-template>
 
@@ -404,24 +469,7 @@
 </ng-template>
 
 
-<ng-template #tab_theater_imports>
-    <button class="btn btn-primary w-100" (click)="addImport()"> <span class="h5">Add import</span> &nbsp; <i
-            class="bi bi-plus-circle h5"></i> </button>
-    <div *ngFor="let imp of (importList|async); let i = index">
-        <div class="row div-data-item">
-            <app-data-input-v2 title="Import" [value]="imp" formType="text" (onChange)="updateImport($event,imp)"
-                style="margin-top: 0.7em!important">
-            </app-data-input-v2>
-            <div class="text-end">
-                <button class="btn btn-danger w-auto btn-sm" (click)="removeImport(imp)"
-                    style="margin-top:1em;margin-right:1em"> remove import </button>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="!(importList|async)" class="row div-data-item">
-        <h5 class="text-center">No import found</h5>
-    </div>
-</ng-template>
+
 
 
 

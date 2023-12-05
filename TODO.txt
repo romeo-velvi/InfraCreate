@@ -7,6 +7,8 @@ TODO
 + inserire nel download services anche parte degli zip
 + controllare sezione import nella visualizzazione. ci vuole? (dato che non scendon queste info dalle api)
 + Fix reload module_visualizer
+
++ FIX DESIGNER: DOWNLOAD MODULO/TEATRO NON INSERISCE IL thater.topology
 _________________________________________________________________________________________
 
 IMPLEMENTAZIONI FUTURE

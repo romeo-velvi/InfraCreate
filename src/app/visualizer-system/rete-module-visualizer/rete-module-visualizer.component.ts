@@ -362,6 +362,22 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
 */
   @ViewChild('tab_structural') tab_structural?: TemplateRef<any>;
 
+  /**
+   * Variabile che indica se l'offcanvas dei moduli è full screen
+   */
+  _isFullScreen: boolean = false;
+  timetorealoadMap: boolean = true;
+  get isFullScreen(): boolean {
+    return this._isFullScreen;
+  }
+  set isFullScreen(b: boolean) {
+    this._isFullScreen = b;
+    this.timetorealoadMap = false;
+    setTimeout(() => {
+      this.timetorealoadMap = true;
+      this.cdr.detectChanges();
+    }, 100);
+  };
 
 
 
@@ -533,6 +549,7 @@ export class ReteModuleVisualizerComponent implements OnInit, AfterViewInit {
     this.editor.on('rendernode', ({ el, node }) => {
       el.addEventListener('dblclick', () => {
         // this.zone.run(() => {
+        this.isFullScreen = false;
         this.showhideNodeInfo(node);
         // })
       });

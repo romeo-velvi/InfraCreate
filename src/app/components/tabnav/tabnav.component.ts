@@ -24,7 +24,7 @@ export class TabnavComponent implements OnInit {
   /**
    * Variabile data in input che contiene le caratteristiche/quantità della tab.
    * @type {TabnavElement}
-  */ 
+  */
   @Input() element: TabnavElement;
 
   /**

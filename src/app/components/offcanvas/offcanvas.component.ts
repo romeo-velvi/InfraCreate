@@ -68,8 +68,18 @@ export class OffcanvasComponent {
    * @type {boolean}
    * @default {false}
    */
-  @Input() isfull?: boolean = false;
-  
+  private _isfull?: boolean = false;
+  @Input()
+  set isfull(val: boolean) {
+    this.isfullChange.emit(val);
+    this._isfull = val;
+  }
+  get isfull() {
+    return this._isfull;
+  }
+  @Output() isfullChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+
   // variabili classe icone
   protected toReduceIconClass: string = "bi bi-box-arrow-in-down-right";
   protected toOpenIconClass: string = "bi bi-square";

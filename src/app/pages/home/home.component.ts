@@ -292,7 +292,7 @@ export class HomeComponent {
         this.fileJSON = v; this.fileLoaded = true;
       })
       .catch((e) => {
-        alert(e + "\n Make sure it ends with \" ." + this.type.toLowerCase() + ".json \"")
+        alert(e + "\n Make sure the file is correct and that it ends with \" ."+this.type.toLowerCase() + ".json\"")
       })
   }
 

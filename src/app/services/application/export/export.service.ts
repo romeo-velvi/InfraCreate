@@ -64,6 +64,7 @@ export class ExportService {
    * @see {exportToYaml}
    */
   exportTheaterToYAML(theater: TheaterApplication, editor: Data) {
+    console.log(theater);
     let data: TheaterExport = new ExportTheater(theater, editor).convertTheater();
     return exportToYaml(theater.name, data);
   }

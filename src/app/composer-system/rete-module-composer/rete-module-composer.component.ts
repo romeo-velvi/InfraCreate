@@ -644,6 +644,22 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     { value: Object.keys(EnumModuleTypeDescription)[6], text: Object.values(EnumModuleTypeDescription)[6] }, //Border
   ]
 
+  /**
+   * Variabile che indica se l'offcanvas dei moduli è full screen
+   */
+  _isFullScreen: boolean = false;
+  timetorealoadMap: boolean = true;
+  get isFullScreen(): boolean {
+    return this._isFullScreen;
+  }
+  set isFullScreen(b: boolean) {
+    this._isFullScreen = b;
+    this.timetorealoadMap = false;
+    setTimeout(() => {
+      this.timetorealoadMap = true;
+      this.cdr.detectChanges();
+    }, 100);
+  };
 
 
 
@@ -833,6 +849,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
     this.editor.on('rendernode', ({ el, node }) => {
       el.addEventListener('dblclick', async () => {
         // this.zone.run(() => {
+        this.isFullScreen = false;
         this.showhideNodeInfo(node);
         // })
       });
@@ -1078,6 +1095,7 @@ export class ReteModuleComposerComponent implements OnInit, AfterViewInit {
    * @see {exportService}
    */
   downloadJSONfunction() {
+    this.module.validateObject = "module";
     this.spinnerService.setSpinner(true, "Downloading file");
     this.exportService.exportModuleToJSON(this.module, this.editor.toJSON());
     this.spinnerService.setSpinner(false);

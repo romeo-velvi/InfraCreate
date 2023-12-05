@@ -3,9 +3,7 @@ import { NodeEditor, Node, Engine, Output as or, Input as ir } from 'rete';
 import AreaPlugin from 'rete-area-plugin';
 import { Router } from '@angular/router';
 import { _Socket } from '../../rete-settings/sockets/socket';
-import { NavbarItem, NavbarElement } from '../../components/navbar/navbarType';
 import { UnderbarItem, UnderbarElement } from '../../components/underbar/underbarType';
-import { TabnavElement } from '../../components/tabnav/tabnavType';
 import { from } from 'rxjs';
 import { SimpleModuleApplication, ReteConnection, TheaterApplication } from 'src/app/services/modelsApplication/applicationModels';
 import { ReteTheaterVisualizerSettings } from 'src/app/rete-settings/settings/editor-settings/reteTheaterVisualizerSettings';
@@ -16,6 +14,8 @@ import { AttachmentsService } from 'src/app/services/api/attachments.service';
 import { environment } from 'src/environments/environment';
 import { ExportService } from 'src/app/services/application/export/export.service';
 import { ModuleType1 } from 'src/app/models/appType';
+import { NavbarElement, NavbarItem } from 'src/app/components/navbar/navbarType';
+import { TabnavElement } from 'src/app/components/tabnav/tabnavType';
 
 /**
  * Componente che contiene la logica e la gestione della parte di costruzione dei moduli.
@@ -290,7 +290,22 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
   */
   @ViewChild('tab_if_prod') tab_if_prod?: TemplateRef<any>;
 
-
+  /**
+   * Variabile che indica se l'offcanvas dei moduli è full screen
+   */
+  _isFullScreen: boolean = false;
+  timetorealoadMap: boolean = true;
+  get isFullScreen(): boolean {
+    return this._isFullScreen;
+  }
+  set isFullScreen(b: boolean) {
+    this._isFullScreen = b;
+    this.timetorealoadMap = false;
+    setTimeout(() => {
+      this.timetorealoadMap = true;
+      this.cdr.detectChanges();
+    }, 100);
+  };
 
 
 
@@ -832,6 +847,7 @@ export class ReteTheaterVisualizerComponent implements OnInit, AfterViewInit {
     this.nodeSelected = { ...node } as Node;
     this.moduleSelected = this.theater.topology.elements[node.data.name as string].moduleInfo;
     this.displayMdata = this.displayModuleData(this.moduleSelected);
+    this.isFullScreen = false;
     this.cdr.detectChanges();
   }
   /**
